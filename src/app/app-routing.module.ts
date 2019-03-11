@@ -12,15 +12,15 @@ const routes: Routes = [
     redirectTo: "home",
     pathMatch: "full"
   },
-  { path: "home", component: HomeComponent},
+  { path: "home", component: HomeComponent, canActivate: [AuthGuardService] },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
-  
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
