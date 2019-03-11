@@ -19,3 +19,11 @@
 .heigth-textarea {
     height: 12vw !important;
 }
+
+.mat-button[disabled],
+.mat-flat-button[disabled],
+.mat-icon-button[disabled],
+.mat-stroked-button[disabled] {
+    cursor: default;
+    border-color: lightgray;
+}
