@@ -1,6 +1,7 @@
-<mat-toolbar color="primary">
+<mat-toolbar style="background-color: white;border-bottom: solid 1px  #e2e2e2">
   <mat-toolbar-row class="container">
-    <span>{{appName}}</span>
+    <img class="app-logo cursor" (click)="clickToHome()"
+      src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548991271/Rabu%20Rabu/perfect%20lips/LOGO-RABU.png">
     <span class="example-spacer"></span>
     <span *ngIf="userAuth">
       <mat-icon class="example-icon">notifications</mat-icon>
