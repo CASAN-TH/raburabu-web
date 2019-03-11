@@ -22,5 +22,14 @@ export class HeaderToolbarComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
 
-  ngOnInit() {}
+  onLogin() {
+    this.router.navigate(["/login"]);
+  }
+
+
+  onRegister() {
+    this.router.navigate(["/register"]);
+  }
+
+  ngOnInit() { }
 }

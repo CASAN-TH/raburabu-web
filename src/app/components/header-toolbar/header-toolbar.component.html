@@ -3,8 +3,13 @@
     <img class="app-logo cursor" (click)="clickToHome()"
       src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548991271/Rabu%20Rabu/perfect%20lips/LOGO-RABU.png">
     <span class="example-spacer"></span>
-    <span *ngIf="userAuth">
+    <!-- <span *ngIf="userAuth">
       <mat-icon class="example-icon">notifications</mat-icon>
+    </span> -->
+    <span class="profile " *ngIf="!userAuth">
+      <span class="user-name" (click)="onLogin()">เข้าสู่ระบบ</span>
+      <span class="user-name">/</span>
+      <span class="user-name" (click)="onRegister()">สมัครสมาชิก</span>
     </span>
     <span class="profile" *ngIf="userAuth" [matMenuTriggerFor]="profile">
       <img [src]="userAuth.profileImageURL" class="img" alt="img">
