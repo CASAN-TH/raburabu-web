@@ -1,10 +1,25 @@
-import { Component } from "@angular/core";
-
+import { SideBarService } from './components/side-bar/side-bar.service';
+import { Component, ViewChild, ElementRef, ChangeDetectorRef } from "@angular/core";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor() {}
+  @ViewChild('appDrawer') appDrawer: ElementRef;
+  mode = 'over';
+  opened = false;
+
+  constructor(
+    public sidenavService: SideBarService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private breakpointObserver: BreakpointObserver
+  ) { }
+
+  ngAfterViewInit() {
+    this.sidenavService.appDrawer = this.appDrawer;
+  }
 }

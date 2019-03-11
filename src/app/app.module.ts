@@ -18,6 +18,9 @@ import { AuthModule } from "ng6-md-auth";
 import { ModalCreateTeamComponent } from './modal/modal-create-team/modal-create-team.component';
 import { MatDialogModule } from "@angular/material";
 import { ModalCreateMemberComponent } from './modal/modal-create-member/modal-create-member.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 
 const apiSrvCfg = environment;
@@ -30,7 +33,8 @@ const apiSrvCfg = environment;
     ForgotComponent,
     HeaderToolbarComponent,
     ModalCreateTeamComponent,
-    ModalCreateMemberComponent
+    ModalCreateMemberComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,8 @@ const apiSrvCfg = environment;
     BrowserAnimationsModule,
     MaterialModule,
     MatDialogModule,
+    MatListModule,
+    MatSidenavModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" }),
     HttpClientModule,

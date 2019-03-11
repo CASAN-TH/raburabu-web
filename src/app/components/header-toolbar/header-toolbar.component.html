@@ -16,6 +16,9 @@
         class="img">
       <span class="user-name">{{userAuth.username}}</span>
     </span>
+    <button mat-icon-button (click)="sidenavService.openNav()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <mat-menu #profile="matMenu">
       <button name="btn-logout" mat-menu-item (click)="onLogout()">
         <mat-icon>power_settings_new</mat-icon>
