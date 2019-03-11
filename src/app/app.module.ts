@@ -16,6 +16,7 @@ import { HeaderToolbarComponent } from "./components/header-toolbar/header-toolb
 import { environment } from "src/environments/environment";
 import { AuthModule } from "ng6-md-auth";
 import { ModalCreateTeamComponent } from './modal/modal-create-team/modal-create-team.component';
+import { MatDialogModule } from "@angular/material";
 
 
 const apiSrvCfg = environment;
@@ -34,13 +35,17 @@ const apiSrvCfg = environment;
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" }),
     HttpClientModule,
     NgxSpinnerModule,
     AuthModule.forRoot(apiSrvCfg)
   ],
+  entryComponents: [
+    ModalCreateTeamComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
