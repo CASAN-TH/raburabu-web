@@ -17,6 +17,7 @@ import { environment } from "src/environments/environment";
 import { AuthModule } from "ng6-md-auth";
 import { ModalCreateTeamComponent } from './modal/modal-create-team/modal-create-team.component';
 import { MatDialogModule } from "@angular/material";
+import { ModalCreateMemberComponent } from './modal/modal-create-member/modal-create-member.component';
 
 
 const apiSrvCfg = environment;
@@ -28,7 +29,8 @@ const apiSrvCfg = environment;
     RegisterComponent,
     ForgotComponent,
     HeaderToolbarComponent,
-    ModalCreateTeamComponent
+    ModalCreateTeamComponent,
+    ModalCreateMemberComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ const apiSrvCfg = environment;
     AuthModule.forRoot(apiSrvCfg)
   ],
   entryComponents: [
-    ModalCreateTeamComponent
+    ModalCreateTeamComponent,
+    ModalCreateMemberComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

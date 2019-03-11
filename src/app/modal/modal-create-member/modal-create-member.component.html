@@ -1,0 +1,18 @@
+<div class="row flex">
+  <div class="col-12 col-md-4 col-lg-4" *ngFor="let item of dataTeam" (click)="selectItem(item)">
+    <mat-card class="example-card cursor-pointer">
+      <i class="material-icons position-check" *ngIf="selected === item">
+        check_circle_outline
+      </i>
+      <mat-card-content>
+        <h1 class="text-center">ทีม</h1>
+        <h3>{{item.name}}</h3>
+        <p class="break">{{item.detail}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 text-right mt-4">
+    <button class="mr-2" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
+    <button class="sty-btn" mat-stroked-button color="accent" (click)="save()">บันทึก</button>
+  </div>
+</div>

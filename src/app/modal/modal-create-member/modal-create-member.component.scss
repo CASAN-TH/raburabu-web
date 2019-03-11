@@ -1,0 +1,20 @@
+.flex {
+    height: 100%;
+    display: flex;
+    align-items: flex-end
+}
+
+.break {
+    word-break: break-all !important;
+}
+
+.position-check {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    color: green;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
