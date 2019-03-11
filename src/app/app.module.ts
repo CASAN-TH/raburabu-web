@@ -40,6 +40,7 @@ const apiSrvCfg = environment;
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" }),
     HttpClientModule,
     NgxSpinnerModule,
+    HttpClientModule,
     AuthModule.forRoot(apiSrvCfg)
   ],
   entryComponents: [
