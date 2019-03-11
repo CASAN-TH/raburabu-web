@@ -1,0 +1,36 @@
+version: 2
+jobs:
+    # The build job
+    build:
+        working_directory: ~/project
+        docker:
+            - image: circleci/node:8.9-browsers
+        steps:
+            # Checkout the code from the branch into the working_directory
+            - checkout
+            # Log the current branch
+            - run:
+                name: Show current branch
+                command: echo ${CIRCLE_BRANCH}
+            # Restore local dependencies from cache
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "package.json" }}
+                - v1-dependencies-
+            # Install project dependencies
+            - run:
+                name: Install local dependencies
+                command: npm install
+            # Cache local dependencies if they don't exist
+            - save_cache:
+                key: v1-dependencies-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+            # Test the source code
+            - run:
+                name: Testing
+                command: npm run test
+            # Build the source code
+            - run:
+                name: Building
+                command: npm run build -- --prod

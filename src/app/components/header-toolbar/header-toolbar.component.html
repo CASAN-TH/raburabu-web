@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="container">
+    <span>{{appName}}</span>
+    <span class="example-spacer"></span>
+    <span *ngIf="userAuth">
+      <mat-icon class="example-icon">notifications</mat-icon>
+    </span>
+    <span class="profile" *ngIf="userAuth" [matMenuTriggerFor]="profile">
+      <img [src]="userAuth.profileImageURL" class="img" alt="img">
+      <span class="user-name">{{userAuth.username}}</span>
+    </span>
+    <mat-menu #profile="matMenu">
+      <button name="btn-logout" mat-menu-item (click)="onLogout()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>ออกจากระบบ</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
