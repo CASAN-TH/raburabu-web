@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ModalCreateTeamComponent } from './../../modal/modal-create-team/modal-create-team.component';
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
@@ -10,7 +11,8 @@ import { ModalCreateMemberComponent } from 'src/app/modal/modal-create-member/mo
 })
 export class HomeComponent implements OnInit {
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) { }
 
   ngOnInit() { }
@@ -21,19 +23,24 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log(result)
+      if (result) {
+        this.router.navigate(['manage-member']);
+      }
     });
   }
 
   createmember() {
     const dialogRef = this.dialog.open(ModalCreateMemberComponent, {
       width: '800px',
-      height:'270px',
+      height: '270px',
       disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.router.navigate(['manage-member']);
+      }
     });
   }
 }

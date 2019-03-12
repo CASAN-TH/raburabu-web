@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-create-team',
@@ -28,7 +29,17 @@ export class ModalCreateTeamComponent implements OnInit {
       }
       let res: any = await this.teameService.createTeam(creteTame);
       console.log(res);
-      this.dialogRef.close();
+      // window.localStorage.setItem(environment.apiUrl + '@team', JSON.stringify(res));
+      let resMe: any = await this.teameService.me()
+      if (resMe) {
+        let dataMe = {
+          ref1: res.data._id
+        }
+        let update: any = await this.teameService.updateMe(dataMe);
+        console.log(update);
+        window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(update));
+      }
+      this.dialogRef.close('createTeam');
     } catch (error) {
       console.log(error);
     }

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { ModalCreateTeamComponent } from '../modal-create-team/modal-create-team.component';
@@ -40,7 +41,16 @@ export class ModalCreateMemberComponent implements OnInit {
     try {
       let res: any = await this.teameService.joinTeam(this.selected._id);
       console.log(res);
-      this.dialogRef.close();
+      let resMe: any = await this.teameService.me();
+      if (resMe) {
+        let dataMe = {
+          ref1: res.data._id
+        }
+        let update: any = await this.teameService.updateMe(dataMe);
+        console.log(update);
+        window.localStorage.setItem(environment.apiUrl + '@user',JSON.stringify(update));
+      }
+      this.dialogRef.close('createMember');
 
     } catch (error) {
       console.log(error);
