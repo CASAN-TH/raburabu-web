@@ -1,5 +1,5 @@
 <mat-toolbar style="background-color: white;border-bottom: solid 1px  #e2e2e2">
-  <mat-toolbar-row class="container">
+  <mat-toolbar-row class="pl-5 pr-5">
     <img class="app-logo cursor" (click)="clickToHome()"
       src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548991271/Rabu%20Rabu/perfect%20lips/LOGO-RABU.png">
     <span class="example-spacer"></span>
@@ -11,19 +11,23 @@
       <span class="user-name">/</span>
       <span class="user-name" (click)="onRegister()">สมัครสมาชิก</span>
     </span>
-    <span class="profile" *ngIf="userAuth" [matMenuTriggerFor]="profile">
+
+    <!-- <span class="profile" *ngIf="userAuth" [matMenuTriggerFor]="profile">
       <img src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548908205/web-sharing/no-image-user.jpg"
         class="img">
       <span class="user-name">{{userAuth.username}}</span>
-    </span>
-    <button mat-icon-button (click)="sidenavService.openNav()">
+    </span> -->
+
+    <button mat-icon-button *ngIf="userAuth" (click)="sidenavService.openNav()">
       <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #profile="matMenu">
+
+    <!-- <mat-menu #profile="matMenu">
       <button name="btn-logout" mat-menu-item (click)="onLogout()">
         <mat-icon>power_settings_new</mat-icon>
         <span>ออกจากระบบ</span>
       </button>
-    </mat-menu>
+    </mat-menu> -->
+    
   </mat-toolbar-row>
 </mat-toolbar>
