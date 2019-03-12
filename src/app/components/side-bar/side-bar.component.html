@@ -1,4 +1,4 @@
-<mat-toolbar style="background-color: white;border-bottom: solid 1px  #e2e2e2">
+<!-- <mat-toolbar style="background-color: white;border-bottom: solid 1px  #e2e2e2">
   <div class="row">
     <div class="col-4 pr-0 pl-0 mr-2">
       <img src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548908205/web-sharing/no-image-user.jpg"
@@ -13,4 +13,24 @@
   <a mat-list-item href="#">Link 1</a>
   <a mat-list-item href="#">Link 2</a>
   <a mat-list-item href="#">Link 3</a>
-</mat-nav-list>
+</mat-nav-list> -->
+
+<div class="row" style="background-color: white;border-bottom: solid 1px  #e2e2e2">
+  <div class="col-12 text-center">
+    <img src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548908205/web-sharing/no-image-user.jpg"
+      class="img-profile">
+  </div>
+  <div class="col-12 text-center">
+    <p class="mb-0">พลวัฒน์ ช่างเก็บ</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <mat-nav-list class="pt-0">
+      <a mat-list-item>การขาย</a>
+      <a mat-list-item>จัดสมาชิก</a>
+      <a mat-list-item>จัดการรายการขาย</a>
+      <a mat-list-item (click)="onLogout();sidenavService.closeNav();">ออกจากระบบ</a>
+    </mat-nav-list>
+  </div>
+</div>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'ng6-md-auth';
+import { Router } from '@angular/router';
+import { SideBarService } from './side-bar.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-side-bar',
@@ -6,10 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
+  userAuth: any;
 
-  constructor() { }
+  constructor(
+    private userAuthSrv: AuthService,
+    private router: Router,
+    public sidenavService: SideBarService,
+    private spinner: NgxSpinnerService
+  ) {
+    this.userAuthSrv.isLoggedIn.subscribe(value => {
+      this.userAuth = this.userAuthSrv.user;
+    });
+    this.userAuth = this.userAuthSrv.user;
+  }
 
   ngOnInit() {
   }
+
+  onLogout() {
+    this.userAuthSrv.logout();
+    this.router.navigate(["/login"]);
+  }
+
 
 }
