@@ -20,8 +20,10 @@ export class SideBarComponent implements OnInit {
   ) {
     this.userAuthSrv.isLoggedIn.subscribe(value => {
       this.userAuth = this.userAuthSrv.user;
+      // console.log(this.userAuth);
     });
     this.userAuth = this.userAuthSrv.user;
+    // console.log(this.userAuth);
   }
 
   ngOnInit() {

@@ -1,36 +1,34 @@
-<!-- <mat-toolbar style="background-color: white;border-bottom: solid 1px  #e2e2e2">
-  <div class="row">
-    <div class="col-4 pr-0 pl-0 mr-2">
-      <img src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548908205/web-sharing/no-image-user.jpg"
-        class="img-profile">
-    </div>
-    <div class="col-7 pl-0 pr-0">
-      <p class="font-name mb-0">พลวัฒน์ ช่างเก็บ</p>
-    </div>
-  </div>
-</mat-toolbar>
-<mat-nav-list>
-  <a mat-list-item href="#">Link 1</a>
-  <a mat-list-item href="#">Link 2</a>
-  <a mat-list-item href="#">Link 3</a>
-</mat-nav-list> -->
 
-<div class="row" style="background-color: white;border-bottom: solid 1px  #e2e2e2">
+<div class="row pt-2 pb-2" style="background-color: white;border-bottom: solid 1px  #e2e2e2">
   <div class="col-12 text-center">
-    <img src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548908205/web-sharing/no-image-user.jpg"
+    <!-- <img src="https://res.cloudinary.com/dyiuidzsc/image/upload/v1548908205/web-sharing/no-image-user.jpg"
+      class="img-profile"> -->
+      <img src="./../../../assets/images/jigglypuff.png"
       class="img-profile">
   </div>
   <div class="col-12 text-center">
-    <p class="mb-0">พลวัฒน์ ช่างเก็บ</p>
+    <p class="mb-0">{{userAuth.displayname}}</p>
   </div>
 </div>
 <div class="row">
   <div class="col-12">
     <mat-nav-list class="pt-0">
-      <a mat-list-item>การขาย</a>
-      <a mat-list-item>จัดสมาชิก</a>
-      <a mat-list-item>จัดการรายการขาย</a>
-      <a mat-list-item (click)="onLogout();sidenavService.closeNav();">ออกจากระบบ</a>
+      <a mat-list-item>
+        <img src="./../../../assets/images/shopping-bag.png" class="img-list">
+        <span class="ml-3">การขาย</span>
+      </a>
+      <a mat-list-item>
+        <img src="./../../../assets/images/work-team.png" class="img-list">
+        <span class="ml-3">จัดสมาชิก</span>
+      </a>
+      <a mat-list-item>
+        <img src="./../../../assets/images/list.png" class="img-list">
+        <span class="ml-3">จัดการรายการขาย</span>
+      </a>
+      <a mat-list-item (click)="onLogout();sidenavService.closeNav();">
+        <img src="./../../../assets/images/logout.png" class="img-list">
+        <span class="ml-3">ออกจากระบบ</span>
+      </a>
     </mat-nav-list>
   </div>
 </div>
