@@ -1,5 +1,5 @@
-<div class="row flex">
-  <div class="col-12 col-md-4 col-lg-4" *ngFor="let item of dataTeam" (click)="selectItem(item)">
+<div class="row flex" *ngIf="approve && approve.length > 0">
+  <div class="col-12 col-md-4 col-lg-4" *ngFor="let item of approve" (click)="selectItem(item)">
     <mat-card class="example-card cursor-pointer">
       <i class="material-icons position-check" *ngIf="selected === item">
         check_circle_outline
@@ -15,4 +15,7 @@
     <button class="mr-2" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
     <button class="sty-btn" mat-stroked-button color="accent" (click)="save()">บันทึก</button>
   </div>
+</div>
+<div *ngIf="approve && approve.length === 0">
+  <h2 class="text-center no-data">ไม่มีทีม</h2>
 </div>

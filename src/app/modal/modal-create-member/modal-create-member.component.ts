@@ -12,6 +12,8 @@ import { TeameServiceService } from 'src/app/services/teams-service/teame-servic
 export class ModalCreateMemberComponent implements OnInit {
   dataTeam: any;
   selected: any;
+  waitApprove: Array<any> = [];
+  approve: Array<any> = [];
   constructor(
     public dialogRef: MatDialogRef<ModalCreateTeamComponent>,
     public teameService: TeameServiceService,
@@ -27,6 +29,18 @@ export class ModalCreateMemberComponent implements OnInit {
     try {
       let res: any = await this.teameService.getTeam();
       this.dataTeam = res.data;
+      this.dataTeam.forEach(waitApprove => {
+        // console.log(waitApprove)
+        if (waitApprove.status === 'waitapprove') {
+          this.waitApprove.push(waitApprove);
+          console.log(this.waitApprove);
+
+        } else if (waitApprove.status === 'approve') {
+          this.approve.push(waitApprove);
+          console.log(this.approve);
+
+        }
+      });
       console.log(res);
     } catch (error) {
 
@@ -48,7 +62,7 @@ export class ModalCreateMemberComponent implements OnInit {
         }
         let update: any = await this.teameService.updateMe(dataMe);
         console.log(update);
-        window.localStorage.setItem(environment.apiUrl + '@user',JSON.stringify(update));
+        window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(update));
       }
       this.dialogRef.close('createMember');
 
