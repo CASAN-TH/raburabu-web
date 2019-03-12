@@ -4,7 +4,7 @@
       class="img-profile"> -->
     <img src="./../../../assets/images/jigglypuff.png" class="img-profile">
   </div>
-  <div class="col-12 text-center">
+  <div class="col-12 text-center" *ngIf="userAuth && userAuth.displayname">
     <p class="mb-0">{{userAuth.displayname}}</p>
   </div>
 </div>
