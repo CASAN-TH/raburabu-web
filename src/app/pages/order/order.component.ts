@@ -8,17 +8,19 @@ import { ProductsService } from 'src/app/services/products/products.service';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  address: any;
 
   constructor(
     private route: ActivatedRoute,
     private prodService: ProductsService
   ) { }
 
-  prodData:any;
+  prodData: any;
 
   ngOnInit() {
     let res: any = this.route.snapshot.paramMap.get('title');
-    console.log(JSON.parse(res));
+    this.address = JSON.parse(res)
+    console.log(this.address);
     this.getProd();
   }
 
