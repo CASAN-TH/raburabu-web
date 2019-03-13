@@ -4,12 +4,12 @@
       <span class="btn-add-style">+</span>
     </div>
   </div>
-  <div class="col-3 mt-3 border-list list-style mr-3" *ngFor="let item of data">
+  <div class="col-3 mt-3 border-list list-style mr-3" *ngFor="let item of dataorder">
     <div class="col-12 text-center pr-0 pl-0">
       <p class="mb-1 text-overflow"><span>ออเดอร์: </span> <span>{{item.orderno}}</span></p>
-      <p class="mb-1 text-overflow"><span>ชื่อ: </span> <span class="mr-1">{{item.firstname}}</span>
-        <span>{{item.lastname}}</span></p>
-      <p class="mb-1 text-overflow"><span>โทร: </span> <span>{{item.tel}}</span></p>
+      <p class="mb-1 text-overflow"><span>ชื่อ: </span> <span class="mr-1">{{item.customer.firstname}}</span>
+        <span>{{item.customer.lastname}}</span></p>
+      <p class="mb-1 text-overflow"><span>โทร: </span> <span>{{item.customer.tel}}</span></p>
       <p class="mb-1 text-overflow"><span>รวม: </span> <span>{{item.totalamount}}</span> <span>บาท</span></p>
     </div>
     <div class="col-12 pr-0 pl-0 mr-0 text-center">
