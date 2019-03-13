@@ -1,13 +1,19 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+      <ng-template matStepLabel>{{optionProduct[0].name}}</ng-template>
       <div class="row">
-        <div class="col-3 mb-3" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13]">
-          <mat-card class="example-card">
+        <div class="col-3 mb-3" *ngFor="let item of optionProduct[0].value" (click)="selectProduct(item)">
+          <mat-card class="example-card card-height">
+            <div class="text-center">
+              <i class="material-icons icon" *ngIf="selectOption === item">
+                check_circle_outline
+              </i>
+            </div>
+
             <mat-card-content>
               <p>
-                #01
+                {{item}}
               </p>
             </mat-card-content>
 
@@ -15,19 +21,30 @@
         </div>
       </div>
       <div class="col-12 text-right">
-        <button mat-button matStepperNext >Next</button>
+        <button mat-button matStepperNext (click)="next()">Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
+      <div class="row">
+        <div class="col-3">
+          <button mat-button>-</button>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="secondCtrl" required>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <button mat-button>+</button>
+        </div>
+      </div>
+
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button class="text-right" mat-button matStepperPrevious>Back</button>
+        <button class="text-left" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
