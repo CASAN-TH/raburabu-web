@@ -26,7 +26,8 @@ export class ModalAddressComponent implements OnInit {
     this.dialogRef.close('clse');
 
   }
-  close() {
+  exit() {
+    this.dialogRef.close();
 
   }
 }
