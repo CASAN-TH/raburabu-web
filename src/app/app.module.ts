@@ -39,7 +39,7 @@ const apiSrvCfg = environment;
     ModalCreateMemberComponent,
     SideBarComponent,
     ManageMemberComponent,
-    OrderListComponent
+    OrderListComponent,
     ModalAddressComponent
   ],
   imports: [
