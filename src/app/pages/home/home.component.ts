@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalCreateMemberComponent, {
       width: '800px',
       height: '270px',
-      disableClose: true
+      disableClose: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
