@@ -1,9 +1,9 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>{{optionProduct[0].name}}</ng-template>
+    <form [formGroup]="firstFormGroup" *ngFor="let item of data.option">
+      <ng-template matStepLabel>{{item.name}}</ng-template>
       <div class="row">
-        <div class="col-3 mb-3" *ngFor="let item of optionProduct[0].value" (click)="selectProduct(item)">
+        <div class="col-3 mb-3" *ngFor="let item of item.value" (click)="selectProduct(item)">
           <mat-card class="example-card card-height">
             <div class="text-center">
               <i class="material-icons icon" *ngIf="selectOption === item">
@@ -27,33 +27,32 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <ng-template matStepLabel>ระบุจำนวน</ng-template>
       <div class="row">
-        <div class="col-3">
-          <button mat-button>-</button>
+        <div class="col-4 text-right">
+          <button mat-button class="border-add"><span class="font-size">-</span></button>
         </div>
-        <div class="col-6">
+        <div class="col-4 border-num text-center">
           <mat-form-field class="example-full-width">
-            <input matInput formControlName="secondCtrl" required>
+            <input class="font-input" none-line matInput [(ngModel)]="qty" formControlName="secondCtrl" required>
           </mat-form-field>
         </div>
-        <div class="col-3">
-          <button mat-button>+</button>
+        <div class="col-4 text-left">
+          <button mat-button class="border-add"> <span class="font-size">+</span> </button>
         </div>
       </div>
 
-      <div>
-        <button class="text-right" mat-button matStepperPrevious>Back</button>
-        <button class="text-left" mat-button matStepperNext>Next</button>
+      <div class="row">
+        <div class="col-6 text-left">
+          <button mat-button matStepperPrevious>Back</button>
+
+        </div>
+        <div class="col-6 text-right">
+          <button mat-button (click)="done()">Next</button>
+
+        </div>
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
+
 </mat-horizontal-stepper>

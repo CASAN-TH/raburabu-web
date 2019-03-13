@@ -1,6 +1,8 @@
 import { ProductsService } from './../../services/products/products.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { OrderComponent } from 'src/app/pages/order/order.component';
 
 @Component({
   selector: 'app-select-option',
@@ -8,6 +10,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./select-option.component.scss']
 })
 export class SelectOptionComponent implements OnInit {
+  @Output() sendData: EventEmitter<any> = new EventEmitter();
+  nameOption: any;
+  qty: any;
   selectOption: any;
   optionProduct: Array<any> = []
   product: any;
@@ -16,11 +21,15 @@ export class SelectOptionComponent implements OnInit {
   secondFormGroup: FormGroup;
   constructor(
     private _formBuilder: FormBuilder,
-    public servicePorduct: ProductsService
+    public servicePorduct: ProductsService,
+    public dialogRef: MatDialogRef<SelectOptionComponent>,
+
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
-    this.getProduct();
+    console.log(this.data);
+    // this.getProduct();
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -28,26 +37,30 @@ export class SelectOptionComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
   }
-  async getProduct() {
-    try {
-      let res: any = await this.servicePorduct.order();
-      this.product = res.data
-      this.product.forEach(product => {
-        product.option.forEach(option => {
-          this.optionProduct.push(option);
-          console.log(this.optionProduct[0]);
-        });
-      });
-      console.log(this.product);
-    } catch (error) {
 
-    }
-  }
   selectProduct(i) {
     this.selectOption = i;
     console.log(this.selectOption);
   }
   next() {
     this.selectOption
+  }
+  done() {
+    this.data.option.forEach(element => {
+      this.nameOption = element.name;
+    });
+    let data: any = {
+      name: this.data.name,
+      price: this.data.price,
+      option: [{
+        name: this.nameOption,
+        value: this.selectOption
+      }],
+      qty: this.qty,
+      amout: this.qty * this.data.price
+    }
+    console.log(data)
+    this.sendData.emit(data);
+    this.dialogRef.close('close');
   }
 }

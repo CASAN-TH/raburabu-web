@@ -10,3 +10,27 @@
 .example-full-width {
     width: 100%;
 }
+
+.border-add {
+    border: solid 1px;
+    border-radius: 50%;
+    height: 100%;
+    width: 50%
+}
+
+.font-size {
+    font-size: 4vw;
+}
+
+.border-num {
+    border: 1px solid;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+.font-input {
+    font-size: 26px;
+    text-align: center;
+}
