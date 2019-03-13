@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class OrderService {
 
-  constructor(public http: HttpClient,) { }
+  constructor(public http: HttpClient, ) { }
 
   private authorizationHeader() {
     const token = window.localStorage.getItem('token@raburabu-web-dev');
@@ -15,7 +15,11 @@ export class OrderService {
     return headers;
   }
 
-  orderList(){
-    return this.http.get('http://13.250.99.131:3003/api/orders',{ headers: this.authorizationHeader() }).toPromise()
+  orderList() {
+    return this.http.get('http://13.250.99.131:3003/api/orders', { headers: this.authorizationHeader() }).toPromise()
+  }
+
+  saveOrder(body) {
+    return this.http.post('http://13.250.99.131:3003/api/orders', body, { headers: this.authorizationHeader() }).toPromise()
   }
 }
