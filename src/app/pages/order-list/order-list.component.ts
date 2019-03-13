@@ -7,6 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderListComponent implements OnInit {
 
+  data: any = [
+    {
+      orderno: '190313001',
+      firstname: 'ponlawath',
+      lastname: 'changkeb',
+      tel: '0853271652',
+      totalamount: 2000
+    },
+    {
+      orderno: '190313002',
+      firstname: 'ponlawath',
+      lastname: 'changkeb',
+      tel: '0853271652',
+      totalamount: 2000
+    },
+    {
+      orderno: '190313003',
+      firstname: 'ponlawath',
+      lastname: 'changkeb',
+      tel: '0853271652',
+      totalamount: 2000
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {
