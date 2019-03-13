@@ -1,9 +1,10 @@
+import { SelectOptionComponent } from './../../modal/select-option/select-option.component';
 import { TeameServiceService } from './../../services/teams-service/teame-service.service';
 import { AuthService } from 'ng6-md-auth';
 import { Component, OnInit } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
+    public dialog: MatDialog,
+
 
   ) {
     this.userAuth.isLoggingIn.subscribe(() => {
@@ -58,4 +61,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() { }
- }
+  gogo() {
+    const dialogRef = this.dialog.open(SelectOptionComponent, {
+      width: '800px',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(result)
+      if (result) {
+        this.router.navigate(['manage-member']);
+      }
+    });
+  }
+}
