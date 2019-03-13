@@ -10,6 +10,7 @@ import { TeameServiceService } from 'src/app/services/teams-service/teame-servic
   styleUrls: ['./modal-create-member.component.scss']
 })
 export class ModalCreateMemberComponent implements OnInit {
+  user_id: any;
   dataTeam: any;
   selected: any;
   waitApprove: Array<any> = [];
@@ -21,6 +22,9 @@ export class ModalCreateMemberComponent implements OnInit {
 
   ngOnInit() {
     this.getTeam();
+    let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'))
+    console.log(res)
+    this.user_id = res.data._id;
   }
   cancel() {
     this.dialogRef.close();
@@ -53,7 +57,10 @@ export class ModalCreateMemberComponent implements OnInit {
   }
   async save() {
     try {
-      let res: any = await this.teameService.joinTeam(this.selected._id);
+      let use_id = {
+        member_id: this.user_id
+      }
+      let res: any = await this.teameService.joinTeam(this.selected._id, use_id);
       console.log(res);
       let resMe: any = await this.teameService.me();
       if (resMe) {
