@@ -10,6 +10,7 @@ import { SelectOptionComponent } from 'src/app/modal/select-option/select-option
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  address: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +22,8 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     let res: any = this.route.snapshot.paramMap.get('title');
-    console.log(JSON.parse(res));
+    this.address = JSON.parse(res)
+    console.log(this.address);
     this.getProd();
   }
 
