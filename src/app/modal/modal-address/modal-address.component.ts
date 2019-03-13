@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-modal-address',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-address.component.scss']
 })
 export class ModalAddressComponent implements OnInit {
+  @Output() dataCutomer:EventEmitter<any> = new EventEmitter();
+  data: {
+    tel: any;
+    fname: any;
+    lname: any;
+    address: any;
+  }
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<ModalAddressComponent>,
+  ) { }
 
   ngOnInit() {
   }
-
+  next() {
+    this.dataCutomer.emit(this.data);
+    // this.dialogRef.close('clse');
+  }
 }

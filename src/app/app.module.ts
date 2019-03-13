@@ -19,8 +19,8 @@ import { ModalCreateTeamComponent } from './modal/modal-create-team/modal-create
 import { MatDialogModule } from "@angular/material";
 import { ModalCreateMemberComponent } from './modal/modal-create-member/modal-create-member.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { ManageMemberComponent } from './pages/manage-member/manage-member.component';
 import { ModalAddressComponent } from './modal/modal-address/modal-address.component';
 
@@ -57,7 +57,8 @@ const apiSrvCfg = environment;
   ],
   entryComponents: [
     ModalCreateTeamComponent,
-    ModalCreateMemberComponent
+    ModalCreateMemberComponent,
+    ModalAddressComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
