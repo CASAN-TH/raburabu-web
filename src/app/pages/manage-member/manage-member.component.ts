@@ -1,6 +1,7 @@
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manage-member',
@@ -15,12 +16,10 @@ export class ManageMemberComponent implements OnInit {
   statusMember: Array<any> = [];
 
   constructor(
-    private teameServicec: TeameServiceService
+    private teameServicec: TeameServiceService,
   ) { }
 
   ngOnInit() {
-
-
     // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
     // this.team_id = team.data._id
     // if (!team) {
@@ -50,7 +49,7 @@ export class ManageMemberComponent implements OnInit {
       console.log(error)
     }
   }
-  approve(){
+  approve() {
 
   }
 }

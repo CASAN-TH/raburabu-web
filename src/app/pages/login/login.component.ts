@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
-    private teameService: TeameServiceService
+    private teameService: TeameServiceService,
+
   ) {
     this.userAuth.isLoggingIn.subscribe(() => {
       this.spinner.show();
@@ -57,5 +58,4 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() { }
-
-}
+ }
