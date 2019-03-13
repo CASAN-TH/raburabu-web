@@ -7,6 +7,7 @@ import { ForgotComponent } from "./pages/forgot/forgot.component";
 import { AuthGuardService } from "ng6-md-auth";
 import { ManageMemberComponent } from "./pages/manage-member/manage-member.component";
 import { OrderListComponent } from "./pages/order-list/order-list.component";
+import { OrderComponent } from "./pages/order/order.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: "forgot", component: ForgotComponent },
   { path: "manage-member", component: ManageMemberComponent },
   { path: "order-list", component: OrderListComponent },
+  { path: "order", component: OrderComponent },
 
 ];
 

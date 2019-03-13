@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { ManageMemberComponent } from './pages/manage-member/manage-member.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { ModalAddressComponent } from './modal/modal-address/modal-address.component';
+import { OrderComponent } from './pages/order/order.component';
 
 
 const apiSrvCfg = environment;
@@ -40,7 +41,8 @@ const apiSrvCfg = environment;
     SideBarComponent,
     ManageMemberComponent,
     OrderListComponent,
-    ModalAddressComponent
+    ModalAddressComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
