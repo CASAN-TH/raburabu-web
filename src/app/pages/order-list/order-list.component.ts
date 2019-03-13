@@ -42,6 +42,11 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  getOrderList(){
+    
+  }
+
   openmodal() {
     const dialogRef = this.dialog.open(ModalAddressComponent, {
       width: '800px',
