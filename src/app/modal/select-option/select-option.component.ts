@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./select-option.component.scss']
 })
 export class SelectOptionComponent implements OnInit {
+  optionProduct: Array<any> = []
   product: any;
   isLinear = false;
   firstFormGroup: FormGroup;
@@ -29,7 +30,14 @@ export class SelectOptionComponent implements OnInit {
   async getProduct() {
     try {
       let res: any = await this.servicePorduct.order();
-      console.log(res);
+      this.product = res.data
+      this.product.forEach(product => {
+        product.option.forEach(option => {
+          this.optionProduct.push(option)
+          console.log(this.optionProduct);
+        });
+      });
+      console.log(this.product);
     } catch (error) {
 
     }
