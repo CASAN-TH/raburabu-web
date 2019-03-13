@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.router.navigate(['manage-member']);
+        this.router.navigate(['manage-member']);
       }
     });
   }

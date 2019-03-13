@@ -58,11 +58,9 @@ export class ModalCreateMemberComponent implements OnInit {
   async save() {
     try {
       let use_id = {
-        members: [{
-          member_id: this.user_id
-        }]
+        member_id: this.user_id
       }
-      let res: any = await this.teameService.joinTeam(this.selected._id,use_id);
+      let res: any = await this.teameService.joinTeam(this.selected._id, use_id);
       console.log(res);
       let resMe: any = await this.teameService.me();
       if (resMe) {
