@@ -7,12 +7,12 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./modal-address.component.scss']
 })
 export class ModalAddressComponent implements OnInit {
-  @Output() dataCutomer:EventEmitter<any> = new EventEmitter();
-  data: {
-    tel: any;
-    fname: any;
-    lname: any;
-    address: any;
+  @Output() dataCutomer: EventEmitter<any> = new EventEmitter();
+  data: any = {
+    tel: '',
+    fname: '',
+    lname: '',
+    address: ''
   }
 
   constructor(
@@ -23,6 +23,10 @@ export class ModalAddressComponent implements OnInit {
   }
   next() {
     this.dataCutomer.emit(this.data);
-    // this.dialogRef.close('clse');
+    this.dialogRef.close('clse');
+
+  }
+  close() {
+
   }
 }

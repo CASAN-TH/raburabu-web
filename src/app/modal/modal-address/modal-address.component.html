@@ -9,29 +9,29 @@
   </div>
   <div class="col-2 text-right" (click)="next()">
     <p class="curser-pointer"> ถัดไป</p>
-   
+
   </div>
 </div>
 <div class="row mt-3">
   <div class="col-6">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="tel" value="tel">
+      <input matInput placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel">
     </mat-form-field>
   </div>
   <div class="col-6"></div>
   <div class="col-6">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="fname" value="fname">
+      <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.fname">
     </mat-form-field>
   </div>
   <div class="col-6">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="lname" value="lname">
+      <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lname">
     </mat-form-field>
   </div>
   <div class="col-12">
     <mat-form-field class="example-full-width">
-      <textarea class="heigth-textarea" matInput  placeholder="กรุณากรองที่อยู่" [(ngModel)]="address" value="address"></textarea>
+      <textarea class="heigth-textarea" matInput placeholder="กรุณากรองที่อยู่" [(ngModel)]="data.address"></textarea>
     </mat-form-field>
 
   </div>
