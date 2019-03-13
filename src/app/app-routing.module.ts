@@ -6,6 +6,7 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { ForgotComponent } from "./pages/forgot/forgot.component";
 import { AuthGuardService } from "ng6-md-auth";
 import { ManageMemberComponent } from "./pages/manage-member/manage-member.component";
+import { OrderListComponent } from "./pages/order-list/order-list.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
   { path: "manage-member", component: ManageMemberComponent },
+  { path: "order-list", component: OrderListComponent },
 
 ];
 

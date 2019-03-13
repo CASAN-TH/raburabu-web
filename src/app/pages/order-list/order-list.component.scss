@@ -1,0 +1,24 @@
+.btn-add-style{
+    font-size: 100px;
+    color: #ff4081;
+}
+
+.border-list {
+    border: solid 1px  #e2e2e2;
+}
+
+.list-style {
+    height: 25vh;
+}
+
+.list-add {
+    display: flex;
+    align-items: center !important;
+    // text-align: center !important;
+}
+
+.text-overflow {
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
