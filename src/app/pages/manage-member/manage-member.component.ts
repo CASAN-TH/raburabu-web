@@ -27,7 +27,7 @@ export class ManageMemberComponent implements OnInit {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.team_id = user.data.ref1;
     this.user = user.data.roles[0];
-    console.log(this.user);
+    console.log(user);
     // }
     console.log(this.team_id);
     this.getDataMember();
@@ -51,6 +51,6 @@ export class ManageMemberComponent implements OnInit {
     }
   }
   approve(){
-    
+
   }
 }

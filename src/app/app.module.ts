@@ -22,6 +22,7 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { ManageMemberComponent } from './pages/manage-member/manage-member.component';
+import { ModalAddressComponent } from './modal/modal-address/modal-address.component';
 
 
 const apiSrvCfg = environment;
@@ -36,7 +37,8 @@ const apiSrvCfg = environment;
     ModalCreateTeamComponent,
     ModalCreateMemberComponent,
     SideBarComponent,
-    ManageMemberComponent
+    ManageMemberComponent,
+    ModalAddressComponent
   ],
   imports: [
     BrowserModule,
