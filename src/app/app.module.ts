@@ -25,6 +25,7 @@ import { ManageMemberComponent } from './pages/manage-member/manage-member.compo
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { ModalAddressComponent } from './modal/modal-address/modal-address.component';
 import { OrderComponent } from './pages/order/order.component';
+import { SelectOptionComponent } from './modal/select-option/select-option.component';
 
 
 const apiSrvCfg = environment;
@@ -42,7 +43,8 @@ const apiSrvCfg = environment;
     ManageMemberComponent,
     OrderListComponent,
     ModalAddressComponent,
-    OrderComponent
+    OrderComponent,
+    SelectOptionComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ const apiSrvCfg = environment;
   entryComponents: [
     ModalCreateTeamComponent,
     ModalCreateMemberComponent,
-    ModalAddressComponent
+    ModalAddressComponent,
+    SelectOptionComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
