@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ManageMemberComponent implements OnInit {
   team_id: any;
   dataTeam: any;
+  user: any;
   statusWaitApprove: Array<any> = [];
   statusMember: Array<any> = [];
 
@@ -25,7 +26,8 @@ export class ManageMemberComponent implements OnInit {
     // if (!team) {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.team_id = user.data.ref1;
-    // console.log(user);
+    this.user = user.data.roles[0];
+    console.log(this.user);
     // }
     console.log(this.team_id);
     this.getDataMember();
@@ -47,5 +49,8 @@ export class ManageMemberComponent implements OnInit {
     } catch (error) {
       console.log(error)
     }
+  }
+  approve(){
+    
   }
 }

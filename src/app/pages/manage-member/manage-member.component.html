@@ -15,9 +15,9 @@
           <mat-card-content>
             <p class="ellipsis">{{item.displayname}}</p>
           </mat-card-content>
-          <div class="row">
+          <div class="row" *ngIf="user ==='owner'">
             <div class="col-6">
-              <button mat-button color="accent">อนุมัติ</button>
+              <button mat-button color="accent" (click)="approve()">อนุมัติ</button>
             </div>
             <div class="col-6">
               <button mat-button>ไม่อนุมัติ</button>
