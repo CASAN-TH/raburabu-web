@@ -29,9 +29,14 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  onManageMember() {
+    this.router.navigate(["/manage-member"]);
+  }
+
   onLogout() {
     this.userAuthSrv.logout();
     this.router.navigate(["/login"]);
+    window.localStorage.clear();
   }
 
 
