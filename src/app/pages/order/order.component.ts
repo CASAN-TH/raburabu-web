@@ -9,6 +9,7 @@ import { ProductsService } from 'src/app/services/products/products.service';
 })
 export class OrderComponent implements OnInit {
   address: any;
+  items:any = [];
 
   constructor(
     private route: ActivatedRoute,
