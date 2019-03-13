@@ -2,6 +2,30 @@
     border: solid 1px  #e2e2e2;
 }
 
+.border-prod-list {
+    border-bottom: solid 1px  #e2e2e2;
+}
+
 .img-prod-style {
     width: 95%;
 }
+
+.bg-green {
+    background-color: green !important;
+}
+
+.btn-style {
+    width: 100%;
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.btn-border-style{
+    border-color: #ff4081;
+}
+
+.scroll{
+    overflow-x: scroll;
+  }

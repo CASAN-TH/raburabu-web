@@ -39,5 +39,13 @@ export class SideBarComponent implements OnInit {
     window.localStorage.clear();
   }
 
+  onOrderList() {
+    this.router.navigate(["/order-list"]);
+  }
+
+  onMonitoring() {
+    this.router.navigate(["/order-list"]);
+  }
+
 
 }
