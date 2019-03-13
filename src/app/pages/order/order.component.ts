@@ -11,6 +11,7 @@ import { SelectOptionComponent } from 'src/app/modal/select-option/select-option
 })
 export class OrderComponent implements OnInit {
   address: any;
+  items:any = [];
 
   constructor(
     private route: ActivatedRoute,
