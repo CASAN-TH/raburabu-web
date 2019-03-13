@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
-    public dialog: MatDialog,
+   
 
 
   ) {
@@ -61,17 +61,4 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() { }
-  gogo() {
-    const dialogRef = this.dialog.open(SelectOptionComponent, {
-      width: '800px',
-      disableClose: true
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(result)
-      if (result) {
-        this.router.navigate(['manage-member']);
-      }
-    });
-  }
 }
