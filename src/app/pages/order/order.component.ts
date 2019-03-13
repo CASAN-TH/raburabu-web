@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { MatDialog } from '@angular/material';
 import { SelectOptionComponent } from 'src/app/modal/select-option/select-option.component';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-order',
@@ -11,12 +12,27 @@ import { SelectOptionComponent } from 'src/app/modal/select-option/select-option
 })
 export class OrderComponent implements OnInit {
   address: any;
-  items:any = [];
+  data: any = {
+    customer: {
+      firstname: '',
+      lasname: '',
+      tel: null,
+      address: '',
+    },
+    items: [
+
+    ],
+    totalamount: 0
+  }
+
+
 
   constructor(
     private route: ActivatedRoute,
     private prodService: ProductsService,
     public dialog: MatDialog,
+    private orderService: OrderService,
+    public router: Router
   ) { }
 
   prodData: any;
@@ -34,6 +50,7 @@ export class OrderComponent implements OnInit {
     this.prodData = res.data;
     console.log(this.prodData);
   }
+
   openmodal(i) {
     // console.log(i)
     const dialogRef = this.dialog.open(SelectOptionComponent, {
@@ -41,12 +58,37 @@ export class OrderComponent implements OnInit {
       data: i,
       disableClose: true
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(result)
-      // if (result) {
-      // this.router.navigate(['manage-member']);
-      // }
+    dialogRef.componentInstance.sendData.subscribe(res => {
+      dialogRef.afterClosed().subscribe(result => {
+        this.data.items.push(res);
+        console.log(this.data);
+        this.data.totalamount = 0
+        this.data.items.forEach(sum => {
+          this.data.totalamount += sum.amout
+        });
+        console.log(this.data.totalamount);
+      });
     });
   }
+
+  async onSave() {
+    this.data = {
+      customer: {
+        firstname: this.address.fname,
+        lasname: this.address.lname,
+        tel: this.address.tel,
+        address: this.address.address,
+      },
+      items: this.data.items,
+      totalamount: this.data.totalamount
+    }
+    let res: any = await this.orderService.saveOrder(this.data);
+    console.log(res);
+    this.router.navigate(['/order-list']);
+  }
+
+
+
+
+
 }
