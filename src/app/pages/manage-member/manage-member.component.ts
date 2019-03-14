@@ -10,8 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ManageMemberComponent implements OnInit {
   team_id: any;
+  memberData: Array<any> = [];
   dataTeam: any;
   user: any;
+  userId: any;
   statusWaitApprove: Array<any> = [];
   statusMember: Array<any> = [];
 
@@ -19,16 +21,18 @@ export class ManageMemberComponent implements OnInit {
     private teameServicec: TeameServiceService,
   ) { }
 
-  ngOnInit() {
+ async ngOnInit() {
     // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
     // this.team_id = team.data._id
     // if (!team) {
-    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    let user: any = await JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.team_id = user.data.ref1;
     this.user = user.data.roles[0];
+    this.userId = user.data._id
+    console.log(this.userId );
     console.log(user);
     // }
-    console.log(this.team_id);
+    // console.log(this.team_id);
     this.getDataMember();
   }
 
@@ -37,13 +41,18 @@ export class ManageMemberComponent implements OnInit {
       let res: any = await this.teameServicec.getById(this.team_id);
       this.dataTeam = res.data;
       this.dataTeam.members.forEach(members => {
-        if (members.status === 'waitapprove') {
-          this.statusWaitApprove.push(members);
-        } else if (members.status === 'member') {
+        // this.memberData.push(members)
+        console.log(members)
+        // if (this.user ==='owner' || members.member_id === this.userId) {
+          if (members.status === 'waitapprove') {
+            this.statusWaitApprove.push(members);
+            console.log(this.statusWaitApprove);
+          // }
+        } else if (members.status === 'approve') {
           this.statusMember.push(members);
         }
+
       });
-      console.log(this.dataTeam)
 
     } catch (error) {
       console.log(error)

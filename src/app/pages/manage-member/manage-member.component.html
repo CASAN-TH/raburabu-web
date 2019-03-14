@@ -9,9 +9,9 @@
     <div *ngIf="statusWaitApprove.length === 0">
       <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
     </div>
-    <div class="row" *ngIf="statusWaitApprove.length > 0">
+    <div class="row" *ngIf="statusWaitApprove.length > 0 && statusWaitApprove.member_id === userId">
       <div class="col-4" *ngFor="let item of statusWaitApprove">
-        <mat-card class="example-card">
+        <mat-card class="example-card mt-2">
           <mat-card-content>
             <p class="ellipsis">{{item.displayname}}</p>
           </mat-card-content>
