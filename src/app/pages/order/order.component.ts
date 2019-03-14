@@ -4,6 +4,7 @@ import { ProductsService } from 'src/app/services/products/products.service';
 import { MatDialog } from '@angular/material';
 import { SelectOptionComponent } from 'src/app/modal/select-option/select-option.component';
 import { OrderService } from 'src/app/services/order/order.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-order',
@@ -72,6 +73,7 @@ export class OrderComponent implements OnInit {
   }
 
   async onSave() {
+    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.data = {
       customer: {
         firstname: this.address.fname,
@@ -80,7 +82,8 @@ export class OrderComponent implements OnInit {
         address: this.address.address,
       },
       items: this.data.items,
-      totalamount: this.data.totalamount
+      totalamount: this.data.totalamount,
+      user_id: user.data._id
     }
     let res: any = await this.orderService.saveOrder(this.data);
     console.log(res);

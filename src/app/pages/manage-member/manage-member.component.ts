@@ -2,6 +2,7 @@ import { TeameServiceService } from 'src/app/services/teams-service/teame-servic
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-member',
@@ -17,6 +18,7 @@ export class ManageMemberComponent implements OnInit {
 
   constructor(
     private teameServicec: TeameServiceService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,12 +26,16 @@ export class ManageMemberComponent implements OnInit {
     // this.team_id = team.data._id
     // if (!team) {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    this.team_id = user.data.ref1;
-    this.user = user.data.roles[0];
-    console.log(user);
-    // }
-    console.log(this.team_id);
-    this.getDataMember();
+    if (!user.data.ref1) {
+      this.router.navigate(['/home']);
+      // console.log('asd');
+    } else {
+      // console.log('sdf');
+      this.team_id = user.data.ref1;
+      this.user = user.data.roles[0];
+      this.getDataMember();
+    }
+
   }
 
   async getDataMember() {
