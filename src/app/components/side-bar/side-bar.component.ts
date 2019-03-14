@@ -3,6 +3,7 @@ import { AuthService } from 'ng6-md-auth';
 import { Router } from '@angular/router';
 import { SideBarService } from './side-bar.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class SideBarComponent implements OnInit {
   userAuth: any;
+
 
   constructor(
     private userAuthSrv: AuthService,
@@ -23,7 +25,6 @@ export class SideBarComponent implements OnInit {
       // console.log(this.userAuth);
     });
     this.userAuth = this.userAuthSrv.user;
-    // console.log(this.userAuth);
   }
 
   ngOnInit() {

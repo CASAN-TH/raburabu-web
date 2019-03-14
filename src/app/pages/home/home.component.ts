@@ -3,6 +3,7 @@ import { ModalCreateTeamComponent } from './../../modal/modal-create-team/modal-
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { ModalCreateMemberComponent } from 'src/app/modal/modal-create-member/modal-create-member.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: "app-home",
@@ -15,8 +16,17 @@ export class HomeComponent implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    if (user.data.ref1) {
+      this.router.navigate(['/manage-member']);
+      // console.log('asd');
+    }
+  }
+
+
   openDialog(): void {
+
     const dialogRef = this.dialog.open(ModalCreateTeamComponent, {
       width: '800px',
       disableClose: true

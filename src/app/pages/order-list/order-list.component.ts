@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { ModalAddressComponent } from 'src/app/modal/modal-address/modal-address.component';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order/order.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order-list',
@@ -43,7 +44,13 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getOrderList();
+    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    if (!user.data.ref1) {
+      this.router.navigate(['/home']);
+      // console.log('asd');
+    } else {
+      this.getOrderList();
+    }
   }
 
   async getOrderList() {
