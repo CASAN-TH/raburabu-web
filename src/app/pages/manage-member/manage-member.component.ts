@@ -72,7 +72,7 @@ export class ManageMemberComponent implements OnInit {
   //     console.log(ch);
   //   })
   // }
-  approve() {
-
+  approve(item) {
+    console.log(item);
   }
 }
