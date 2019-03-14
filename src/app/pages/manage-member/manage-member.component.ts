@@ -54,8 +54,9 @@ export class ManageMemberComponent implements OnInit {
         if (members.status === 'waitapprove') {
           this.statusWaitApprove.push(members);
         }
-        if (members.status === 'approve') {
+        if (members.status === 'staff') {
           this.statusMember.push(members);
+          console.log(this.statusMember);
         }
       });
     } catch (error) {
