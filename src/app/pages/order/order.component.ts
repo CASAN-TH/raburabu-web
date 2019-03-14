@@ -56,7 +56,7 @@ export class OrderComponent implements OnInit {
     const dialogRef = this.dialog.open(SelectOptionComponent, {
       width: '800px',
       data: i,
-      disableClose: true
+      disableClose: false
     });
     dialogRef.componentInstance.sendData.subscribe(res => {
       dialogRef.afterClosed().subscribe(result => {

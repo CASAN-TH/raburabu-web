@@ -22,3 +22,8 @@
 .no-data {
     color: #ccbebe !important;
 }
+.ellipsis{
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}

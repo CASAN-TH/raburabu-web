@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./manage-member.component.scss']
 })
 export class ManageMemberComponent implements OnInit {
+  dataUserID: any;
+  ckUser_id: any;
   team_id: any;
   memberData: Array<any> = [];
   dataTeam: any;
@@ -21,43 +23,50 @@ export class ManageMemberComponent implements OnInit {
     private teameServicec: TeameServiceService,
   ) { }
 
- async ngOnInit() {
+  async ngOnInit() {
     // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
     // this.team_id = team.data._id
     // if (!team) {
     let user: any = await JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.team_id = user.data.ref1;
     this.user = user.data.roles[0];
+    this.getDataMember();
+    // this.checkUser_id();
     this.userId = user.data._id
-    console.log(this.userId );
-    console.log(user);
+    console.log(this.userId);
+    console.log(this.user);
     // }
     // console.log(this.team_id);
-    this.getDataMember();
   }
 
   async getDataMember() {
     try {
       let res: any = await this.teameServicec.getById(this.team_id);
       this.dataTeam = res.data;
+      console.log(this.dataTeam);
+      let resp: any = this.dataTeam.members.filter((e) => {
+        if (e.member_id === this.userId) {
+          this.dataUserID = e;
+          // console.log(this.dataUserID);
+        }
+      })
       this.dataTeam.members.forEach(members => {
-        // this.memberData.push(members)
-        console.log(members)
-        // if (this.user ==='owner' || members.member_id === this.userId) {
-          if (members.status === 'waitapprove') {
-            this.statusWaitApprove.push(members);
-            console.log(this.statusWaitApprove);
-          // }
-        } else if (members.status === 'approve') {
+        if (members.status === 'waitapprove') {
+          this.statusWaitApprove.push(members);
+        }
+        if (members.status === 'approve') {
           this.statusMember.push(members);
         }
-
       });
-
     } catch (error) {
       console.log(error)
     }
   }
+  // checkUser_id() {
+  //   this.statusWaitApprove.forEach(ch => {
+  //     console.log(ch);
+  //   })
+  // }
   approve() {
 
   }
