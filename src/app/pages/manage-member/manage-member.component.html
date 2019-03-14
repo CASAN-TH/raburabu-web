@@ -6,12 +6,12 @@
   </div>
   <div class="col-12 mt-3" *ngIf="dataTeam && dataTeam.status==='approve'">
     <h4 class="text-center">รอการอนุมัติ</h4>
-    <div *ngIf="statusWaitApprove.length === 0">
+    <div *ngIf="statusWaitApprove.length === 0 || !dataUserID">
       <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
     </div>
-    <div class="row" *ngIf="statusWaitApprove.length > 0">
+    <div class="row" *ngIf="user === 'owner'">
       <div class="col-4" *ngFor="let item of statusWaitApprove">
-        <mat-card class="example-card">
+        <mat-card class="example-card mt-2">
           <mat-card-content>
             <p class="ellipsis">{{item.displayname}}</p>
           </mat-card-content>
@@ -27,6 +27,25 @@
       </div>
 
     </div>
+    <div class="row" *ngIf="user==='user' && dataUserID">
+      <div class="col-4">
+        <mat-card class="example-card mt-2">
+          <mat-card-content>
+            <p class="ellipsis" *ngIf="dataUserID && dataUserID.displayname">{{dataUserID.displayname}}</p>
+          </mat-card-content>
+          <div class="row" *ngIf="user ==='owner'">
+            <div class="col-6">
+              <button mat-button color="accent" (click)="approve()">อนุมัติ</button>
+            </div>
+            <div class="col-6">
+              <button mat-button>ไม่อนุมัติ</button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+    </div>
+
   </div>
   <div class="col-12 mt-2" *ngIf="dataTeam && dataTeam.status==='approve'">
     <h4 class="text-center">ทีม</h4>
