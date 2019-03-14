@@ -22,7 +22,7 @@ export class TeameServiceService {
   getTeam() {
     return this.http.get('http://13.250.99.131:3001/api/teams', { headers: this.authorizationHeader() }).toPromise();
   }
-  joinTeam(id,body) {
+  joinTeam(id, body) {
     return this.http.put('http://13.250.99.131:3001/api/teams/add/' + id, body, { headers: this.authorizationHeader() }).toPromise()
   }
   getById(id) {
@@ -33,5 +33,8 @@ export class TeameServiceService {
   }
   updateMe(body) {
     return this.http.put('http://13.250.99.131/api/me', body, { headers: this.authorizationHeader() }).toPromise();
+  }
+  updateStatusMember(idTeam, idUser) {
+    return this.http.put('http://13.250.99.131:3001/api/teams/' + idTeam, idUser, { headers: this.authorizationHeader() }).toPromise();
   }
 }

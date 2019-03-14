@@ -22,4 +22,11 @@ export class OrderService {
   saveOrder(body) {
     return this.http.post('http://13.250.99.131:3003/api/orders', body, { headers: this.authorizationHeader() }).toPromise()
   }
+  getOrderByUser(id) {
+    return this.http.get('http://13.250.99.131:3003/api/order/user/' + id, { headers: this.authorizationHeader() }).toPromise()
+  }
+  getOrder(body) {
+    return this.http.post('http://13.250.99.131:3003/api/order/team', body, { headers: this.authorizationHeader() }).toPromise()
+
+  }
 }

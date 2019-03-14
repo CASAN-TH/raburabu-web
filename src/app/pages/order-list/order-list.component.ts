@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
+  dataOrderMember: any;
   idMember: Array<any> = [];
   user: any;
   rolesUser: any;
@@ -49,7 +50,7 @@ export class OrderListComponent implements OnInit {
 
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.user = user;
     this.idMember.push(this.user.data._id);
@@ -62,13 +63,14 @@ export class OrderListComponent implements OnInit {
       let idInTeam: any = [
         this.idMember
       ]
-      console.log(idInTeam);
+      let resOder: any = await this.order.getOrder(idInTeam);
+      console.log(resOder);
     }
-    if(this.rolesUser === 'user'){
-      let idUser:any = [
-        this.user.data._id
-      ]
-      console.log(idUser)
+    if (this.rolesUser === 'user') {
+      console.log(this.user.data._id)
+      let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
+      this.dataOrderMember = resOrderByUser.data;
+      console.log(this.dataOrderMember);
     }
     // console.log(this.rolesUser);
     if (!user.data.ref1) {

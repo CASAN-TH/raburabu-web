@@ -9,18 +9,18 @@
     <div *ngIf="statusWaitApprove.length === 0 && !dataUserID ">
       <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
     </div>
-    <div class="row" *ngIf="user === 'user'">
+    <div class="row" *ngIf="user === 'owner'">
       <div class="col-4" *ngFor="let item of statusWaitApprove">
         <mat-card class="example-card mt-2">
           <mat-card-content>
             <p class="ellipsis">{{item.displayname}}</p>
           </mat-card-content>
-          <div class="row" *ngIf="user ==='user'">
+          <div class="row" *ngIf="user ==='owner'">
             <div class="col-6">
               <button mat-button color="accent" (click)="approve(item)">อนุมัติ</button>
             </div>
             <div class="col-6">
-              <button mat-button>ไม่อนุมัติ</button>
+              <button mat-button (click)="cancel(item)">ไม่อนุมัติ</button>
             </div>
           </div>
         </mat-card>
