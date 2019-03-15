@@ -3,17 +3,21 @@
     <form [formGroup]="firstFormGroup" *ngFor="let item of data.option">
       <ng-template matStepLabel>{{item.name}}</ng-template>
       <div class="row">
-        <div class="col-3 mb-3" *ngFor="let item of item.value" (click)="selectProduct(item)">
-          <mat-card class="example-card card-height">
-            <div class="text-center">
-              <i class="material-icons icon" *ngIf="selectOption === item">
+        <div class="col-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index" (click)="selectProduct(itm)">
+          <mat-card class="example-card card-height pt-2 text-center">
+            <div class="text-center col-md-3 d-none d-md-block">
+              <i class="material-icons icon icon-position" *ngIf="checkIcon === itm">
                 check_circle_outline
               </i>
             </div>
-
+            <div class="col-12 d-md-none">
+              <i class="material-icons icon icon-position" *ngIf="selectOption === item">
+                check_circle_outline
+              </i>
+            </div>
             <mat-card-content>
               <p>
-                {{item}}
+                {{itm}}
               </p>
             </mat-card-content>
 

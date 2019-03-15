@@ -11,9 +11,10 @@ import { OrderComponent } from 'src/app/pages/order/order.component';
 })
 export class SelectOptionComponent implements OnInit {
   @Output() sendData: EventEmitter<any> = new EventEmitter();
+  checkIcon: any;
   nameOption: any;
   qty: any;
-  selectOption: any;
+  selectOption: Array<any> = [];
   optionProduct: Array<any> = []
   product: any;
   isLinear = false;
@@ -39,7 +40,10 @@ export class SelectOptionComponent implements OnInit {
   }
 
   selectProduct(i) {
-    this.selectOption = i;
+    this.selectOption.push(i);
+    this.selectOption.forEach(e => {
+      this.checkIcon = e
+    })
     console.log(this.selectOption);
   }
   next() {

@@ -95,7 +95,6 @@ export class OrderListComponent implements OnInit {
   openmodal() {
     const dialogRef = this.dialog.open(ModalAddressComponent, {
       width: '800px',
-      height: '400px',
       disableClose: false
     });
     dialogRef.componentInstance.dataCutomer.subscribe(gogo => {
