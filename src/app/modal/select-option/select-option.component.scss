@@ -26,9 +26,9 @@
     border: 1px solid;
 }
 
-::ng-deep .mat-form-field-underline {
-    display: none;
-}
+// ::ng-deep .mat-form-field-underline {
+//     display: none;
+// }
 
 .font-input {
     font-size: 26px;
@@ -38,4 +38,12 @@
 .icon-position {
     position: absolute;
     right: 0;
+}
+
+.ture {
+    color: green;
+}
+
+.false {
+    color: red;
 }

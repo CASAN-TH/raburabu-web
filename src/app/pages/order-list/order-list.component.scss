@@ -3,12 +3,18 @@
     color: #ff4081;
 }
 
+.div-add-btn {
+    border: dashed 5px  #e2e2e2;
+    height: 154px !important;
+    width: 210px !important;
+}
+
 .border-list {
     border: solid 1px  #e2e2e2;
 }
 
 .list-style {
-    height: 25vh;
+    // height: 25vh;
 }
 
 .list-add {
@@ -25,4 +31,12 @@
 
 .cursor {
     cursor: pointer;
+}
+
+.style-btn {
+    width: 40%;
+}
+
+.style-btn-small {
+    width: 30% !important;
 }
