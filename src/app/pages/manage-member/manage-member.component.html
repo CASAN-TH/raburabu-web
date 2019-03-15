@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12 border-bottom ">
-    <h1 *ngIf="dataTeam && dataTeam.name">{{dataTeam.name}}</h1>
+    <h1 class="ellipsis" *ngIf="dataTeam && dataTeam.name">{{dataTeam.name}}</h1>
     <h4 *ngIf="dataTeam && dataTeam.codeteam">{{dataTeam.codeteam}}</h4>
     <p *ngIf="dataTeam && dataTeam.detail">{{dataTeam.detail}}</p>
   </div>
@@ -10,7 +10,7 @@
       <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
     </div>
     <div class="row" *ngIf="user === 'owner'">
-      <div class="col-4" *ngFor="let item of statusWaitApprove">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-3" *ngFor="let item of statusWaitApprove">
         <mat-card class="example-card mt-2">
           <mat-card-content>
             <p class="ellipsis">{{item.displayname}}</p>
@@ -28,7 +28,7 @@
 
     </div>
     <div class="row" *ngIf="user==='user' && dataUserID">
-      <div class="col-4">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-3">
         <mat-card class="example-card mt-2">
           <mat-card-content>
             <p class="ellipsis" *ngIf="dataUserID && dataUserID.displayname">{{dataUserID.displayname}}</p>

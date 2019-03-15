@@ -7,24 +7,24 @@
   <div class="col-8 text-center">
     <h4>ชื่อ-ที่อยู่จัดส่ง</h4>
   </div>
-  <div class="col-2 text-right" (click)="next()">
-    <p class="curser-pointer"> ถัดไป</p>
-
+  <div class="col-2 text-right">
+    <button [disabled]="!data.tel || !data.fname || !data.lname || !data.address" (click)="next()"
+      mat-button>ถัดไป</button>
   </div>
 </div>
 <div class="row mt-3">
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <mat-form-field class="example-full-width">
       <input matInput placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel">
     </mat-form-field>
   </div>
-  <div class="col-6"></div>
-  <div class="col-6">
+  <div class="col-12 col-md-6 d-none d-md-block"></div>
+  <div class="col-12 col-md-6">
     <mat-form-field class="example-full-width">
       <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.fname">
     </mat-form-field>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <mat-form-field class="example-full-width">
       <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lname">
     </mat-form-field>
