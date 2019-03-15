@@ -61,6 +61,7 @@ export class OrderComponent implements OnInit {
     // console.log(i)
     const dialogRef = this.dialog.open(SelectOptionComponent, {
       width: '800px',
+      height: '500px',
       data: i,
       disableClose: false
     });
@@ -87,11 +88,13 @@ export class OrderComponent implements OnInit {
         address: this.address.address,
       },
       items: this.data.items,
-      paymenttype: this.namePayment,
+      paymenttype: {
+        name: this.namePayment
+      },
       totalamount: this.data.totalamount,
       user_id: user.data._id
     }
-    // console.log(this.data);
+    console.log(this.data);
     let res: any = await this.orderService.saveOrder(this.data);
     console.log(res);
     this.router.navigate(['/order-list']);

@@ -11,9 +11,9 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div class="col-12 text-right mt-4">
+  <div class="col-12 text-right mt-4 mb-4">
     <button class="mr-2" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
-    <button class="sty-btn" mat-stroked-button color="accent" (click)="save()">บันทึก</button>
+    <button class="sty-btn" mat-stroked-button color="accent" [disabled]="!selected" (click)="save()">บันทึก</button>
   </div>
 </div>
 <div *ngIf="approve && approve.length === 0">

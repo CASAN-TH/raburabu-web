@@ -1,9 +1,9 @@
 .border-order {
-    border: solid 1px  #e2e2e2;
+    border: solid 1px #e2e2e2;
 }
 
 .border-prod-list {
-    border-bottom: solid 1px  #e2e2e2;
+    border-bottom: solid 1px #e2e2e2;
 }
 
 .img-prod-style {
@@ -20,21 +20,36 @@
 
 .spacer {
     flex: 1 1 auto;
-  }
+}
 
-.btn-border-style{
+.btn-border-style {
     border-color: #ff4081;
 }
 
-.scroll{
+.scroll {
     overflow-x: scroll;
 }
 
-.font-address{
+.font-address {
     font-size: 13px;
 }
-mat-sidenav-content .container{
+
+mat-sidenav-content .container {
     padding: 0px;
     margin-right: 0px;
     margin-left: 180px;
+}
+
+.font-color {
+    color: #4e4a4ae6;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.ellipsis {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
