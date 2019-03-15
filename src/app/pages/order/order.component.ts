@@ -85,6 +85,7 @@ export class OrderComponent implements OnInit {
       totalamount: this.data.totalamount,
       user_id: user.data._id
     }
+    console.log(this.data);
     let res: any = await this.orderService.saveOrder(this.data);
     console.log(res);
     this.router.navigate(['/order-list']);
