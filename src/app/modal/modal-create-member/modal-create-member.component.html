@@ -1,21 +1,23 @@
-<div class="row flex" *ngIf="approve && approve.length > 0">
-  <div class="col-12 col-md-4 col-lg-4 mb-2" *ngFor="let item of approve" (click)="selectItem(item)">
-    <mat-card class="example-card cursor-pointer">
-      <i class="material-icons position-check" *ngIf="selected === item">
-        check_circle_outline
-      </i>
-      <mat-card-content>
-        <h1 class="text-center">ทีม</h1>
-        <h3 class="ellipsis">{{item.name}}</h3>
-        <p class="break ellipsis">{{item.detail}}</p>
-      </mat-card-content>
-    </mat-card>
+<div class="overflow-team">
+  <div class="row flex" *ngIf="approve && approve.length > 0">
+    <div class="col-12 col-md-4 col-lg-4 mb-3" *ngFor="let item of approve" (click)="selectItem(item)">
+      <mat-card class="example-card cursor-pointer border-card" style="box-shadow: none;">
+        <i class="material-icons position-check" *ngIf="selected === item">
+          check_circle_outline
+        </i>
+        <mat-card-content>
+          <h1 class="text-center">ทีม</h1>
+          <h3 class="ellipsis">{{item.name}}</h3>
+          <p class="break ellipsis">{{item.detail}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <div class="col-12 text-right mt-4 mb-4">
-    <button class="mr-2" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
-    <button class="sty-btn" mat-stroked-button color="accent" [disabled]="!selected" (click)="save()">บันทึก</button>
+  <div *ngIf="approve && approve.length === 0">
+    <h2 class="text-center no-data">ไม่มีทีม</h2>
   </div>
 </div>
-<div *ngIf="approve && approve.length === 0">
-  <h2 class="text-center no-data">ไม่มีทีม</h2>
+<div class="col-12 text-right mt-4 mb-4">
+  <button class="mr-2" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
+  <button class="sty-btn" mat-stroked-button color="accent" [disabled]="!selected" (click)="save()">บันทึก</button>
 </div>

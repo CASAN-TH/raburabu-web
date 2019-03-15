@@ -8,6 +8,10 @@
     word-break: break-all !important;
 }
 
+.border-card {
+    border: solid 1px #e2e2e2;
+}
+
 .position-check {
     position: absolute;
     right: 6px;
@@ -26,4 +30,14 @@
     white-space: nowrap !important; 
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+}
+
+::ng-deep .mat-dialog-container {
+    overflow: hidden;
+}
+
+.overflow-team {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 300px;
 }
