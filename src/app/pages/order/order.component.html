@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="border-order scroll" style="width: 100%;height: 330px;">
+    <div class="border-order scroll" style="width: 100%;height: 290px;">
       <span *ngFor="let item of data.items">
         <div class="row mt-3">
           <div class="col-6 text-left">
@@ -47,7 +47,19 @@
         </div>
       </span>
     </div>
-
+    <div class="row">
+      <div class="col-6 text-left">
+        <p class="ml-3 mt-3">ประเภทการชำระเงิน</p>
+      </div>
+      <div class="col-6 text-right">
+        <mat-form-field>
+          <mat-select placeholder="กรุณาเลือกประเภทการชำระเงิน">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of paymentType" [value]="item" (click)="selectPaymentType(item)">{{item}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
     <div class="row">
       <div class="col-6 text-left">
         <p class="ml-3 mt-3">รวม</p>
@@ -56,6 +68,7 @@
         <p class="mr-3 mt-3"> <span>{{data.totalamount}}</span> <span> บาท</span></p>
       </div>
     </div>
+
 
     <div class="row">
       <div class="col-6">

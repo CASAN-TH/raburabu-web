@@ -26,7 +26,7 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
 import { ModalAddressComponent } from './modal/modal-address/modal-address.component';
 import { OrderComponent } from './pages/order/order.component';
 import { SelectOptionComponent } from './modal/select-option/select-option.component';
-
+import {MatSelectModule} from '@angular/material/select';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -54,6 +54,7 @@ const apiSrvCfg = environment;
     MatDialogModule,
     MatListModule,
     MatSidenavModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" }),
     HttpClientModule,

@@ -25,7 +25,12 @@ export class OrderComponent implements OnInit {
     ],
     totalamount: 0
   }
+  namePayment: any;
+  paymentType: Array<any> = [
+    'ชำระเงินปลายทาง'
+    , 'ชำระเงินผ่านธนาคาร'
 
+  ];
 
 
   constructor(
@@ -82,16 +87,21 @@ export class OrderComponent implements OnInit {
         address: this.address.address,
       },
       items: this.data.items,
+      paymenttype: this.namePayment,
       totalamount: this.data.totalamount,
       user_id: user.data._id
     }
+    // console.log(this.data);
     let res: any = await this.orderService.saveOrder(this.data);
     console.log(res);
     this.router.navigate(['/order-list']);
   }
 
 
-
+  selectPaymentType(item) {
+    console.log(item);
+    this.namePayment = item;
+  }
 
 
 }
