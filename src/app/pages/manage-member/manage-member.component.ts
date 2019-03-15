@@ -72,7 +72,19 @@ export class ManageMemberComponent implements OnInit {
   //     console.log(ch);
   //   })
   // }
-  approve() {
+  approve(item) {
+    let dataApprove: any = {
+      team_id: this.team_id,
+      user_id: item._id
+    }
+    console.log(dataApprove);
 
+  }
+  cancel(item) {
+    let dataReject: any = {
+      team_id: this.team_id,
+      user_id: item._id
+    }
+    console.log(dataReject);
   }
 }

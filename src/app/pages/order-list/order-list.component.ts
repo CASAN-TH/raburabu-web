@@ -1,3 +1,4 @@
+import { TeameServiceService } from './../../services/teams-service/teame-service.service';
 import { Component, OnInit, Type } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ModalAddressComponent } from 'src/app/modal/modal-address/modal-address.component';
@@ -11,7 +12,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
+  dataOrderMember: any;
+  idMember: Array<any> = [];
+  user: any;
+  rolesUser: any;
   dataorder: any;
+  teamID: any;
   data: any = [
     {
       orderno: '190313001',
@@ -39,12 +45,34 @@ export class OrderListComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public router: Router,
-    public order: OrderService
+    public order: OrderService,
+    public teamService: TeameServiceService
 
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    this.user = user;
+    this.idMember.push(this.user.data._id);
+    this.rolesUser = user.data.roles[0];
+    this.teamID = user.data.ref1;
+    // console.log(this.userID)
+
+    this.getDataTeam();
+    if (this.rolesUser === 'owner') {
+      let idInTeam: any = [
+        this.idMember
+      ]
+      let resOder: any = await this.order.getOrder(idInTeam);
+      console.log(resOder);
+    }
+    if (this.rolesUser === 'user') {
+      console.log(this.user.data._id)
+      let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
+      this.dataOrderMember = resOrderByUser.data;
+      console.log(this.dataOrderMember);
+    }
+    // console.log(this.rolesUser);
     if (!user.data.ref1) {
       this.router.navigate(['/home']);
       // console.log('asd');
@@ -58,7 +86,7 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
-      console.log(this.dataorder)
+      // console.log(this.dataorder)
     } catch (error) {
       console.log(error)
     }
@@ -82,5 +110,16 @@ export class OrderListComponent implements OnInit {
 
 
     });
+  }
+  async getDataTeam() {
+    try {
+      let res: any = await this.teamService.getById(this.teamID);
+      // console.log(res);
+      res.data.members.forEach(data => {
+        this.idMember.push(data._id);
+      });
+    } catch (error) {
+
+    }
   }
 }
