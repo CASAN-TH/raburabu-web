@@ -52,32 +52,37 @@ export class OrderListComponent implements OnInit {
 
   async ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    this.user = user;
-    this.idMember.push(this.user.data._id);
-    this.rolesUser = user.data.roles[0];
-    this.teamID = user.data.ref1;
-    // console.log(this.userID)
-
-    this.getDataTeam();
-    if (this.rolesUser === 'owner') {
-      let idInTeam: any = [
-        this.idMember
-      ]
-      let resOder: any = await this.order.getOrder(idInTeam);
-      console.log(resOder);
-    }
-    if (this.rolesUser === 'user') {
-      console.log(this.user.data._id)
-      let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
-      this.dataOrderMember = resOrderByUser.data;
-      console.log(this.dataOrderMember);
-    }
-    // console.log(this.rolesUser);
     if (!user.data.ref1) {
       this.router.navigate(['/home']);
       // console.log('asd');
     } else {
-      this.getOrderList();
+      this.user = user;
+      this.idMember.push(this.user.data._id);
+      this.rolesUser = user.data.roles[0];
+      this.teamID = user.data.ref1;
+      // console.log(this.userID)
+
+      this.getDataTeam();
+      if (this.rolesUser === 'owner') {
+        let idInTeam: any = [
+          this.idMember
+        ]
+        let resOder: any = await this.order.getOrder(idInTeam);
+        console.log(resOder);
+      }
+      if (this.rolesUser === 'user') {
+        console.log(this.user.data._id)
+        let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
+        this.dataOrderMember = resOrderByUser.data;
+        console.log(this.dataOrderMember);
+      }
+      // console.log(this.rolesUser);
+      if (!user.data.ref1) {
+        this.router.navigate(['/home']);
+        // console.log('asd');
+      } else {
+        this.getOrderList();
+      }
     }
   }
 
