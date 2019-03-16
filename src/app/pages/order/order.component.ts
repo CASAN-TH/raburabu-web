@@ -61,7 +61,7 @@ export class OrderComponent implements OnInit {
     // console.log(i)
     const dialogRef = this.dialog.open(SelectOptionComponent, {
       width: '800px',
-      height: '500px',
+    
       data: i,
       disableClose: false
     });
