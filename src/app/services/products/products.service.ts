@@ -16,6 +16,6 @@ export class ProductsService {
     return headers;
   }
   order() {
-    return this.http.get('http://13.250.99.131:3002/api/products', { headers: this.authorizationHeader() }).toPromise();
+    return this.http.get('http://13.250.99.131/api/products', { headers: this.authorizationHeader() }).toPromise();
   }
 }

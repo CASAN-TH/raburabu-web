@@ -26,7 +26,8 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
 import { ModalAddressComponent } from './modal/modal-address/modal-address.component';
 import { OrderComponent } from './pages/order/order.component';
 import { SelectOptionComponent } from './modal/select-option/select-option.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -44,7 +45,8 @@ const apiSrvCfg = environment;
     OrderListComponent,
     ModalAddressComponent,
     OrderComponent,
-    SelectOptionComponent
+    SelectOptionComponent,
+    ModalConfirmsComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ const apiSrvCfg = environment;
     ModalCreateTeamComponent,
     ModalCreateMemberComponent,
     ModalAddressComponent,
-    SelectOptionComponent
+    SelectOptionComponent,
+    ModalConfirmsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,17 +16,17 @@ export class OrderService {
   }
 
   orderList() {
-    return this.http.get('http://13.250.99.131:3003/api/orders', { headers: this.authorizationHeader() }).toPromise()
+    return this.http.get('http://13.250.99.131/api/orders', { headers: this.authorizationHeader() }).toPromise()
   }
 
   saveOrder(body) {
-    return this.http.post('http://13.250.99.131:3003/api/orders', body, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.post('http://13.250.99.131/api/orders', body, { headers: this.authorizationHeader() }).toPromise()
   }
   getOrderByUser(id) {
-    return this.http.get('http://13.250.99.131:3003/api/order/user/' + id, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.get('http://13.250.99.131/api/order/user/' + id, { headers: this.authorizationHeader() }).toPromise()
   }
   getOrder(body) {
-    return this.http.post('http://13.250.99.131:3003/api/order/team', body, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.post('http://13.250.99.131/api/order/team', body, { headers: this.authorizationHeader() }).toPromise()
 
   }
 }

@@ -6,7 +6,7 @@
   </div>
   <div class="col-12 mt-3" *ngIf="dataTeam && dataTeam.status==='approve'">
     <h4 class="text-center">รอการอนุมัติ</h4>
-    <div *ngIf="statusWaitApprove.length === 0 && !dataUserID ">
+    <div *ngIf="statusWaitApprove.length === 0">
       <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
     </div>
     <div class="row" *ngIf="user === 'owner'">
@@ -16,18 +16,18 @@
             <p class="ellipsis">{{item.displayname}}</p>
           </mat-card-content>
           <div class="row" *ngIf="user ==='owner'">
-            <div class="col-6">
-              <button mat-button color="accent" (click)="approve(item)">อนุมัติ</button>
+            <div class="col-12 col-md-6 no-padding">
+              <button style="width: 100%" mat-button (click)="cancel(item)">ไม่อนุมัติ</button>
             </div>
-            <div class="col-6">
-              <button mat-button (click)="cancel(item)">ไม่อนุมัติ</button>
+            <div class="col-12 col-md-6 no-padding">
+              <button style="width: 100%" mat-button color="accent" (click)="approve(item)">อนุมัติ</button>
             </div>
           </div>
         </mat-card>
       </div>
 
     </div>
-    <div class="row" *ngIf="user==='user' && dataUserID">
+    <div class="row" *ngIf="user==='user' && dataUserID && dataUserID.status === 'waitapprove'">
       <div class="col-6 col-sm-6 col-md-3 col-lg-3">
         <mat-card class="example-card mt-2">
           <mat-card-content>

@@ -1,0 +1,24 @@
+<div name="divTitleModal" class="mb-2">
+  <div name="colTitleModal" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+    {{data.message}}
+  </div>
+</div>
+
+<div name="rowFooter" class="row">
+  <div name="col1Footer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div name="rowButton" class="row">
+      <div name="col1ButtonBlank" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+      </div>
+      <div name="col2ButtonConfirm" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+        <button name="btnConfirmOk" style="width: 100%" class="full-btn margin-top-btn" mat-flat-button color="primary"
+          (click)="onClickOk()">ตกลง</button>
+      </div>
+      <div name="col3ButtonCancel" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+        <button name="btnConfirmCancel" style="width: 100%" class="full-btn margin-top-btn" (click)="onClickCancel()"
+          mat-stroked-button>ยกเลิก</button>
+      </div>
+      <div name="col4ButtonBlank" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+      </div>
+    </div>
+  </div>
+</div>
