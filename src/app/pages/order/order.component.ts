@@ -18,14 +18,12 @@ export class OrderComponent implements OnInit {
       firstname: '',
       lasname: '',
       tel: null,
-      address: '',
+      address: [],
     },
-    items: [
-
-    ],
+    items: [],
     totalamount: 0
   }
-  namePayment: any;
+  namePayment: any = '';
   paymentType: Array<any> = [
     'ชำระเงินปลายทาง'
     , 'ชำระเงินผ่านธนาคาร'

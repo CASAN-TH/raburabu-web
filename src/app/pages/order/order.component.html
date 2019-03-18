@@ -16,8 +16,9 @@
         <span class="font-address">
           <p class="ml-2 mb-1"><span>ชื่อ: </span> <span class="mr-2">{{address.firstname}}</span>
             <span>{{address.lastname}}</span></p>
-          <p class="ml-2 mb-1"><span>ที่อยู่: </span> <span>{{address.address.houseno}} {{address.address.village}} {{address.address.street}}
-             ต.{{address.address.subdistrict}} อ.{{address.address.district}} จ.{{address.address.province}}
+          <p class="ml-2 mb-1"><span>ที่อยู่: </span> <span>{{address.address.houseno}} {{address.address.village}}
+              {{address.address.street}}
+              ต.{{address.address.subdistrict}} อ.{{address.address.district}} จ.{{address.address.province}}
               {{address.address.zipcode}}</span></p>
           <p class="ml-2 mb-1"><span>เบอร์โทร: </span> <span>{{address.tel}}</span></p>
         </span>
@@ -92,7 +93,8 @@
         <button mat-stroked-button color="accent" class="btn-style">ยกเลิก</button>
       </div>
       <div class="col-6">
-        <button mat-stroked-button color="accent" (click)="onSave()" class="btn-style btn-border-style">บันทึก</button>
+        <button mat-stroked-button color="accent" (click)="onSave()" class="btn-style btn-border-style"
+          [disabled]="data.items.length === 0 || !namePayment">บันทึก</button>
       </div>
     </div>
 
