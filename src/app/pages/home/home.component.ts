@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ModalCreateTeamComponent } from './../../modal/modal-create-team/modal-create-team.component';
 import { Component, OnInit } from "@angular/core";
@@ -13,7 +14,8 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    public ngxSpinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
