@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
@@ -13,19 +14,24 @@ export class ModalCreateTeamComponent implements OnInit {
   nameteam: any;
   detailteam: any;
   codeteamUpper: any;
+  user_id: any;
   constructor(
     public dialogRef: MatDialogRef<ModalCreateTeamComponent>,
     public teameService: TeameServiceService
   ) { }
 
   ngOnInit() {
+    let resUser: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    console.log(resUser);
+    this.user_id = resUser.data._id
   }
   async save() {
     try {
       let creteTame = {
         name: this.nameteam,
         codeteam: this.codeteamUpper,
-        detail: this.detailteam
+        detail: this.detailteam,
+        user_id: this.user_id
       }
       let res: any = await this.teameService.createTeam(creteTame);
       console.log(res);

@@ -109,7 +109,7 @@ export class ManageMemberComponent implements OnInit {
   async cancel(item) {
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
-        width: '800px',
+        width: '400px',
         data: { message: "ปฏิเสธสมาชิกเข้าสู่ทีม?" },
         disableClose: true
       });
@@ -135,5 +135,8 @@ export class ManageMemberComponent implements OnInit {
     } catch (error) {
 
     }
+  }
+  onSeeDetailMember(item) {
+    console.log(item);
   }
 }
