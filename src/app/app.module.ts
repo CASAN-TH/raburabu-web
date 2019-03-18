@@ -27,6 +27,8 @@ import { ModalAddressComponent } from './modal/modal-address/modal-address.compo
 import { OrderComponent } from './pages/order/order.component';
 import { SelectOptionComponent } from './modal/select-option/select-option.component';
 import { MatSelectModule } from '@angular/material/select';
+import { AdminManageTeamComponent } from './pages/admin-manage-team/admin-manage-team.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.component';
 
 const apiSrvCfg = environment;
@@ -46,6 +48,7 @@ const apiSrvCfg = environment;
     ModalAddressComponent,
     OrderComponent,
     SelectOptionComponent,
+    AdminManageTeamComponent,
     ModalConfirmsComponent
   ],
   imports: [
@@ -62,6 +65,7 @@ const apiSrvCfg = environment;
     HttpClientModule,
     NgxSpinnerModule,
     HttpClientModule,
+    MatTabsModule,
     AuthModule.forRoot(apiSrvCfg)
   ],
   entryComponents: [

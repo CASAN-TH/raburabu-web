@@ -8,6 +8,7 @@ import { AuthGuardService } from "ng6-md-auth";
 import { ManageMemberComponent } from "./pages/manage-member/manage-member.component";
 import { OrderListComponent } from "./pages/order-list/order-list.component";
 import { OrderComponent } from "./pages/order/order.component";
+import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: "manage-member", component: ManageMemberComponent },
   { path: "order-list", component: OrderListComponent },
   { path: "order", component: OrderComponent },
+  { path: "admin-manage-team", component: AdminManageTeamComponent },
 
 ];
 
