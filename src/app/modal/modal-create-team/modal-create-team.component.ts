@@ -2,7 +2,6 @@ import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-create-team',

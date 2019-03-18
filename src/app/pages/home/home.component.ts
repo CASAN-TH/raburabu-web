@@ -22,6 +22,9 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/manage-member']);
       // console.log('asd');
     }
+    if (user.data.roles[0] === 'admin') {
+      this.router.navigate(['/admin-manage-team']);
+    }
   }
 
 

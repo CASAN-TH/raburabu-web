@@ -18,19 +18,19 @@
     </div>
 
     <div class="div-list-style">
-      <div class="row border-bt mb-2" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+      <div class="row border-bt mb-2" *ngFor="let item of waitApprove">
         <div class="col-2 mt-2 mb-2 text-center">
-          <span>BOM</span>
+          <span>{{item.codeteam}}</span>
         </div>
         <div class="col-3 mt-2 mb-2  text-center">
-          <span>BOOMTEAM</span>
+          <span>{{item.name}}</span>
         </div>
         <div class="col-4 mt-2 mb-2  text-center">
-          <span>หัวทีมใจดี รักเด็ก</span>
+          <span>{{item.detail}}</span>
         </div>
         <div class="col-3 mt-2 mb-2  text-center">
-          <button mat-stroked-button class="mr-1">อนุมัติ</button>
-          <button mat-stroked-button>ปฏิเสธ</button>
+          <button mat-stroked-button class="mr-1 border-btn" color="accent" (click)="onApprove(item)">อนุมัติ</button>
+          <button mat-stroked-button color="accent" (click)="onReject(item)">ปฏิเสธ</button>
         </div>
       </div>
     </div>
@@ -49,19 +49,18 @@
     </div>
 
     <div class="div-list-style">
-      <div class="row border-bt mb-2" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+      <div class="row border-bt mb-2" *ngFor="let itm of approve">
         <div class="col-2 mt-2 mb-2 text-center">
-          <span>BOM</span>
+          <span>{{itm.codeteam}}</span>
         </div>
         <div class="col-3 mt-2 mb-2  text-center">
-          <span>BOOMTEAM</span>
+          <span>{{itm.name}}</span>
         </div>
         <div class="col-4 mt-2 mb-2  text-center">
-          <span>หัวทีมใจดี รักเด็ก</span>
+          <span>{{itm.detail}}</span>
         </div>
         <div class="col-3 mt-2 mb-2  text-center">
-          <button mat-stroked-button class="mr-1">อนุมัติ</button>
-          <button mat-stroked-button>ปฏิเสธ</button>
+          <button mat-stroked-button class="mr-1" disabled color="accent">ยุบทีม</button>
         </div>
       </div>
     </div>
