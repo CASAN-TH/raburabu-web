@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   createmember() {
     const dialogRef = this.dialog.open(ModalCreateMemberComponent, {
-      // width: '800px',
+      width: '800px',
       // height:'400px',
       disableClose: false
     });
