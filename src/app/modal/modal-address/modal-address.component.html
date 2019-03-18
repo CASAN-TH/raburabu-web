@@ -7,18 +7,20 @@
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel"
-                formControlName="firstCtrl">
+                formControlName="firstCtrl" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6 d-none d-md-block"></div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstCtrl">
+              <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstCtrl"
+                required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="firstCtrl">
+              <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="firstCtrl"
+                required>
             </mat-form-field>
           </div>
         </div>
@@ -33,13 +35,13 @@
   <mat-step [stepControl]="secondFormGroup">
     <mat-dialog-content class="mat-typography">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>ที่อยู่ลูกทีม</ng-template>
+        <ng-template matStepLabel>ที่อยู่ลูกค้า</ng-template>
 
         <div class="row mt-3">
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกบ้านเลขที่" [(ngModel)]="data.address.houseno"
-                formControlName="secondCtrl">
+                formControlName="secondCtrl" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
@@ -57,25 +59,25 @@
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกตำบล" [(ngModel)]="data.address.subdistrict"
-                formControlName="secondCtrl">
+                formControlName="secondCtrl" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกอำเภอ" [(ngModel)]="data.address.district"
-                formControlName="secondCtrl">
+                formControlName="secondCtrl" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกจังหวัด" [(ngModel)]="data.address.province"
-                formControlName="secondCtrl">
+                formControlName="secondCtrl" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกรหัสไปรษณีย์" [(ngModel)]="data.address.zipcode"
-                formControlName="secondCtrl">
+                formControlName="secondCtrl" required>
             </mat-form-field>
           </div>
         </div>
@@ -84,11 +86,11 @@
 
     <mat-dialog-actions>
       <div class="col-6  text-left">
-        <button mat-button matStepperPrevious>ยืนกลับ</button>
+        <button mat-button matStepperPrevious>ย้อนกลับ</button>
       </div>
       <div class="col-6 text-right">
         <button mat-button matStepperNext (click)="next()"
-          [disabled]="!data.address.houseno || !data.address.village || !data.address.street || !data.address.subdistrict || !data.address.district || !data.address.province || !data.address.zipcode">เสร็จสิ้น</button>
+          [disabled]="!data.address.houseno || !data.address.subdistrict || !data.address.district || !data.address.province || !data.address.zipcode">เสร็จสิ้น</button>
 
       </div>
     </mat-dialog-actions>
