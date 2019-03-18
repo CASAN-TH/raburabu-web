@@ -47,6 +47,9 @@ export class AdminManageTeamComponent implements OnInit {
     // console.log(item);
     let res: any = await this.teameService.adminManageTeam(item._id, body);
     console.log(res);
+    this.waitApprove = [];
+    this.approve = [];
+    this.getTeam();
   }
 
   async onReject(item) {
@@ -56,6 +59,9 @@ export class AdminManageTeamComponent implements OnInit {
     // console.log(item);
     let res: any = await this.teameService.adminManageTeam(item._id, body);
     console.log(res);
+    this.waitApprove = [];
+    this.approve = [];
+    this.getTeam();
   }
 
 }
