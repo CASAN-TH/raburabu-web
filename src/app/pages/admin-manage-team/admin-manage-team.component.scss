@@ -4,6 +4,10 @@
 
 .div-list-style {
     height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+}
+
+.border-btn {
+    border-color: #ff4081;
 }

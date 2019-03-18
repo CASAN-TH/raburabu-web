@@ -40,4 +40,7 @@ export class TeameServiceService {
   approveMember(id, body) {
     return this.http.put('http://13.250.99.131/api/teams/edit/' + id, body, { headers: this.authorizationHeader() }).toPromise();
   }
+  adminManageTeam(_id, body) {
+    return this.http.put('http://13.250.99.131/api/teams/adminapporve/' + _id, body, { headers: this.authorizationHeader() }).toPromise();
+  }
 }

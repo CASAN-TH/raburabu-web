@@ -40,4 +40,22 @@ export class AdminManageTeamComponent implements OnInit {
     }
   }
 
+  async onApprove(item) {
+    let body = {
+      status: 'approve'
+    }
+    // console.log(item);
+    let res: any = await this.teameService.adminManageTeam(item._id, body);
+    console.log(res);
+  }
+
+  async onReject(item) {
+    let body = {
+      status: 'reject'
+    }
+    // console.log(item);
+    let res: any = await this.teameService.adminManageTeam(item._id, body);
+    console.log(res);
+  }
+
 }

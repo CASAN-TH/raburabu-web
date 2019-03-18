@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class SideBarComponent implements OnInit {
   userAuth: any;
+  userData: any;
 
 
   constructor(
@@ -22,13 +23,12 @@ export class SideBarComponent implements OnInit {
   ) {
     this.userAuthSrv.isLoggedIn.subscribe(value => {
       this.userAuth = this.userAuthSrv.user;
-      // console.log(this.userAuth);
+      console.log(this.userAuth);
     });
     this.userAuth = this.userAuthSrv.user;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onManageMember() {
     this.router.navigate(["/manage-member"]);
@@ -46,6 +46,10 @@ export class SideBarComponent implements OnInit {
 
   onMonitoring() {
     this.router.navigate(["/order-list"]);
+  }
+
+  onManageTeam() {
+    this.router.navigate(["/admin-manage-team"]);
   }
 
 

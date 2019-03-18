@@ -11,20 +11,24 @@
 <div class="row">
   <div class="col-12">
     <mat-nav-list class="pt-0" *ngIf="userAuth && userAuth.roles  && userAuth.roles.length > 0">
-      <a mat-list-item (click)="onOrderList();sidenavService.closeNav();">
-        <!-- <a mat-list-item (click)="onOrderList();sidenavService.closeNav();"
-        *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'user'"> -->
+      <a mat-list-item (click)="onOrderList();sidenavService.closeNav();"
+        *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner'">
         <img src="./../../../assets/images/shopping-bag.png" class="img-list">
         <span class="ml-3">การขาย</span>
       </a>
-      <a mat-list-item (click)="onManageMember();sidenavService.closeNav();">
+      <a mat-list-item (click)="onManageMember();sidenavService.closeNav();"
+        *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'user'">
         <img src="./../../../assets/images/work-team.png" class="img-list">
         <span class="ml-3">จัดสมาชิก</span>
       </a>
-      <a mat-list-item>
-        <!-- <a mat-list-item *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] == 'owner'  || userAuth.roles[0] === 'user'"> -->
+      <a mat-list-item
+        *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'admin'">
         <img src="./../../../assets/images/list.png" class="img-list">
         <span class="ml-3">จัดการรายการขาย</span>
+      </a>
+      <a mat-list-item (click)="onManageTeam();sidenavService.closeNav();" *ngIf="userAuth.roles[0] === 'admin'">
+        <img src="./../../../assets/images/logout.png" class="img-list">
+        <span class="ml-3">จัดการทีม</span>
       </a>
       <a mat-list-item (click)="onLogout();sidenavService.closeNav();">
         <img src="./../../../assets/images/logout.png" class="img-list">
