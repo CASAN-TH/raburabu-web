@@ -1,4 +1,104 @@
-<div class="row">
+<mat-horizontal-stepper [linear]="!isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>ชื่อลูกค้า</ng-template>
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel"
+                formControlName="firstCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6 d-none d-md-block"></div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="firstCtrl">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <div>
+        <button [disabled]="!data.tel || !data.firstname || !data.lastname " mat-button matStepperNext>ถัดไป</button>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>ที่อยู่ลูกทีม</ng-template>
+
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกบ้านเลขที่" [(ngModel)]="data.address.houseno"
+                formControlName="secondCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกหมู่บ้าน" [(ngModel)]="data.address.village"
+                formControlName="secondCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกถนน/ซอย" [(ngModel)]="data.address.street"
+                formControlName="secondCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกตำบล" [(ngModel)]="data.address.subdistrict"
+                formControlName="secondCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกอำเภอ" [(ngModel)]="data.address.district"
+                formControlName="secondCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกจังหวัด" [(ngModel)]="data.address.province"
+                formControlName="secondCtrl">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="กรุณากรอกรหัสไปรษณีย์" [(ngModel)]="data.address.zipcode"
+                formControlName="secondCtrl">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <div class="col-6  text-left">
+        <button mat-button matStepperPrevious>ยืนกลับ</button>
+      </div>
+      <div class="col-6 text-right">
+        <button mat-button matStepperNext (click)="next()"
+          [disabled]="!data.address.houseno || !data.address.village || !data.address.street || !data.address.subdistrict || !data.address.district || !data.address.province || !data.address.zipcode">เสร็จสิ้น</button>
+
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+
+
+<!-- <div class="row">
   <div class="col-2 text-left " (click)="exit()">
     <i class="material-icons curser-pointer">
       highlight_off
@@ -7,32 +107,67 @@
   <div class="col-8 text-center">
     <h4>ชื่อ-ที่อยู่จัดส่ง</h4>
   </div>
-  <div class="col-2 text-right">
-    <button [disabled]="!data.tel || !data.fname || !data.lname || !data.address" (click)="next()"
-      mat-button>ถัดไป</button>
-  </div>
 </div>
-<div class="row mt-3">
-  <div class="col-12 col-md-6">
-    <mat-form-field class="example-full-width">
-      <input matInput type="tel" maxlength="10"  placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel">
-    </mat-form-field>
+<mat-dialog-content class="mat-typography">
+  <div class="row mt-3">
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6 d-none d-md-block"></div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname">
+      </mat-form-field>
+    </div>
+    <div class="col-12 text-center mt-3">
+      <h2 class="a"> <span class="b">ที่อยู่</span> </h2>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกบ้านเลขที่" [(ngModel)]="data.address.houseno">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกหมู่บ้าน" [(ngModel)]="data.address.village">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกถนน/ซอย" [(ngModel)]="data.address.street">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกตำบล" [(ngModel)]="data.address.subdistrict">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกอำเภอ" [(ngModel)]="data.address.district">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกจังหวัด" [(ngModel)]="data.address.province">
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="กรุณากรอกรหัสไปรษณีย์" [(ngModel)]="data.address.zipcode">
+      </mat-form-field>
+    </div>
   </div>
-  <div class="col-12 col-md-6 d-none d-md-block"></div>
-  <div class="col-12 col-md-6">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.fname">
-    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="col-2">
+    <button [disabled]="!data.tel || !data.firstname || !data.lastname " (click)="next()" mat-button>ถัดไป</button>
   </div>
-  <div class="col-12 col-md-6">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lname">
-    </mat-form-field>
-  </div>
-  <div class="col-12">
-    <mat-form-field class="example-full-width">
-      <textarea class="heigth-textarea" matInput placeholder="กรุณากรองที่อยู่" [(ngModel)]="data.address"></textarea>
-    </mat-form-field>
-
-  </div>
-</div>
+</mat-dialog-actions> -->

@@ -5,8 +5,8 @@
     <p *ngIf="dataTeam && dataTeam.detail">{{dataTeam.detail}}</p>
   </div>
   <div class="col-12 mt-3" *ngIf="dataTeam && dataTeam.status==='approve'">
-    <h4 class="text-center">รอการอนุมัติ</h4>
-    <div *ngIf="statusWaitApprove.length === 0">
+    <h4 class="text-center" *ngIf="user==='user' || user ==='owner' ">รอการอนุมัติ</h4>
+    <div *ngIf="user==='user' || user ==='owner'">
       <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
     </div>
     <div class="row" *ngIf="user === 'owner'">
@@ -41,13 +41,13 @@
 
   </div>
   <div class="col-12 mt-2" *ngIf="dataTeam && dataTeam.status==='approve'">
-    <h4 class="text-center">ทีม</h4>
+    <h4 class="text-center">สมาชิก</h4>
     <div *ngIf="statusMember && statusMember.length === 0">
       <p class="text-center no-data">ไม่มีสมัครมาชิก</p>
     </div>
     <div class="row" *ngIf="statusMember && statusMember.length > 0">
-      <div class="col-4" *ngFor="let item of statusMember">
-        <mat-card class="example-card mb-2">
+      <div class="col-6 col-md-3 col-lg-3" *ngFor="let item of statusMember">
+        <mat-card class="example-card mb-2 cuser-poiter" (click)="onSeeDetailMember(item)">
           <mat-card-content>
             <p class="ellipsis">{{item.displayname}}</p>
           </mat-card-content>
