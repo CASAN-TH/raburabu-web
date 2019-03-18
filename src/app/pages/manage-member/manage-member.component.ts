@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-manage-member',
@@ -25,7 +26,8 @@ export class ManageMemberComponent implements OnInit {
   constructor(
     private teameServicec: TeameServiceService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public ngxSpinner: NgxSpinnerService
   ) { }
 
   async ngOnInit() {
@@ -47,9 +49,11 @@ export class ManageMemberComponent implements OnInit {
   }
 
   async getDataMember() {
+    this.ngxSpinner.show();
     try {
       let res: any = await this.teameServicec.getById(this.team_id);
       this.dataTeam = res.data;
+      this.ngxSpinner.hide();
       console.log(this.dataTeam);
       let resp: any = this.dataTeam.members.filter((e) => {
         if (e.member_id === this.userId) {
@@ -67,6 +71,7 @@ export class ManageMemberComponent implements OnInit {
         }
       });
     } catch (error) {
+      this.ngxSpinner.hide();
       console.log(error)
     }
   }
