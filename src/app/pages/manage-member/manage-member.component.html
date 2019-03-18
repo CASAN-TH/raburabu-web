@@ -6,7 +6,7 @@
   </div>
   <div class="col-12 mt-3" *ngIf="dataTeam && dataTeam.status==='approve'">
     <h4 class="text-center" *ngIf="user==='user' || user ==='owner' ">รอการอนุมัติ</h4>
-    <div *ngIf="user==='user' || user ==='owner'">
+    <div *ngIf="user ==='owner' &&  statusWaitApprove.length === 0">
       <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
     </div>
     <div class="row" *ngIf="user === 'owner'">

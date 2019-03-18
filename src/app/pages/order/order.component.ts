@@ -88,10 +88,20 @@ export class OrderComponent implements OnInit {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.data = {
       customer: {
-        firstname: this.address.fname,
-        lasname: this.address.lname,
+        firstname: this.address.firstname,
+        lasname: this.address.lastname,
         tel: this.address.tel,
-        address: this.address.address,
+        address: [
+          {
+            houseno: this.address.address.houseno,
+            village: this.address.address.village,
+            street: this.address.address.street,
+            subdistrict: this.address.address.subdistrict,
+            district: this.address.address.district,
+            province: this.address.address.province,
+            zipcode: this.address.address.zipcode
+          }
+        ]
       },
       items: this.data.items,
       paymenttype: {
