@@ -44,10 +44,16 @@ export class OrderComponent implements OnInit {
   prodData: any;
 
   ngOnInit() {
-    let res: any = this.route.snapshot.paramMap.get('title');
-    this.address = JSON.parse(res)
-    console.log(this.address);
-    this.getProd();
+    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    if (!user.data.ref1) {
+      this.router.navigate(['/home']);
+      // console.log('asd');
+    } else {
+      let res: any = this.route.snapshot.paramMap.get('title');
+      this.address = JSON.parse(res)
+      console.log(this.address);
+      this.getProd();
+    }
   }
 
   async getProd() {
@@ -61,7 +67,7 @@ export class OrderComponent implements OnInit {
     // console.log(i)
     const dialogRef = this.dialog.open(SelectOptionComponent, {
       width: '800px',
-    
+
       data: i,
       disableClose: false
     });
