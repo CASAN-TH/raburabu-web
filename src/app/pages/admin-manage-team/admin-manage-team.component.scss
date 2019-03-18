@@ -11,3 +11,9 @@
 .border-btn {
     border-color: #ff4081;
 }
+
+.text-overflow {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
