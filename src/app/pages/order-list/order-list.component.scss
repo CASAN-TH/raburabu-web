@@ -44,11 +44,12 @@
     width: 100% !important;
 }
 
-.positon-button {
-    
+.div-content{
+    height: 78vh;
+    overflow-y: auto;
+    overflow-x: hidden !important;
 }
 
-.div-content{
-    height: 70vh;
-    overflow-y: auto;
+.btn-border-style {
+    border-color: #ff4081;
 }
