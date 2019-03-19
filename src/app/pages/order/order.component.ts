@@ -30,7 +30,6 @@ export class OrderComponent implements OnInit {
 
   ];
 
-
   constructor(
     private route: ActivatedRoute,
     private prodService: ProductsService,
@@ -49,7 +48,7 @@ export class OrderComponent implements OnInit {
     } else {
       let res: any = this.route.snapshot.paramMap.get('title');
       this.address = JSON.parse(res)
-      console.log(this.address);
+      // console.log(this.address);
       this.getProd();
     }
   }
@@ -58,11 +57,10 @@ export class OrderComponent implements OnInit {
     let res: any = await this.prodService.order();
     // console.log(res);
     this.prodData = res.data;
-    console.log(this.prodData);
+    // console.log(this.prodData);
   }
 
   openmodal(i) {
-    // console.log(i)
     const dialogRef = this.dialog.open(SelectOptionComponent, {
       width: '800px',
 
@@ -72,19 +70,19 @@ export class OrderComponent implements OnInit {
     dialogRef.componentInstance.sendData.subscribe(res => {
       dialogRef.afterClosed().subscribe(result => {
         this.data.items.push(res);
-        console.log(this.data);
+        // console.log(this.data);
         this.data.totalamount = 0
         this.data.items.forEach(sum => {
           this.data.totalamount += sum.amout
         });
-        console.log(this.data.totalamount);
+        // console.log(this.data.totalamount);
       });
     });
   }
 
   async onSave() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    this.data = {
+    let body = {
       customer: {
         firstname: this.address.firstname,
         lasname: this.address.lastname,
@@ -108,16 +106,23 @@ export class OrderComponent implements OnInit {
       totalamount: this.data.totalamount,
       user_id: user.data._id
     }
-    console.log(this.data);
-    let res: any = await this.orderService.saveOrder(this.data);
+    console.log(body);
+    console.log(this.data.items);
+    let res: any = await this.orderService.saveOrder(body);
     console.log(res);
-    this.router.navigate(['/order-list']);
+    // this.router.navigate(['/order-list']);
   }
 
-
   selectPaymentType(item) {
-    console.log(item);
+    // console.log(item);
     this.namePayment = item;
+  }
+
+  deleteProd(item, i) {
+    // console.log(i);
+    // console.log(item);
+    this.data.items.splice(i, 1);
+    // console.log(this.data.items);
   }
 
 

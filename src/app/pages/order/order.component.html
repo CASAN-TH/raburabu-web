@@ -26,10 +26,15 @@
     </div>
 
     <div class="border-order scroll" style="width: 100%;height: 290px;">
-      <span *ngFor="let item of data.items">
+      <span *ngFor="let item of data.items;let i = index">
         <div class="row mt-2">
-          <div class="col-12 text-left">
+          <div class="col-6 text-left">
             <p class="ml-4 mb-1"> <span>{{item.name}}</span></p>
+          </div>
+          <div class="col-6 text-right">
+            <i class="material-icons" (click)="deleteProd(item , i)">
+              delete_outline
+            </i>
           </div>
           <div class="col-12" *ngFor="let itm of item.option">
             <div class="row" *ngFor="let it of itm.value">
