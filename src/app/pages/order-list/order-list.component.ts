@@ -12,8 +12,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
+  dataOrderOwner: any;
   dataOrderMember: any;
-  idMember: Array<any> = [];
+  idMember: Array<String> = [];
   user: any;
   rolesUser: any;
   dataorder: any;
@@ -61,22 +62,10 @@ export class OrderListComponent implements OnInit {
       this.idMember.push(this.user.data._id);
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
-      // console.log(this.userID)
+      console.log(this.user)
 
       this.getDataTeam();
-      if (this.rolesUser === 'owner') {
-        let idInTeam: any = [
-          this.idMember
-        ]
-        let resOder: any = await this.order.getOrder(idInTeam);
-        console.log(resOder);
-      }
-      if (this.rolesUser === 'user') {
-        console.log(this.user.data._id)
-        let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
-        this.dataOrderMember = resOrderByUser.data;
-        console.log(this.dataOrderMember);
-      }
+      this.getOrderOwnerAndMember();
       // console.log(this.rolesUser);
       if (!user.data.ref1) {
         this.router.navigate(['/home']);
@@ -92,7 +81,7 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
-      // console.log(this.dataorder)
+      console.log(this.dataorder)
     } catch (error) {
       console.log(error)
     }
@@ -119,10 +108,29 @@ export class OrderListComponent implements OnInit {
   async getDataTeam() {
     try {
       let res: any = await this.teamService.getById(this.teamID);
-      // console.log(res);
+      console.log(res);
       res.data.members.forEach(data => {
-        this.idMember.push(data._id);
+        console.log(data);
+        this.idMember.push(data.member_id);
       });
+    } catch (error) {
+
+    }
+  }
+  async getOrderOwnerAndMember() {
+    try {
+      if (this.rolesUser === 'owner') {
+        console.log(this.idMember)
+        let resOder: any = await this.order.getOrder(this.idMember);
+        this.dataOrderOwner = resOder.data;
+        console.log(resOder)
+      }
+      if (this.rolesUser === 'staff') {
+        console.log(this.user.data._id)
+        let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
+        this.dataOrderMember = resOrderByUser.data;
+        console.log(this.dataOrderMember);
+      }
     } catch (error) {
 
     }
