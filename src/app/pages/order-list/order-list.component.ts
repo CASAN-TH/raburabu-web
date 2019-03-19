@@ -62,7 +62,11 @@ export class OrderListComponent implements OnInit {
       // console.log('asd');
     } else {
       this.user = user;
-      this.idMember.push(this.user.data._id);
+      let id: any = {
+        id: this.user.data._id
+      }
+      console.log(id);
+      this.idMember.push(id);
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
       console.log(this.user)
@@ -115,7 +119,11 @@ export class OrderListComponent implements OnInit {
       console.log(res);
       res.data.members.forEach(data => {
         console.log(data);
-        this.idMember.push(data.member_id);
+        let id: any = {
+          id: data.member_id
+        }
+        console.log(id)
+        this.idMember.push(id);
       });
       this.ngxSpinner.hide();
     } catch (error) {
