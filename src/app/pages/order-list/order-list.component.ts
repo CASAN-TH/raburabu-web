@@ -56,7 +56,7 @@ export class OrderListComponent implements OnInit {
 
   async ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    console.log(user.data.roles[0]);
+    // console.log(user.data.roles[0]);
     if (user.data.roles[0] === 'user') {
       this.router.navigate(['/home']);
       // console.log('asd');
@@ -65,7 +65,7 @@ export class OrderListComponent implements OnInit {
       this.idMember.push(this.user.data._id);
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
-      console.log(this.user)
+      // console.log(this.user)
 
       this.getDataTeam();
       this.getOrderOwnerAndMember();
@@ -84,9 +84,9 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
-      console.log(this.dataorder)
+      // console.log(this.dataorder)
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
 
@@ -100,7 +100,7 @@ export class OrderListComponent implements OnInit {
 
         if (result) {
           this.router.navigate(['/order', { title: JSON.stringify(gogo), si: false }]);
-          console.log(gogo);
+          // console.log(gogo);
         }
       });
 
@@ -112,9 +112,9 @@ export class OrderListComponent implements OnInit {
     this.ngxSpinner.show();
     try {
       let res: any = await this.teamService.getById(this.teamID);
-      console.log(res);
+      // console.log(res);
       res.data.members.forEach(data => {
-        console.log(data);
+        // console.log(data);
         this.idMember.push(data.member_id);
       });
       this.ngxSpinner.hide();
@@ -126,17 +126,17 @@ export class OrderListComponent implements OnInit {
     this.ngxSpinner.show();
     try {
       if (this.rolesUser === 'owner') {
-        console.log(this.idMember)
+        // console.log(this.idMember)
         let resOder: any = await this.order.getOrder(this.idMember);
         this.dataOrderOwner = resOder.data;
-        console.log(resOder)
+        // console.log(resOder)
         this.ngxSpinner.hide();
       }
       if (this.rolesUser === 'staff') {
-        console.log(this.user.data._id)
+        // console.log(this.user.data._id)
         let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
         this.dataOrderMember = resOrderByUser.data;
-        console.log(this.dataOrderMember);
+        // console.log(this.dataOrderMember);
         this.ngxSpinner.hide();
       }
     } catch (error) {
@@ -144,7 +144,7 @@ export class OrderListComponent implements OnInit {
     }
   }
   async onDelete(item) {
-    console.log(item);
+    // console.log(item);
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
@@ -156,8 +156,8 @@ export class OrderListComponent implements OnInit {
         // console.log(result)
         if (result) {
           let res: any = await this.order.deleteOrder(item._id);
-          console.log(res);
-          console.log(item);
+          // console.log(res);
+          // console.log(item);
           this.ngOnInit();
         }
       });
