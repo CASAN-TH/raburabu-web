@@ -1,24 +1,20 @@
-<div name="divTitleModal" class="mb-2">
-  <div name="colTitleModal" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-    {{data.message}}
+<div class="row ml-1 border-bt">
+  <div class="col-12 mt-3 mb-3 text-left">
+    <h5 class="mb-0">{{data.title}}</h5>
   </div>
 </div>
 
-<div name="rowFooter" class="row">
-  <div name="col1Footer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-    <div name="rowButton" class="row">
-      <div name="col1ButtonBlank" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-      </div>
-      <div name="col2ButtonConfirm" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-        <button name="btnConfirmOk" style="width: 100%" class="full-btn margin-top-btn" mat-flat-button color="primary"
-          (click)="onClickOk()">ตกลง</button>
-      </div>
-      <div name="col3ButtonCancel" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-        <button name="btnConfirmCancel" style="width: 100%" class="full-btn margin-top-btn" (click)="onClickCancel()"
-          mat-stroked-button>ยกเลิก</button>
-      </div>
-      <div name="col4ButtonBlank" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-      </div>
-    </div>
+<div name="divTitleModal " class="row ml-1 border-bt">
+  <div name="colTitleModal" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  mt-3 mb-3 ">
+    <span>{{data.message}}</span>
+  </div>
+</div>
+
+<div name="rowFooter" class="row mt-3 mb-3">
+  <div name="col2ButtonConfirm" class="col-6 text-left">
+    <button class="ml-4 border-btn" mat-stroked-button color="accent" (click)="onClickOk()">ตกลง</button>
+  </div>
+  <div name="col3ButtonCancel" class="col-6 text-right">
+    <button class="mr-4" mat-stroked-button color="accent" (click)="onClickCancel()">ยกเลิก</button>
   </div>
 </div>
