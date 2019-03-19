@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./modal-address.component.scss']
 })
 export class ModalAddressComponent implements OnInit {
+  isLinear = false;
   @Output() dataCutomer: EventEmitter<any> = new EventEmitter();
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
