@@ -32,8 +32,16 @@ export class SelectOptionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.data.option.forEach(option => {
+      // console.log(option);
+      option.value.forEach(value => {
+        // console.log(value);
+        if (value.active) {
+          value.active = false;
+        }
+      });
+    });
     this.dataBinding = this.data
-    // this.getProduct();
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -69,7 +77,7 @@ export class SelectOptionComponent implements OnInit {
       }],
       amout: this.totalQty * this.data.price
     }
-    console.log(data)
+    // console.log(data)
     this.sendData.emit(data);
     this.dialogRef.close('close');
   }
@@ -89,12 +97,12 @@ export class SelectOptionComponent implements OnInit {
       this.selectOption.forEach(option => {
         if (itm.name === option.name) {
           let j = this.selectOption.findIndex(function (data) { return data.name === itm.name })
-          console.log(j);
+          // console.log(j);
           this.selectOption.splice(j, 1);
         }
       });
     }
-    console.log(this.selectOption);
+    // console.log(this.selectOption);
   }
 
 
