@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { SelectOptionComponent } from 'src/app/modal/select-option/select-option.component';
 import { environment } from 'src/environments/environment.prod';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ModalAddressComponent } from 'src/app/modal/modal-address/modal-address.component';
 
 @Component({
   selector: 'app-order',
@@ -123,6 +124,27 @@ export class OrderComponent implements OnInit {
         });
         // console.log(this.data.totalamount);
       });
+    });
+  }
+
+  onEditAddress() {
+    console.log(this.address)
+    const dialogRef = this.dialog.open(ModalAddressComponent, {
+      width: '800px',
+      // height: '500px',
+      data: this.address,
+      disableClose: false
+    });
+    dialogRef.componentInstance.dataCutomer.subscribe(gogo => {
+      dialogRef.afterClosed().subscribe(result => {
+
+        // if (result) {
+        //   this.router.navigate(['/order', { title: JSON.stringify(gogo), si: false }]);
+        // }
+      });
+
+
+
     });
   }
 

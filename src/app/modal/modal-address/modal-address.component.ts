@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -31,9 +31,17 @@ export class ModalAddressComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ModalAddressComponent>,
+    @Inject(MAT_DIALOG_DATA) public dataAddress: any = {}
+
   ) { }
 
   ngOnInit() {
+    console.log(this.dataAddress);
+    if (this.dataAddress) {
+      this.data.firstname = this.dataAddress.firstname
+      this.data.lastname = this.dataAddress.lastname
+      console.log(this.data);
+    }
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -44,7 +52,7 @@ export class ModalAddressComponent implements OnInit {
   next() {
     this.dataCutomer.emit(this.data);
     this.dialogRef.close('clse');
-    
+
   }
   exit() {
     this.dialogRef.close();
