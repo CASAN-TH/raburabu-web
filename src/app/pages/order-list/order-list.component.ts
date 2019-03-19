@@ -5,6 +5,7 @@ import { ModalAddressComponent } from 'src/app/modal/modal-address/modal-address
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order/order.service';
 import { environment } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-order-list',
@@ -46,6 +47,7 @@ export class OrderListComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public router: Router,
+    public ngxSpinner: NgxSpinnerService,
     public order: OrderService,
     public teamService: TeameServiceService
 
@@ -106,6 +108,7 @@ export class OrderListComponent implements OnInit {
     });
   }
   async getDataTeam() {
+    this.ngxSpinner.show();
     try {
       let res: any = await this.teamService.getById(this.teamID);
       console.log(res);
@@ -113,26 +116,30 @@ export class OrderListComponent implements OnInit {
         console.log(data);
         this.idMember.push(data.member_id);
       });
+      this.ngxSpinner.hide();
     } catch (error) {
-
+      this.ngxSpinner.hide();
     }
   }
   async getOrderOwnerAndMember() {
+    this.ngxSpinner.show();
     try {
       if (this.rolesUser === 'owner') {
         console.log(this.idMember)
         let resOder: any = await this.order.getOrder(this.idMember);
         this.dataOrderOwner = resOder.data;
         console.log(resOder)
+        this.ngxSpinner.hide();
       }
       if (this.rolesUser === 'staff') {
         console.log(this.user.data._id)
         let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
         this.dataOrderMember = resOrderByUser.data;
         console.log(this.dataOrderMember);
+        this.ngxSpinner.hide();
       }
     } catch (error) {
-
+      this.ngxSpinner.hide();
     }
   }
 }
