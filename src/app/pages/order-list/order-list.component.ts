@@ -169,4 +169,7 @@ export class OrderListComponent implements OnInit {
 
     }
   }
+  sendOrder() {
+    console.log('order');
+  }
 }

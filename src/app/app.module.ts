@@ -30,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AdminManageTeamComponent } from './pages/admin-manage-team/admin-manage-team.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -61,6 +62,7 @@ const apiSrvCfg = environment;
     MatSidenavModule,
     MatSelectModule,
     FormsModule,
+    MatToolbarModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" }),
     HttpClientModule,
     NgxSpinnerModule,
