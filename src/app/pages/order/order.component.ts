@@ -17,7 +17,7 @@ export class OrderComponent implements OnInit {
   data: any = {
     customer: {
       firstname: '',
-      lasname: '',
+      lastname: '',
       tel: null,
       address: [],
     },
@@ -50,20 +50,23 @@ export class OrderComponent implements OnInit {
       this.router.navigate(['/home']);
       // console.log('asd');
     } else {
-      this.idOrder = this.route.snapshot.paramMap.get('idOrder');
+      let _id = this.route.snapshot.paramMap.get('idOrder');
+      this.idOrder = JSON.parse(_id);
       console.log(this.idOrder);
       let res: any = this.route.snapshot.paramMap.get('title');
       this.address = JSON.parse(res)
       // console.log(this.address);
-      // if (this.idOrder) {
-        this.getOrderById();
-      // }
+      if (this.idOrder) {
+      this.getOrderById();
+      }
       this.getProd();
     }
   }
   async getOrderById() {
     try {
       let res: any = await this.orderService.getByIdOrderList(this.idOrder);
+      this.address.firstname = res.data.customer.firstname,
+        this.address.lastname = res.data.customer.lastname
       console.log(res);
     } catch (error) {
 
@@ -112,7 +115,7 @@ export class OrderComponent implements OnInit {
       let body = {
         customer: {
           firstname: this.address.firstname,
-          lasname: this.address.lastname,
+          lastname: this.address.lastname,
           tel: this.address.tel,
           address: [
             {
