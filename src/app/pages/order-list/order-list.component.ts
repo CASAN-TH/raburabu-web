@@ -97,6 +97,7 @@ export class OrderListComponent implements OnInit {
   openmodal() {
     const dialogRef = this.dialog.open(ModalAddressComponent, {
       width: '800px',
+      height: '500px',
       disableClose: false
     });
     dialogRef.componentInstance.dataCutomer.subscribe(gogo => {
@@ -156,7 +157,9 @@ export class OrderListComponent implements OnInit {
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
-        data: { message: "ลบใบสั่งซื้อ?" },
+        data: {
+          title:'ยืนยันการลบใบสั่งซื้อ',
+           message: "คุณต้องการลบใบสั่งซื้อสินค้าหรือไม่?" },
         disableClose: true
       });
 

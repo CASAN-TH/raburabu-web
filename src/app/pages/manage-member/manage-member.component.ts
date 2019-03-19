@@ -84,7 +84,10 @@ export class ManageMemberComponent implements OnInit {
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
-        data: { message: "อนุมัติสมาชิกเข้าสู่ทีม?" },
+        data: {
+          tltle: "ยืนยันเข้าร่วมทีม",
+          message: "คุณต้องการอนุมัติผู้ใช้ท่านนี้เข้าสู่ทีมหรือไม่?"
+        },
         disableClose: true
       });
 
