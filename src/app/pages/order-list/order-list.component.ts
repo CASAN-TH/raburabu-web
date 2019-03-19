@@ -144,6 +144,7 @@ export class OrderListComponent implements OnInit {
     }
   }
   async onDelete(item) {
+    console.log(item);
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
