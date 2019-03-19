@@ -29,7 +29,6 @@ export class OrderComponent implements OnInit {
     , 'ชำระเงินผ่านธนาคาร'
 
   ];
-  resData: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -111,7 +110,6 @@ export class OrderComponent implements OnInit {
     console.log(this.data.items);
     let res: any = await this.orderService.saveOrder(body);
     console.log(res);
-    this.resData = res;
     // this.router.navigate(['/order-list']);
   }
 
