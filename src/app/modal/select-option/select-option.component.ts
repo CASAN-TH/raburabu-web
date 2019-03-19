@@ -75,7 +75,7 @@ export class SelectOptionComponent implements OnInit {
         name: this.nameOption,
         value: this.selectOption
       }],
-      amout: this.totalQty * this.data.price
+      amount: this.totalQty * this.data.price
     }
     // console.log(data)
     this.sendData.emit(data);

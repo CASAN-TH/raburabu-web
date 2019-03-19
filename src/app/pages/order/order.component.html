@@ -14,7 +14,8 @@
     <div class="row">
       <div class="col-12">
         <span class="font-address" *ngIf="address">
-          <p class="ml-2 mb-1" *ngIf="address && address.firstname"><span>ชื่อ: </span> <span class="mr-2">{{address.firstname}}</span>
+          <p class="ml-2 mb-1" *ngIf="address && address.firstname">
+            <span>ชื่อ: </span> <span class="mr-2">{{address.firstname}}</span>
             <span>{{address.lastname}}</span></p>
           <p class="ml-2 mb-1"><span>ที่อยู่: </span> <span>{{address.address.houseno}} {{address.address.village}}
               {{address.address.street}}
@@ -49,7 +50,7 @@
             </div>
           </div>
           <div class="col-8 text-right">รวม</div>
-          <div class="col-4 text-center">{{item.amout}}</div>
+          <div class="col-4 text-center">{{item.amount}}</div>
           <!-- <div class="col-3 text-center">
             <p class="mb-3"> <span class="mr-1">{{item.price}}</span> <span class="mr-1">*</span> <span
                 class="mr-1">{{item.qty}}</span></p>
@@ -75,9 +76,10 @@
       </div>
       <div class="col-12 col-md-7 text-right">
         <mat-form-field class="example-full-width">
-          <mat-select placeholder="กรุณาเลือกประเภทการชำระเงิน">
+          <mat-select placeholder="กรุณาเลือกประเภทการชำระเงิน"  [(ngModel)]="namePayment">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let item of paymentType" [value]="item" (click)="selectPaymentType(item)">{{item}}
+            <mat-option *ngFor="let item of paymentType" [value]="item"  (click)="selectPaymentType(item)">
+              {{item}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -95,7 +97,7 @@
 
     <div class="row">
       <div class="col-6">
-        <button mat-stroked-button color="accent" class="btn-style">ยกเลิก</button>
+        <button mat-stroked-button color="accent" class="btn-style" (click)="onCancel()">ยกเลิก</button>
       </div>
       <div class="col-6">
         <button mat-stroked-button color="accent" (click)="onSave()" class="btn-style btn-border-style"

@@ -30,9 +30,11 @@ export class OrderService {
   }
   getOrder(body) {
     return this.http.post('http://13.250.99.131/api/order/team', body, { headers: this.authorizationHeader() }).toPromise()
-
   }
   deleteOrder(id) {
     return this.http.delete('http://13.250.99.131/api/orders/' + id, { headers: this.authorizationHeader() }).toPromise();
+  }
+  editOrder(id, body) {
+    return this.http.put('http://13.250.99.131/api/orders/' + id, body, { headers: this.authorizationHeader() }).toPromise();
   }
 }

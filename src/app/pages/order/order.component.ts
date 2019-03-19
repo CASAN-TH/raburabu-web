@@ -45,34 +45,49 @@ export class OrderComponent implements OnInit {
 
   prodData: any;
 
-  ngOnInit() {
+  async ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.teamId = user.data.ref1;
-    console.log(user)
+    // console.log(user)
     if (user.data.roles[0] === 'user') {
       this.router.navigate(['/home']);
       // console.log('asd');
     } else {
-      let _id = this.route.snapshot.paramMap.get('idOrder');
-      this.idOrder = JSON.parse(_id);
+      this.getProd();
+      let _id = await this.route.snapshot.paramMap.get('idOrder');
+      this.idOrder = await JSON.parse(_id);
       console.log(this.idOrder);
-      let res: any = this.route.snapshot.paramMap.get('title');
-      this.address = JSON.parse(res)
       // console.log(this.address);
       if (this.idOrder) {
         this.getOrderById();
+      } else {
+        let res: any = this.route.snapshot.paramMap.get('title');
+        this.address = JSON.parse(res)
       }
-      this.getProd();
     }
   }
   async getOrderById() {
     try {
       let res: any = await this.orderService.getByIdOrderList(this.idOrder);
-      this.address.firstname = res.data.customer.firstname,
-        this.address.lastname = res.data.customer.lastname
+      if (res) {
+        this.address = await res.data.customer
+        res.data.customer.address.forEach(address => {
+          // console.log(address);
+          this.address.address = address;
+        });
+        this.data.items = res.data.items;
+        console.log(res.data.paymenttype.name);
+        let index = this.paymentType.findIndex(name => name === res.data.paymenttype.name);
+        console.log(index);
+        this.namePayment = this.paymentType[index];
+        this.data.totalamount = 0
+        this.data.items.forEach(sum => {
+          this.data.totalamount += sum.amount
+        });
+      }
       console.log(res);
     } catch (error) {
-
+      console.log(error);
     }
   }
 
@@ -104,7 +119,7 @@ export class OrderComponent implements OnInit {
         // console.log(this.data);
         this.data.totalamount = 0
         this.data.items.forEach(sum => {
-          this.data.totalamount += sum.amout
+          this.data.totalamount += sum.amount
         });
         // console.log(this.data.totalamount);
       });
@@ -141,28 +156,39 @@ export class OrderComponent implements OnInit {
         user_id: user.data._id
       }
       console.log(body);
-      console.log(this.data.items);
-      let res: any = await this.orderService.saveOrder(body);
-      console.log(res);
-      this.ngxSpinner.hide();
-      this.router.navigate(['/order-list']);
+      if (this.idOrder) {
+        let res: any = await this.orderService.editOrder(this.idOrder, body);
+        console.log(res);
+        this.ngxSpinner.hide();
+        this.router.navigate(['/order-list']);
+      } else {
+        let res: any = await this.orderService.saveOrder(body);
+        console.log(res);
+        this.ngxSpinner.hide();
+        this.router.navigate(['/order-list']);
+      }
     } catch (error) {
       this.ngxSpinner.hide();
-
+      console.log(error);
     }
 
   }
 
   selectPaymentType(item) {
-    // console.log(item);
     this.namePayment = item;
+    // console.log(this.namePayment);
   }
 
   deleteProd(item, i) {
-    // console.log(i);
-    // console.log(item);
     this.data.items.splice(i, 1);
-    // console.log(this.data.items);
+    this.data.totalamount = 0
+    this.data.items.forEach(sum => {
+      this.data.totalamount += sum.amount
+    });
+  }
+
+  onCancel() {
+    this.router.navigate(['/order-list']);
   }
 
 
