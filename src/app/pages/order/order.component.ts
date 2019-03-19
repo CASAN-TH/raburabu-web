@@ -1,9 +1,9 @@
+import { OrderService } from './../../services/order/order.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { MatDialog } from '@angular/material';
 import { SelectOptionComponent } from 'src/app/modal/select-option/select-option.component';
-import { OrderService } from 'src/app/services/order/order.service';
 import { environment } from 'src/environments/environment.prod';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -30,6 +30,7 @@ export class OrderComponent implements OnInit {
     , 'ชำระเงินผ่านธนาคาร'
 
   ];
+  idOrder: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +38,7 @@ export class OrderComponent implements OnInit {
     public dialog: MatDialog,
     private orderService: OrderService,
     public router: Router,
-    public ngxSpinner: NgxSpinnerService
+    public ngxSpinner: NgxSpinnerService,
 
   ) { }
 
@@ -49,16 +50,28 @@ export class OrderComponent implements OnInit {
       this.router.navigate(['/home']);
       // console.log('asd');
     } else {
+      this.idOrder = this.route.snapshot.paramMap.get('idOrder');
+      console.log(this.idOrder);
       let res: any = this.route.snapshot.paramMap.get('title');
       this.address = JSON.parse(res)
       // console.log(this.address);
+      // if (this.idOrder) {
+        this.getOrderById();
+      // }
       this.getProd();
+    }
+  }
+  async getOrderById() {
+    try {
+      let res: any = await this.orderService.getByIdOrderList(this.idOrder);
+      console.log(res);
+    } catch (error) {
+
     }
   }
 
   async getProd() {
     this.ngxSpinner.show();
-
     try {
       let res: any = await this.prodService.order();
       // console.log(res);
