@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  teamId: any;
   address: any;
   data: any = {
     customer: {
@@ -46,6 +47,8 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    this.teamId = user.data.ref1;
+    console.log(user)
     if (user.data.roles[0] === 'user') {
       this.router.navigate(['/home']);
       // console.log('asd');
@@ -57,7 +60,7 @@ export class OrderComponent implements OnInit {
       this.address = JSON.parse(res)
       // console.log(this.address);
       if (this.idOrder) {
-      this.getOrderById();
+        this.getOrderById();
       }
       this.getProd();
     }
@@ -113,6 +116,7 @@ export class OrderComponent implements OnInit {
     try {
       let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
       let body = {
+        team_id: this.teamId,
         customer: {
           firstname: this.address.firstname,
           lastname: this.address.lastname,
