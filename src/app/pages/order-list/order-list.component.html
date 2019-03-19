@@ -65,7 +65,7 @@
   </div>
 </div>
 
-<div class="row mt-4">
+<div class="row mt-4"  *ngIf="rolesUser === 'owner'">
   <div class="col-12">
     <button class="style-btn-width btn-border-style" color="accent" mat-stroked-button (click)='sendOrder()'
       style="margin-right: 1px">ส่งใบสั่งซื้อ</button>
