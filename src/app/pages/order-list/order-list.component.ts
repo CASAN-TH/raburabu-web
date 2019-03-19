@@ -1,3 +1,4 @@
+import { ModalConfirmsComponent } from './../../modal/modal-confirms/modal-confirms.component';
 import { TeameServiceService } from './../../services/teams-service/teame-service.service';
 import { Component, OnInit, Type } from '@angular/core';
 import { MatDialog } from '@angular/material';
@@ -142,4 +143,27 @@ export class OrderListComponent implements OnInit {
       this.ngxSpinner.hide();
     }
   }
+  async onDelete(item) {
+    try {
+      const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+        width: '400px',
+        data: { message: "ลบใบสั่งซื้อ?" },
+        disableClose: true
+      });
+
+      dialogRef.afterClosed().subscribe(async result => {
+        // console.log(result)
+        if (result) {
+          let res: any = await this.order.deleteOrder(item._id);
+          console.log(res);
+          console.log(item);
+          this.ngOnInit();
+        }
+      });
+
+    } catch (error) {
+
+    }
+  }
+
 }
