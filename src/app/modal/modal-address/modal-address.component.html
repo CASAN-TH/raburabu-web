@@ -6,20 +6,20 @@
         <div class="row mt-3">
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel"
+              <input matInput type="tel"  placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel"
                 formControlName="firstCtrl" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6 d-none d-md-block"></div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstCtrl"
+              <input matInput type="text" placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstCtrl"
                 required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="firstCtrl"
+              <input matInput type="text" placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="firstCtrl"
                 required>
             </mat-form-field>
           </div>
