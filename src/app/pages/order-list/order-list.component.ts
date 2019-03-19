@@ -107,9 +107,6 @@ export class OrderListComponent implements OnInit {
           // console.log(gogo);
         }
       });
-
-
-
     });
   }
 
