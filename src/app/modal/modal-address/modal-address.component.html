@@ -33,9 +33,9 @@
     </mat-dialog-actions>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
-    <mat-dialog-content class="mat-typography">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>ที่อยู่ลูกค้า</ng-template>
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>ที่อยู่ลูกค้า</ng-template>
+      <mat-dialog-content class="mat-typography">
 
         <div class="row mt-3">
           <div class="col-12 col-md-6">
@@ -81,8 +81,9 @@
             </mat-form-field>
           </div>
         </div>
-      </form>
-    </mat-dialog-content>
+      </mat-dialog-content>
+
+    </form>
 
     <mat-dialog-actions>
       <div class="col-6  text-left">

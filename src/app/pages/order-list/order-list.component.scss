@@ -1,16 +1,16 @@
-.btn-add-style{
+.btn-add-style {
     font-size: 100px;
     color: #ff4081;
 }
 
 .div-add-btn {
-    border: dashed 5px  #e2e2e2;
+    border: dashed 5px #e2e2e2;
     height: 154px !important;
     width: 210px !important;
 }
 
 .border-list {
-    border: solid 1px  #e2e2e2;
+    border: solid 1px #e2e2e2;
 }
 
 .list-style {
@@ -19,14 +19,13 @@
 
 .list-add {
     display: flex;
-    align-items: center !important;
-    // text-align: center !important;
+    align-items: center !important; // text-align: center !important;
 }
 
 .text-overflow {
-        white-space: nowrap; 
-        overflow: hidden;
-        text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cursor {
@@ -39,4 +38,15 @@
 
 .style-btn-small {
     width: 30% !important;
+}
+
+.style-btn-width {
+    width: 100% !important;
+}
+
+.positon-button {
+    bottom: 20px;
+    position: absolute;
+    margin-right: 15px;
+    right: -15px;
 }

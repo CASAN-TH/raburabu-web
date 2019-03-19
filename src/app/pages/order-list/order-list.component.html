@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="rolesUser === 'staff'">
   <div class="col-12 col-sm-12 col-md-3 mt-3 list-style list-add">
     <div class="col-12 text-center pr-0 pl-0 div-add-btn" (click)="openmodal()">
       <span class="btn-add-style cursor">
@@ -30,3 +30,40 @@
   </div>
 
 </div>
+
+<div class="row" *ngIf="rolesUser === 'owner'">
+  <div class="col-12 col-sm-12 col-md-3 mt-3 list-style list-add">
+    <div class="col-12 text-center pr-0 pl-0 div-add-btn" (click)="openmodal()">
+      <span class="btn-add-style cursor">
+        <p class="mb-0">+</p>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-6 col-sm-6 col-md-3 mt-3 list-style" style="width: 100%" *ngFor="let item of dataOrderOwner">
+    <div class="col-12 border-list text-center pr-0 pl-0">
+      <p class="mb-1 text-overflow"><span>ออเดอร์: </span> <span>{{item.orderno}}</span></p>
+      <p class="mb-1 text-overflow"><span>ชื่อ: </span> <span class="mr-1">{{item.customer.firstname}}</span>
+        <span>{{item.customer.lastname}}</span></p>
+      <p class="mb-1 text-overflow"><span>โทร: </span> <span>{{item.customer.tel}}</span></p>
+      <p class="mb-1 text-overflow"><span>รวม: </span> <span>{{item.totalamount?item.totalamount:0 }} </span>
+        <span>บาท</span></p>
+
+      <span class="d-none d-sm-none d-md-block">
+        <button mat-stroked-button (click)='onClickEdit(item)' class="mb-1 mr-2 style-btn">เเก้ไข</button>
+        <button mat-stroked-button (click)="onDelete(item)" class="mb-1 style-btn">ลบ</button>
+      </span>
+
+      <span class="d-block d-sm-block d-md-none">
+        <button mat-stroked-button (click)='onClickEdit(item)' class="mb-1 mr-2 style-btn-small"
+          style="margin-right: 1px">เเก้ไข</button>
+        <button mat-stroked-button (click)="onDelete(item)" class="mb-1 style-btn-small">ลบ</button>
+      </span>
+    </div>
+  </div>
+
+  
+    <div class="col-12 positon-button">
+      <button class="style-btn-width" mat-stroked-button (click)='sendOrder()'
+        style="margin-right: 1px">ส่งใบสั่งซื้อ</button>
+    </div>
