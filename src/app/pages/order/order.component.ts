@@ -1,3 +1,4 @@
+import { OrderService } from './../../services/order/order.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products/products.service';
@@ -30,6 +31,7 @@ export class OrderComponent implements OnInit {
     , 'ชำระเงินผ่านธนาคาร'
 
   ];
+  idOrder: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +39,8 @@ export class OrderComponent implements OnInit {
     public dialog: MatDialog,
     private orderService: OrderService,
     public router: Router,
-    public ngxSpinner: NgxSpinnerService
+    public ngxSpinner: NgxSpinnerService,
+    private order: OrderService
 
   ) { }
 
@@ -49,16 +52,28 @@ export class OrderComponent implements OnInit {
       this.router.navigate(['/home']);
       // console.log('asd');
     } else {
+      this.idOrder = this.route.snapshot.paramMap.get('idOrder');
+      console.log(this.idOrder);
       let res: any = this.route.snapshot.paramMap.get('title');
       this.address = JSON.parse(res)
       // console.log(this.address);
+      if (this.idOrder) {
+        this.getOrderById();
+      }
       this.getProd();
+    }
+  }
+  async getOrderById() {
+    try {
+      let res: any = await this.order.getByIdOrderList(this.idOrder);
+      console.log(res);
+    } catch (error) {
+
     }
   }
 
   async getProd() {
     this.ngxSpinner.show();
-
     try {
       let res: any = await this.prodService.order();
       // console.log(res);

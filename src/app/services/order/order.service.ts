@@ -18,6 +18,9 @@ export class OrderService {
   orderList() {
     return this.http.get('http://13.250.99.131/api/orders', { headers: this.authorizationHeader() }).toPromise()
   }
+  getByIdOrderList(id) {
+    return this.http.get('http://13.250.99.131/api/orders/' + id, { headers: this.authorizationHeader() }).toPromise()
+  }
 
   saveOrder(body) {
     return this.http.post('http://13.250.99.131/api/orders', body, { headers: this.authorizationHeader() }).toPromise()

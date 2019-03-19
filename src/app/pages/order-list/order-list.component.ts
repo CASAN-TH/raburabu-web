@@ -63,7 +63,7 @@ export class OrderListComponent implements OnInit {
     } else {
       this.user = user;
       let id: any = {
-        id: this.user.data._id
+        userid: this.user.data._id
       }
       console.log(id);
       this.idMember.push(id);
@@ -120,7 +120,7 @@ export class OrderListComponent implements OnInit {
       res.data.members.forEach(data => {
         // console.log(data);
         let id: any = {
-          id: data.member_id
+          userid: data.member_id
         }
         // console.log(id)
         this.idMember.push(id);
@@ -144,7 +144,7 @@ export class OrderListComponent implements OnInit {
         // console.log(this.user.data._id)
         let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
         this.dataOrderMember = resOrderByUser.data;
-        // console.log(this.dataOrderMember);
+        console.log(this.dataOrderMember);
         this.ngxSpinner.hide();
       }
     } catch (error) {
@@ -174,5 +174,13 @@ export class OrderListComponent implements OnInit {
 
     }
   }
+  onClickEdit(item){
+    try {
+      console.log(item._id);
+      this.router.navigate(['/order', { idOrder: JSON.stringify(item._id), si: false }]);
 
+    } catch (error) {
+      
+    }
+  }
 }
