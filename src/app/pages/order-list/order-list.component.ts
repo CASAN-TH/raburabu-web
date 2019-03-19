@@ -71,7 +71,6 @@ export class OrderListComponent implements OnInit {
       this.teamID = user.data.ref1;
       // console.log(this.user)
 
-      this.getDataTeam();
       this.getOrderOwnerAndMember();
       // console.log(this.rolesUser);
       if (!user.data.ref1) {
@@ -97,7 +96,7 @@ export class OrderListComponent implements OnInit {
   openmodal() {
     const dialogRef = this.dialog.open(ModalAddressComponent, {
       width: '800px',
-      height: '500px',
+      // height: '500px',
       disableClose: false
     });
     dialogRef.componentInstance.dataCutomer.subscribe(gogo => {
@@ -113,30 +112,13 @@ export class OrderListComponent implements OnInit {
 
     });
   }
-  async getDataTeam() {
-    this.ngxSpinner.show();
-    try {
-      let res: any = await this.teamService.getById(this.teamID);
-      // console.log(res);
-      res.data.members.forEach(data => {
-        // console.log(data);
-        let id: any = {
-          userid: data.member_id
-        }
-        // console.log(id)
-        this.idMember.push(id);
-      });
-      this.ngxSpinner.hide();
-    } catch (error) {
-      this.ngxSpinner.hide();
-    }
-  }
+
   async getOrderOwnerAndMember() {
     this.ngxSpinner.show();
     try {
       if (this.rolesUser === 'owner') {
         console.log(this.idMember)
-        let resOder: any = await this.order.getOrder(this.idMember);
+        let resOder: any = await this.order.getOrder(this.teamID);
         this.dataOrderOwner = resOder.data;
         console.log(resOder)
         this.ngxSpinner.hide();
@@ -158,8 +140,9 @@ export class OrderListComponent implements OnInit {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
         data: {
-          title:'ยืนยันการลบใบสั่งซื้อ',
-           message: "คุณต้องการลบใบสั่งซื้อสินค้าหรือไม่?" },
+          title: 'ยืนยันการลบใบสั่งซื้อ',
+          message: "คุณต้องการลบใบสั่งซื้อสินค้าหรือไม่?"
+        },
         disableClose: true
       });
 
@@ -177,13 +160,13 @@ export class OrderListComponent implements OnInit {
 
     }
   }
-  onClickEdit(item){
+  onClickEdit(item) {
     try {
       console.log(item._id);
       this.router.navigate(['/order', { idOrder: JSON.stringify(item._id), si: false }]);
 
     } catch (error) {
-      
+
     }
   }
 }

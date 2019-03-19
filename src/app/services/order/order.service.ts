@@ -28,8 +28,8 @@ export class OrderService {
   getOrderByUser(id) {
     return this.http.get('http://13.250.99.131/api/order/user/' + id, { headers: this.authorizationHeader() }).toPromise()
   }
-  getOrder(body) {
-    return this.http.post('http://13.250.99.131/api/order/team', body, { headers: this.authorizationHeader() }).toPromise()
+  getOrder(id) {
+    return this.http.get('http://13.250.99.131/api/order/team/' + id, { headers: this.authorizationHeader() }).toPromise()
 
   }
   deleteOrder(id) {
