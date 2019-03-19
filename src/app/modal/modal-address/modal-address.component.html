@@ -7,19 +7,19 @@
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel"
-                formControlName="firstCtrl" required>
+                formControlName="tel" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6 d-none d-md-block"></div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstCtrl"
+              <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstName"
                 required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="firstCtrl"
+              <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="lastName"
                 required>
             </mat-form-field>
           </div>
@@ -41,43 +41,42 @@
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกบ้านเลขที่" [(ngModel)]="data.address.houseno"
-                formControlName="secondCtrl" required>
+                formControlName="houseno" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกหมู่บ้าน" [(ngModel)]="data.address.village"
-                formControlName="secondCtrl">
+                formControlName="village">
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกถนน/ซอย" [(ngModel)]="data.address.street"
-                formControlName="secondCtrl">
+              <input matInput placeholder="กรุณากรอกถนน/ซอย" [(ngModel)]="data.address.street" formControlName="street">
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกตำบล" [(ngModel)]="data.address.subdistrict"
-                formControlName="secondCtrl" required>
+                formControlName="subdistrict" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกอำเภอ" [(ngModel)]="data.address.district"
-                formControlName="secondCtrl" required>
+                formControlName="district" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกจังหวัด" [(ngModel)]="data.address.province"
-                formControlName="secondCtrl" required>
+                formControlName="province" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="กรุณากรอกรหัสไปรษณีย์" [(ngModel)]="data.address.zipcode"
-                formControlName="secondCtrl" required>
+                formControlName="zipcode" required>
             </mat-form-field>
           </div>
         </div>

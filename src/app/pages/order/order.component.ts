@@ -110,7 +110,6 @@ export class OrderComponent implements OnInit {
   openmodal(i) {
     const dialogRef = this.dialog.open(SelectOptionComponent, {
       width: '800px',
-
       data: i,
       disableClose: false
     });
@@ -128,23 +127,15 @@ export class OrderComponent implements OnInit {
   }
 
   onEditAddress() {
-    console.log(this.address)
     const dialogRef = this.dialog.open(ModalAddressComponent, {
       width: '800px',
       // height: '500px',
       data: this.address,
       disableClose: false
     });
-    dialogRef.componentInstance.dataCutomer.subscribe(gogo => {
-      dialogRef.afterClosed().subscribe(result => {
-
-        // if (result) {
-        //   this.router.navigate(['/order', { title: JSON.stringify(gogo), si: false }]);
-        // }
-      });
-
-
-
+    dialogRef.componentInstance.dataCutomer.subscribe(data => {
+      // console.log(data);
+      this.address = data;
     });
   }
 
