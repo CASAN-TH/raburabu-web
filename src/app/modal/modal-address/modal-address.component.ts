@@ -11,6 +11,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 export class ModalAddressComponent implements OnInit {
   isLinear = false;
   @Output() dataCutomer: EventEmitter<any> = new EventEmitter();
+  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   data: any = {
@@ -57,7 +58,7 @@ export class ModalAddressComponent implements OnInit {
   }
   async getAddress() {
     if (this.address) {
-      console.log(this.address);
+      // console.log(this.address);
       this.data.tel = this.address.tel;
       this.data.firstname = this.address.firstname;
       this.data.lastname = this.address.lastname;

@@ -19,13 +19,13 @@
 
     <div class="div-list-style">
       <div class="row border-bt mb-2" *ngFor="let item of waitApprove">
-        <div class="col-2 mt-2 mb-2 text-center">
+        <div class="col-2 mt-2 mb-2 text-center text-overflow">
           <span>{{item.codeteam}}</span>
         </div>
-        <div class="col-3 mt-2 mb-2  text-center">
+        <div class="col-3 mt-2 mb-2  text-center text-overflow">
           <span>{{item.name}}</span>
         </div>
-        <div class="col-4 mt-2 mb-2  text-center">
+        <div class="col-4 mt-2 mb-2  text-center text-overflow">
           <span>{{item.detail}}</span>
         </div>
         <div class="col-3 mt-2 mb-2  text-center">
@@ -50,14 +50,14 @@
 
     <div class="div-list-style">
       <div class="row border-bt mb-2" *ngFor="let itm of approve">
-        <div class="col-2 mt-2 mb-2 text-center">
+        <div class="col-2 mt-2 mb-2 text-center text-overflow">
           <span>{{itm.codeteam}}</span>
         </div>
-        <div class="col-3 mt-2 mb-2  text-center">
-          <span class="text-overflow">{{itm.name}}</span>
+        <div class="col-3 mt-2 mb-2  text-center text-overflow">
+          <span>{{itm.name}}</span>
         </div>
-        <div class="col-4 mt-2 mb-2  text-center">
-          <span class="text-overflow">{{itm.detail}}</span>
+        <div class="col-4 mt-2 mb-2  text-center text-overflow">
+          <span>{{itm.detail}}</span>
         </div>
         <div class="col-3 mt-2 mb-2  text-center">
           <button mat-stroked-button class="mr-1" disabled color="accent">ยุบทีม</button>

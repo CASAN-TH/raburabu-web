@@ -1,5 +1,8 @@
+import { ModalConfirmsComponent } from './../../modal/modal-confirms/modal-confirms.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-admin-manage-team',
@@ -13,6 +16,9 @@ export class AdminManageTeamComponent implements OnInit {
 
   constructor(
     public teameService: TeameServiceService,
+    public ngXspinner: NgxSpinnerService,
+    public dialog: MatDialog,
+
   ) { }
 
   ngOnInit() {
@@ -20,6 +26,7 @@ export class AdminManageTeamComponent implements OnInit {
   }
 
   async getTeam() {
+    this.ngXspinner.show();
     try {
       let res: any = await this.teameService.getTeam();
       this.dataTeam = res.data;
@@ -27,41 +34,74 @@ export class AdminManageTeamComponent implements OnInit {
         // console.log(waitApprove)
         if (data.status === 'waitapprove') {
           this.waitApprove.push(data);
-          console.log(this.waitApprove);
+          // console.log(this.waitApprove);
 
         } else if (data.status === 'approve') {
           this.approve.push(data);
-          console.log(this.approve);
+          // console.log(this.approve);
         }
+        this.ngXspinner.hide();
       });
-      console.log(res);
+      // console.log(res);
     } catch (error) {
-
+      this.ngXspinner.hide();
+      console.log(error);
     }
   }
 
   async onApprove(item) {
-    let body = {
-      status: 'approve'
+    // this.ngXspinner.show();
+
+    try {
+      const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+        width: '400px',
+        data: { message: "ต้องการอนุมัติทีมใช่หรือไม่?" },
+        disableClose: true
+      });
+      dialogRef.afterClosed().subscribe(async result => {
+        if (result) {
+          let body = {
+            status: 'approve'
+          }
+          // console.log(item);
+          let res: any = await this.teameService.adminManageTeam(item._id, body);
+          // console.log(res);
+          this.waitApprove = [];
+          this.approve = [];
+          this.getTeam();
+        }
+      });
+
+    } catch (error) {
+
     }
-    // console.log(item);
-    let res: any = await this.teameService.adminManageTeam(item._id, body);
-    console.log(res);
-    this.waitApprove = [];
-    this.approve = [];
-    this.getTeam();
+
   }
 
   async onReject(item) {
-    let body = {
-      status: 'reject'
+    try {
+      const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+        width: '400px',
+        data: { message: "ต้องการอนุมัติทีมใช่หรือไม่?" },
+        disableClose: true
+      });
+      dialogRef.afterClosed().subscribe(async result => {
+        if (result) {
+          let body = {
+            status: 'reject'
+          }
+          // console.log(item);
+          let res: any = await this.teameService.adminManageTeam(item._id, body);
+          // console.log(res);
+          this.waitApprove = [];
+          this.approve = [];
+          this.getTeam();
+        }
+      });
+    } catch (error) {
+
     }
-    // console.log(item);
-    let res: any = await this.teameService.adminManageTeam(item._id, body);
-    console.log(res);
-    this.waitApprove = [];
-    this.approve = [];
-    this.getTeam();
+
   }
 
 }

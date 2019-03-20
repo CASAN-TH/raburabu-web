@@ -21,7 +21,7 @@ export class ModalCreateTeamComponent implements OnInit {
 
   ngOnInit() {
     let resUser: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    console.log(resUser);
+    // console.log(resUser);
     this.user_id = resUser.data._id
   }
   async save() {
@@ -33,7 +33,7 @@ export class ModalCreateTeamComponent implements OnInit {
         user_id: this.user_id
       }
       let res: any = await this.teameService.createTeam(creteTame);
-      console.log(res);
+      // console.log(res);
       // window.localStorage.setItem(environment.apiUrl + '@team', JSON.stringify(res));
       let resMe: any = await this.teameService.me()
       if (resMe) {
@@ -41,7 +41,7 @@ export class ModalCreateTeamComponent implements OnInit {
           ref1: res.data._id
         }
         let update: any = await this.teameService.updateMe(dataMe);
-        console.log(update);
+        // console.log(update);
         window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(update));
       }
       this.dialogRef.close('createTeam');
@@ -53,7 +53,7 @@ export class ModalCreateTeamComponent implements OnInit {
   }
   uppercase(e) {
     let uppercase: String = e.toUpperCase();
-    console.log(uppercase)
+    // console.log(uppercase)
     this.codeteamUpper = uppercase;
     // uppercase = uppercase.length >= 4 ? uppercase.substring(0, 4) : uppercase;
     // this.prefixUppercase = uppercase;
