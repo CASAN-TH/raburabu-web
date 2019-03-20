@@ -54,11 +54,11 @@ export class ManageMemberComponent implements OnInit {
       let res: any = await this.teameServicec.getById(this.team_id);
       this.dataTeam = res.data;
       this.ngxSpinner.hide();
-      console.log(this.dataTeam);
+      // console.log(this.dataTeam);
       let resp: any = this.dataTeam.members.filter((e) => {
         if (e.member_id === this.userId) {
           this.dataUserID = e;
-          console.log(this.dataUserID);
+          // console.log(this.dataUserID);
         }
       })
       this.dataTeam.members.forEach(members => {
@@ -67,7 +67,7 @@ export class ManageMemberComponent implements OnInit {
         }
         if (members.status === 'staff') {
           this.statusMember.push(members);
-          console.log(this.statusMember);
+          // console.log(this.statusMember);
         }
       });
     } catch (error) {
@@ -105,7 +105,7 @@ export class ManageMemberComponent implements OnInit {
             this.statusMember = []
             this.getDataMember();
           }
-          console.log(res);
+          // console.log(res);
         }
       });
 
@@ -136,7 +136,7 @@ export class ManageMemberComponent implements OnInit {
             this.statusMember = []
             this.ngOnInit();
           }
-          console.log(res);
+          // console.log(res);
         }
       });
 
