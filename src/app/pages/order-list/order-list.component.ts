@@ -14,7 +14,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  dataOrderAll: any;
+  dataTeam: any;
+  dataOrderAll: Array<any> = [];
   dataOrderMember: any;
   idMember: Array<String> = [];
   user: any;
@@ -70,7 +71,7 @@ export class OrderListComponent implements OnInit {
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
       console.log(this.teamID)
-
+      this.getTeam();
       this.getOrderOwnerAndMember();
       // console.log(this.rolesUser);
       if (!user.data.ref1) {
@@ -109,7 +110,15 @@ export class OrderListComponent implements OnInit {
       });
     });
   }
+  async getTeam() {
+    try {
+      let res: any = await this.teamService.getById(this.teamID);
+      this.dataTeam = res.data;
+      console.log(res);
+    } catch (error) {
 
+    }
+  }
   async getOrderOwnerAndMember() {
     this.ngxSpinner.show();
     try {
@@ -117,7 +126,7 @@ export class OrderListComponent implements OnInit {
         console.log(this.idMember)
         let resOder: any = await this.order.getOrder(this.teamID);
         this.dataOrderAll = resOder.data;
-        console.log(resOder)
+        console.log(this.dataOrderAll)
         this.ngxSpinner.hide();
       }
       if (this.rolesUser === 'staff') {
@@ -166,24 +175,46 @@ export class OrderListComponent implements OnInit {
 
     }
   }
+
   async sendOrder() {
-    try {
-      const dialogRef = this.dialog.open(ModalConfirmsComponent, {
-        width: '400px',
-        data: { message: "ต้องการส่งใบสั่งซื้อหรือไม่?" },
-        disableClose: true
-      });
-      dialogRef.afterClosed().subscribe(async result => {
-        if (result) {
-          let res: any = await this.order.sendOrderAll(this.teamID);
-          this.getOrderOwnerAndMember();
-          console.log(res);
-        }
-      })
+    if (this.dataOrderAll.length > 0) {
+      try {
+        const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+          width: '400px',
+          data: { message: "ต้องการส่งใบสั่งซื้อหรือไม่?" },
+          disableClose: true
+        });
+        let tot = 0
+        dialogRef.afterClosed().subscribe(async result => {
+          this.dataOrderAll.forEach(total => {
+            console.log(total)
+            tot += total.totalamount;
+            console.log(tot);
+
+          });
+          if (result) {
+            let sendOrder: any = {
+              team: {
+                team_id: this.teamID,
+                teamname: this.dataTeam.name
+              },
+              orders: this.dataOrderAll,
+              status: 'waitwithdrawal',
+              totalorderamount: tot
+            }
+            console.log(sendOrder);
+
+            // let res: any = await this.order.sendOrderAll(this.teamID);
+            // this.getOrderOwnerAndMember();
+            // console.log(res);
+          }
+        })
 
 
-    } catch (error) {
+      } catch (error) {
 
+      }
     }
+
   }
 }
