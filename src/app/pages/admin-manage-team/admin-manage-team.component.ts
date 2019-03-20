@@ -34,18 +34,18 @@ export class AdminManageTeamComponent implements OnInit {
         // console.log(waitApprove)
         if (data.status === 'waitapprove') {
           this.waitApprove.push(data);
-          console.log(this.waitApprove);
+          // console.log(this.waitApprove);
 
         } else if (data.status === 'approve') {
           this.approve.push(data);
-          console.log(this.approve);
+          // console.log(this.approve);
         }
         this.ngXspinner.hide();
       });
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       this.ngXspinner.hide();
-
+      console.log(error);
     }
   }
 
@@ -65,7 +65,7 @@ export class AdminManageTeamComponent implements OnInit {
           }
           // console.log(item);
           let res: any = await this.teameService.adminManageTeam(item._id, body);
-          console.log(res);
+          // console.log(res);
           this.waitApprove = [];
           this.approve = [];
           this.getTeam();
@@ -92,7 +92,7 @@ export class AdminManageTeamComponent implements OnInit {
           }
           // console.log(item);
           let res: any = await this.teameService.adminManageTeam(item._id, body);
-          console.log(res);
+          // console.log(res);
           this.waitApprove = [];
           this.approve = [];
           this.getTeam();

@@ -145,6 +145,6 @@ export class ManageMemberComponent implements OnInit {
     }
   }
   onSeeDetailMember(item) {
-    console.log(item);
+    // console.log(item);
   }
 }

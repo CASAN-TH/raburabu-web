@@ -23,7 +23,7 @@ export class ModalCreateMemberComponent implements OnInit {
   ngOnInit() {
     this.getTeam();
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'))
-    console.log(res)
+    // console.log(res)
     this.user_id = res.data._id;
   }
   cancel() {
@@ -37,21 +37,21 @@ export class ModalCreateMemberComponent implements OnInit {
         // console.log(waitApprove)
         if (waitApprove.status === 'waitapprove') {
           this.waitApprove.push(waitApprove);
-          console.log(this.waitApprove);
+          // console.log(this.waitApprove);
 
         } else if (waitApprove.status === 'approve') {
           this.approve.push(waitApprove);
-          console.log(this.approve);
+          // console.log(this.approve);
 
         }
       });
-      console.log(res);
+      // console.log(res);
     } catch (error) {
-
+      console.log(error);
     }
   }
   selectItem(i) {
-    console.log(i);
+    // console.log(i);
     this.selected = i;
     // console.log(this.selected);
   }
@@ -61,14 +61,14 @@ export class ModalCreateMemberComponent implements OnInit {
         member_id: this.user_id
       }
       let res: any = await this.teameService.joinTeam(this.selected._id, use_id);
-      console.log(res);
+      // console.log(res);
       let resMe: any = await this.teameService.me();
       if (resMe) {
         let dataMe = {
           ref1: res.data._id
         }
         let update: any = await this.teameService.updateMe(dataMe);
-        console.log(update);
+        // console.log(update);
         window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(update));
       }
       this.dialogRef.close('createMember');

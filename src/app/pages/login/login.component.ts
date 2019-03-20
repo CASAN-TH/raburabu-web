@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
       let res: any = await this.teameService.me();
       window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
-      console.log(res);
+      // console.log(res);
       if (res.data.ref1) {
         this.router.navigate(["/manage-member"]);
 

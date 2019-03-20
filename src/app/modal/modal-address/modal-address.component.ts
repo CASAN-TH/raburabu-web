@@ -57,7 +57,7 @@ export class ModalAddressComponent implements OnInit {
   }
   async getAddress() {
     if (this.address) {
-      console.log(this.address);
+      // console.log(this.address);
       this.data.tel = this.address.tel;
       this.data.firstname = this.address.firstname;
       this.data.lastname = this.address.lastname;
