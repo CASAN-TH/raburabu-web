@@ -31,6 +31,7 @@ import { AdminManageTeamComponent } from './pages/admin-manage-team/admin-manage
 import { MatTabsModule } from '@angular/material/tabs';
 import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MonitorComponent } from './pages/monitor/monitor.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -50,7 +51,8 @@ const apiSrvCfg = environment;
     OrderComponent,
     SelectOptionComponent,
     AdminManageTeamComponent,
-    ModalConfirmsComponent
+    ModalConfirmsComponent,
+    MonitorComponent
   ],
   imports: [
     BrowserModule,

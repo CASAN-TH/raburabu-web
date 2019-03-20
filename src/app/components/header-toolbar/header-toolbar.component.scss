@@ -32,3 +32,9 @@
     height: 24px;
     border-radius: 100%;
 }
+
+.overflow-text {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
