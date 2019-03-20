@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ModalAddressComponent implements OnInit {
   @Output() dataCutomer: EventEmitter<any> = new EventEmitter();
+  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   data: any = {
