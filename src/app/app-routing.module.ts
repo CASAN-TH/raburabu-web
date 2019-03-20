@@ -1,3 +1,4 @@
+import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
 import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { NgModule } from "@angular/core";
@@ -24,6 +25,9 @@ const routes: Routes = [
   { path: "order-list", component: OrderListComponent },
   { path: "order", component: OrderComponent },
   { path: "admin-manage-team", component: AdminManageTeamComponent },
+  { path: "order-report-detail", component: OrderReportDetailComponent },
+
+
 
 ];
 
