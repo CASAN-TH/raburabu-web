@@ -6,7 +6,7 @@
 
 <mat-tab-group dynamicHeight>
   <mat-tab label="รอการอนุมัติ">
-    <div class="row mb-2 border-bt">
+    <div class="row mb-2 border-bt" *ngIf="waitApprove && waitApprove.length > 0">
       <div class="col-2 mt-3 mb-3"></div>
       <div class="col-3 mt-3 mb-3 text-center">
         <span>ชื่อทีม</span>
@@ -17,7 +17,7 @@
       <div class="col-3 mt-3 mb-3"></div>
     </div>
 
-    <div class="div-list-style">
+    <div class="div-list-style" *ngIf="waitApprove && waitApprove.length > 0">
       <div class="row border-bt mb-2" *ngFor="let item of waitApprove">
         <div class="col-2 mt-2 mb-2 text-center text-overflow">
           <span>{{item.codeteam}}</span>
@@ -34,10 +34,16 @@
         </div>
       </div>
     </div>
+
+    <div class="row mt-4" *ngIf="waitApprove && waitApprove.length < 1">
+      <div class="col-12 text-center">
+        <span>ไม่มีทีมรอการอนุมัติในขณะนี้</span>
+      </div>
+    </div>
   </mat-tab>
 
   <mat-tab label="ผ่านการอนุมัติ">
-    <div class="row mb-2 border-bt">
+    <div class="row mb-2 border-bt" *ngIf="approve && approve.length > 0">
       <div class="col-2 mt-3 mb-3"></div>
       <div class="col-3 mt-3 mb-3 text-center">
         <span>ชื่อทีม</span>
@@ -48,7 +54,7 @@
       <div class="col-3 mt-3 mb-3"></div>
     </div>
 
-    <div class="div-list-style">
+    <div class="div-list-style" *ngIf="approve && approve.length > 0">
       <div class="row border-bt mb-2" *ngFor="let itm of approve">
         <div class="col-2 mt-2 mb-2 text-center text-overflow">
           <span>{{itm.codeteam}}</span>
@@ -62,6 +68,12 @@
         <div class="col-3 mt-2 mb-2  text-center">
           <button mat-stroked-button class="mr-1" disabled color="accent">ยุบทีม</button>
         </div>
+      </div>
+    </div>
+
+    <div class="row mt-4" *ngIf="approve && approve.length < 1">
+      <div class="col-12 text-center">
+        <span>ไม่มีทีมผ่านการอนุมัติในขณะนี้</span>
       </div>
     </div>
   </mat-tab>

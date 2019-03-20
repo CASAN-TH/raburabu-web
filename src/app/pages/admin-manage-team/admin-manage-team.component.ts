@@ -42,6 +42,7 @@ export class AdminManageTeamComponent implements OnInit {
         }
         this.ngXspinner.hide();
       });
+      // console.log(this.waitApprove);
       // console.log(res);
     } catch (error) {
       this.ngXspinner.hide();
