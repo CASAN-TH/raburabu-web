@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, Inject, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-modal-address',
@@ -26,31 +27,46 @@ export class ModalAddressComponent implements OnInit {
       province: '',
       zipcode: ''
     }
-
   }
-
   constructor(
     private _formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ModalAddressComponent>,
-    @Inject(MAT_DIALOG_DATA) public dataAddress: any = {}
+    @Inject(MAT_DIALOG_DATA) public address: any = {},
+    private orderService: OrderService,
+    private cdRef: ChangeDetectorRef
 
-  ) { }
-
-  ngOnInit() {
-    console.log(this.dataAddress);
-    if (this.dataAddress) {
-      this.data.firstname = this.dataAddress.firstname
-      this.data.lastname = this.dataAddress.lastname
-      console.log(this.data);
-    }
+  ) {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      tel: '',
+      firstName: '',
+      lastName: ''
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      houseno: '',
+      village: '',
+      street: '',
+      subdistrict: '',
+      district: '',
+      province: '',
+      zipcode: ''
     });
   }
+
+  async ngOnInit() {
+    this.getAddress()
+  }
+  async getAddress() {
+    if (this.address) {
+      console.log(this.address);
+      this.data.tel = this.address.tel;
+      this.data.firstname = this.address.firstname;
+      this.data.lastname = this.address.lastname;
+      this.data.address = this.address.address;
+    }
+    this.cdRef.detectChanges();
+  }
   next() {
+    // console.log(this.data);
     this.dataCutomer.emit(this.data);
     this.dialogRef.close('clse');
 
