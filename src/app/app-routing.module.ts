@@ -10,6 +10,7 @@ import { ManageMemberComponent } from "./pages/manage-member/manage-member.compo
 import { OrderListComponent } from "./pages/order-list/order-list.component";
 import { OrderComponent } from "./pages/order/order.component";
 import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
+import { MonitorComponent } from "./pages/monitor/monitor.component";
 
 const routes: Routes = [
   {
@@ -26,8 +27,7 @@ const routes: Routes = [
   { path: "order", component: OrderComponent },
   { path: "admin-manage-team", component: AdminManageTeamComponent },
   { path: "order-report-detail", component: OrderReportDetailComponent },
-
-
+  { path: "monitor", component: MonitorComponent },
 
 ];
 

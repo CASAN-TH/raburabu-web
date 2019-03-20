@@ -1,0 +1,41 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab label="รอการเบิก">
+    <div class="border-bt">
+      <div class="row mt-3">
+        <div class="ol-12 col-xs-12 col-sm-6 col-md-6">
+          <span>ชื่อทีม: เพียวเอง</span>
+        </div>
+        <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block">
+          <button mat-stroked-button color="accent" class="style-btn mr-2">รายการเบิก</button>
+          <button mat-stroked-button color="accent" class="style-btn">ทำการเบิกเเล้ว</button>
+        </div>
+        <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none">
+          <button mat-stroked-button color="accent" class="style-btn mt-2 full-width">รายการเบิก</button>
+        </div>
+        <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none">
+          <button mat-stroked-button color="accent" class="style-btn mt-2 full-width">ทำการเบิกเเล้ว</button>
+        </div>
+      </div>
+      <div class="row mt-2 mb-3 scroll-x">
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order" *ngFor="let item of [1,2,3,4]">
+          <span style="display: block" class="mt-2">รหัสใบสั่งซื้อ: 1100501307564</span>
+          <span style="display: block">ชื่อผู้สั่ง: พลวัฒน์ ช่างเก็บ</span>
+          <span style="display: block" class="mb-2">รวม: 1500</span>
+        </div>
+      </div>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab label="รอการเเพ็ค">
+
+  </mat-tab>
+
+  <mat-tab label="รอการจัดส่ง">
+
+  </mat-tab>
+
+  <mat-tab label="เสร็จสิ้น">
+
+  </mat-tab>
+</mat-tab-group>

@@ -52,5 +52,9 @@ export class SideBarComponent implements OnInit {
     this.router.navigate(["/admin-manage-team"]);
   }
 
+  onMonitor() {
+    this.router.navigate(["/monitor"]);
+  }
+
 
 }

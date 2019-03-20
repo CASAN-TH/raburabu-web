@@ -32,6 +32,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
+import { MonitorComponent } from './pages/monitor/monitor.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -52,7 +53,8 @@ const apiSrvCfg = environment;
     SelectOptionComponent,
     AdminManageTeamComponent,
     ModalConfirmsComponent,
-    OrderReportDetailComponent
+    OrderReportDetailComponent,
+    MonitorComponent
   ],
   imports: [
     BrowserModule,
