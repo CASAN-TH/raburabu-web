@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
@@ -36,5 +37,8 @@ export class OrderService {
   }
   editOrder(id, body) {
     return this.http.put('http://13.250.99.131/api/orders/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+  }
+  sendOrderAll(id) {
+    return this.http.put('http://13.250.99.131/api/order/sendorder/' + id, null, { headers: this.authorizationHeader() }).toPromise();
   }
 }
