@@ -14,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  dataOrderOwner: any;
+  dataOrderAll: any;
   dataOrderMember: any;
   idMember: Array<String> = [];
   user: any;
@@ -69,7 +69,7 @@ export class OrderListComponent implements OnInit {
       this.idMember.push(id);
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
-      // console.log(this.user)
+      console.log(this.teamID)
 
       this.getOrderOwnerAndMember();
       // console.log(this.rolesUser);
@@ -116,14 +116,14 @@ export class OrderListComponent implements OnInit {
       if (this.rolesUser === 'owner') {
         console.log(this.idMember)
         let resOder: any = await this.order.getOrder(this.teamID);
-        this.dataOrderOwner = resOder.data;
+        this.dataOrderAll = resOder.data;
         console.log(resOder)
         this.ngxSpinner.hide();
       }
       if (this.rolesUser === 'staff') {
         // console.log(this.user.data._id)
         let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
-        this.dataOrderMember = resOrderByUser.data;
+        this.dataOrderAll = resOrderByUser.data;
         console.log(this.dataOrderMember);
         this.ngxSpinner.hide();
       }
@@ -166,7 +166,24 @@ export class OrderListComponent implements OnInit {
 
     }
   }
-  sendOrder() {
-    console.log('order');
+  async sendOrder() {
+    try {
+      const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+        width: '400px',
+        data: { message: "ต้องการส่งใบสั่งซื้อหรือไม่?" },
+        disableClose: true
+      });
+      dialogRef.afterClosed().subscribe(async result => {
+        if (result) {
+          let res: any = await this.order.sendOrderAll(this.teamID);
+          this.getOrderOwnerAndMember();
+          console.log(res);
+        }
+      })
+
+
+    } catch (error) {
+
+    }
   }
 }

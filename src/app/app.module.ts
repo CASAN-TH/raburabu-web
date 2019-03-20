@@ -31,6 +31,7 @@ import { AdminManageTeamComponent } from './pages/admin-manage-team/admin-manage
 import { MatTabsModule } from '@angular/material/tabs';
 import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
 import { MonitorComponent } from './pages/monitor/monitor.component';
 
 const apiSrvCfg = environment;
@@ -52,6 +53,7 @@ const apiSrvCfg = environment;
     SelectOptionComponent,
     AdminManageTeamComponent,
     ModalConfirmsComponent,
+    OrderReportDetailComponent,
     MonitorComponent
   ],
   imports: [

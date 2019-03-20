@@ -7,7 +7,8 @@
             <span>ชื่อทีม: เพียวเอง</span>
           </div>
           <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block">
-            <button mat-stroked-button color="accent" class="style-btn mr-2">รายการเบิก</button>
+            <button mat-stroked-button color="accent" (click)="gotoOrderReport()"
+              class="style-btn mr-2">รายการเบิก</button>
             <button mat-stroked-button color="accent" class="style-btn">ทำการเบิกเเล้ว</button>
           </div>
           <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none">
@@ -26,8 +27,6 @@
         </div>
       </div>
     </div>
-
-
   </mat-tab>
 
   <mat-tab label="รอการเเพ็ค">
