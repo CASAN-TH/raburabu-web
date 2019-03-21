@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { environment } from 'src/environments/environment';
 import { ModalAddBoxComponent } from 'src/app/modal/modal-add-box/modal-add-box.component';
+import { ModalRemarkComponent } from 'src/app/modal/modal-remark/modal-remark.component';
 
 @Component({
   selector: "app-login",
@@ -66,7 +67,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
   gogo() {
     const dialogRef = this.dialog.open(ModalAddBoxComponent, {
-      width: '800px',
+      width: '600px',
       // height:'400px',
       disableClose: false
     });

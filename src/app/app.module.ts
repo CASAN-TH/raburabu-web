@@ -34,6 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
 import { MonitorComponent } from './pages/monitor/monitor.component';
 import { ModalAddBoxComponent } from './modal/modal-add-box/modal-add-box.component';
+import { ModalRemarkComponent } from './modal/modal-remark/modal-remark.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -56,7 +57,8 @@ const apiSrvCfg = environment;
     ModalConfirmsComponent,
     OrderReportDetailComponent,
     MonitorComponent,
-    ModalAddBoxComponent
+    ModalAddBoxComponent,
+    ModalRemarkComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ const apiSrvCfg = environment;
     ModalAddressComponent,
     SelectOptionComponent,
     ModalConfirmsComponent,
-    ModalAddBoxComponent
+    ModalAddBoxComponent,
+    ModalRemarkComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

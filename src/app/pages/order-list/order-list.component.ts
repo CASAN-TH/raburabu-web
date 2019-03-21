@@ -1,3 +1,4 @@
+import { MonitorService } from './../../services/monitor/monitor.service';
 import { ModalConfirmsComponent } from './../../modal/modal-confirms/modal-confirms.component';
 import { TeameServiceService } from './../../services/teams-service/teame-service.service';
 import { Component, OnInit, Type } from '@angular/core';
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order/order.service';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-order-list',
@@ -51,7 +53,8 @@ export class OrderListComponent implements OnInit {
     public router: Router,
     public ngxSpinner: NgxSpinnerService,
     public order: OrderService,
-    public teamService: TeameServiceService
+    public teamService: TeameServiceService,
+    private monitorService: MonitorService
 
   ) { }
 
@@ -141,8 +144,7 @@ export class OrderListComponent implements OnInit {
     }
   }
   async onDelete(item) {
-    // console.log(item);
-    try {
+     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
         data: {
@@ -153,11 +155,10 @@ export class OrderListComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(async result => {
-        // console.log(result)
+
         if (result) {
           let res: any = await this.order.deleteOrder(item._id);
-          // console.log(res);
-          // console.log(item);
+
           this.ngOnInit();
         }
       });
@@ -166,6 +167,9 @@ export class OrderListComponent implements OnInit {
 
     }
   }
+  
+
+
   onClickEdit(item) {
     try {
       console.log(item._id);
@@ -203,10 +207,13 @@ export class OrderListComponent implements OnInit {
               totalorderamount: tot
             }
             console.log(sendOrder);
-
-            // let res: any = await this.order.sendOrderAll(this.teamID);
-            // this.getOrderOwnerAndMember();
-            // console.log(res);
+            let resMonitor: any = await this.monitorService.sendOrderToMonitor(sendOrder);
+            console.log(resMonitor);
+            if (resMonitor) {
+              let res: any = await this.order.sendOrderAll(this.teamID);
+              console.log(res);
+            }
+            this.getOrderOwnerAndMember();
           }
         })
 
@@ -218,3 +225,25 @@ export class OrderListComponent implements OnInit {
 
   }
 }
+
+
+// onDelete(item) {
+  //   console.log(item)
+  //   Swal.fire({
+  //     title: 'ต้องการลบใบสั่งซื้อใช่หรือไม่?',
+  //     type: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#ff4081',
+  //     cancelButtonColor: '#d33',
+  //     cancelButtonText: 'ไม่ใช่',
+  //     confirmButtonText: 'ใช่!'
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       Swal.fire(
+  //         'Deleted!',
+  //         'Your file has been deleted.',
+  //         'success'
+  //       )
+  //     }
+  //   })
+  // }
