@@ -4,10 +4,8 @@ import { AuthService } from 'ng6-md-auth';
 import { Component, OnInit } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { environment } from 'src/environments/environment';
-import { ModalAddBoxComponent } from 'src/app/modal/modal-add-box/modal-add-box.component';
-import { ModalRemarkComponent } from 'src/app/modal/modal-remark/modal-remark.component';
 
 @Component({
   selector: "app-login",
@@ -26,7 +24,6 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
-    public dialog: MatDialog,
 
 
 
@@ -65,17 +62,5 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() { }
-  gogo() {
-    const dialogRef = this.dialog.open(ModalAddBoxComponent, {
-      width: '600px',
-      // height:'400px',
-      disableClose: false
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // if (result) {
-      //   this.router.navigate(['manage-member']);
-      // }
-    });
-  }
 }

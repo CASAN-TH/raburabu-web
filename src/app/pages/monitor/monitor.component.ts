@@ -1,6 +1,7 @@
+import { ModalAddBoxComponent } from './../../modal/modal-add-box/modal-add-box.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatDialog } from '@angular/material';
 import { MonitorService } from 'src/app/services/monitor/monitor.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class MonitorComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public dialog: MatDialog,
     private monitorService: MonitorService
 
   ) { }
@@ -81,6 +83,18 @@ export class MonitorComponent implements OnInit {
 
   gotoOrderReport() {
     this.router.navigate(["/order-report-detail"]);
+  }
+  addBox() {
+    const dialogRef = this.dialog.open(ModalAddBoxComponent, {
+      width: '600px',
+      // height:'400px',
+      disableClose: false
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      // if (result) {
+      //   this.router.navigate(['manage-member']);
+      // }
+    });
   }
 }
