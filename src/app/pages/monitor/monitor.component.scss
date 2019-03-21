@@ -11,6 +11,10 @@
     border-bottom: solid 1px #e2e2e2;
 }
 
+.border-tp{
+    border-top: solid 1px #e2e2e2;
+}
+
 .scroll-x {
     overflow: auto;
     overflow-x: auto;
@@ -26,4 +30,24 @@
     height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+::ng-deep .mat-paginator-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 0px !important;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+}
+
+.btn-list-style{
+    border-radius: 0%;
+    border-color: #ff4081;
+}
+
+.min-label-height {
+    height: 105px;
 }

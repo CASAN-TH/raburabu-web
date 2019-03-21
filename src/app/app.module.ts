@@ -35,6 +35,7 @@ import { OrderReportDetailComponent } from './pages/order-report-detail/order-re
 import { MonitorComponent } from './pages/monitor/monitor.component';
 import { ModalAddBoxComponent } from './modal/modal-add-box/modal-add-box.component';
 import { ModalRemarkComponent } from './modal/modal-remark/modal-remark.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -76,6 +77,7 @@ const apiSrvCfg = environment;
     NgxSpinnerModule,
     HttpClientModule,
     MatTabsModule,
+    MatPaginatorModule,
     AuthModule.forRoot(apiSrvCfg)
   ],
   entryComponents: [
