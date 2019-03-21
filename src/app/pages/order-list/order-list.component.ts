@@ -144,7 +144,7 @@ export class OrderListComponent implements OnInit {
     }
   }
   async onDelete(item) {
-     try {
+    try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
         data: {
@@ -167,7 +167,7 @@ export class OrderListComponent implements OnInit {
 
     }
   }
-  
+
 
 
   onClickEdit(item) {
@@ -189,12 +189,22 @@ export class OrderListComponent implements OnInit {
           disableClose: true
         });
         let tot = 0
+        let dataOrder = [];
+
         dialogRef.afterClosed().subscribe(async result => {
           this.dataOrderAll.forEach(total => {
-            console.log(total)
             tot += total.totalamount;
-            console.log(tot);
-
+            dataOrder.push({
+              customer: {
+                firstname: total.customer.firstname,
+                lastname: total.customer.lastname,
+                tel: total.customer.tel,
+                address: total.customer.address[0]
+              }, items: total.items,
+              totalamount: total.totalamount,
+              user_id: total.user_id,
+              paymenttype: total.paymenttype,
+            })
           });
           if (result) {
             let sendOrder: any = {
@@ -202,7 +212,7 @@ export class OrderListComponent implements OnInit {
                 team_id: this.teamID,
                 teamname: this.dataTeam.name
               },
-              orders: this.dataOrderAll,
+              orders: dataOrder,
               status: 'waitwithdrawal',
               totalorderamount: tot
             }
