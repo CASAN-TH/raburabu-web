@@ -18,4 +18,7 @@ export class MonitorService {
   sendOrderToMonitor(body) {
     return this.http.post('http://13.250.99.131/api/monitors', body, { headers: this.authorizationHeader() }).toPromise();
   }
+  getMonitorAll() {
+    return this.http.get('http://13.250.99.131/api/monitors', { headers: this.authorizationHeader() }).toPromise();
+  }
 }
