@@ -47,7 +47,7 @@ export class MonitorComponent implements OnInit {
 
   page(e) {
     if (e) {
-      console.log(e);
+      // console.log(e);
       this.datalength = e.pageIndex;
     }
   }
