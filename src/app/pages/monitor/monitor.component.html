@@ -1,41 +1,48 @@
 <mat-tab-group dynamicHeight>
   <mat-tab label="รอการเบิก">
-    <div class="border-bt" *ngFor="let item of waitwithdrawal">
-      <div>
-        <div class="row mt-3">
-          <div class="col-12 col-xs-12 col-sm-6 col-md-6">
-            <h5 class="mb-0">รหัสใบสั่งซื้อ: 110050308564</h5>
-            <h5 class="mb-0">ชื่อทีม: {{item.team.teamname}}</h5>
-            <h5 class="mb-0">รวมออเดอร์: {{item.totalorderamount}}</h5>
-          </div>
-          <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block">
-            <button mat-stroked-button color="accent" (click)="gotoOrderReport()"
-              class="style-btn mr-2">รายการเบิก</button>
-            <button mat-stroked-button color="accent" class="style-btn">ทำการเบิกเเล้ว</button>
-          </div>
-          <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none">
-            <button mat-stroked-button color="accent" class="style-btn mt-2 full-width">รายการเบิก</button>
-          </div>
-          <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none">
-            <button mat-stroked-button color="accent" class="style-btn mt-2 full-width">ทำการเบิกเเล้ว</button>
+    <div class="row">
+      <div class="col-12" *ngIf="waitwithdrawal && waitwithdrawal.length > 0">
+        <div class="border-bt" *ngFor="let item of waitwithdrawal">
+          <div>
+            <div class="row mt-3">
+              <div class="col-12 col-xs-12 col-sm-6 col-md-6">
+                <h5 class="mb-0">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0">ชื่อทีม: {{item.team.teamname}}</h5>
+                <h5 class="mb-0">รวมออเดอร์: {{item.totalorderamount}}</h5>
+              </div>
+              <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block">
+                <button mat-stroked-button color="accent" (click)="gotoOrderReport()"
+                  class="style-btn mr-2">รายการเบิก</button>
+                <button mat-stroked-button color="accent" class="style-btn">ทำการเบิกเเล้ว</button>
+              </div>
+              <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none">
+                <button mat-stroked-button color="accent" class="style-btn mt-2 full-width">รายการเบิก</button>
+              </div>
+              <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none">
+                <button mat-stroked-button color="accent" class="style-btn mt-2 full-width">ทำการเบิกเเล้ว</button>
+              </div>
+            </div>
+            <div class="row mt-2 mb-3 scroll-x">
+              <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order" *ngFor="let itm of item.orders">
+                <span style="display: block" class="mt-2">รหัสใบสั่งซื้อ: {{itm.orderno}}</span>
+                <span style="display: block">ชื่อผู้สั่ง:
+                  <span class="mr-2">{{itm.customer.firstname}}</span>
+                  <span>{{itm.customer.lastname}}</span></span>
+                <span style="display: block" class="mb-2">รวม: {{itm.totalamount}}</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row mt-2 mb-3 scroll-x">
-          <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order" *ngFor="let itm of item.orders">
-            <span style="display: block" class="mt-2">รหัสใบสั่งซื้อ: {{itm.orderno}}</span>
-            <span style="display: block">ชื่อผู้สั่ง:
-              <span class="mr-2">{{itm.customer.firstname}}</span>
-              <span>{{itm.customer.lastname}}</span></span>
-            <span style="display: block" class="mb-2">รวม: {{itm.totalamount}}</span>
-          </div>
-        </div>
+      </div>
+      <div class="col-12 mt-4 text-center" *ngIf="waitwithdrawal && waitwithdrawal.length < 1">
+        <span>ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
       </div>
     </div>
   </mat-tab>
 
   <mat-tab label="รอการเเพ็ค">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" *ngIf="waitpack && waitpack.length > 0">
         <div class="border-bt" *ngFor="let item2 of waitpack">
           <div>
             <div class="row mt-3">
@@ -73,7 +80,8 @@
                     <button mat-stroked-button color="accent" class="full-width btn-list-style">พิมพ์</button>
                   </div>
                   <div class="col-6 pl-0 pr-0">
-                    <button mat-stroked-button color="accent" class="full-width btn-list-style" (click)="addBox()" >เพิ่มกล่อง</button>
+                    <button mat-stroked-button color="accent" class="full-width btn-list-style"
+                      (click)="addBox()">เพิ่มกล่อง</button>
                   </div>
                 </div>
               </div>
@@ -81,12 +89,15 @@
           </div>
         </div>
       </div>
+      <div class="col-12 mt-4 text-center" *ngIf="waitpack && waitpack.length < 1">
+          <span>ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
+        </div>
     </div>
   </mat-tab>
 
   <mat-tab label="รอการจัดส่ง">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" *ngIf="waitshipping && waitshipping.length > 0">
         <div class="border-bt" *ngFor="let item3 of waitshipping">
           <div>
             <div class="row mt-3">
@@ -124,12 +135,15 @@
           </div>
         </div>
       </div>
+      <div class="col-12 mt-4 text-center" *ngIf="waitshipping && waitshipping.length < 1">
+        <span>ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
+      </div>
     </div>
   </mat-tab>
 
   <mat-tab label="เสร็จสิ้น">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" *ngIf="complete && complete.length > 0">
         <div class="border-bt" *ngFor="let item4 of complete">
           <div>
             <div class="row mt-3">
@@ -163,6 +177,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-12 mt-4 text-center" *ngIf="complete && complete.length < 1">
+        <span>ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
       </div>
     </div>
   </mat-tab>
