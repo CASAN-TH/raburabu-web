@@ -33,6 +33,7 @@ import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.co
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
 import { MonitorComponent } from './pages/monitor/monitor.component';
+import { ModalAddBoxComponent } from './modal/modal-add-box/modal-add-box.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -54,7 +55,8 @@ const apiSrvCfg = environment;
     AdminManageTeamComponent,
     ModalConfirmsComponent,
     OrderReportDetailComponent,
-    MonitorComponent
+    MonitorComponent,
+    ModalAddBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ const apiSrvCfg = environment;
     ModalCreateMemberComponent,
     ModalAddressComponent,
     SelectOptionComponent,
-    ModalConfirmsComponent
+    ModalConfirmsComponent,
+    ModalAddBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
