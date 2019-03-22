@@ -1,63 +1,61 @@
-<div class="row">
-  <div class="col-12 border-bottom ">
-    <h1 class="ellipsis" *ngIf="dataTeam && dataTeam.name">{{dataTeam.name}}</h1>
-    <h4 *ngIf="dataTeam && dataTeam.codeteam">{{dataTeam.codeteam}}</h4>
-    <p *ngIf="dataTeam && dataTeam.detail">{{dataTeam.detail}}</p>
+<div class="row" name="divManageMember">
+  <div class="col-12 border-bottom" name="colTeamDetail">
+    <h1 class="ellipsis" *ngIf="dataTeam && dataTeam.name" name="textTeamName">{{dataTeam.name}}</h1>
+    <h4 *ngIf="dataTeam && dataTeam.codeteam" name="textCodeTeam">{{dataTeam.codeteam}}</h4>
+    <p *ngIf="dataTeam && dataTeam.detail" name="textTeamDetail">{{dataTeam.detail}}</p>
   </div>
-  <div class="col-12 mt-3" *ngIf="dataTeam && dataTeam.status==='approve'">
-    <h4 class="text-center" *ngIf="user==='user' || user ==='owner' ">รอการอนุมัติ</h4>
-    <div *ngIf="user ==='owner' &&  statusWaitApprove.length === 0">
-      <p class="text-center no-data">ไม่มีการยืนสมัครมาชิก</p>
+  <div class="col-12 mt-3" *ngIf="dataTeam && dataTeam.status==='approve'" name="colMember">
+    <h4 class="text-center" *ngIf="user==='user' || user ==='owner'" name="textWaitApprove">รอการอนุมัติ</h4>
+    <div *ngIf="user ==='owner' &&  statusWaitApprove.length === 0" name="divNoConfirmMember">
+      <p class="text-center no-data" name="TextNoConfirmMember">ไม่มีการยืนสมัครสมาชิก</p>
     </div>
-    <div class="row" *ngIf="user === 'owner'">
-      <div class="col-6 col-sm-6 col-md-3 col-lg-3" *ngFor="let item of statusWaitApprove">
-        <mat-card class="example-card mt-2">
-          <mat-card-content>
-            <p class="ellipsis">{{item.displayname}}</p>
+    <div class="row" *ngIf="user === 'owner'" name="rowForOwner">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-3" *ngFor="let item of statusWaitApprove" name="colStatusWaitApprove">
+        <mat-card class="example-card mt-2" name="cardMember">
+          <mat-card-content name="cardMemberContent">
+            <p class="ellipsis" name="item.displayname">{{item.displayname}}</p>
           </mat-card-content>
-          <div class="row" *ngIf="user ==='owner'">
-            <div class="col-12 col-md-6 no-padding">
-              <button style="width: 100%" mat-button (click)="cancel(item)">ไม่อนุมัติ</button>
+          <div class="row" *ngIf="user ==='owner'" name="rowBtnForOwner">
+            <div class="col-12 col-md-6 no-padding" name="colBtnForOwner">
+              <button style="width: 100%" mat-button (click)="cancel(item)" name="btnReject">ไม่อนุมัติ</button>
             </div>
-            <div class="col-12 col-md-6 no-padding">
-              <button style="width: 100%" mat-button color="accent" (click)="approve(item)">อนุมัติ</button>
+            <div class="col-12 col-md-6 no-padding" name="colBtnForOwner2">
+              <button style="width: 100%" mat-button color="accent" (click)="approve(item)"
+                name="btnApprove">อนุมัติ</button>
             </div>
           </div>
         </mat-card>
       </div>
-
     </div>
-    <div class="row" *ngIf="user==='user' && dataUserID && dataUserID.status === 'waitapprove'">
-      <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-        <mat-card class="example-card mt-2">
-          <mat-card-content>
-            <p class="ellipsis" *ngIf="dataUserID && dataUserID.displayname">{{dataUserID.displayname}}</p>
-          </mat-card-content>
-
-        </mat-card>
-      </div>
-
-    </div>
-
-  </div>
-  <div class="col-12 mt-2" *ngIf="dataTeam && dataTeam.status==='approve'">
-    <h4 class="text-center">สมาชิก</h4>
-    <div *ngIf="statusMember && statusMember.length === 0">
-      <p class="text-center no-data">ไม่มีสมัครมาชิก</p>
-    </div>
-    <div class="row" *ngIf="statusMember && statusMember.length > 0">
-      <div class="col-6 col-md-3 col-lg-3" *ngFor="let item of statusMember">
-        <mat-card class="example-card mb-2 cuser-poiter" (click)="onSeeDetailMember(item)">
-          <mat-card-content>
-            <p class="ellipsis">{{item.displayname}}</p>
+    <div class="row" *ngIf="user==='user' && dataUserID && dataUserID.status === 'waitapprove'"
+      name="rowUserWaitApprove">
+      <div class="col-6 col-sm-6 col-md-3 col-lg-3" name="colUserWaitApprove">
+        <mat-card class="example-card mt-2" name="cardUserWaitApprove">
+          <mat-card-content name="cardContentUserWaitApprove">
+            <p class="ellipsis" *ngIf="dataUserID && dataUserID.displayname" name="textUserWaitApprove">
+              {{dataUserID.displayname}}</p>
           </mat-card-content>
         </mat-card>
       </div>
-
+    </div>
+  </div>
+  <div class="col-12 mt-2" *ngIf="dataTeam && dataTeam.status==='approve'" name="colStatusApprove">
+    <h4 class="text-center" name="textMember">สมาชิก</h4>
+    <div *ngIf="statusMember && statusMember.length === 0" name="divNoMember">
+      <p class="text-center no-data" name="textNoMember">ไม่มีสมัครสมาชิก</p>
+    </div>
+    <div class="row" *ngIf="statusMember && statusMember.length > 0" name="rowHaveMember">
+      <div class="col-6 col-md-3 col-lg-3" *ngFor="let item of statusMember" name="colHaveMember">
+        <mat-card class="example-card mb-2 cuser-poiter" (click)="onSeeDetailMember(item)" name="item.displayname">
+          <mat-card-content name="cardContent">
+            <p class="ellipsis" name="textContent">{{item.displayname}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
 
   </div>
-  <div class="col-12 text-center mt-5" *ngIf="dataTeam && dataTeam.status==='waitapprove'">
-    <h3 class=" no-data">กรุณานารอการอนุมัติเพื่อเปิดใช่งานทีมของท่าน</h3>
+  <div class="col-12 text-center mt-5" *ngIf="dataTeam && dataTeam.status==='waitapprove'" name="colWaitApproveTeam">
+    <h3 class=" no-data" name="textWaitApproveTeam">กรุณารอการอนุมัติเพื่อเปิดใช้งานทีมของท่าน</h3>
   </div>
 </div>

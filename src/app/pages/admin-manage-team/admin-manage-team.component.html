@@ -1,79 +1,80 @@
-<div class="row">
-  <div class="col-12 mt-4 mb-4">
-    <h4 class="mt-0">จัดการทีมของสมาชิก</h4>
+<div class="row" name="rowHeader">
+  <div class="col-12 mt-4 mb-4" name="colHeader">
+    <h4 class="mt-0" name="textHeader">จัดการทีมของสมาชิก</h4>
   </div>
 </div>
 
-<mat-tab-group dynamicHeight>
-  <mat-tab label="รอการอนุมัติ">
-    <div class="row mb-2 border-bt" *ngIf="waitApprove && waitApprove.length > 0">
-      <div class="col-2 mt-3 mb-3"></div>
-      <div class="col-3 mt-3 mb-3 text-center">
-        <span>ชื่อทีม</span>
+<mat-tab-group dynamicHeight name="tabGroup">
+  <mat-tab label="รอการอนุมัติ" name="tabWaitApprove">
+    <div class="row mb-2 border-bt" *ngIf="waitApprove && waitApprove.length > 0" name="rowTopic">
+      <div class="col-2 mt-3 mb-3" name="colTopic1"></div>
+      <div class="col-3 mt-3 mb-3 text-center" name="colTopic2">
+        <span name="textTopic2">ชื่อทีม</span>
       </div>
-      <div class="col-4 mt-3 mb-3 text-center">
-        <span>รายละเอียดทีม</span>
+      <div class="col-4 mt-3 mb-3 text-center" name="colTopic3">
+        <span name="textTopic3">รายละเอียดทีม</span>
       </div>
-      <div class="col-3 mt-3 mb-3"></div>
+      <div class="col-3 mt-3 mb-3" name="colTopic4"></div>
     </div>
 
-    <div class="div-list-style" *ngIf="waitApprove && waitApprove.length > 0">
-      <div class="row border-bt mb-2" *ngFor="let item of waitApprove">
-        <div class="col-2 mt-2 mb-2 text-center text-overflow">
-          <span>{{item.codeteam}}</span>
+    <div class="div-list-style" *ngIf="waitApprove && waitApprove.length > 0" name="divWaitApprove">
+      <div class="row border-bt mb-2" *ngFor="let item of waitApprove" name="rowForWaitApprove">
+        <div class="col-2 mt-2 mb-2 text-center text-overflow" name="colCodeteam">
+          <span name="item.codeteam">{{item.codeteam}}</span>
         </div>
-        <div class="col-3 mt-2 mb-2  text-center text-overflow">
-          <span>{{item.name}}</span>
+        <div class="col-3 mt-2 mb-2  text-center text-overflow" name="colName">
+          <span name="item.name">{{item.name}}</span>
         </div>
-        <div class="col-4 mt-2 mb-2  text-center text-overflow">
-          <span>{{item.detail}}</span>
+        <div class="col-4 mt-2 mb-2  text-center text-overflow" name="colDetail">
+          <span name="item.detail">{{item.detail}}</span>
         </div>
-        <div class="col-3 mt-2 mb-2  text-center">
-          <button mat-stroked-button class="mr-1 border-btn" color="accent" (click)="onApprove(item)">อนุมัติ</button>
-          <button mat-stroked-button color="accent" (click)="onReject(item)">ปฏิเสธ</button>
+        <div class="col-3 mt-2 mb-2  text-center" name="colBtn">
+          <button mat-stroked-button class="mr-1 border-btn" color="accent" (click)="onApprove(item)"
+            name="btnApprove">อนุมัติ</button>
+          <button mat-stroked-button color="accent" (click)="onReject(item)" name="btnReject">ปฏิเสธ</button>
         </div>
       </div>
     </div>
 
-    <div class="row mt-4" *ngIf="waitApprove && waitApprove.length < 1">
-      <div class="col-12 text-center">
-        <span>ไม่มีทีมรอการอนุมัติในขณะนี้</span>
+    <div class="row mt-4" *ngIf="waitApprove && waitApprove.length < 1" name="rowNoTeamApprove">
+      <div class="col-12 text-center" name="colNoTeamApprove">
+        <span name="textNoTeamApprove">ไม่มีทีมรอการอนุมัติในขณะนี้</span>
       </div>
     </div>
   </mat-tab>
 
-  <mat-tab label="ผ่านการอนุมัติ">
-    <div class="row mb-2 border-bt" *ngIf="approve && approve.length > 0">
-      <div class="col-2 mt-3 mb-3"></div>
-      <div class="col-3 mt-3 mb-3 text-center">
-        <span>ชื่อทีม</span>
+  <mat-tab label="ผ่านการอนุมัติ" name="tabApprove">
+    <div class="row mb-2 border-bt" *ngIf="approve && approve.length > 0" name="rowTopic2">
+      <div class="col-2 mt-3 mb-3" name="colTopic5"></div>
+      <div class="col-3 mt-3 mb-3 text-center" name="colTopic6">
+        <span name="textTopic6">ชื่อทีม</span>
       </div>
-      <div class="col-4 mt-3 mb-3 text-center">
-        <span>รายละเอียดทีม</span>
+      <div class="col-4 mt-3 mb-3 text-center" name="colTopic7">
+        <span name="textTopic7">รายละเอียดทีม</span>
       </div>
-      <div class="col-3 mt-3 mb-3"></div>
+      <div class="col-3 mt-3 mb-3" name="colTopic8"></div>
     </div>
 
-    <div class="div-list-style" *ngIf="approve && approve.length > 0">
-      <div class="row border-bt mb-2" *ngFor="let itm of approve">
-        <div class="col-2 mt-2 mb-2 text-center text-overflow">
-          <span>{{itm.codeteam}}</span>
+    <div class="div-list-style" *ngIf="approve && approve.length > 0" name="divApprove">
+      <div class="row border-bt mb-2" *ngFor="let itm of approve" name="rowApprove">
+        <div class="col-2 mt-2 mb-2 text-center text-overflow" name="colCodeteam2">
+          <span name="itm.codeteam">{{itm.codeteam}}</span>
         </div>
-        <div class="col-3 mt-2 mb-2  text-center text-overflow">
-          <span>{{itm.name}}</span>
+        <div class="col-3 mt-2 mb-2  text-center text-overflow" name="colName2">
+          <span name="itm.name">{{itm.name}}</span>
         </div>
-        <div class="col-4 mt-2 mb-2  text-center text-overflow">
-          <span>{{itm.detail}}</span>
+        <div class="col-4 mt-2 mb-2  text-center text-overflow" name="colDetail2">
+          <span name="itm.detail">{{itm.detail}}</span>
         </div>
-        <div class="col-3 mt-2 mb-2  text-center">
-          <button mat-stroked-button class="mr-1" disabled color="accent">ยุบทีม</button>
+        <div class="col-3 mt-2 mb-2  text-center" name="colBtn2">
+          <button mat-stroked-button class="mr-1" disabled color="accent" name="btnDeleteTeam">ยุบทีม</button>
         </div>
       </div>
     </div>
 
-    <div class="row mt-4" *ngIf="approve && approve.length < 1">
-      <div class="col-12 text-center">
-        <span>ไม่มีทีมผ่านการอนุมัติในขณะนี้</span> 
+    <div class="row mt-4" *ngIf="approve && approve.length < 1" name="rowNoTeamApprove2">
+      <div class="col-12 text-center" name="colNoTeamApprove2">
+        <span name="textNoTeamApprove2">ไม่มีทีมผ่านการอนุมัติในขณะนี้</span>
       </div>
     </div>
   </mat-tab>
