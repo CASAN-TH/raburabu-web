@@ -1,29 +1,29 @@
-<mat-dialog-content class="mat-typography">
-  <div class="row">
-    <div class="col-12">
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <span matPrefix>กรองรหัสผัสดุ &nbsp;</span>
-          <input type="tel" matInput placeholder="Telephone">
+<mat-dialog-content name="mat-dialog-content" class="mat-typography">
+  <div name="divOnRow" class="row">
+    <div name="divOnCol" class="col-12">
+      <form name="formInput" class="example-form">
+        <mat-form-field name="mat-form-field" class="example-full-width">
+          <span name="spanText" matPrefix>กรองรหัสผัสดุ &nbsp;</span>
+          <input type="tel" name="keyTel" matInput placeholder="Telephone">
         </mat-form-field>
       </form>
     </div>
-    <div class="col-12">
-      <p>ณัฐพล ใจดี</p>
-      <p>55/1 คาซ่าซิตี้ ต.บึงคำพร้อย อ.ลำลูกกา จ.ปทุมธานี</p>
+    <div class="col-12" name="divAddressCustomer">
+      <p name="nameCustomer">ณัฐพล ใจดี</p>
+      <p name="addressCustomer">55/1 คาซ่าซิตี้ ต.บึงคำพร้อย อ.ลำลูกกา จ.ปทุมธานี</p>
     </div>
-    <div class="col-12 border-around " style="height: 200px;">
-      <div class="row mt-3" *ngFor="let item of [1,2,3,4,5,6]">
-        <div class="col-2 ">
-          <mat-checkbox></mat-checkbox>
+    <div name="divHaveBorderAroud" class="col-12 border-around " style="height: 200px;">
+      <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of [1,2,3,4,5,6]">
+        <div name="divCheckBox" class="col-2 ">
+          <mat-checkbox name="nameCheckBox"></mat-checkbox>
         </div>
-        <div class="col-6">
-          <p>ลิปติกสีแดง</p>
+        <div name="nameProduct" class="col-6">
+          <p name="product">ลิปติกสีแดง</p>
         </div>
-        <div class="col-4">
-          <form class="example-form border-top-0">
-            <mat-form-field class="example-full-width border-top-0">
-              <input matInput placeholder="กรอกจำนวน">
+        <div name="divQty" class="col-4">
+          <form name="formQty" class="example-form border-top-0">
+            <mat-form-field name="mat-form-field-qty" class="example-full-width border-top-0">
+              <input name="keyQty" matInput placeholder="กรอกจำนวน">
             </mat-form-field>
           </form>
         </div>
@@ -32,7 +32,7 @@
   </div>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>ยืนยัน</button>
-  <button mat-button mat-dialog-close>ยกเลิก</button>
+<mat-dialog-actions align="end" name="mat-dialog-action">
+  <button mat-button [mat-dialog-close]="true" name="btnConfrim" cdkFocusInitial>ยืนยัน</button>
+  <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
 </mat-dialog-actions>

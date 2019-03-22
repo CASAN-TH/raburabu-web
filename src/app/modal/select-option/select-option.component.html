@@ -1,23 +1,23 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <mat-dialog-content class="mat-typography">
-      <form [formGroup]="firstFormGroup" *ngFor="let item of dataBinding.option;let k = index">
-        <ng-template matStepLabel>{{item.name}}</ng-template>
-        <div class="row">
-          <div class="col-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index" (click)="select(itm,i,k)">
-            <mat-card class="example-card card-height pt-2 text-center">
-              <div class="text-center col-md-3 d-none d-md-block">
-                <i class="material-icons icon icon-position" *ngIf="itm.active">
+<mat-horizontal-stepper [linear]="isLinear" #stepper name="mat-horizontal-stepper ">
+  <mat-step [stepControl]="firstFormGroup" name="mat-step-firstFormGroup">
+    <mat-dialog-content class="mat-typography" name="mat-dialog-content-first">
+      <form [formGroup]="firstFormGroup" name="firstFormGroup" *ngFor="let item of dataBinding.option;let k = index">
+        <ng-template name="ng-template-firstFormGroup" matStepLabel>{{item.name}}</ng-template>
+        <div class="row" name="divRowValue">
+          <div name="divColValue" class="col-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index" (click)="select(itm,i,k)">
+            <mat-card name="cardValue" class="example-card card-height pt-2 text-center">
+              <div name="colIcon" class="text-center col-md-3 d-none d-md-block">
+                <i name="iconCheck" class="material-icons icon icon-position" *ngIf="itm.active">
                   check_circle_outline
                 </i>
               </div>
-              <div class="col-12 d-md-none">
-                <i class="material-icons icon icon-position" *ngIf="itm.active">
+              <div name="colIconMd-none" class="col-12 d-md-none">
+                <i name="iconCheckMd-none" class="material-icons icon icon-position" *ngIf="itm.active">
                   check_circle_outline
                 </i>
               </div>
-              <mat-card-content>
-                <p>
+              <mat-card-content name="mat-card-content-name-value">
+                <p name="nameValue">
                   {{itm.name}}
                 </p>
               </mat-card-content>
@@ -28,30 +28,30 @@
 
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button matStepperNext (click)="next()" [disabled]="selectOption.length < 1">ถัดไป</button>
+    <mat-dialog-actions name="mat-dialog-actions-first" align="end">
+      <button name="btnNextFirst" mat-button matStepperNext (click)="next()" [disabled]="selectOption.length < 1">ถัดไป</button>
 
     </mat-dialog-actions>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <mat-dialog-content class="mat-typography">
-      <form [formGroup]="secondFormGroup">
+  <mat-step [stepControl]="secondFormGroup" name="mat-step-second">
+    <mat-dialog-content class="mat-typography" name="mat-dialog-content-second">
+      <form [formGroup]="secondFormGroup" name="form-second">
 
-        <ng-template matStepLabel>ระบุจำนวน</ng-template>
-        <div class="row" *ngFor="let optionProd of selectOption;let l = index">
-          <div class="col-2 text-right">
+        <ng-template name="ng-template-qty" matStepLabel>ระบุจำนวน</ng-template>
+        <div name="divOptionProduct" class="row" *ngFor="let optionProd of selectOption;let l = index">
+          <div name="divColNotUseNow" class="col-2 text-right">
             <!-- <button mat-button class="border-add"><span class="font-size">-</span></button> -->
           </div>
-          <div class="col-8 text-center">
-            <span class="mr-3">ตัวเลือก: </span>
-            <span class="mr-3">{{optionProd.name}}</span>
-            <mat-form-field>
+          <div class="col-8 text-center" name="divColOption">
+            <span name="optionProduct" class="mr-3">ตัวเลือก: </span>
+            <span name="nameProduct" class="mr-3">{{optionProd.name}}</span>
+            <mat-form-field name="mat-form-field-key-qty">
               <!-- <input class="font-input" matInput [(ngModel)]="qty" formControlName="secondCtrl" required> -->
-              <input matInput placeholder="กรุณากรอกจำนวนสินค้า" (ngModelChange)=addQty(l,$event)
+              <input name="keyQty" matInput placeholder="กรุณากรอกจำนวนสินค้า" (ngModelChange)=addQty(l,$event)
                 [value]="!optionProd.qty ? 1 : optionProd.qty" formControlName="secondCtrl">
             </mat-form-field>
           </div>
-          <div class="col-2 text-left">
+          <div name="divColNotUseNow2"  class="col-2 text-left">
             <!-- <button mat-button class="border-add"> <span class="font-size">+</span> </button> -->
           </div>
         </div>
@@ -61,13 +61,13 @@
         </div>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions>
-      <div class="col-6 text-left">
-        <button mat-button matStepperPrevious>ย้อนกลับ</button>
+    <mat-dialog-actions name="mat-dialog-actions-second">
+      <div name="divColBtnBack" class="col-6 text-left">
+        <button name="btnBack" mat-button matStepperPrevious>ย้อนกลับ</button>
 
       </div>
-      <div class="col-6 text-right">
-        <button mat-button (click)="done()">เสร็จสิ้น</button>
+      <div name="divColBtnDone" class="col-6 text-right">
+        <button mat-button name="btnDone" (click)="done()">เสร็จสิ้น</button>
 
       </div>
     </mat-dialog-actions>
