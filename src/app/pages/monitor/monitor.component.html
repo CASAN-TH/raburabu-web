@@ -14,7 +14,7 @@
                 name="colBtnWaitWithdrawal">
                 <button mat-stroked-button color="accent" (click)="gotoOrderReport(item)" class="style-btn mr-2"
                   name="btnWithdrawalList">รายการเบิก</button>
-                <button mat-stroked-button color="accent" class="style-btn" name="BtnWithdrawal">ทำการเบิกเเล้ว</button>
+                <button mat-stroked-button color="accent" class="style-btn" name="btnWithdrawal">ทำการเบิกเเล้ว</button>
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none"
                 name="colBtnWaitWithdrawal2">
@@ -24,7 +24,7 @@
               <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none"
                 name="colBtnWaitWithdrawal3">
                 <button mat-stroked-button color="accent" class="style-btn mt-2 full-width"
-                  name="BtnWithdrawal2">ทำการเบิกเเล้ว</button>
+                  name="btnWithdrawal2">ทำการเบิกเเล้ว</button>
               </div>
             </div>
             <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff">
@@ -48,7 +48,7 @@
   </mat-tab>
 
   <mat-tab label="รอการเเพ็ค" name="tabWaitPack">
-    <div class="row" name="rowWaitPack">
+    <div class="row" name="rowWaitPack"> 
       <div class="col-12" *ngIf="waitpack && waitpack.length > 0" name="colWaitPack">
         <div class="border-bt" *ngFor="let item2 of waitpack" name="divForWaitPack">
           <div name="divWaitPack">
@@ -60,7 +60,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitPack">
-                <button mat-stroked-button color="accent" class="style-btn" name="BtnPack">เเพ็คสินค้าเเล้ว</button>
+                <button mat-stroked-button color="accent" class="style-btn" name="btnPack">เเพ็คสินค้าเเล้ว</button>
               </div>
             </div>
             <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff2">
