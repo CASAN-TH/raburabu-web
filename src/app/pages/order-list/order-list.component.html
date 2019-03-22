@@ -1,20 +1,23 @@
-<div class="div-content">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-3 mt-3 list-style list-add">
-      <div class="col-12 text-center pr-0 pl-0 div-add-btn" (click)="openmodal()">
-        <span class="btn-add-style cursor">
-          <p class="mb-0">+</p>
+<div class="div-content" name="bigDivInPageOrder-list">
+  <div class="row" name="divRowInPageOrder-list">
+    <div name="divAddOrder" class="col-12 col-sm-12 col-md-3 mt-3 list-style list-add">
+      <div name="divClickOpenModal" class="col-12 text-center pr-0 pl-0 div-add-btn" (click)="openmodal()">
+        <span name="spanIconAdd" class="btn-add-style cursor">
+          <p name="iconAdd" class="mb-0">+</p>
         </span>
       </div>
     </div>
 
-    <div class="col-6 col-sm-6 col-md-3 mt-3 list-style" style="width: 100%" *ngFor="let item of dataOrderAll">
-      <div class="col-12 border-list text-center pr-0 pl-0 bg-white">
-        <p class="mb-1 text-overflow"><span>ออเดอร์: </span> <span>{{item.orderno}}</span></p>
-        <p class="mb-1 text-overflow"><span>ชื่อ: </span> <span class="mr-1">{{item.customer.firstname}}</span>
+    <div name="divDataOrder" class="col-6 col-sm-6 col-md-3 mt-3 list-style" style="width: 100%"
+      *ngFor="let item of dataOrderAll">
+      <div name="divInNgfor" class="col-12 border-list text-center pr-0 pl-0 bg-white">
+        <p class="mb-1 text-overflow" name="item.orderno"><span>ออเดอร์: </span> <span>{{item.orderno}}</span></p>
+        <p class="mb-1 text-overflow" name="item.customer.firstname"><span>ชื่อ: </span> <span
+            class="mr-1">{{item.customer.firstname}}</span>
           <span>{{item.customer.lastname}}</span></p>
-        <p class="mb-1 text-overflow"><span>โทร: </span> <span>{{item.customer.tel}}</span></p>
-        <p class="mb-1 text-overflow"><span>รวม: </span> <span>{{item.totalamount?item.totalamount:0 }} </span>
+        <p class="mb-1 text-overflow" name="item.customer.tel"><span>โทร: </span> <span>{{item.customer.tel}}</span></p>
+        <p class="mb-1 text-overflow" name="item.totalamount"><span>รวม: </span>
+          <span>{{item.totalamount?item.totalamount:0 }} </span>
           <span>บาท</span></p>
 
         <span class="d-none d-sm-none d-md-block">

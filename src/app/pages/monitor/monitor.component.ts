@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageEvent, MatDialog } from '@angular/material';
 import { MonitorService } from 'src/app/services/monitor/monitor.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-monitor',
@@ -14,7 +15,8 @@ export class MonitorComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private monitorService: MonitorService
+    private monitorService: MonitorService,
+    public ngxSpiner: NgxSpinnerService
 
   ) { }
   datalength: any = 0;
@@ -48,6 +50,7 @@ export class MonitorComponent implements OnInit {
 
 
   async ngOnInit() {
+    this.ngxSpiner.show()
     let res: any = await this.monitorService.getMonitorAll();
     console.log(res);
     res.data.forEach(data => {
@@ -64,6 +67,7 @@ export class MonitorComponent implements OnInit {
         this.complete.push(data)
       }
     });
+    this.ngxSpiner.hide();
     console.log(this.waitwithdrawal);
     console.log(this.waitpack);
     console.log(this.waitshipping);
@@ -81,8 +85,9 @@ export class MonitorComponent implements OnInit {
     }
   }
 
-  gotoOrderReport() {
-    this.router.navigate(["/order-report-detail"]);
+  gotoOrderReport(item) {
+    console.log(item);
+    this.router.navigate(["/order-report-detail", { id: item._id }]);
   }
   addBox() {
     const dialogRef = this.dialog.open(ModalAddBoxComponent, {
@@ -97,4 +102,5 @@ export class MonitorComponent implements OnInit {
       // }
     });
   }
+
 }
