@@ -24,4 +24,14 @@ export class MonitorService {
   getReportMonitorById(id) {
     return this.http.get('http://13.250.99.131/api/monitor/report/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
+  getLabel(id) {
+    return this.http.get('http://13.250.99.131/api/monitor/labels/' + id, { headers: this.authorizationHeader() }).toPromise();
+  }
+  saveLabel(id, body) {
+    return this.http.put('http://13.250.99.131/api/monitors/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+  }
+  getMonitor(id) {
+    return this.http.get('http://13.250.99.131/api/monitors/' + id, { headers: this.authorizationHeader() }).toPromise();
+
+  }
 }

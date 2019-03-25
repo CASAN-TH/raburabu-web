@@ -89,17 +89,21 @@ export class MonitorComponent implements OnInit {
     console.log(item);
     this.router.navigate(["/order-report-detail", { id: item._id }]);
   }
-  addBox() {
+  addBox(itm, item) {
+    console.log(item);
+    let data = {
+      order_id: itm._id,
+      monitor_id: item._id
+    }
+    console.log(data)
     const dialogRef = this.dialog.open(ModalAddBoxComponent, {
       width: '600px',
-      // height:'400px',
+      data: data,
+      height: '400px',
       disableClose: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // if (result) {
-      //   this.router.navigate(['manage-member']);
-      // }
     });
   }
 

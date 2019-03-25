@@ -3,27 +3,32 @@
     <div name="divOnCol" class="col-12">
       <form name="formInput" class="example-form">
         <mat-form-field name="mat-form-field" class="example-full-width">
-          <span name="spanText" matPrefix>กรองรหัสผัสดุ &nbsp;</span>
-          <input type="tel" name="keyTel" matInput placeholder="Telephone">
+          <span name="spanText" matPrefix>รหัสผัสดุ &nbsp;</span>
+          <input type="tel" [(ngModel)]="trackno" name="keyTel" matInput>
         </mat-form-field>
       </form>
     </div>
-    <div class="col-12" name="divAddressCustomer">
-      <p name="nameCustomer">ณัฐพล ใจดี</p>
-      <p name="addressCustomer">55/1 คาซ่าซิตี้ ต.บึงคำพร้อย อ.ลำลูกกา จ.ปทุมธานี</p>
+    <div *ngIf="dataLabel && dataLabel.customer " class="col-12" name="divAddressCustomer">
+      <p name="nameCustomer">{{dataLabel.customer.firstname}} {{dataLabel.customer.lastname}}</p>
+      <p name="addressCustomer">{{dataLabel.customer.address.houseno}}
+        {{dataLabel.customer.address.village}} {{dataLabel.customer.address.street}}
+        {{dataLabel.customer.address.subdistrict}} {{dataLabel.customer.address.district}}
+        {{dataLabel.customer.address.province}}
+        {{dataLabel.customer.address.zipcode}}</p>
     </div>
-    <div name="divHaveBorderAroud" class="col-12 border-around " style="height: 200px;">
-      <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of [1,2,3,4,5,6]">
+    <div *ngIf="dataLabel && dataLabel.productall" name="divHaveBorderAroud" class="col-12 border-around "
+      style="height: 200px;">
+      <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productall ;let i = index;">
         <div name="divCheckBox" class="col-2 ">
-          <mat-checkbox name="nameCheckBox"></mat-checkbox>
+          <mat-checkbox (change)="selectProduct($event,item,i)" name="nameCheckBox"></mat-checkbox>
         </div>
         <div name="nameProduct" class="col-6">
-          <p name="product">ลิปติกสีแดง</p>
+          <p name="product">{{item.name}}</p>
         </div>
         <div name="divQty" class="col-4">
           <form name="formQty" class="example-form border-top-0">
             <mat-form-field name="mat-form-field-qty" class="example-full-width border-top-0">
-              <input name="keyQty" matInput placeholder="กรอกจำนวน">
+              <input [disabled]="item.active" name="keyQty" [(ngModel)]="item.qty" matInput placeholder="กรอกจำนวน">
             </mat-form-field>
           </form>
         </div>
@@ -33,6 +38,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" name="mat-dialog-action">
-  <button mat-button [mat-dialog-close]="true" name="btnConfrim" cdkFocusInitial>ยืนยัน</button>
+  <button mat-button [mat-dialog-close]="true" name="btnConfrim" (click)="confirmLabel()"
+    cdkFocusInitial>ยืนยัน</button>
   <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
 </mat-dialog-actions>
