@@ -24,4 +24,7 @@ export class MonitorService {
   getReportMonitorById(id) {
     return this.http.get('http://13.250.99.131/api/monitor/report/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
+  changStatus(id, body) {
+    return this.http.put('http://13.250.99.131/api/monitors/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+  }
 }

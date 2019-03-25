@@ -49,8 +49,16 @@ export class MonitorComponent implements OnInit {
   complete: any = [];
 
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getMonitor();
+  }
+
+  async getMonitor() {
     this.ngxSpiner.show()
+    this.waitwithdrawal = [];
+    this.waitpack = [];
+    this.waitshipping = [];
+    this.complete = [];
     let res: any = await this.monitorService.getMonitorAll();
     console.log(res);
     res.data.forEach(data => {
@@ -89,6 +97,7 @@ export class MonitorComponent implements OnInit {
     console.log(item);
     this.router.navigate(["/order-report-detail", { id: item._id }]);
   }
+
   addBox() {
     const dialogRef = this.dialog.open(ModalAddBoxComponent, {
       width: '600px',
@@ -102,5 +111,124 @@ export class MonitorComponent implements OnInit {
       // }
     });
   }
+
+  async toWaitPack(item) {
+    console.log(item);
+    let body = {
+      status: 'waitpack'
+    }
+    let res: any = await this.monitorService.changStatus(item._id, body);
+    console.log(res);
+    if (res) {
+      this.getMonitor();
+    }
+  }
+
+  async toWaitShipping(item) {
+    console.log(item);
+    let body = {
+      status: 'waitshipping'
+    }
+    let res: any = await this.monitorService.changStatus(item._id, body);
+    console.log(res);
+    if (res) {
+      this.getMonitor();
+    }
+  }
+
+  async toComplete(item) {
+    console.log(item);
+    let body = {
+      status: 'complete'
+    }
+    let res: any = await this.monitorService.changStatus(item._id, body);
+    console.log(res);
+    if (res) {
+      this.getMonitor();
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
