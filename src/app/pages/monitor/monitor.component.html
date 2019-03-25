@@ -51,7 +51,7 @@
   <mat-tab label="รอการเเพ็ค" name="tabWaitPack">
     <div class="row" name="rowWaitPack">
       <div class="col-12" *ngIf="waitpack && waitpack.length > 0" name="colWaitPack">
-        <div class="border-bt" *ngFor="let item2 of waitpack" name="divForWaitPack">
+        <div class="border-bt" *ngFor="let item2 of waitpack;let i2 = index" name="divForWaitPack">
           <div name="divWaitPack">
             <div class="row mt-3" name="rowTeamDetail2">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail2">
@@ -67,7 +67,7 @@
             </div>
             <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff2">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
-                *ngFor="let itm2 of item2.orders" name="colOrderStaff2">
+                *ngFor="let itm2 of item2.orders;let j2 = index" name="colOrderStaff2">
                 <span style="display: block" class="mt-2" name="itm2.orderno">รหัสใบสั่งซื้อ: {{itm2.orderno}}</span>
                 <span style="display: block" name="textName2">ชื่อผู้สั่ง:
                   <span class="mr-2" name="itm2.customer.firstname">{{itm2.customer.firstname}}</span>
@@ -76,10 +76,12 @@
                 <span style="display: block" class="mb-2" name="itm2.totalamount">รวม: {{itm2.totalamount}}</span>
                 <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel">
                   <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel">เลขที่พัสดุ:
-                    {{itm2.labels[datalength].trackno}}</span>
+                    {{itm2.labels[itm2.page ? itm2.page : 0].trackno}}</span>
                   <span style="display: block" name="textOrderNoLabel" class="text-overflow">รหัสใบสั่งซื้อ:
-                    {{itm2.labels[datalength]._id}}</span>
-                  <span style="display: block" name="textCustomerLabel" class="text-overflow">ชื่อผู้สั่ง: {{itm2.labels[datalength].customer.firstname}}  {{itm2.labels[datalength].customer.lastname}}</span>
+                    {{itm2.labels[itm2.page ? itm2.page : 0]._id}}</span>
+                  <span style="display: block" name="textCustomerLabel" class="text-overflow">ชื่อผู้สั่ง:
+                    {{itm2.labels[itm2.page ? itm2.page : 0].customer.firstname}}
+                    {{itm2.labels[itm2.page ? itm2.page : 0].customer.lastname}}</span>
                   <!-- <span style="display: block" class="mb-2" name="textAmountLabel">จำนวนสินค้า:
                     {{data[datalength].totalqty}} ชิ้น
                   </span> -->
@@ -89,7 +91,8 @@
                   <span name="textNoLabel">ยังไม่มีใบปะหน้ากล่อง</span>
                 </div>
                 <mat-paginator [length]="itm2.labels.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
-                  class="full-width" (page)="pageEvent = $event;" (click)="page(pageEvent)" name="pagingLabel">
+                  class="full-width" (page)="pageEvent = $event;" (click)="pageWaitPack(pageEvent,i2,j2)"
+                  name="pagingLabel">
                 </mat-paginator>
                 <div class="row" name="rowBtnLabel">
                   <div class="col-6 pl-0 pr-0" name="colBtnLabel">
@@ -115,7 +118,7 @@
   <mat-tab label="รอการจัดส่ง" name="tabWaitShipping">
     <div class="row" name="rowWaitShipping">
       <div class="col-12" *ngIf="waitshipping && waitshipping.length > 0" name="colWaitShipping">
-        <div class="border-bt" *ngFor="let item3 of waitshipping" name="divForWaitShipping">
+        <div class="border-bt" *ngFor="let item3 of waitshipping;let i3 = index" name="divForWaitShipping">
           <div name="divWaitShipping">
             <div class="row mt-3" name="rowTeamDetail3">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail3">
@@ -131,28 +134,30 @@
             </div>
             <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff3">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
-                *ngFor="let itm3 of item3.orders" name="colOrderStaff3">
+                *ngFor="let itm3 of item3.orders;let j3 = index" name="colOrderStaff3">
                 <span style="display: block" class="mt-2" name="itm3.orderno">รหัสใบสั่งซื้อ: {{itm3.orderno}}</span>
                 <span style="display: block" name="textName3">ชื่อผู้สั่ง:
                   <span class="mr-2" name="itm3.customer.firstname">{{itm3.customer.firstname}}</span>
                   <span name="itm3.customer.lastname">{{itm3.customer.lastname}}</span>
                 </span>
                 <span style="display: block" class="mb-2" name="itm3.totalamount">รวม: {{itm3.totalamount}}</span>
-                <div class="border-top mt-2 min-label-height" *ngIf="label.length > 0" name="divLabel2">
+                <div class="border-top mt-2 min-label-height" *ngIf="itm3.labels.length > 0" name="divLabel2">
                   <span style="display: block" class="mt-2" name="textTrackLabel2">เลขที่พัสดุ:
-                    {{data[datalength].trackno}}</span>
+                    {{itm3.labels[itm3.page ? itm3.page : 0].trackno}}
+                  </span>
                   <span style="display: block" name="textOrderNoLabel2">รหัสใบสั่งซื้อ:
                     {{data[datalength].orderno}}</span>
                   <span style="display: block" name="textCustomerLabel2">ชื่อผู้สั่ง: {{data[datalength].name}}</span>
                   <span style="display: block" class="mb-2" name="textAmountLabel2">จำนวนสินค้า:
                     {{data[datalength].totalqty}} ชิ้น</span>
                 </div>
-                <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="label.length < 1"
+                <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm3.labels.length < 1"
                   name="colNoLabel2">
                   <span name="textNoLabel2">ยังไม่มีใบปะหน้ากล่อง</span>
                 </div>
-                <mat-paginator [length]="label.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
-                  class="full-width" (page)="pageEvent = $event;" (click)="page(pageEvent)" name="pagingLabel2">
+                <mat-paginator [length]="itm3.labels.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
+                  class="full-width" (page)="pageEvent = $event;" (click)="pageWaitShipping(pageEvent,i3,j3)"
+                  name="pagingLabel2">
                 </mat-paginator>
               </div>
             </div>
