@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PageEvent, MatDialog } from '@angular/material';
 import { MonitorService } from 'src/app/services/monitor/monitor.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ModalConfirmsComponent } from 'src/app/modal/modal-confirms/modal-confirms.component';
 
 @Component({
   selector: 'app-monitor',
@@ -117,11 +118,20 @@ export class MonitorComponent implements OnInit {
     let body = {
       status: 'waitpack'
     }
-    let res: any = await this.monitorService.changStatus(item._id, body);
-    console.log(res);
-    if (res) {
-      this.getMonitor();
-    }
+    const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+      width: '400px',
+      data: { title: "การเบิกสินค้า", message: "คุณต้องการยืนยันการเบิกสินค้าหรือไม่" },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        let res: any = await this.monitorService.changStatus(item._id, body);
+        console.log(res);
+        if (res) {
+          this.getMonitor();
+        }
+      }
+    });
   }
 
   async toWaitShipping(item) {
@@ -129,11 +139,20 @@ export class MonitorComponent implements OnInit {
     let body = {
       status: 'waitshipping'
     }
-    let res: any = await this.monitorService.changStatus(item._id, body);
-    console.log(res);
-    if (res) {
-      this.getMonitor();
-    }
+    const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+      width: '400px',
+      data: { title: "การเเพ็คสินค้า", message: "คุณต้องการยืนยันการเเพ็คสินค้าหรือไม่" },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        let res: any = await this.monitorService.changStatus(item._id, body);
+        console.log(res);
+        if (res) {
+          this.getMonitor();
+        }
+      }
+    });
   }
 
   async toComplete(item) {
@@ -141,11 +160,20 @@ export class MonitorComponent implements OnInit {
     let body = {
       status: 'complete'
     }
-    let res: any = await this.monitorService.changStatus(item._id, body);
-    console.log(res);
-    if (res) {
-      this.getMonitor();
-    }
+    const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+      width: '400px',
+      data: { title: "การจัดส่งสินค้า", message: "คุณต้องการยืนยันการจัดส่งสินค้าหรือไม่" },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        let res: any = await this.monitorService.changStatus(item._id, body);
+        console.log(res);
+        if (res) {
+          this.getMonitor();
+        }
+      }
+    });
   }
 
 
