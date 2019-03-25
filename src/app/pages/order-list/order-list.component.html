@@ -14,7 +14,7 @@
         <p class="mb-1 text-overflow" name="item.orderno"><span>ออเดอร์: </span> <span>{{item.orderno}}</span></p>
         <p class="mb-1 text-overflow" name="item.customer.firstname"><span>ชื่อ: </span> <span
             class="mr-1">{{item.customer.firstname}}</span>
-          <span>{{item.customer.lastname}}</span></p>
+          <span name="item.customer.lastname">{{item.customer.lastname}}</span></p>
         <p class="mb-1 text-overflow" name="item.customer.tel"><span>โทร: </span> <span>{{item.customer.tel}}</span></p>
         <p class="mb-1 text-overflow" name="item.totalamount"><span>รวม: </span>
           <span>{{item.totalamount?item.totalamount:0 }} </span>
@@ -41,7 +41,7 @@
 </div>
 
 <div class="row mt-4" *ngIf="rolesUser === 'owner'" name="divRowSendOrderForOwner">
-  <div class="col-12" name="divRowSendOrderForOwner">
+  <div class="col-12" name="divColSendOrderForOwner">
     <button class="style-btn-width btn-border-style" name="btnSendOrder" color="accent"
       [disabled]='dataOrderAll.length === 0' mat-stroked-button (click)='sendOrder()'
       style="margin-right: 1px">ส่งใบสั่งซื้อ</button>
