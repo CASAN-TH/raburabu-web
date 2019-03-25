@@ -125,7 +125,9 @@ export class MonitorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getMonitor();
+      if (result) {
+        this.getMonitor();
+      }
     });
   }
 

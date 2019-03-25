@@ -50,29 +50,22 @@ export class ModalAddBoxComponent implements OnInit {
 
   selectProduct(e, item, i) {
     this.chkProduck = e.checked
-    console.log(this.chkProduck);
-    console.log(this.useProduct);
     if (this.chkProduck === true) {
       this.useProduct.push(item)
       this.dataLabel.productall[i].active = true
     } else {
       let j = this.useProduct.findIndex(function (data) { return data.name === item.name })
-      console.log(j)
       this.useProduct.splice(j, 1);
       this.dataLabel.productall[i].active = false
     }
   }
   async confirmLabel() {
-    console.log(this.dataTeam);
     let order_id = this.data.order_id
-    console.log(order_id);
     this.dataTeamOrder = this.dataTeam
     try {
       let res = this.dataTeamOrder.orders.findIndex(function (order) {
-        console.log(order._id)
         return order._id === order_id
       })
-      console.log(res);
       let data = {
         trackno: this.trackno,
         customer: {
@@ -91,11 +84,8 @@ export class ModalAddBoxComponent implements OnInit {
         productlist: this.useProduct
       }
       this.dataTeamOrder.orders[res].labels.push(data)
-      console.log(this.dataTeamOrder);
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
       this.thisDialogRef.close('clse');
-
-      console.log(resp);
     } catch (error) {
       console.log(error);
     }
