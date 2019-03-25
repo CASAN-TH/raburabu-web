@@ -74,20 +74,21 @@
                   <span name="itm2.customer.lastname">{{itm2.customer.lastname}}</span>
                 </span>
                 <span style="display: block" class="mb-2" name="itm2.totalamount">รวม: {{itm2.totalamount}}</span>
-                <div class="border-top mt-2 min-label-height" *ngIf="label.length > 0" name="divLabel">
-                  <span style="display: block" class="mt-2" name="textTrackLabel">เลขที่พัสดุ:
-                    {{data[datalength].trackno}}</span>
-                  <span style="display: block" name="textOrderNoLabel">รหัสใบสั่งซื้อ:
-                    {{data[datalength].orderno}}</span>
-                  <span style="display: block" name="textCustomerLabel">ชื่อผู้สั่ง: {{data[datalength].name}}</span>
-                  <span style="display: block" class="mb-2" name="textAmountLabel">จำนวนสินค้า:
-                    {{data[datalength].totalqty}} ชิ้น</span>
+                <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel">
+                  <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel">เลขที่พัสดุ:
+                    {{itm2.labels[datalength].trackno}}</span>
+                  <span style="display: block" name="textOrderNoLabel" class="text-overflow">รหัสใบสั่งซื้อ:
+                    {{itm2.labels[datalength]._id}}</span>
+                  <span style="display: block" name="textCustomerLabel" class="text-overflow">ชื่อผู้สั่ง: {{itm2.labels[datalength].customer.firstname}}  {{itm2.labels[datalength].customer.lastname}}</span>
+                  <!-- <span style="display: block" class="mb-2" name="textAmountLabel">จำนวนสินค้า:
+                    {{data[datalength].totalqty}} ชิ้น
+                  </span> -->
                 </div>
-                <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="label.length < 1"
+                <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm2.labels.length < 1"
                   name="colNoLabel">
                   <span name="textNoLabel">ยังไม่มีใบปะหน้ากล่อง</span>
                 </div>
-                <mat-paginator [length]="label.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
+                <mat-paginator [length]="itm2.labels.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
                   class="full-width" (page)="pageEvent = $event;" (click)="page(pageEvent)" name="pagingLabel">
                 </mat-paginator>
                 <div class="row" name="rowBtnLabel">
@@ -96,8 +97,8 @@
                       name="btnPrint">พิมพ์</button>
                   </div>
                   <div class="col-6 pl-0 pr-0" name="colBtnLabel2">
-                    <button mat-stroked-button color="accent" class="full-width btn-list-style" (click)="addBox(itm2,item2)"
-                      name="btnAddBox">เพิ่มกล่อง</button>
+                    <button mat-stroked-button color="accent" class="full-width btn-list-style"
+                      (click)="addBox(itm2,item2)" name="btnAddBox">เพิ่มกล่อง</button>
                   </div>
                 </div>
               </div>

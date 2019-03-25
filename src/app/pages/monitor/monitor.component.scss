@@ -51,3 +51,9 @@
 .min-label-height {
     height: 105px;
 }
+
+.text-overflow {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}

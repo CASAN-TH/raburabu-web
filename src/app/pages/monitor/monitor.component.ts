@@ -61,7 +61,7 @@ export class MonitorComponent implements OnInit {
     this.waitshipping = [];
     this.complete = [];
     let res: any = await this.monitorService.getMonitorAll();
-    console.log(res);
+    // console.log(res);
     res.data.forEach(data => {
       if (data.status === "waitwithdrawal") {
         this.waitwithdrawal.push(data);
@@ -95,16 +95,16 @@ export class MonitorComponent implements OnInit {
   }
 
   gotoOrderReport(item) {
-    console.log(item);
+    // console.log(item);
     this.router.navigate(["/order-report-detail", { id: item._id }]);
   }
   addBox(itm, item) {
-    console.log(item);
+    // console.log(item);
     let data = {
       order_id: itm._id,
       monitor_id: item._id
     }
-    console.log(data)
+    // console.log(data)
     const dialogRef = this.dialog.open(ModalAddBoxComponent, {
       width: '600px',
       data: data,
@@ -113,11 +113,12 @@ export class MonitorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getMonitor();
     });
   }
 
   async toWaitPack(item) {
-    console.log(item);
+    // console.log(item);
     let body = {
       status: 'waitpack'
     }
@@ -129,7 +130,7 @@ export class MonitorComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         let res: any = await this.monitorService.changStatus(item._id, body);
-        console.log(res);
+        // console.log(res);
         if (res) {
           this.getMonitor();
         }
@@ -138,7 +139,7 @@ export class MonitorComponent implements OnInit {
   }
 
   async toWaitShipping(item) {
-    console.log(item);
+    // console.log(item);
     let body = {
       status: 'waitshipping'
     }
@@ -150,7 +151,7 @@ export class MonitorComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         let res: any = await this.monitorService.changStatus(item._id, body);
-        console.log(res);
+        // console.log(res);
         if (res) {
           this.getMonitor();
         }
@@ -159,7 +160,7 @@ export class MonitorComponent implements OnInit {
   }
 
   async toComplete(item) {
-    console.log(item);
+    // console.log(item);
     let body = {
       status: 'complete'
     }
@@ -171,7 +172,7 @@ export class MonitorComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         let res: any = await this.monitorService.changStatus(item._id, body);
-        console.log(res);
+        // console.log(res);
         if (res) {
           this.getMonitor();
         }
