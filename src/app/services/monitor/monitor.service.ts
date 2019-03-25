@@ -34,4 +34,7 @@ export class MonitorService {
     return this.http.get('http://13.250.99.131/api/monitors/' + id, { headers: this.authorizationHeader() }).toPromise();
 
   }
+  changStatus(id, body) {
+    return this.http.put('http://13.250.99.131/api/monitors/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+  }
 }
