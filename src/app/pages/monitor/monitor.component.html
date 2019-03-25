@@ -28,7 +28,7 @@
                   name="btnWithdrawal2">ทำการเบิกเเล้ว</button>
               </div>
             </div>
-            <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff">
+            <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order" *ngFor="let itm of item.orders"
                 name="colOrderStaff">
                 <span style="display: block" class="mt-2" name="itm.orderno">รหัสใบสั่งซื้อ: {{itm.orderno}}</span>
@@ -65,7 +65,7 @@
                   (click)="toWaitShipping(item2)">เเพ็คสินค้าเเล้ว</button>
               </div>
             </div>
-            <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff2">
+            <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff2">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
                 *ngFor="let itm2 of item2.orders;let j2 = index" name="colOrderStaff2">
                 <span style="display: block" class="mt-2" name="itm2.orderno">รหัสใบสั่งซื้อ: {{itm2.orderno}}</span>
@@ -133,7 +133,7 @@
                   (click)="toComplete(item3)">จัดส่งเเล้ว</button>
               </div>
             </div>
-            <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff3">
+            <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff3">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
                 *ngFor="let itm3 of item3.orders;let j3 = index" name="colOrderStaff3">
                 <span style="display: block" class="mt-2" name="itm3.orderno">รหัสใบสั่งซื้อ: {{itm3.orderno}}</span>
@@ -186,7 +186,7 @@
                 <h5 class="mb-0" name="item4.totalorderamount">รวมออเดอร์: {{item4.totalorderamount}}</h5>
               </div>
             </div>
-            <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff4">
+            <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff4">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
                 *ngFor="let itm4 of item4.orders;let j4 = index" name="colOrderStaff4">
                 <span style="display: block" class="mt-2" name="itm4.orderno">รหัสใบสั่งซื้อ: {{itm4.orderno}}</span>
