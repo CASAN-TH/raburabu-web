@@ -20,7 +20,7 @@
       style="height: 200px;">
       <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productall ;let i = index;">
         <div name="divCheckBox" class="col-2 ">
-          <mat-checkbox (change)="selectProduct($event,item,i)" name="nameCheckBox"></mat-checkbox>
+          <mat-checkbox (change)="selectProduct($event,item,i)" name="nameCheckBox" ></mat-checkbox>
         </div>
         <div name="nameProduct" class="col-6">
           <p name="product">{{item.name}}</p>
@@ -38,7 +38,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" name="mat-dialog-action">
-  <button mat-button [mat-dialog-close]="true" name="btnConfrim" (click)="confirmLabel()"
+  <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || this.chkProduck === false" (click)="confirmLabel()"
     cdkFocusInitial>ยืนยัน</button>
   <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
 </mat-dialog-actions>

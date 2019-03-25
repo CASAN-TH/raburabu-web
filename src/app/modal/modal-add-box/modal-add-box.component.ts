@@ -32,7 +32,7 @@ export class ModalAddBoxComponent implements OnInit {
     try {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
       this.dataLabel = res.data;
-      console.log(this.dataLabel )
+      console.log(this.dataLabel)
     } catch (error) {
 
     }
@@ -49,8 +49,10 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   selectProduct(e, item, i) {
+    this.chkProduck = e.checked
+    console.log(this.chkProduck);
     console.log(this.useProduct);
-    if (e.checked === true) {
+    if (this.chkProduck === true) {
       this.useProduct.push(item)
       this.dataLabel.productall[i].active = true
     } else {
@@ -58,7 +60,6 @@ export class ModalAddBoxComponent implements OnInit {
       console.log(j)
       this.useProduct.splice(j, 1);
       this.dataLabel.productall[i].active = false
-
     }
   }
   async confirmLabel() {
@@ -92,6 +93,8 @@ export class ModalAddBoxComponent implements OnInit {
       this.dataTeamOrder.orders[res].labels.push(data)
       console.log(this.dataTeamOrder);
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
+      this.thisDialogRef.close('clse');
+
       console.log(resp);
     } catch (error) {
       console.log(error);

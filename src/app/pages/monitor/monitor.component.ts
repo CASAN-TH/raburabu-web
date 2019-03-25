@@ -113,7 +113,8 @@ export class MonitorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getMonitor();
+        this.getMonitor();
+
     });
   }
 
