@@ -87,10 +87,21 @@ export class MonitorComponent implements OnInit {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
-  page(e) {
+  pageWaitPack(e, i, j) {
+    // console.log(i, j);
     if (e) {
       // console.log(e);
-      this.datalength = e.pageIndex;
+      this.waitpack[i].orders[j].page = e.pageIndex
+      console.log(this.waitpack);
+    }
+  }
+
+  pageWaitShipping(e, i, j) {
+    // console.log(i, j);
+    if (e) {
+      // console.log(e);
+      this.waitshipping[i].orders[j].page = e.pageIndex
+      console.log(this.waitshipping);
     }
   }
 
@@ -98,6 +109,7 @@ export class MonitorComponent implements OnInit {
     // console.log(item);
     this.router.navigate(["/order-report-detail", { id: item._id }]);
   }
+
   addBox(itm, item) {
     // console.log(item);
     let data = {
@@ -113,10 +125,7 @@ export class MonitorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getMonitor();
-
-      }
+      this.getMonitor();
     });
   }
 
