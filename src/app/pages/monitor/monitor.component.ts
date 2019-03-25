@@ -92,7 +92,7 @@ export class MonitorComponent implements OnInit {
     if (e) {
       // console.log(e);
       this.waitpack[i].orders[j].page = e.pageIndex
-      console.log(this.waitpack);
+      // console.log(this.waitpack);
     }
   }
 
@@ -101,7 +101,16 @@ export class MonitorComponent implements OnInit {
     if (e) {
       // console.log(e);
       this.waitshipping[i].orders[j].page = e.pageIndex
-      console.log(this.waitshipping);
+      // console.log(this.waitshipping);
+    }
+  }
+
+  pageComplete(e, i, j) {
+    // console.log(i, j);
+    if (e) {
+      // console.log(e);
+      this.complete[i].orders[j].page = e.pageIndex
+      // console.log(this.waitshipping);
     }
   }
 

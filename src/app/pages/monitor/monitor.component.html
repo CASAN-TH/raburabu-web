@@ -80,8 +80,9 @@
                   <span style="display: block" name="textOrderNoLabel" class="text-overflow">รหัสใบสั่งซื้อ:
                     {{itm2.labels[itm2.page ? itm2.page : 0]._id}}</span>
                   <span style="display: block" name="textCustomerLabel" class="text-overflow">ชื่อผู้สั่ง:
-                    {{itm2.labels[itm2.page ? itm2.page : 0].customer.firstname}}
-                    {{itm2.labels[itm2.page ? itm2.page : 0].customer.lastname}}</span>
+                    <span class="mr-2"> {{itm2.labels[itm2.page ? itm2.page : 0].customer.firstname}}</span>
+                    <span>{{itm2.labels[itm2.page ? itm2.page : 0].customer.lastname}}</span>
+                  </span>
                   <!-- <span style="display: block" class="mb-2" name="textAmountLabel">จำนวนสินค้า:
                     {{data[datalength].totalqty}} ชิ้น
                   </span> -->
@@ -142,14 +143,17 @@
                 </span>
                 <span style="display: block" class="mb-2" name="itm3.totalamount">รวม: {{itm3.totalamount}}</span>
                 <div class="border-top mt-2 min-label-height" *ngIf="itm3.labels.length > 0" name="divLabel2">
-                  <span style="display: block" class="mt-2" name="textTrackLabel2">เลขที่พัสดุ:
+                  <span style="display: block" class="mt-2" name="textTrackLabel2" class="text-overflow">เลขที่พัสดุ:
                     {{itm3.labels[itm3.page ? itm3.page : 0].trackno}}
                   </span>
-                  <span style="display: block" name="textOrderNoLabel2">รหัสใบสั่งซื้อ:
-                    {{data[datalength].orderno}}</span>
-                  <span style="display: block" name="textCustomerLabel2">ชื่อผู้สั่ง: {{data[datalength].name}}</span>
-                  <span style="display: block" class="mb-2" name="textAmountLabel2">จำนวนสินค้า:
-                    {{data[datalength].totalqty}} ชิ้น</span>
+                  <span style="display: block" name="textOrderNoLabel2" class="text-overflow">รหัสใบสั่งซื้อ:
+                    {{itm3.labels[itm3.page ? itm3.page : 0]._id}}</span>
+                  <span style="display: block" name="textCustomerLabel2" class="text-overflow"> ชื่อผู้สั่ง:
+                    <span class="mr-2"> {{itm3.labels[itm3.page ? itm3.page : 0].customer.firstname}}</span>
+                    <span>{{itm3.labels[itm3.page ? itm3.page : 0].customer.lastname}}</span>
+                  </span>
+                  <!-- <span style="display: block" class="mb-2" name="textAmountLabel2">จำนวนสินค้า:
+                    {{data[datalength].totalqty}} ชิ้น</span> -->
                 </div>
                 <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm3.labels.length < 1"
                   name="colNoLabel2">
@@ -173,7 +177,7 @@
   <mat-tab label="เสร็จสิ้น" name="tabComplete">
     <div class="row" name="rowComplete">
       <div class="col-12" *ngIf="complete && complete.length > 0" name="colComplete">
-        <div class="border-bt" *ngFor="let item4 of complete" name="divForComplete">
+        <div class="border-bt" *ngFor="let item4 of complete;let i4 = index" name="divForComplete">
           <div name="divComplete">
             <div class="row mt-3" name="rowTeamDetail4">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail4">
@@ -184,28 +188,34 @@
             </div>
             <div class="row mt-2 mb-3 scroll-x" name="rowOrderStaff4">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
-                *ngFor="let itm4 of item4.orders" name="colOrderStaff4">
+                *ngFor="let itm4 of item4.orders;let j4 = index" name="colOrderStaff4">
                 <span style="display: block" class="mt-2" name="itm4.orderno">รหัสใบสั่งซื้อ: {{itm4.orderno}}</span>
                 <span style="display: block" name="textName4">ชื่อผู้สั่ง:
                   <span class="mr-2" name="itm4.customer.firstname">{{itm4.customer.firstname}}</span>
                   <span name="itm4.customer.lastname">{{itm4.customer.lastname}}</span>
                 </span>
                 <span style="display: block" class="mb-2" name="itm4.totalamount">รวม: {{itm4.totalamount}}</span>
-                <div class="border-top mt-2 min-label-height" *ngIf="label.length > 0" name="divLabel3">
-                  <span style="display: block" class="mt-2" name="textTrackLabel3">เลขที่พัสดุ:
-                    {{data[datalength].trackno}}</span>
-                  <span style="display: block" name="textOrderNoLabel3">รหัสใบสั่งซื้อ:
-                    {{data[datalength].orderno}}</span>
-                  <span style="display: block" name="textCustomerLabel3">ชื่อผู้สั่ง: {{data[datalength].name}}</span>
-                  <span style="display: block" class="mb-2" name="textAmountLabel3">จำนวนสินค้า:
-                    {{data[datalength].totalqty}} ชิ้น</span>
+                <div class="border-top mt-2 min-label-height" *ngIf="itm4.labels.length > 0" name="divLabel3">
+                  <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel3">เลขที่พัสดุ:
+                    {{itm4.labels[itm4.page ? itm4.page : 0].trackno}}
+                  </span>
+                  <span style="display: block" name="textOrderNoLabel3" class="text-overflow">รหัสใบสั่งซื้อ:
+                    {{itm4.labels[itm4.page ? itm4.page : 0]._id}}
+                  </span>
+                  <span style="display: block" name="textCustomerLabel3" class="text-overflow">ชื่อผู้สั่ง:
+                    <span class="mr-2"> {{itm4.labels[itm4.page ? itm4.page : 0].customer.firstname}}</span>
+                    <span>{{itm4.labels[itm4.page ? itm4.page : 0].customer.lastname}}</span>
+                  </span>
+                  <!-- <span style="display: block" class="mb-2" name="textAmountLabel3">จำนวนสินค้า:
+                    {{data[datalength].totalqty}} ชิ้น</span> -->
                 </div>
-                <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="label.length < 1"
+                <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm4.labels.length < 1"
                   name="colNoComplete">
                   <span name="textNoLabel3">ยังไม่มีใบปะหน้ากล่อง</span>
                 </div>
-                <mat-paginator [length]="label.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
-                  class="full-width" (page)="pageEvent = $event;" (click)="page(pageEvent)" name="pagingLabel3">
+                <mat-paginator [length]="itm4.labels.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
+                  class="full-width" (page)="pageEvent = $event;" (click)="pageComplete(pageEvent,i4,j4)"
+                  name="pagingLabel3">
                 </mat-paginator>
               </div>
             </div>
