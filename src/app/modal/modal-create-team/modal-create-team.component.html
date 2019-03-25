@@ -1,25 +1,25 @@
-<div class="row">
-  <div class="col-12">
-    <mat-form-field class="example-full-width">
-      <input maxlength="3" class="uppercase" matInput placeholder="รหัสทีม" [(ngModel)]="codeteam"
+<div class="row" name="divRowCreateTeam">
+  <div class="col-12" name="divColKeyCodeteam" >
+    <mat-form-field class="example-full-width" name="mat-form-field-codeteam">
+      <input maxlength="3" class="uppercase" matInput placeholder="รหัสทีม" name="inputKeyCodeTeam" [(ngModel)]="codeteam"
         (ngModelChange)="uppercase(codeteam)">
     </mat-form-field>
   </div>
-  <div class="col-12">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="ชื่อทีม" [(ngModel)]="nameteam">
+  <div class="col-12" name="divColNameTeam">
+    <mat-form-field class="example-full-width" name="mat-form-field-nameteam">
+      <input matInput placeholder="ชื่อทีม" name="inputKeyNameTeam" [(ngModel)]="nameteam">
     </mat-form-field>
   </div>
-  <div class="col-12">
-    <mat-form-field class="example-full-width ">
-      <textarea class="heigth-textarea" #message maxlength="250" matInput placeholder="รายละเอียดทีม"
+  <div class="col-12" name="divColDetailTeam">
+    <mat-form-field class="example-full-width" name="mat-form-field-detail">
+      <textarea class="heigth-textarea" name="textAreaDetailTeam" #message maxlength="250" matInput placeholder="รายละเอียดทีม"
         [(ngModel)]="detailteam"></textarea>
-      <mat-hint align="end">{{message.value.length}} / 250</mat-hint>
+      <mat-hint align="end" name="showTextOnKey" >{{message.value.length}} / 250</mat-hint>
     </mat-form-field>
   </div>
-  <div class="col-12 text-right mt-2">
-    <button class="mr-2" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
-    <button class="sty-btn" mat-stroked-button color="accent" [disabled]="!codeteam||!nameteam||!detailteam"
+  <div class="col-12 text-right mt-2" name="divColBtn">
+    <button class="mr-2" mat-stroked-button color="accent" naem="btnCancel" (click)="cancel()">ยกเลิก</button>
+    <button class="sty-btn" mat-stroked-button color="accent" name="btnConfrim" [disabled]="!codeteam||!nameteam||!detailteam"
       (click)="save()">บันทึก</button>
 
   </div>

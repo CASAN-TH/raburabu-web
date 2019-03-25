@@ -1,28 +1,28 @@
-<h1>กรุณาเลือกทีม</h1>
-<mat-dialog-content class="mat-typography">
-  <div class="overflow-team">
-    <div class="row flex" *ngIf="approve && approve.length > 0">
-      <div class="col-12 col-md-4 col-lg-4 mb-3" *ngFor="let item of approve" (click)="selectItem(item)">
-        <mat-card class="example-card cursor-pointer border-card" style="box-shadow: none;">
-          <i class="material-icons position-check" *ngIf="selected === item">
+<h1 name="selectTeam" >กรุณาเลือกทีม</h1>
+<mat-dialog-content name="mat-dialog-content-selectTeam" class="mat-typography">
+  <div class="overflow-team" name="divSelectTeam" >
+    <div class="row flex" name="divRowSelectTeam" *ngIf="approve && approve.length > 0">
+      <div class="col-12 col-md-4 col-lg-4 mb-3" name="divNgForTeam" *ngFor="let item of approve" (click)="selectItem(item)">
+        <mat-card class="example-card cursor-pointer border-card" name="mat-card-Team" style="box-shadow: none;">
+          <i class="material-icons position-check" name="icon-check" *ngIf="selected === item">
             check_circle_outline
           </i>
           <mat-card-content>
-            <h2 class="text-center">ทีม</h2>
-            <h3 class="ellipsis">{{item.name}}</h3>
-            <p class="break ellipsis">{{item.detail}}</p>
+            <h2 name="team" class="text-center">ทีม</h2>
+            <h3 name="teamName" class="ellipsis">{{item.name}}</h3>
+            <p name="teamDetail" class="break ellipsis">{{item.detail}}</p>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
-    <div *ngIf="approve && approve.length === 0">
-      <h2 class="text-center no-data">ไม่มีทีม</h2>
+    <div name="divNoneTeam" *ngIf="approve && approve.length === 0">
+      <h2 name="noneTeam" class="text-center no-data">ไม่มีทีม</h2>
     </div>
   </div>
 
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button class="mr-2" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
-  <button class="sty-btn" mat-stroked-button color="accent" [disabled]="!selected" (click)="save()">บันทึก</button>
+<mat-dialog-actions align="end" name="mat-dialog-actions-btn">
+  <button class="mr-2" mat-stroked-button color="accent" name="btnCancel" (click)="cancel()">ยกเลิก</button>
+  <button class="sty-btn" mat-stroked-button color="accent" name="btnSave" [disabled]="!selected" (click)="save()">บันทึก</button>
 </mat-dialog-actions>
