@@ -49,7 +49,8 @@ export class ModalAddBoxComponent implements OnInit {
 
   }
   keyQty(e) {
-    this.keyDataQty = e.eventPhase
+    console.log(e);
+    this.keyDataQty = parseInt(e)
     console.log(this.keyDataQty);
   }
   selectProduct(e, item, i) {
@@ -59,9 +60,7 @@ export class ModalAddBoxComponent implements OnInit {
     if (this.chkProduck === true) {
       this.useProduct.push({
         name: item.name,
-        qty: item.qty,
-        qtyAll: this.keyDataQty ? this.keyDataQty : item.qtyAll
-
+        qty: this.keyDataQty
       })
       this.dataLabel.productall[i].active = true
     } else {
