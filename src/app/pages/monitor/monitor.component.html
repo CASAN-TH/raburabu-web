@@ -8,7 +8,7 @@
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail">
                 <h5 class="mb-0" name="textOrderNo">รหัสใบสั่งซื้อ: 110050308564</h5>
                 <h5 class="mb-0" name="item.team.teamname">ชื่อทีม: {{item.team.teamname}}</h5>
-                <h5 class="mb-0" name="item.team.totalorderamount">รวมออเดอร์: {{item.totalorderamount}}</h5>
+                <h5 class="mb-0" name="item.team.totalorderamount">รวมออเดอร์: {{item.totalorderamount | number}}</h5>
               </div>
               <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitWithdrawal">
@@ -35,7 +35,7 @@
                 <span style="display: block" name="textName">ชื่อผู้สั่ง:
                   <span class="mr-2" name="itm.customer.firstname">{{itm.customer.firstname}}</span>
                   <span name="itm.customer.lastname">{{itm.customer.lastname}}</span></span>
-                <span style="display: block" class="mb-2" name="itm.totalamount">รวม: {{itm.totalamount}}</span>
+                <span style="display: block" class="mb-2" name="itm.totalamount">รวม: {{itm.totalamount | number}}</span>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail2">
                 <h5 class="mb-0" name="textOrderNo2">รหัสใบสั่งซื้อ: 110050308564</h5>
                 <h5 class="mb-0" name="item2.team.teamname">ชื่อทีม: {{item2.team.teamname}}</h5>
-                <h5 class="mb-0" name="item2.totalorderamount">รวมออเดอร์: {{item2.totalorderamount}}</h5>
+                <h5 class="mb-0" name="item2.totalorderamount">รวมออเดอร์: {{item2.totalorderamount | number}}</h5>
               </div>
               <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitPack">
@@ -73,7 +73,7 @@
                   <span class="mr-2" name="itm2.customer.firstname">{{itm2.customer.firstname}}</span>
                   <span name="itm2.customer.lastname">{{itm2.customer.lastname}}</span>
                 </span>
-                <span style="display: block" class="mb-2" name="itm2.totalamount">รวม: {{itm2.totalamount}}</span>
+                <span style="display: block" class="mb-2" name="itm2.totalamount">รวม: {{itm2.totalamount | number}}</span>
                 <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel">
                   <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel">เลขที่พัสดุ:
                     {{itm2.labels[itm2.page ? itm2.page : 0].trackno}}</span>
@@ -125,7 +125,7 @@
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail3">
                 <h5 class="mb-0" name="textOrderNo3">รหัสใบสั่งซื้อ: 110050308564</h5>
                 <h5 class="mb-0" name="item3.team.teamname">ชื่อทีม: {{item3.team.teamname}}</h5>
-                <h5 class="mb-0" name="item3.team.totalorderamount">รวมออเดอร์: {{item3.totalorderamount}}</h5>
+                <h5 class="mb-0" name="item3.team.totalorderamount">รวมออเดอร์: {{item3.totalorderamount | number}}</h5>
               </div>
               <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitShipping">
@@ -141,7 +141,7 @@
                   <span class="mr-2" name="itm3.customer.firstname">{{itm3.customer.firstname}}</span>
                   <span name="itm3.customer.lastname">{{itm3.customer.lastname}}</span>
                 </span>
-                <span style="display: block" class="mb-2" name="itm3.totalamount">รวม: {{itm3.totalamount}}</span>
+                <span style="display: block" class="mb-2" name="itm3.totalamount">รวม: {{itm3.totalamount | number}}</span>
                 <div class="border-top mt-2 min-label-height" *ngIf="itm3.labels.length > 0" name="divLabel2">
                   <span style="display: block" class="mt-2" name="textTrackLabel2" class="text-overflow">เลขที่พัสดุ:
                     {{itm3.labels[itm3.page ? itm3.page : 0].trackno}}
@@ -183,7 +183,7 @@
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail4">
                 <h5 class="mb-0" name="textOrderNo4">รหัสใบสั่งซื้อ: 110050308564</h5>
                 <h5 class="mb-0" name="item4.team.teamname">ชื่อทีม: {{item4.team.teamname}}</h5>
-                <h5 class="mb-0" name="item4.totalorderamount">รวมออเดอร์: {{item4.totalorderamount}}</h5>
+                <h5 class="mb-0" name="item4.totalorderamount">รวมออเดอร์: {{item4.totalorderamount | number}}</h5>
               </div>
             </div>
             <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff4">
@@ -194,7 +194,7 @@
                   <span class="mr-2" name="itm4.customer.firstname">{{itm4.customer.firstname}}</span>
                   <span name="itm4.customer.lastname">{{itm4.customer.lastname}}</span>
                 </span>
-                <span style="display: block" class="mb-2" name="itm4.totalamount">รวม: {{itm4.totalamount}}</span>
+                <span style="display: block" class="mb-2" name="itm4.totalamount">รวม: {{itm4.totalamount | number}}</span>
                 <div class="border-top mt-2 min-label-height" *ngIf="itm4.labels.length > 0" name="divLabel3">
                   <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel3">เลขที่พัสดุ:
                     {{itm4.labels[itm4.page ? itm4.page : 0].trackno}}
