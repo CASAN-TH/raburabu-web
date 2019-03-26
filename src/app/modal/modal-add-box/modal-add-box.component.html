@@ -3,7 +3,7 @@
     <div name="divOnCol" class="col-12">
       <form name="formInput" class="example-form">
         <mat-form-field name="mat-form-field" class="example-full-width">
-          <span name="spanText" matPrefix>รหัสผัสดุ &nbsp;</span>
+          <span name="spanText" matPrefix>รหัสพัสดุ &nbsp;</span>
           <input type="tel" [(ngModel)]="trackno" name="keyTel" matInput>
         </mat-form-field>
       </form>
@@ -20,7 +20,8 @@
       style="height: 200px;">
       <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productall ;let i = index;">
         <div name="divCheckBox" class="col-2 ">
-          <mat-checkbox (change)="selectProduct($event,item,i)" name="nameCheckBox" ></mat-checkbox>
+          <mat-checkbox [disabled]="item.qtyAll === 0" (change)="selectProduct($event,item,i)" name="nameCheckBox">
+          </mat-checkbox>
         </div>
         <div name="nameProduct" class="col-6">
           <p name="product">{{item.name}}</p>
@@ -28,7 +29,9 @@
         <div name="divQty" class="col-4">
           <form name="formQty" class="example-form border-top-0">
             <mat-form-field name="mat-form-field-qty" class="example-full-width border-top-0">
-              <input [disabled]="item.active" name="keyQty" [(ngModel)]="item.qty" matInput placeholder="กรอกจำนวน">
+              <input [disabled]="item.active || item.qtyAll === 0" name="keyQty" (change)="keyQty($event)"
+                [(ngModel)]=" item.qtyAll === 0 ? 0 : item.qtyAll ? item.qtyAll : item.qty" matInput
+                placeholder="กรอกจำนวน">
             </mat-form-field>
           </form>
         </div>
@@ -38,7 +41,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" name="mat-dialog-action">
-  <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || this.chkProduck === false" (click)="confirmLabel()"
-    cdkFocusInitial>ยืนยัน</button>
+  <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || this.chkProduck === false"
+    (click)="confirmLabel()" cdkFocusInitial>ยืนยัน</button>
   <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
 </mat-dialog-actions>

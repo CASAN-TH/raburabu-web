@@ -9,6 +9,7 @@ import { ModalConfirmsComponent } from '../modal-confirms/modal-confirms.compone
   styleUrls: ['./modal-add-box.component.scss']
 })
 export class ModalAddBoxComponent implements OnInit {
+  keyDataQty: any;
   dataTeam: any;
   chkProduck: boolean = false
   trackno: any;
@@ -47,17 +48,28 @@ export class ModalAddBoxComponent implements OnInit {
     }
 
   }
-
+  keyQty(e) {
+    this.keyDataQty = e.eventPhase
+    console.log(this.keyDataQty);
+  }
   selectProduct(e, item, i) {
+    item.qty = parseInt(item.qty);
+    console.log(item);
     this.chkProduck = e.checked
     if (this.chkProduck === true) {
-      this.useProduct.push(item)
+      this.useProduct.push({
+        name: item.name,
+        qty: item.qty,
+        qtyAll: this.keyDataQty ? this.keyDataQty : item.qtyAll
+
+      })
       this.dataLabel.productall[i].active = true
     } else {
       let j = this.useProduct.findIndex(function (data) { return data.name === item.name })
       this.useProduct.splice(j, 1);
       this.dataLabel.productall[i].active = false
     }
+    console.log(this.useProduct);
   }
   async confirmLabel() {
     let order_id = this.data.order_id
@@ -85,6 +97,7 @@ export class ModalAddBoxComponent implements OnInit {
       }
       this.dataTeamOrder.orders[res].labels.push(data)
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
+      console.log(resp);
       this.thisDialogRef.close('clse');
     } catch (error) {
       console.log(error);
