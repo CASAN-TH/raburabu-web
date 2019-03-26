@@ -25,6 +25,14 @@ export class ManageMemberComponent implements OnInit {
   typeChart: any;
   dataChart: any;
   optionsChart: any;
+  colorChart: any = [
+    "#ff0000",
+    "#ffff00",
+    "#ff007f",
+    "#007fff",
+    "#00ff00"
+  ]
+  bgChart: any = "rgba(0,0,0,0)"
 
   constructor(
     private teameServicec: TeameServiceService,
@@ -59,35 +67,42 @@ export class ManageMemberComponent implements OnInit {
         {
           label: "แสงตะวัน",
           data: [20, 15, 14, 11, 20, 15, 14, 18, 23, 23],
-          backgroundColor: "rgba(0,0,0,0)",
-          borderColor: "#ff0000"
+          // backgroundColor: "rgba(0,0,0,0)",
+          // borderColor: "#ff0000"
         },
         {
           label: "จันทร์ฉาย",
           data: [31, 26, 14, 12, 31, 33, 18, 18, 40, 36],
-          backgroundColor: "rgba(0,0,0,0)",
-          borderColor: "#ffff00"
+          // backgroundColor: "rgba(0,0,0,0)",
+          // borderColor: "#ffff00"
         },
         {
           label: "สายรุ้ง",
           data: [30, 19, 10, 35, 28, 25, 25, 25, 35, 35],
-          backgroundColor: "rgba(0,0,0,0)",
-          borderColor: "#ff007f"
+          // backgroundColor: "rgba(0,0,0,0)",
+          // borderColor: "#ff007f"
         },
         {
           label: "ป.1",
           data: [39, 39, 39, 50, 50, 59, 64, 64, 64, 64, 64],
-          backgroundColor: "rgba(0,0,0,0)",
-          borderColor: "#007fff"
+          // backgroundColor: "rgba(0,0,0,0)",
+          // borderColor: "#007fff"
         },
         {
           label: "ป.5",
           data: [34, 34, 38, 33, 33, 57, 58, 54, 54, 54, 54],
-          backgroundColor: "rgba(0,0,0,0)",
-          borderColor: "#00ff00"
+          // backgroundColor: "rgba(0,0,0,0)",
+          // borderColor: "#00ff00"
         }
       ]
     };
+    let i = 0;
+    this.dataChart.datasets.forEach(data => {
+      this.dataChart.datasets[i].borderColor = this.colorChart[i];
+      this.dataChart.datasets[i].backgroundColor = this.bgChart;
+      console.log(data);
+      i++;
+    });
     this.optionsChart = {
       responsive: true,
       maintainAspectRatio: false
@@ -121,11 +136,7 @@ export class ManageMemberComponent implements OnInit {
       console.log(error)
     }
   }
-  // checkUser_id() {
-  //   this.statusWaitApprove.forEach(ch => {
-  //     console.log(ch);
-  //   })
-  // }
+
   async  approve(item) {
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
