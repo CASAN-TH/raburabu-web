@@ -29,8 +29,8 @@
         <div name="divQty" class="col-4">
           <form name="formQty" class="example-form border-top-0">
             <mat-form-field name="mat-form-field-qty" class="example-full-width border-top-0">
-              <input [disabled]="item.active || item.qtyAll === null" name="keyQty" (ngModelChange)="keyQty($event)"
-                [(ngModel)]=" item.qtyAll === null ? 0 : item.qtyAll ? item.qtyAll : item.qty" matInput
+              <input [disabled]="item.active || item.qtyAll === null" name="keyQty" (ngModelChange)="keyQty($event,i)"
+                [(ngModel)]="item.qtyAll === null ? 0 : item.qtyAll ? item.qtyAll : item.qty" matInput
                 placeholder="กรอกจำนวน">
             </mat-form-field>
           </form>
