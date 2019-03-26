@@ -51,14 +51,14 @@
               </div>
               <div class="col-4 text-right" name="ColSumOption"><span class="font-color" style="font-size: 13px"
                   name="it.qty">{{it.qty}}</span> <span class="font-color" name="mutiplePrice"> * </span>
-                <span style="font-size: 13px" class="font-color" name="item.price">{{item.price}}</span>
+                <span style="font-size: 13px" class="font-color" name="item.price">{{item.price | number}}</span>
               </div>
               <div class="col-4 text-center" name="colSumProd">
-                <span class="font-color" style="font-size: 13px" name="sumPrice">{{it.qty * item.price}}</span> </div>
+                <span class="font-color" style="font-size: 13px" name="sumPrice">{{it.qty * item.price | number}}</span> </div>
             </div>
           </div>
           <div class="col-8 text-right" name="colTextSum">รวม</div>
-          <div class="col-4 text-center" name="colSumAll">{{item.amount}}</div>
+          <div class="col-4 text-center" name="colSumAll">{{item.amount | number}}</div>
         </div>
         <div class="row mt-2" name="rowBorder">
           <div class="col-1" name="colBorder0"></div>
@@ -92,7 +92,7 @@
         <p class="ml-3 mt-3" name="sumText">รวม</p>
       </div>
       <div class="col-6 text-right" name="colSumPrice">
-        <p class="mr-3 mt-3" name="pSumPrice"> <span name="sumPrice">{{data.totalamount}}</span>
+        <p class="mr-3 mt-3" name="pSumPrice"> <span name="sumPrice">{{data.totalamount | number}}</span>
           <span name="textBaht">
             บาท</span>
         </p>

@@ -9,12 +9,14 @@ import { ModalConfirmsComponent } from '../modal-confirms/modal-confirms.compone
   styleUrls: ['./modal-add-box.component.scss']
 })
 export class ModalAddBoxComponent implements OnInit {
+  keyDataQty: any;
   dataTeam: any;
   chkProduck: boolean = false
   trackno: any;
   dataLabel: any;
   useProduct: Array<any> = [];
   dataTeamOrder: any;
+  protoData: any;
   constructor(
     private thisDialogRef: MatDialogRef<ModalConfirmsComponent>,
     @Inject(MAT_DIALOG_DATA) public data = {
@@ -31,6 +33,7 @@ export class ModalAddBoxComponent implements OnInit {
   async getDataLabel() {
     try {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
+      this.protoData = res.data;
       this.dataLabel = res.data;
       console.log(this.dataLabel)
     } catch (error) {
@@ -47,18 +50,34 @@ export class ModalAddBoxComponent implements OnInit {
     }
 
   }
+  async keyQty(e, i) {
+    // let res: any = await this.monitorService.getLabel(this.data.order_id);
+    // this.protoData = res.data;
+    if (e > this.protoData.productall[i].qty) {
+      this.dataLabel.productall[i].qty = this.protoData.productall[i].qty
+    } else {
+      this.keyDataQty = parseInt(e)
+    }
+  }
 
   selectProduct(e, item, i) {
+    item.qty = parseInt(item.qty);
+    console.log(item);
     this.chkProduck = e.checked
     if (this.chkProduck === true) {
-      this.useProduct.push(item)
+      this.useProduct.push({
+        name: item.name,
+        qty: this.keyDataQty
+      })
       this.dataLabel.productall[i].active = true
     } else {
       let j = this.useProduct.findIndex(function (data) { return data.name === item.name })
       this.useProduct.splice(j, 1);
       this.dataLabel.productall[i].active = false
     }
+    console.log(this.useProduct);
   }
+
   async confirmLabel() {
     let order_id = this.data.order_id
     this.dataTeamOrder = this.dataTeam
@@ -85,6 +104,7 @@ export class ModalAddBoxComponent implements OnInit {
       }
       this.dataTeamOrder.orders[res].labels.push(data)
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
+      console.log(resp);
       this.thisDialogRef.close('clse');
     } catch (error) {
       console.log(error);

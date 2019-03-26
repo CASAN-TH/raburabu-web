@@ -1,9 +1,9 @@
 .card-height {
-    height: 8vw !important;
+    height: 100px !important;
 }
 
 .icon {
-    font-size: 4vw !important;
+    font-size: 50px !important;
     color: #00ea00;
 }
 
@@ -46,4 +46,14 @@
 
 .false {
     color: red;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }

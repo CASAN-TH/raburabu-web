@@ -7,7 +7,7 @@
           <div class="col-12 col-md-6" name="divColKeyTel">
             <mat-form-field class="example-full-width" name="mat-form-field-keyTel">
               <input name="inputkeyTel" matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร"
-                [(ngModel)]="data.tel" formControlName="tel" required>
+                [(ngModel)]="data.tel" formControlName="tel" required (keyup)="checkNumber($event)">
             </mat-form-field>
           </div>
           <div name='divNone' class="col-12 col-md-6 d-none d-md-block"></div>

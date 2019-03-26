@@ -1,3 +1,4 @@
+import { GraphAllComponent } from './pages/graph-all/graph-all.component';
 import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
 import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: "admin-manage-team", component: AdminManageTeamComponent },
   { path: "order-report-detail", component: OrderReportDetailComponent },
   { path: "monitor", component: MonitorComponent },
-
+  { path: "graph-all", component: GraphAllComponent }
 ];
 
 @NgModule({

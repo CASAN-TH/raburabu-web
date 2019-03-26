@@ -55,6 +55,9 @@ export class SideBarComponent implements OnInit {
   onMonitor() {
     this.router.navigate(["/monitor"]);
   }
+  onGraph() {
+    this.router.navigate(["/graph-all"]);
 
+  }
 
 }
