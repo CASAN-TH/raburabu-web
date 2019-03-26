@@ -4,23 +4,26 @@
       <form [formGroup]="firstFormGroup" name="firstFormGroup" *ngFor="let item of dataBinding.option;let k = index">
         <ng-template name="ng-template-firstFormGroup" matStepLabel>{{item.name}}</ng-template>
         <div class="row" name="divRowValue">
-          <div name="divColValue" class="col-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index" (click)="select(itm,i,k)">
+          <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index"
+            (click)="select(itm,i,k)">
             <mat-card name="cardValue" class="example-card card-height pt-2 text-center">
-              <div name="colIcon" class="text-center col-md-3 d-none d-md-block">
-                <i name="iconCheck" class="material-icons icon icon-position" *ngIf="itm.active">
-                  check_circle_outline
-                </i>
-              </div>
-              <div name="colIconMd-none" class="col-12 d-md-none">
-                <i name="iconCheckMd-none" class="material-icons icon icon-position" *ngIf="itm.active">
-                  check_circle_outline
-                </i>
-              </div>
               <mat-card-content name="mat-card-content-name-value">
                 <p name="nameValue">
                   {{itm.name}}
                 </p>
               </mat-card-content>
+              <div class="row">
+                <div name="colIcon" class="col-12 text-center col-md-12">
+                  <i name="iconCheck" class="material-icons icon " *ngIf="itm.active">
+                    check_circle_outline
+                  </i>
+                </div>
+                <!-- <div name="colIconMd-none" class="col-12 text-center d-md-none">
+                  <i name="iconCheckMd-none" class="material-icons icon icon-position" *ngIf="itm.active">
+                    check_circle_outline
+                  </i>
+                </div> -->
+              </div>
 
             </mat-card>
           </div>
@@ -29,7 +32,8 @@
       </form>
     </mat-dialog-content>
     <mat-dialog-actions name="mat-dialog-actions-first" align="end">
-      <button name="btnNextFirst" mat-button matStepperNext (click)="next()" [disabled]="selectOption.length < 1">ถัดไป</button>
+      <button name="btnNextFirst" mat-button matStepperNext (click)="next()"
+        [disabled]="selectOption.length < 1">ถัดไป</button>
 
     </mat-dialog-actions>
   </mat-step>
@@ -51,7 +55,7 @@
                 [value]="!optionProd.qty ? 1 : optionProd.qty" formControlName="secondCtrl">
             </mat-form-field>
           </div>
-          <div name="divColNotUseNow2"  class="col-2 text-left">
+          <div name="divColNotUseNow2" class="col-2 text-left">
             <!-- <button mat-button class="border-add"> <span class="font-size">+</span> </button> -->
           </div>
         </div>

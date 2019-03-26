@@ -37,6 +37,7 @@ import { ModalAddBoxComponent } from './modal/modal-add-box/modal-add-box.compon
 import { ModalRemarkComponent } from './modal/modal-remark/modal-remark.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ChartModule } from 'angular2-chartjs';
+import { GraphAllComponent } from './pages/graph-all/graph-all.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -60,7 +61,8 @@ const apiSrvCfg = environment;
     OrderReportDetailComponent,
     MonitorComponent,
     ModalAddBoxComponent,
-    ModalRemarkComponent
+    ModalRemarkComponent,
+    GraphAllComponent
   ],
   imports: [
     BrowserModule,
