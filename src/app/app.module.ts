@@ -36,6 +36,7 @@ import { MonitorComponent } from './pages/monitor/monitor.component';
 import { ModalAddBoxComponent } from './modal/modal-add-box/modal-add-box.component';
 import { ModalRemarkComponent } from './modal/modal-remark/modal-remark.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ChartModule } from 'angular2-chartjs';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -78,6 +79,7 @@ const apiSrvCfg = environment;
     HttpClientModule,
     MatTabsModule,
     MatPaginatorModule,
+    ChartModule,
     AuthModule.forRoot(apiSrvCfg)
   ],
   entryComponents: [
