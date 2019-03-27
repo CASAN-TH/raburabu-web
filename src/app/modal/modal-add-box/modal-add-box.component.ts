@@ -16,6 +16,7 @@ export class ModalAddBoxComponent implements OnInit {
   dataLabel: any;
   useProduct: Array<any> = [];
   dataTeamOrder: any;
+  protoData: any;
   constructor(
     private thisDialogRef: MatDialogRef<ModalConfirmsComponent>,
     @Inject(MAT_DIALOG_DATA) public data = {
@@ -32,6 +33,7 @@ export class ModalAddBoxComponent implements OnInit {
   async getDataLabel() {
     try {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
+      this.protoData = res.data;
       this.dataLabel = res.data;
       console.log(this.dataLabel)
     } catch (error) {
@@ -48,13 +50,16 @@ export class ModalAddBoxComponent implements OnInit {
     }
 
   }
-  keyQty(e, item) {
-
-    console.log(e);
-    console.log(item)
-    // this.keyDataQty = parseInt(e)
-    // console.log(this.keyDataQty);
+  async keyQty(e, i) {
+    // let res: any = await this.monitorService.getLabel(this.data.order_id);
+    // this.protoData = res.data;
+    if (e > this.protoData.productall[i].qty) {
+      this.dataLabel.productall[i].qty = this.protoData.productall[i].qty
+    } else {
+      this.keyDataQty = parseInt(e)
+    }
   }
+
   selectProduct(e, item, i) {
     item.qty = parseInt(item.qty);
     console.log(item);
@@ -72,6 +77,7 @@ export class ModalAddBoxComponent implements OnInit {
     }
     console.log(this.useProduct);
   }
+
   async confirmLabel() {
     let order_id = this.data.order_id
     this.dataTeamOrder = this.dataTeam

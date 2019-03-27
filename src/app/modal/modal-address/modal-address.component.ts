@@ -55,6 +55,7 @@ export class ModalAddressComponent implements OnInit {
   async ngOnInit() {
     this.getAddress()
   }
+
   async getAddress() {
     if (this.address) {
       // console.log(this.address);
@@ -65,15 +66,23 @@ export class ModalAddressComponent implements OnInit {
     }
     this.cdRef.detectChanges();
   }
+
   next() {
     // console.log(this.data);
     this.dataCutomer.emit(this.data);
     this.dialogRef.close('clse');
-
   }
+
   exit() {
     this.dialogRef.close();
+  }
 
+  checkNumber(e) {
+    console.log(e);
+    let regEx = new RegExp(/^[0-9]+$/);
+    if (!(regEx.test(e.key) || e.key === 'Backspace' || e.key === 'Control' || e.key === 'Alt' || e.key === 'Shift' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+      this.data.tel = this.data.tel.substring(0, this.data.tel.length - 1);
+    }
   }
 
 
