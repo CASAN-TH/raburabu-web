@@ -83,8 +83,8 @@
     </thead>
     <tbody *ngFor="let item of dataReport.reportall.items">
       <tr>
-        <td scope="row">{{item.name}}
-          <div *ngFor="let itm of item.type">
+        <td scope="row "><span class="text-epils">- {{item.name}}</span>
+          <div class="ml-4" *ngFor="let itm of item.type">
             {{itm.name}}
           </div>
         </td>
@@ -117,32 +117,43 @@
       <tr>
         <th scope="col" width="120">ผู้รับ</th>
         <th scope="col" width="120">รายละเอียด</th>
-        <th scope="col" width="120">จำนวน</th>
+        <th scope="col" width="80">จำนวน</th>
       </tr>
     </thead>
     <tbody *ngFor="let item of dataReport.reportDetail">
       <tr>
-        <td scope="row">{{item.customer.firstname}} {{item.customer.lastname}}
+        <td scope="row "> <span class="text-epils">{{item.customer.firstname}}</span> <span
+            class="text-epils">{{item.customer.lastname}}</span>
         </td>
-        <td *ngFor="let itm of item.items">
-          -{{itm.name}}
-          <!-- <div>123</div> -->
-          <div class="ml-3" *ngFor="let it of itm.value">
-            {{it.name}}
+        <td>
+          <div class="row " *ngFor="let itm of item.items">
+            <div class="col-12 text-epils ">
+              - {{itm.name}}
+            </div>
+            <div class="col-12 ">
+              <div class="row " *ngFor="let it of itm.value">
+                <div class="col-12 ml-4 text-epils ">
+                  {{it.name}}
+                </div>
+              </div>
+            </div>
           </div>
         </td>
-        <td *ngFor="let itm of item.items">
+        <td>
+          <div class="row " *ngFor="let itm of item.items">
       <tr style="border-top: none;">
         <td style="border-top: none;"></td>
       </tr>
-      <div *ngFor="let it of itm.value">
+      <div class="col-12 " *ngFor="let it of itm.value">
         {{it.qty}}
       </div>
-      </td>
-      </tr>
-    </tbody>
+</div>
 
-  </table>
+</td>
+</tr>
+</tbody>
+
+</table>
 </div>
 <div class="row mb-3" name="divRowBtn">
   <div name="divColBtn" class="col-12 text-right">
