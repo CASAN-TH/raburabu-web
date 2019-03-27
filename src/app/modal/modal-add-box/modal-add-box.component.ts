@@ -48,10 +48,12 @@ export class ModalAddBoxComponent implements OnInit {
     }
 
   }
-  keyQty(e) {
+  keyQty(e, item) {
+
     console.log(e);
-    this.keyDataQty = parseInt(e)
-    console.log(this.keyDataQty);
+    console.log(item)
+    // this.keyDataQty = parseInt(e)
+    // console.log(this.keyDataQty);
   }
   selectProduct(e, item, i) {
     item.qty = parseInt(item.qty);

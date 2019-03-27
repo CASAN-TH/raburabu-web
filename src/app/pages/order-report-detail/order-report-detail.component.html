@@ -1,5 +1,5 @@
-<h1 name="headNameteam" *ngIf="dataReport && dataReport.teamname"> {{dataReport.teamname}} </h1>
-<div class="row mt-3 border-all" name="divReporstAll" *ngIf="dataReport && dataReport.reportall">
+<h1 name="headNameteam" *ngIf="dataReport && dataReport.teamname"> ทีม {{dataReport.teamname}} </h1>
+<!-- <div class="row mt-3 border-all" name="divReporstAll" *ngIf="dataReport && dataReport.reportall">
   <div name="divNameProduct" class="col-6 border-right border-bt text-center">
     <p name="nameProduct" style="font-weight: bold;" class="mt-2 mb-2">ชื่อสินค้า</p>
   </div>
@@ -69,6 +69,80 @@
     </div>
 
   </div>
+</div> -->
+<h3>ตารางรวมยอด</h3>
+
+<div class="table-responsive" *ngIf="dataReport && dataReport.reportall">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" width="120">ชื่อสินค้า</th>
+        <th scope="col" width="120">จำนวน</th>
+        <th scope="col" width="120">ราคา(ต่อหน่วย)</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of dataReport.reportall.items">
+      <tr>
+        <td scope="row">{{item.name}}
+          <div *ngFor="let itm of item.type">
+            {{itm.name}}
+          </div>
+        </td>
+        <td>
+      <tr style="border-top: none;">
+        <td style="border-top: none;"></td>
+      </tr>
+      <!-- <div>123</div> -->
+      <div *ngFor="let itm of item.type">
+        {{itm.qty}}
+      </div>
+      </td>
+      <td>{{item.price}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <th scope="col" width="120">รวม</th>
+      <th scope="col" width="120">{{dataReport.reportall.totalqty}}</th>
+      <th scope="col" width="120">{{dataReport.reportall.totalprice | number}}</th>
+
+    </tfoot>
+  </table>
+</div>
+
+<h3>ตารางลูกค้า</h3>
+
+<div class="table-responsive mt-4" *ngIf="dataReport && dataReport.reportDetail">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" width="120">ผู้รับ</th>
+        <th scope="col" width="120">รายละเอียด</th>
+        <th scope="col" width="120">จำนวน</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of dataReport.reportDetail">
+      <tr>
+        <td scope="row">{{item.customer.firstname}} {{item.customer.lastname}}
+        </td>
+        <td *ngFor="let itm of item.items">
+          -{{itm.name}}
+          <!-- <div>123</div> -->
+          <div class="ml-3" *ngFor="let it of itm.value">
+            {{it.name}}
+          </div>
+        </td>
+        <td *ngFor="let itm of item.items">
+      <tr style="border-top: none;">
+        <td style="border-top: none;"></td>
+      </tr>
+      <div *ngFor="let it of itm.value">
+        {{it.qty}}
+      </div>
+      </td>
+      </tr>
+    </tbody>
+
+  </table>
 </div>
 <div class="row mb-3" name="divRowBtn">
   <div name="divColBtn" class="col-12 text-right">
