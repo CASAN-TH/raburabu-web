@@ -23,3 +23,16 @@
 .mg-Left {
     margin-left: 17px !important;
 }
+
+.text-epils {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// .table td,
+// .table th {
+//     padding: .75rem;
+//     vertical-align: top;
+//     border-top: none;
+// }
