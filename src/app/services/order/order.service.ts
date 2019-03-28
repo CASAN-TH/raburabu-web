@@ -17,28 +17,28 @@ export class OrderService {
   }
 
   orderList() {
-    return this.http.get('http://13.250.99.131/api/orders', { headers: this.authorizationHeader() }).toPromise()
+    return this.http.get(environment.apiUrl + '/api/orders', { headers: this.authorizationHeader() }).toPromise()
   }
   getByIdOrderList(id) {
-    return this.http.get('http://13.250.99.131/api/orders/' + id, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.get(environment.apiUrl + '/api/orders/' + id, { headers: this.authorizationHeader() }).toPromise()
   }
 
   saveOrder(body) {
-    return this.http.post('http://13.250.99.131/api/orders', body, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.post(environment.apiUrl + '/api/orders', body, { headers: this.authorizationHeader() }).toPromise()
   }
   getOrderByUser(id) {
-    return this.http.get('http://13.250.99.131/api/order/user/' + id, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.get(environment.apiUrl + '/api/order/user/' + id, { headers: this.authorizationHeader() }).toPromise()
   }
   getOrder(id) {
-    return this.http.get('http://13.250.99.131/api/order/team/' + id, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.get(environment.apiUrl + '/api/order/team/' + id, { headers: this.authorizationHeader() }).toPromise()
   }
   deleteOrder(id) {
-    return this.http.delete('http://13.250.99.131/api/orders/' + id, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.delete(environment.apiUrl + '/api/orders/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
   editOrder(id, body) {
-    return this.http.put('http://13.250.99.131/api/orders/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.put(environment.apiUrl + '/api/orders/' + id, body, { headers: this.authorizationHeader() }).toPromise();
   }
   sendOrderAll(id) {
-    return this.http.put('http://13.250.99.131/api/order/sendorder/' + id, null, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.put(environment.apiUrl + '/api/order/sendorder/' + id, null, { headers: this.authorizationHeader() }).toPromise();
   }
 }

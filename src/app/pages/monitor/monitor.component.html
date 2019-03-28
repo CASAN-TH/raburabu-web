@@ -10,7 +10,8 @@
                 <h5 class="mb-0" name="item.team.teamname">ชื่อทีม: {{item.team.teamname}}</h5>
                 <h5 class="mb-0" name="item.team.totalorderamount">รวมออเดอร์: {{item.totalorderamount | number}}</h5>
               </div>
-              <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
+              <div *ngIf="user.roles[0]==='stockstaff'"
+                class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitWithdrawal">
                 <button mat-stroked-button color="accent" (click)="gotoOrderReport(item)" class="style-btn mr-2"
                   name="btnWithdrawalList">รายการเบิก</button>
@@ -60,12 +61,12 @@
                 <h5 class="mb-0" name="item2.team.teamname">ชื่อทีม: {{item2.team.teamname}}</h5>
                 <h5 class="mb-0" name="item2.totalorderamount">รวมออเดอร์: {{item2.totalorderamount | number}}</h5>
               </div>
-              <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
+              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitPack">
                 <button mat-stroked-button color="accent" class="style-btn" name="btnPack"
                   (click)="toWaitShipping(item2)">เเพ็คสินค้าเเล้ว</button>
               </div>
-              <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
+              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
                 name="colBtnWaitPack2">
                 <button mat-stroked-button color="accent" class="style-btn full-width" name="btnPack"
                   (click)="toWaitShipping(item2)">เเพ็คสินค้าเเล้ว</button>
@@ -102,7 +103,7 @@
                   class="full-width" (page)="pageEvent = $event;" (click)="pageWaitPack(pageEvent,i2,j2)"
                   name="pagingLabel">
                 </mat-paginator>
-                <div class="row" name="rowBtnLabel">
+                <div *ngIf="user.roles[0]==='packstaff'"  class="row" name="rowBtnLabel">
                   <div class="col-6 pl-0 pr-0" name="colBtnLabel">
                     <button mat-stroked-button color="accent" class="full-width btn-list-style"
                       name="btnPrint">พิมพ์</button>
@@ -134,12 +135,12 @@
                 <h5 class="mb-0" name="item3.team.teamname">ชื่อทีม: {{item3.team.teamname}}</h5>
                 <h5 class="mb-0" name="item3.team.totalorderamount">รวมออเดอร์: {{item3.totalorderamount | number}}</h5>
               </div>
-              <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
+              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitShipping">
                 <button mat-stroked-button color="accent" class="style-btn" name="btnShipping"
                   (click)="toComplete(item3)">จัดส่งเเล้ว</button>
               </div>
-              <div class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
+              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
                 name="colBtnWaitShipping">
                 <button mat-stroked-button color="accent" class="style-btn full-width" name="btnShipping"
                   (click)="toComplete(item3)">จัดส่งเเล้ว</button>
