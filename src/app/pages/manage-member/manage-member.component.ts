@@ -1,3 +1,4 @@
+import { ModalProfileComponent } from './../../modal/modal-profile/modal-profile.component';
 import { ModalConfirmsComponent } from './../../modal/modal-confirms/modal-confirms.component';
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
 import { Component, OnInit } from '@angular/core';
@@ -202,6 +203,19 @@ export class ManageMemberComponent implements OnInit {
     }
   }
   onSeeDetailMember(item) {
-    // console.log(item);
+    if (this.user !== 'user') {
+      let _id = item.member_id;
+      const dialogRef = this.dialog.open(ModalProfileComponent, {
+        width: '800px',
+        height: '500px',
+        data: _id,
+        disableClose: false
+      });
+      // dialogRef.componentInstance.dataCutomer.subscribe(data => {
+      // console.log(data);
+      // this.address = data;
+      // });
+    }
   }
+
 }

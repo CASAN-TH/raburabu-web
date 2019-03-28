@@ -1,9 +1,11 @@
+import { ModalProfileComponent } from './../../modal/modal-profile/modal-profile.component';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'ng6-md-auth';
 import { Router } from '@angular/router';
 import { SideBarService } from './side-bar.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment.prod';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-side-bar',
@@ -19,7 +21,9 @@ export class SideBarComponent implements OnInit {
     private userAuthSrv: AuthService,
     private router: Router,
     public sidenavService: SideBarService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public dialog: MatDialog,
+
   ) {
     this.userAuthSrv.isLoggedIn.subscribe(value => {
       this.userAuth = this.userAuthSrv.user;
@@ -58,6 +62,18 @@ export class SideBarComponent implements OnInit {
   onGraph() {
     this.router.navigate(["/graph-all"]);
 
+  }
+  onGetProfile() {
+    const dialogRef = this.dialog.open(ModalProfileComponent, {
+      width: '800px',
+      height: '500px',
+      // data: this.address,
+      disableClose: false
+    });
+    // dialogRef.componentInstance.dataCutomer.subscribe(data => {
+      // console.log(data);
+      // this.address = data;
+    // });
   }
 
 }

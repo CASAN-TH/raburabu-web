@@ -43,4 +43,7 @@ export class TeameServiceService {
   adminManageTeam(_id, body) {
     return this.http.put('http://13.250.99.131/api/teams/adminapporve/' + _id, body, { headers: this.authorizationHeader() }).toPromise();
   }
+  getUserById(id) {
+    return this.http.get('http://13.250.99.131/api/users/' + id, { headers: this.authorizationHeader() }).toPromise();
+  }
 }

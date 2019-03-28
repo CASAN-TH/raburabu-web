@@ -1,0 +1,32 @@
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-12 col-md-3 text-center" *ngIf="dataUser && dataUser.profileImageURL">
+      <img src="{{dataUser.profileImageURL}}" alt="">
+    </div>
+    <div class="col-12 col-md-9">
+      <h2 *ngIf="dataUser && dataUser.displayname">{{dataUser.displayname}}</h2>
+      <p *ngIf="dataUser && dataUser.email">{{dataUser.email}}</p>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <mat-tab-group>
+        <mat-tab label="ยอดขายประจำสัปดาห์">
+          <div class="row">
+            <div class="col-12">
+              <chart [type]="typeChart" [data]="dataChart" [options]="optionsChart" style="height: 300px;"></chart>
+
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="สินค้าขายดี">
+          <div class="row">
+            <div class="col-12">
+              <chart [type]="typeChartPie" [data]="dataChartPie" [options]="optionsChartPie" style="height: 300px;"></chart>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</mat-dialog-content>

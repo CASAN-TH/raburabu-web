@@ -12,7 +12,7 @@
   <div class="col-12 pr-0 pl-0">
     <mat-tab-group *ngIf="dataTeam && dataTeam.status==='approve'">
       <mat-tab label="รอการอนุมัติ" dynamicHeight *ngIf="user==='user' || user ==='owner'">
-        <div class="col-12 mt-3" *ngIf="dataTeam && dataTeam.status==='approve'" name="colMember">
+        <div class="col-12 mt-2 mb-2" *ngIf="dataTeam && dataTeam.status==='approve'" name="colMember">
           <!-- <h4 class="text-center" *ngIf="user==='user' || user ==='owner'" name="textWaitApprove">รอการอนุมัติ</h4> -->
           <div *ngIf="user ==='owner' &&  statusWaitApprove.length === 0" name="divNoConfirmMember">
             <p class="text-center no-data" name="TextNoConfirmMember">ไม่มีการยืนสมัครสมาชิก</p>
