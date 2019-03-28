@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
@@ -16,25 +17,28 @@ export class MonitorService {
     return headers;
   }
   sendOrderToMonitor(body) {
-    return this.http.post('http://13.250.99.131/api/monitors', body, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.post(environment.apiUrl + '/api/monitors', body, { headers: this.authorizationHeader() }).toPromise();
   }
   getMonitorAll() {
-    return this.http.get('http://13.250.99.131/api/monitors', { headers: this.authorizationHeader() }).toPromise();
+    return this.http.get(environment.apiUrl + '/api/monitors', { headers: this.authorizationHeader() }).toPromise();
   }
   getReportMonitorById(id) {
-    return this.http.get('http://13.250.99.131/api/monitor/report/' + id, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.get(environment.apiUrl + '/api/monitor/report/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
   getLabel(id) {
-    return this.http.get('http://13.250.99.131/api/monitor/labels/' + id, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.get(environment.apiUrl + '/api/monitor/labels/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
   saveLabel(id, body) {
-    return this.http.put('http://13.250.99.131/api/monitors/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.put(environment.apiUrl + '/api/monitors/' + id, body, { headers: this.authorizationHeader() }).toPromise();
   }
   getMonitor(id) {
-    return this.http.get('http://13.250.99.131/api/monitors/' + id, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.get(environment.apiUrl + '/api/monitors/' + id, { headers: this.authorizationHeader() }).toPromise();
 
   }
   changStatus(id, body) {
-    return this.http.put('http://13.250.99.131/api/monitors/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+    return this.http.put(environment.apiUrl + '/api/monitors/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+  }
+  getMonitorTeam(id) {
+    return this.http.get(environment.apiUrl + '/api/monitor/team/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
 }

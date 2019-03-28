@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -16,6 +17,6 @@ export class ProductsService {
     return headers;
   }
   order() {
-    return this.http.get('http://13.250.99.131/api/products', { headers: this.authorizationHeader() }).toPromise();
+    return this.http.get(environment.apiUrl + '/api/products', { headers: this.authorizationHeader() }).toPromise();
   }
 }

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
@@ -18,6 +19,6 @@ export class CustomerService {
     return headers;
   }
   createCustomer(body) {
-    return this.http.post('http://13.250.99.131/api/customers', body, { headers: this.authorizationHeader() }).toPromise()
+    return this.http.post(environment.apiUrl + '/api/customers', body, { headers: this.authorizationHeader() }).toPromise()
   }
 }

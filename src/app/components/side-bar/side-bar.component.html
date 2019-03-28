@@ -31,7 +31,7 @@
         <span class="ml-3">ยอดรวมการขาย</span>
       </a> -->
       <a mat-list-item (click)="onMonitor();sidenavService.closeNav();"
-        *ngIf="userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'admin'">
+        *ngIf="userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'admin' || userAuth.roles[0] === 'stockstaff' || userAuth.roles[0] === 'packstaff'">
         <img src="./../../../assets/images/list.png" class="img-list">
         <span class="ml-3">จัดการรายการขาย</span>
       </a>

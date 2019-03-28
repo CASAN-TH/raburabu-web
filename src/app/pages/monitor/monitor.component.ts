@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { ModalAddBoxComponent } from './../../modal/modal-add-box/modal-add-box.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,7 +13,7 @@ import { ModalConfirmsComponent } from 'src/app/modal/modal-confirms/modal-confi
   styleUrls: ['./monitor.component.scss']
 })
 export class MonitorComponent implements OnInit {
-
+  user: any;
   constructor(
     private router: Router,
     public dialog: MatDialog,
@@ -51,7 +52,43 @@ export class MonitorComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getMonitor();
+    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
+    this.user = user.data;
+    console.log(user);
+    if (this.user.roles[0] === 'owner') {
+      this.getMonitorTeam();
+    } else {
+      this.getMonitor();
+    }
+  }
+
+  async getMonitorTeam() {
+    try {
+      this.ngxSpiner.show()
+      this.waitwithdrawal = [];
+      this.waitpack = [];
+      this.waitshipping = [];
+      this.complete = [];
+      let res: any = await this.monitorService.getMonitorTeam(this.user.ref1);
+      console.log(res);
+      res.data.forEach(data => {
+        if (data.status === "waitwithdrawal") {
+          this.waitwithdrawal.push(data);
+        }
+        if (data.status === "waitpack") {
+          this.waitpack.push(data)
+        }
+        if (data.status === "waitshipping") {
+          this.waitshipping.push(data)
+        }
+        if (data.status === "complete") {
+          this.complete.push(data)
+        }
+      });
+      this.ngxSpiner.hide();
+    } catch (error) {
+
+    }
   }
 
   async getMonitor() {
