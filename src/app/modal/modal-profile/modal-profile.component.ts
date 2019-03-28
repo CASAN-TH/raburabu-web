@@ -2,6 +2,7 @@ import { environment } from './../../../environments/environment.prod';
 import { TeameServiceService } from './../../services/teams-service/teame-service.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-modal-profile',
@@ -20,22 +21,20 @@ export class ModalProfileComponent implements OnInit {
   constructor(
     private teamService: TeameServiceService,
     private thisDialogRef: MatDialogRef<ModalProfileComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
+    this.spinner.show();
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.user = user.data;
     console.log(this.data);
-    this.chartData();
-    this.chartPieData();
     if (this.data) {
       this.getUser();
     } else {
       this.getMe();
-
     }
-
   }
 
   async getMe() {
@@ -43,8 +42,12 @@ export class ModalProfileComponent implements OnInit {
       let res: any = await this.teamService.me();
       this.dataUser = res.data;
       console.log(res);
+      this.chartData();
+      this.chartPieData();
+      this.spinner.hide();
     } catch (error) {
       console.log(error);
+      this.spinner.hide();
     }
   }
   async getUser() {
@@ -52,8 +55,12 @@ export class ModalProfileComponent implements OnInit {
       let res: any = await this.teamService.getUserById(this.data);
       this.dataUser = res.data;
       console.log(res);
+      this.chartData();
+      this.chartPieData();
+      this.spinner.hide();
     } catch (error) {
       console.log(error);
+      this.spinner.hide();
     }
   }
   chartData() {
