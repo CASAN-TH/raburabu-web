@@ -26,7 +26,9 @@ export class ModalProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.show();
+    }, 1);
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.user = user.data;
     console.log(this.data);
@@ -43,8 +45,6 @@ export class ModalProfileComponent implements OnInit {
       this.dataUser = res.data;
       console.log(res);
       this.chartData();
-      this.chartPieData();
-      this.spinner.hide();
     } catch (error) {
       console.log(error);
       this.spinner.hide();
@@ -56,8 +56,6 @@ export class ModalProfileComponent implements OnInit {
       this.dataUser = res.data;
       console.log(res);
       this.chartData();
-      this.chartPieData();
-      this.spinner.hide();
     } catch (error) {
       console.log(error);
       this.spinner.hide();
@@ -104,6 +102,7 @@ export class ModalProfileComponent implements OnInit {
       responsive: true,
       maintainAspectRatio: false
     };
+    this.chartPieData();
   }
   chartPieData() {
     this.typeChartPie = 'pie';   ////// สามารถกำหนดเป็น 'line','bar','radar','pie','doughnut','polarArea','bubble','scatter'
@@ -121,5 +120,6 @@ export class ModalProfileComponent implements OnInit {
       responsive: true,
       maintainAspectRatio: false
     };
+    this.spinner.hide();
   }
 }
