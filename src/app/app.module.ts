@@ -96,8 +96,8 @@ const apiSrvCfg = environment;
     ModalConfirmsComponent,
     ModalAddBoxComponent,
     ModalRemarkComponent,
-    ModalProfileComponent
-
+    ModalProfileComponent,
+    ModalMaxBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
