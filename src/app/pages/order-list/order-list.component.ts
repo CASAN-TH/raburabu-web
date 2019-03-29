@@ -91,7 +91,7 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
-      // console.log(this.dataorder)
+      console.log(this.dataorder)
     } catch (error) {
       // console.log(error)
     }
@@ -193,6 +193,7 @@ export class OrderListComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(async result => {
           this.dataOrderAll.forEach(total => {
+            console.log(total);
             tot += total.totalamount;
             dataOrder.push({
               customer: {
@@ -200,7 +201,9 @@ export class OrderListComponent implements OnInit {
                 lastname: total.customer.lastname,
                 tel: total.customer.tel,
                 address: total.customer.address[0]
-              }, items: total.items,
+              },
+              orderno: total.orderno,
+              items: total.items,
               totalamount: total.totalamount,
               user_id: total.user_id,
               paymenttype: total.paymenttype,

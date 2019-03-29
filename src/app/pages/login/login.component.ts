@@ -37,14 +37,20 @@ export class LoginComponent implements OnInit {
       let res: any = await this.teameService.me();
       window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
       console.log(res.data.roles[0]);
-      if (res.data.roles[0] === 'stockstaff' || res.data.roles[0] === 'packstaff') {
+      if (res.data.roles[0] === 'stockstaff') {
         console.log('1');
         this.router.navigate(["/monitor"]);
-      } else if (res.data.ref1) {
+      }
+      if (res.data.roles[0] === 'packstaff') {
+        console.log('1');
+        this.router.navigate(["/monitor"]);
+      }
+      if (res.data.ref1) {
         console.log('2')
         this.router.navigate(["/manage-member"]);
 
-      } else if (this.userAuth.user) {
+      }
+      if (res.data.roles[0] === 'user') {
         console.log('3');
         this.router.navigate(["/home"]);
 
