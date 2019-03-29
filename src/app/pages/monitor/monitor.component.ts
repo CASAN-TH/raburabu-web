@@ -54,7 +54,7 @@ export class MonitorComponent implements OnInit {
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     this.user = user.data;
-    console.log(user);
+    // console.log(user);
     if (this.user.roles[0] === 'owner') {
       this.getMonitorTeam();
     } else {
@@ -156,8 +156,13 @@ export class MonitorComponent implements OnInit {
     this.router.navigate(["/order-report-detail", { id: item._id }]);
   }
 
-  addBox(itm, item) {
+  async addBox(itm, item) {
     // console.log(item);
+    let res: any = await this.monitorService.getLabel(itm._id);
+    res.data.productall.forEach(dataQty => {
+      console.log(dataQty)
+    });
+    console.log(res);
     let data = {
       order_id: itm._id,
       monitor_id: item._id
@@ -218,7 +223,6 @@ export class MonitorComponent implements OnInit {
       }
     });
   }
-
   async toComplete(item) {
     // console.log(item);
     let body = {
@@ -238,6 +242,8 @@ export class MonitorComponent implements OnInit {
         }
       }
     });
+
+
   }
 
 

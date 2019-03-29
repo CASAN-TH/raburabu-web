@@ -1,18 +1,18 @@
 <div class="row" name="divRowCreateTeam">
   <div class="col-12" name="divColKeyCodeteam" >
     <mat-form-field class="example-full-width" name="mat-form-field-codeteam">
-      <input maxlength="3" class="uppercase" matInput placeholder="รหัสทีม" name="inputKeyCodeTeam" [(ngModel)]="codeteam"
+      <input maxlength="3" class="uppercase" matInput placeholder="กรอกรหัสทีมสามตัวอักษร" name="inputKeyCodeTeam" [(ngModel)]="codeteam"
         (ngModelChange)="uppercase(codeteam)">
     </mat-form-field>
   </div>
   <div class="col-12" name="divColNameTeam">
     <mat-form-field class="example-full-width" name="mat-form-field-nameteam">
-      <input matInput placeholder="ชื่อทีม" name="inputKeyNameTeam" [(ngModel)]="nameteam">
+      <input matInput placeholder="กรอกชื่อทีม" name="inputKeyNameTeam" [(ngModel)]="nameteam">
     </mat-form-field>
   </div>
   <div class="col-12" name="divColDetailTeam">
     <mat-form-field class="example-full-width" name="mat-form-field-detail">
-      <textarea class="heigth-textarea" name="textAreaDetailTeam" #message maxlength="250" matInput placeholder="รายละเอียดทีม"
+      <textarea class="heigth-textarea" name="textAreaDetailTeam" #message maxlength="250" matInput placeholder="กรอกรายละเอียดทีม"
         [(ngModel)]="detailteam"></textarea>
       <mat-hint align="end" name="showTextOnKey" >{{message.value.length}} / 250</mat-hint>
     </mat-form-field>

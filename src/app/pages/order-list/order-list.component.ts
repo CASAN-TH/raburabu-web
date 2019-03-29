@@ -91,7 +91,7 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
-      // console.log(this.dataorder)
+      console.log(this.dataorder)
     } catch (error) {
       // console.log(error)
     }
@@ -185,7 +185,10 @@ export class OrderListComponent implements OnInit {
       try {
         const dialogRef = this.dialog.open(ModalConfirmsComponent, {
           width: '400px',
-          data: { message: "ต้องการส่งใบสั่งซื้อหรือไม่?" },
+          data: {
+            title: 'ยืนยันการส่งใบสั่งซื้อ',
+            message: "ต้องการส่งใบสั่งซื้อหรือไม่?"
+          },
           disableClose: true
         });
         let tot = 0
@@ -193,6 +196,7 @@ export class OrderListComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(async result => {
           this.dataOrderAll.forEach(total => {
+            console.log(total);
             tot += total.totalamount;
             dataOrder.push({
               customer: {
@@ -200,7 +204,9 @@ export class OrderListComponent implements OnInit {
                 lastname: total.customer.lastname,
                 tel: total.customer.tel,
                 address: total.customer.address[0]
-              }, items: total.items,
+              },
+              orderno: total.orderno,
+              items: total.items,
               totalamount: total.totalamount,
               user_id: total.user_id,
               paymenttype: total.paymenttype,
@@ -210,7 +216,8 @@ export class OrderListComponent implements OnInit {
             let sendOrder: any = {
               team: {
                 team_id: this.teamID,
-                teamname: this.dataTeam.name
+                teamname: this.dataTeam.name,
+                codeteam: this.dataTeam.codeteam
               },
               orders: dataOrder,
               status: 'waitwithdrawal',

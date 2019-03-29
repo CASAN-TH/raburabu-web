@@ -39,6 +39,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ChartModule } from 'angular2-chartjs';
 import { GraphAllComponent } from './pages/graph-all/graph-all.component';
 import { ModalProfileComponent } from './modal/modal-profile/modal-profile.component';
+import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -64,7 +65,8 @@ const apiSrvCfg = environment;
     ModalAddBoxComponent,
     ModalRemarkComponent,
     GraphAllComponent,
-    ModalProfileComponent
+    ModalProfileComponent,
+    ModalMaxBoxComponent
   ],
   imports: [
     BrowserModule,
