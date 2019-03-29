@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    environment: "dev",
+    environment: "test",
     appName: "raburabu-web",
-    apiUrl: "13.229.129.48"
+    apiUrl: "http://54.251.134.2"
 };
