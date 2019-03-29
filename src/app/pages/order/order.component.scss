@@ -102,12 +102,23 @@ mat-sidenav-content .container {
 
 .princing-item:hover {
     transform: scale(1.05);
-  }
+}
+
   .princing-item:hover .deco-layer--1 {
     -webkit-transform: translate3d(15px, 0, 0);
     transform: translate3d(15px, 0, 0);
-  }
-  .princing-item:hover .deco-layer--2 {
+}
+
+.princing-item:hover .deco-layer--2 {
     -webkit-transform: translate3d(-15px, 0, 0);
     transform: translate3d(-15px, 0, 0);
-  }
+}
+
+.scroll-y {
+    overflow-y: auto;
+}
+
+// ::-webkit-scrollbar { 
+//     display: none; 
+// }
+
