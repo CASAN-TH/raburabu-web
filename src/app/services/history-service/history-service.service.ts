@@ -11,8 +11,7 @@ export class HistoryServiceService {
   constructor(public http: HttpClient, ) { }
 
   private authorizationHeader() {
-    const token = window.localStorage.getItem('token@raburabu-web-dev');
-    // console.log(token);
+    const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     return headers;
   }

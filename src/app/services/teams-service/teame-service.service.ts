@@ -13,7 +13,6 @@ export class TeameServiceService {
   private authorizationHeader() {
     // const token = window.localStorage.getItem('token@raburabu-web-dev');
     const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
-    // console.log(token);
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     return headers;
   }
