@@ -3,6 +3,7 @@ import { TeameServiceService } from './../../services/teams-service/teame-servic
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HistoryServiceService } from 'src/app/services/history-service/history-service.service';
 
 @Component({
   selector: 'app-modal-profile',
@@ -23,6 +24,7 @@ export class ModalProfileComponent implements OnInit {
     private thisDialogRef: MatDialogRef<ModalProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public spinner: NgxSpinnerService,
+    private historyService: HistoryServiceService
   ) { }
 
   ngOnInit() {
@@ -30,7 +32,7 @@ export class ModalProfileComponent implements OnInit {
       this.spinner.show();
     }, 1);
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    this.user = user.data;
+    // this.user = user.data;
     console.log(this.data);
     if (this.data) {
       this.getUser();
@@ -43,7 +45,8 @@ export class ModalProfileComponent implements OnInit {
     try {
       let res: any = await this.teamService.me();
       this.dataUser = res.data;
-      console.log(res);
+      // console.log(res);
+      this.getHistory(res.data._id)
       this.chartData();
     } catch (error) {
       console.log(error);
@@ -54,13 +57,19 @@ export class ModalProfileComponent implements OnInit {
     try {
       let res: any = await this.teamService.getUserById(this.data);
       this.dataUser = res.data;
-      console.log(res);
+      // console.log(res);
+      this.getHistory(res.data._id)
       this.chartData();
     } catch (error) {
       console.log(error);
       this.spinner.hide();
     }
   }
+  async getHistory(_id) {
+    let res: any = await this.historyService.getHistory(_id);
+    console.log(res);
+  }
+
   chartData() {
     this.typeChart = 'line';   ////// สามารถกำหนดเป็น 'line','bar','radar','pie','doughnut','polarArea','bubble','scatter'
     this.dataChart = {
