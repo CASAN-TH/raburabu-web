@@ -1,7 +1,12 @@
 <div class="content" name="divContent">
     <div class="row mt-5" name="rowLogin">
-        <div class="col-md-7 col-sm-12" name="colImage">
-            <img class="cover" name="image" src="http://comunytek.com/wp-content/uploads/2017/03/Microservices.png">
+        <div class="col-md-7 col-sm-12 mb-3" name="colImage">
+            <div style="display:block; width: 100%; max-width: 500px;" >
+                <slideshow [imageUrls]="images" [height]="'350px'" [showArrows]="false"
+                    [autoPlay]="true" [autoPlayInterval]="5000" [backgroundSize]="'cover'" [showDots]="true"
+                    [dotColor]="'#010101'" [lazyLoad]="true" [autoPlayWaitForLazyLoad]="true" [hideOnNoSlides]="true">
+                </slideshow>
+            </div>
         </div>
         <div class="col-md-5 col-sm-12" name="colLogin">
             <auth-login></auth-login>
