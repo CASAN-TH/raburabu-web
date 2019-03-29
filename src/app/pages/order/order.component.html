@@ -2,9 +2,13 @@
   <div class="col-6 pl-1 pr-1" name="colLeft">
     <div class="border-order" style="width: 100%;height: 100%;" name="divProd">
       <div class="row pl-4 pr-3" name="rowImageProd">
-        <div class="col-4 mt-2 pr-0 pl-0" style="display: inline;" *ngFor="let item of prodData"
-          (click)="openmodal(item)" name="colImageProd">
+        <div class="col-4 mt-2 pr-0 pl-0 cursor-pointer full-width" style="display: inline;"
+          *ngFor="let item of prodData" (click)="openmodal(item)" name="colImageProd">
           <img class="img-prod-style" [src]="item.image" name="imageProd">
+          <div class="ellipsis bottom-left" style="background-color: rgba(0, 0, 0, 0.5);width: 95%">
+            <p class="ml-1 text-prod mb-0 mt-1">ชื่อ: {{item.name}}</p>
+            <p class="ml-1 text-prod mb-1">ราคา: {{item.price}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -54,7 +58,8 @@
                 <span style="font-size: 13px" class="font-color" name="item.price">{{item.price | number}}</span>
               </div>
               <div class="col-4 text-center" name="colSumProd">
-                <span class="font-color" style="font-size: 13px" name="sumPrice">{{it.qty * item.price | number}}</span> </div>
+                <span class="font-color" style="font-size: 13px" name="sumPrice">{{it.qty * item.price | number}}</span>
+              </div>
             </div>
           </div>
           <div class="col-8 text-right" name="colTextSum">รวม</div>
