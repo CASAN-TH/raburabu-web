@@ -69,7 +69,45 @@ mat-sidenav-content .container {
     bottom: 2px;
 }
 
-.text-prod{
-    color: white;
-    font-size: 10px;
+.text-name-prod{
+    color: rgb(0, 0, 160);
+    font-size: 14px;
 }
+
+.text-price-prod{
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.border-prod {
+    border: solid 1px lightgray;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.border-text{
+    border-top: solid 1px lightgray;
+}
+
+.border-prod:hover {
+    border: solid 1px rgb(0, 0, 160);
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.princing-item:hover {
+    transform: scale(1.05);
+  }
+  .princing-item:hover .deco-layer--1 {
+    -webkit-transform: translate3d(15px, 0, 0);
+    transform: translate3d(15px, 0, 0);
+  }
+  .princing-item:hover .deco-layer--2 {
+    -webkit-transform: translate3d(-15px, 0, 0);
+    transform: translate3d(-15px, 0, 0);
+  }

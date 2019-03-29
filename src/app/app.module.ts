@@ -35,11 +35,12 @@ import { OrderReportDetailComponent } from './pages/order-report-detail/order-re
 import { MonitorComponent } from './pages/monitor/monitor.component';
 import { ModalAddBoxComponent } from './modal/modal-add-box/modal-add-box.component';
 import { ModalRemarkComponent } from './modal/modal-remark/modal-remark.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ChartModule } from 'angular2-chartjs';
 import { GraphAllComponent } from './pages/graph-all/graph-all.component';
 import { ModalProfileComponent } from './modal/modal-profile/modal-profile.component';
 import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.component';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -86,7 +87,8 @@ const apiSrvCfg = environment;
     MatTabsModule,
     MatPaginatorModule,
     ChartModule,
-    AuthModule.forRoot(apiSrvCfg)
+    AuthModule.forRoot(apiSrvCfg),
+    SlideshowModule
   ],
   entryComponents: [
     ModalCreateTeamComponent,
