@@ -194,7 +194,7 @@ export class MonitorComponent implements OnInit {
 
     }
 
-    if ((QtyData === null && sumQty === 0)) {
+    if ((QtyData === null && sumQty === 0) || sumQty === 0) {
       let data = {
         order_id: itm._id,
         monitor_id: item._id
