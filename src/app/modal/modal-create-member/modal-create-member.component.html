@@ -1,16 +1,17 @@
-<h1 name="selectTeam" >กรุณาเลือกทีม</h1>
+<h1 name="selectTeam">กรุณาเลือกทีม</h1>
 <mat-dialog-content name="mat-dialog-content-selectTeam" class="mat-typography">
-  <div class="overflow-team" name="divSelectTeam" >
+  <div class="overflow-team" name="divSelectTeam">
     <div class="row flex" name="divRowSelectTeam" *ngIf="approve && approve.length > 0">
-      <div class="col-12 col-md-4 col-lg-4 mb-3" name="divNgForTeam" *ngFor="let item of approve" (click)="selectItem(item)">
+      <div class="col-12 col-md-4 col-lg-4 mb-3" name="divNgForTeam" *ngFor="let item of approve"
+        (click)="selectItem(item)">
         <mat-card class="example-card cursor-pointer border-card" name="mat-card-Team" style="box-shadow: none;">
           <i class="material-icons position-check" name="icon-check" *ngIf="selected === item">
             check_circle_outline
           </i>
           <mat-card-content>
-            <h2 name="team" class="text-center">ทีม</h2>
-            <h3 name="teamName" class="ellipsis">{{item.name}}</h3>
-            <p name="teamDetail" class="break ellipsis">{{item.detail}}</p>
+            <!-- <h2 name="team" class="text-center">ทีม</h2> -->
+            <h3 name="teamName" class="ellipsis mb-1"> <span>ทีม: </span> <span>{{item.name}}</span></h3>
+            <p name="teamDetail" class="break ellipsis"><span style="color: gray">รายละเอียด: </span> <span style="color: gray">{{item.detail}}</span></p>
           </mat-card-content>
         </mat-card>
       </div>
@@ -24,5 +25,6 @@
 
 <mat-dialog-actions align="end" name="mat-dialog-actions-btn">
   <button class="mr-2" mat-stroked-button color="accent" name="btnCancel" (click)="cancel()">ยกเลิก</button>
-  <button class="sty-btn" mat-stroked-button color="accent" name="btnSave" [disabled]="!selected" (click)="save()">บันทึก</button>
+  <button class="sty-btn" mat-stroked-button color="accent" name="btnSave" [disabled]="!selected"
+    (click)="save()">บันทึก</button>
 </mat-dialog-actions>

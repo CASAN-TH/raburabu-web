@@ -1,3 +1,4 @@
+import { ModalMaxBoxComponent } from './../../modal/modal-max-box/modal-max-box.component';
 import { environment } from './../../../environments/environment';
 import { ModalAddBoxComponent } from './../../modal/modal-add-box/modal-add-box.component';
 import { Component, OnInit } from '@angular/core';
@@ -54,7 +55,7 @@ export class MonitorComponent implements OnInit {
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     this.user = user.data;
-    console.log(user);
+    // console.log(user);
     if (this.user.roles[0] === 'owner') {
       this.getMonitorTeam();
     } else {
@@ -156,25 +157,64 @@ export class MonitorComponent implements OnInit {
     this.router.navigate(["/order-report-detail", { id: item._id }]);
   }
 
-  addBox(itm, item) {
+  async addBox(itm, item) {
     // console.log(item);
-    let data = {
-      order_id: itm._id,
-      monitor_id: item._id
-    }
-    // console.log(data)
-    const dialogRef = this.dialog.open(ModalAddBoxComponent, {
-      width: '600px',
-      data: data,
-      height: '400px',
-      disableClose: false
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getMonitor();
+    let QtyData: any;
+    let sumQty = 0;
+    let res: any = await this.monitorService.getLabel(itm._id);
+    console.log(res);
+    res.data.productall.forEach(dataQty => {
+      QtyData = dataQty.qtyAll;
+      console.log(dataQty.qtyAll)
+      if (dataQty.qtyAll) {
+        console.log(dataQty.qtyAll);
+        sumQty += dataQty.qtyAll === null ? 0 : dataQty.qtyAll
       }
     });
+    console.log(QtyData);
+    console.log(sumQty)
+    if (QtyData === undefined || sumQty > 0) {
+      let data = {
+        order_id: itm._id,
+        monitor_id: item._id
+      }
+      // console.log(data)
+      const dialogRef = this.dialog.open(ModalAddBoxComponent, {
+        width: '600px',
+        data: data,
+        height: '400px',
+        disableClose: false
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.getMonitor();
+        }
+      });
+
+    }
+
+    if ((QtyData === null && sumQty === 0) || sumQty === 0) {
+      let data = {
+        order_id: itm._id,
+        monitor_id: item._id
+      }
+      const dialogRef = this.dialog.open(ModalMaxBoxComponent, {
+        width: '600px',
+        data: data,
+        height: '400px',
+        disableClose: false
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.getMonitor();
+        }
+      });
+    }
+
+
+
   }
 
   async toWaitPack(item) {
@@ -218,7 +258,6 @@ export class MonitorComponent implements OnInit {
       }
     });
   }
-
   async toComplete(item) {
     // console.log(item);
     let body = {
@@ -238,6 +277,8 @@ export class MonitorComponent implements OnInit {
         }
       }
     });
+
+
   }
 
 

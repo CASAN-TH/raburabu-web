@@ -17,6 +17,14 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   };
+  images = [
+    {
+      "url": "https://cf.shopee.co.th/file/cdd3c2dd0d211f363e26cec1fbc49f30"
+    },
+    {
+      "url": "https://scontent-sea1-1.cdninstagram.com/vp/03b43515979558f42fd19f97c7d34b64/5D0200E7/t51.2885-15/e35/51166430_641847046247176_727256863808490633_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com&se=8&ig_cache_key=MTk4NTAxNTI5MTgzNDc3Mjc2NQ%3D%3D.2"
+    }
+  ]
   hide = true;
   constructor(
     private userAuth: AuthService,
@@ -37,17 +45,21 @@ export class LoginComponent implements OnInit {
       let res: any = await this.teameService.me();
       window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
       console.log(res.data.roles[0]);
-      if (res.data.roles[0] === 'stockstaff' || res.data.roles[0] === 'packstaff') {
-        console.log('1');
+      if (res.data.roles[0] === 'stockstaff') {
         this.router.navigate(["/monitor"]);
-      } else if (res.data.ref1) {
-        console.log('2')
+      }
+      if (res.data.roles[0] === 'packstaff') {
+        this.router.navigate(["/monitor"]);
+      }
+      if (res.data.roles[0] === 'admin') {
+        this.router.navigate(["/admin-manage-team"]);
+      }
+      if (res.data.ref1) {
         this.router.navigate(["/manage-member"]);
 
-      } else if (this.userAuth.user) {
-        console.log('3');
+      }
+      if (res.data.roles[0] === 'user') {
         this.router.navigate(["/home"]);
-
       }
     });
     this.userAuth.isLoggedFail.subscribe(error => {
