@@ -185,7 +185,10 @@ export class OrderListComponent implements OnInit {
       try {
         const dialogRef = this.dialog.open(ModalConfirmsComponent, {
           width: '400px',
-          data: { message: "ต้องการส่งใบสั่งซื้อหรือไม่?" },
+          data: { 
+          title: 'ยืนยันการส่งใบสั่งซื้อ',
+            message: "ต้องการส่งใบสั่งซื้อหรือไม่?" 
+          },
           disableClose: true
         });
         let tot = 0
