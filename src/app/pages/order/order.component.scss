@@ -80,16 +80,34 @@ mat-sidenav-content .container {
     font-weight: bold;
 }
 
-.border-image {
+.border-prod {
     border: solid 1px lightgray;
     border-top-left-radius: 5%;
     border-top-right-radius: 5%;
-}
-
-.border-text {
-    border-left: solid 1px lightgray;
-    border-right: solid 1px lightgray;
-    border-bottom: solid 1px lightgray;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
 }
+
+.border-text{
+    border-top: solid 1px lightgray;
+}
+
+.border-prod:hover {
+    border: solid 1px rgb(0, 0, 160);
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.princing-item:hover {
+    transform: scale(1.05);
+  }
+  .princing-item:hover .deco-layer--1 {
+    -webkit-transform: translate3d(15px, 0, 0);
+    transform: translate3d(15px, 0, 0);
+  }
+  .princing-item:hover .deco-layer--2 {
+    -webkit-transform: translate3d(-15px, 0, 0);
+    transform: translate3d(-15px, 0, 0);
+  }
