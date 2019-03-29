@@ -6,9 +6,9 @@
           <div name="divWaitWithdrawal">
             <div class="row mt-3" name="rowTeamDetail">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail">
-                <h5 class="mb-0" name="textOrderNo">รหัสใบสั่งซื้อ: 110050308564</h5>
-                <h5 class="mb-0" name="item.team.teamname">ชื่อทีม: {{item.team.teamname}}</h5>
-                <h5 class="mb-0" name="item.team.totalorderamount">รวมออเดอร์: {{item.totalorderamount | number}}</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="item.team.teamname">ชื่อทีม: {{item.team.teamname}}</h5>
+                <h5 class="mb-0 text-overflow" name="item.team.totalorderamount">รวมออเดอร์: {{item.totalorderamount | number}}</h5>
               </div>
               <div *ngIf="user.roles[0]==='stockstaff'"
                 class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
@@ -18,24 +18,27 @@
                 <button mat-stroked-button color="accent" class="style-btn" name="btnWithdrawal"
                   (click)="toWaitPack(item)">ทำการเบิกเเล้ว</button>
               </div>
-              <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none"
-                name="colBtnWaitWithdrawal2">
-                <button mat-stroked-button color="accent" class="style-btn full-width"
-                  name="btnWithdrawalList2">รายการเบิก</button>
+              <div *ngIf="user.roles[0]==='stockstaff'">
+                <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none"
+                  name="colBtnWaitWithdrawal2">
+                  <button mat-stroked-button color="accent" class="style-btn full-width"
+                    name="btnWithdrawalList2">รายการเบิก</button>
+                </div>
+                <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none"
+                  name="colBtnWaitWithdrawal3">
+                  <button mat-stroked-button color="accent" class="style-btn mt-2 full-width"
+                    name="btnWithdrawal2">ทำการเบิกเเล้ว</button>
+                </div>
               </div>
-              <div class="col-12 col-xs-12 col-sm-12 col-md-3 d-block d-xs-block d-sm-none d-md-none"
-                name="colBtnWaitWithdrawal3">
-                <button mat-stroked-button color="accent" class="style-btn mt-2 full-width"
-                  name="btnWithdrawal2">ทำการเบิกเเล้ว</button>
-              </div>
+
             </div>
             <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order" *ngFor="let itm of item.orders"
                 name="colOrderStaff">
-                <span style="display: block" class="mt-2" name="itm.orderno">รหัสใบสั่งซื้อ: {{itm.orderno}}</span>
+                <span style="display: block" class="mt-2 text-overflow" name="itm.orderno">รหัสใบสั่งซื้อ: {{itm.orderno}}</span>
                 <span style="display: block" name="textName">ชื่อผู้สั่ง:
-                  <span class="mr-2" name="itm.customer.firstname">{{itm.customer.firstname}}</span>
-                  <span name="itm.customer.lastname">{{itm.customer.lastname}}</span></span>
+                  <span class="mr-2 " name="itm.customer.firstname">{{itm.customer.firstname}}</span>
+                  <span class="text-overflow" name="itm.customer.lastname">{{itm.customer.lastname}}</span></span>
                 <span style="display: block" class="mb-2" name="itm.totalamount">รวม:
                   {{itm.totalamount | number}}</span>
               </div>
@@ -57,16 +60,18 @@
           <div name="divWaitPack">
             <div class="row mt-3" name="rowTeamDetail2">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail2">
-                <h5 class="mb-0" name="textOrderNo2">รหัสใบสั่งซื้อ: 110050308564</h5>
-                <h5 class="mb-0" name="item2.team.teamname">ชื่อทีม: {{item2.team.teamname}}</h5>
-                <h5 class="mb-0" name="item2.totalorderamount">รวมออเดอร์: {{item2.totalorderamount | number}}</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo2">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="item2.team.teamname">ชื่อทีม: {{item2.team.teamname}}</h5>
+                <h5 class="mb-0 text-overflow" name="item2.totalorderamount">รวมออเดอร์: {{item2.totalorderamount | number}}</h5>
               </div>
-              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
+              <div *ngIf="user.roles[0]==='packstaff'"
+                class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitPack">
                 <button mat-stroked-button color="accent" class="style-btn" name="btnPack"
                   (click)="toWaitShipping(item2)">เเพ็คสินค้าเเล้ว</button>
               </div>
-              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
+              <div *ngIf="user.roles[0]==='packstaff'"
+                class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
                 name="colBtnWaitPack2">
                 <button mat-stroked-button color="accent" class="style-btn full-width" name="btnPack"
                   (click)="toWaitShipping(item2)">เเพ็คสินค้าเเล้ว</button>
@@ -75,12 +80,12 @@
             <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff2">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
                 *ngFor="let itm2 of item2.orders;let j2 = index" name="colOrderStaff2">
-                <span style="display: block" class="mt-2" name="itm2.orderno">รหัสใบสั่งซื้อ: {{itm2.orderno}}</span>
+                <span style="display: block" class="mt-2 text-overflow" name="itm2.orderno">รหัสใบสั่งซื้อ: {{itm2.orderno}}</span>
                 <span style="display: block" name="textName2">ชื่อผู้สั่ง:
                   <span class="mr-2" name="itm2.customer.firstname">{{itm2.customer.firstname}}</span>
-                  <span name="itm2.customer.lastname">{{itm2.customer.lastname}}</span>
+                  <span class="text-overflow" name="itm2.customer.lastname">{{itm2.customer.lastname}}</span>
                 </span>
-                <span style="display: block" class="mb-2" name="itm2.totalamount">รวม:
+                <span style="display: block" class="mb-2 text-overflow" name="itm2.totalamount">รวม:
                   {{itm2.totalamount | number}}</span>
                 <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel">
                   <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel">เลขที่พัสดุ:
@@ -103,7 +108,7 @@
                   class="full-width" (page)="pageEvent = $event;" (click)="pageWaitPack(pageEvent,i2,j2)"
                   name="pagingLabel">
                 </mat-paginator>
-                <div *ngIf="user.roles[0]==='packstaff'"  class="row" name="rowBtnLabel">
+                <div *ngIf="user.roles[0]==='packstaff'" class="row" name="rowBtnLabel">
                   <div class="col-6 pl-0 pr-0" name="colBtnLabel">
                     <button mat-stroked-button color="accent" class="full-width btn-list-style"
                       name="btnPrint">พิมพ์</button>
@@ -131,16 +136,18 @@
           <div name="divWaitShipping">
             <div class="row mt-3" name="rowTeamDetail3">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail3">
-                <h5 class="mb-0" name="textOrderNo3">รหัสใบสั่งซื้อ: 110050308564</h5>
-                <h5 class="mb-0" name="item3.team.teamname">ชื่อทีม: {{item3.team.teamname}}</h5>
-                <h5 class="mb-0" name="item3.team.totalorderamount">รวมออเดอร์: {{item3.totalorderamount | number}}</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo3 ">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="item3.team.teamname">ชื่อทีม: {{item3.team.teamname}}</h5>
+                <h5 class="mb-0 text-overflow" name="item3.team.totalorderamount">รวมออเดอร์: {{item3.totalorderamount | number}}</h5>
               </div>
-              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
+              <div *ngIf="user.roles[0]==='packstaff'"
+                class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
                 name="colBtnWaitShipping">
                 <button mat-stroked-button color="accent" class="style-btn" name="btnShipping"
                   (click)="toComplete(item3)">จัดส่งเเล้ว</button>
               </div>
-              <div *ngIf="user.roles[0]==='packstaff'" class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
+              <div *ngIf="user.roles[0]==='packstaff'"
+                class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
                 name="colBtnWaitShipping">
                 <button mat-stroked-button color="accent" class="style-btn full-width" name="btnShipping"
                   (click)="toComplete(item3)">จัดส่งเเล้ว</button>
@@ -195,18 +202,18 @@
           <div name="divComplete">
             <div class="row mt-3" name="rowTeamDetail4">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail4">
-                <h5 class="mb-0" name="textOrderNo4">รหัสใบสั่งซื้อ: 110050308564</h5>
-                <h5 class="mb-0" name="item4.team.teamname">ชื่อทีม: {{item4.team.teamname}}</h5>
-                <h5 class="mb-0" name="item4.totalorderamount">รวมออเดอร์: {{item4.totalorderamount | number}}</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo4">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="item4.team.teamname">ชื่อทีม: {{item4.team.teamname}}</h5>
+                <h5 class="mb-0 text-overflow" name="item4.totalorderamount">รวมออเดอร์: {{item4.totalorderamount | number}}</h5>
               </div>
             </div>
             <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff4">
               <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
                 *ngFor="let itm4 of item4.orders;let j4 = index" name="colOrderStaff4">
-                <span style="display: block" class="mt-2" name="itm4.orderno">รหัสใบสั่งซื้อ: {{itm4.orderno}}</span>
+                <span style="display: block" class="mt-2 text-overflow" name="itm4.orderno">รหัสใบสั่งซื้อ: {{itm4.orderno}}</span>
                 <span style="display: block" name="textName4">ชื่อผู้สั่ง:
-                  <span class="mr-2" name="itm4.customer.firstname">{{itm4.customer.firstname}}</span>
-                  <span name="itm4.customer.lastname">{{itm4.customer.lastname}}</span>
+                  <span class="mr-2 " name="itm4.customer.firstname">{{itm4.customer.firstname}}</span>
+                  <span class="text-overflow" name="itm4.customer.lastname">{{itm4.customer.lastname}}</span>
                 </span>
                 <span style="display: block" class="mb-2" name="itm4.totalamount">รวม:
                   {{itm4.totalamount | number}}</span>

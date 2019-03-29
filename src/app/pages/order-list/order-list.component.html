@@ -20,22 +20,19 @@
         <p class="mb-1 text-overflow ml-3 mb-3" name="item.totalamount"><span>รวม: </span>
           <span class="color-price">{{item.totalamount | number }} </span>
           <span>บาท</span></p>
-        <div class="col-12 text-center">
-          <span class="d-none d-sm-none d-md-block" name="spanBtn">
+          <span class="d-none d-sm-none d-md-block" style="text-align: center;" name="spanBtn">
             <button mat-stroked-button color="accent" name="btnEdit" (click)='onClickEdit(item)'
               class="mb-1 mr-2 style-btn">เเก้ไข</button>
             <button mat-stroked-button color="accent" name="btnDelete" (click)="onDelete(item)"
               class="mb-1 style-btn">ลบ</button>
           </span>
 
-          <span class="d-block d-sm-block d-md-none" name="spanBtn2">
+          <span class="d-block d-sm-block d-md-none" style="text-align: center;" name="spanBtn2">
             <button mat-stroked-button color="accent" name="btnEdit2" (click)='onClickEdit(item)'
               class="mb-1 mr-2 style-btn-small" style="margin-right: 1px">เเก้ไข</button>
             <button mat-stroked-button color="accent" name="btnDelete2" (click)="onDelete(item)"
               class="mb-1 style-btn-small">ลบ</button>
           </span>
-        </div>
-
       </div>
     </div>
 

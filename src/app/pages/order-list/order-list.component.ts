@@ -185,9 +185,9 @@ export class OrderListComponent implements OnInit {
       try {
         const dialogRef = this.dialog.open(ModalConfirmsComponent, {
           width: '400px',
-          data: { 
-          title: 'ยืนยันการส่งใบสั่งซื้อ',
-            message: "ต้องการส่งใบสั่งซื้อหรือไม่?" 
+          data: {
+            title: 'ยืนยันการส่งใบสั่งซื้อ',
+            message: "ต้องการส่งใบสั่งซื้อหรือไม่?"
           },
           disableClose: true
         });
@@ -216,7 +216,8 @@ export class OrderListComponent implements OnInit {
             let sendOrder: any = {
               team: {
                 team_id: this.teamID,
-                teamname: this.dataTeam.name
+                teamname: this.dataTeam.name,
+                codeteam: this.dataTeam.codeteam
               },
               orders: dataOrder,
               status: 'waitwithdrawal',
