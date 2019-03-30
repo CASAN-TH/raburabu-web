@@ -11,6 +11,11 @@
 <div class="row">
   <div class="col-12">
     <mat-nav-list class="pt-0" *ngIf="userAuth && userAuth.roles  && userAuth.roles.length > 0">
+      <a mat-list-item (click)="onGetProfile();sidenavService.closeNav();"
+        *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'user'">
+        <img src="./../../../assets/images/man.png" class="img-list">
+        <span class="ml-3">บัญชีผู้ใช้</span>
+      </a>
       <a mat-list-item (click)="onOrderList();sidenavService.closeNav();"
         *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner'">
         <img src="./../../../assets/images/shopping-bag.png" class="img-list">
@@ -21,8 +26,12 @@
         <img src="./../../../assets/images/work-team.png" class="img-list">
         <span class="ml-3">จัดสมาชิก</span>
       </a>
-      <a mat-list-item
-        *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'admin'">
+      <!-- <a mat-list-item (click)="onGraph();sidenavService.closeNav();" *ngIf="userAuth.roles[0] === 'admin'">
+        <img src="./../../../assets/images/list.png" class="img-list">
+        <span class="ml-3">ยอดรวมการขาย</span>
+      </a> -->
+      <a mat-list-item (click)="onMonitor();sidenavService.closeNav();"
+        *ngIf="userAuth.roles[0] === 'owner' || userAuth.roles[0] === 'admin' || userAuth.roles[0] === 'stockstaff' || userAuth.roles[0] === 'packstaff'">
         <img src="./../../../assets/images/list.png" class="img-list">
         <span class="ml-3">จัดการรายการขาย</span>
       </a>

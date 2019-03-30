@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { MatDialog } from '@angular/material';
 import { SelectOptionComponent } from 'src/app/modal/select-option/select-option.component';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ModalAddressComponent } from 'src/app/modal/modal-address/modal-address.component';
+import { ModalConfirmsComponent } from 'src/app/modal/modal-confirms/modal-confirms.component';
 
 @Component({
   selector: 'app-order',
@@ -99,7 +100,7 @@ export class OrderComponent implements OnInit {
       // console.log(res);
       this.prodData = res.data;
       this.ngxSpinner.hide();
-      // console.log(this.prodData);
+      console.log(this.prodData);
     } catch (error) {
       this.ngxSpinner.hide();
 
@@ -193,10 +194,24 @@ export class OrderComponent implements OnInit {
   }
 
   deleteProd(item, i) {
-    this.data.items.splice(i, 1);
-    this.data.totalamount = 0
-    this.data.items.forEach(sum => {
-      this.data.totalamount += sum.amount
+    const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+      width: '400px',
+      data: {
+        title: 'ยืนยันการลบสินค้า',
+        message: "คุณต้องการลบสินค้าในตะกร้าสินค้าหรือไม่?"
+      },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+
+      if (result) {
+        this.data.items.splice(i, 1);
+        this.data.totalamount = 0
+        this.data.items.forEach(sum => {
+          this.data.totalamount += sum.amount
+        });
+      }
     });
   }
 

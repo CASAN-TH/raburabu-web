@@ -4,7 +4,7 @@ import { AuthService } from 'ng6-md-auth';
 import { Component, OnInit } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,6 +17,14 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   };
+  images = [
+    {
+      "url": "https://cf.shopee.co.th/file/cdd3c2dd0d211f363e26cec1fbc49f30"
+    },
+    {
+      "url": "https://scontent-sea1-1.cdninstagram.com/vp/03b43515979558f42fd19f97c7d34b64/5D0200E7/t51.2885-15/e35/51166430_641847046247176_727256863808490633_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com&se=8&ig_cache_key=MTk4NTAxNTI5MTgzNDc3Mjc2NQ%3D%3D.2"
+    }
+  ]
   hide = true;
   constructor(
     private userAuth: AuthService,
@@ -24,7 +32,8 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
-   
+
+
 
 
   ) {
@@ -35,13 +44,22 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
       let res: any = await this.teameService.me();
       window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
-      // console.log(res);
+      console.log(res.data.roles[0]);
+      if (res.data.roles[0] === 'stockstaff') {
+        this.router.navigate(["/monitor"]);
+      }
+      if (res.data.roles[0] === 'packstaff') {
+        this.router.navigate(["/monitor"]);
+      }
+      if (res.data.roles[0] === 'admin') {
+        this.router.navigate(["/admin-manage-team"]);
+      }
       if (res.data.ref1) {
         this.router.navigate(["/manage-member"]);
 
-      } else if (this.userAuth.user) {
+      }
+      if (res.data.roles[0] === 'user') {
         this.router.navigate(["/home"]);
-
       }
     });
     this.userAuth.isLoggedFail.subscribe(error => {
@@ -61,4 +79,5 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() { }
+
 }

@@ -31,6 +31,16 @@ import { AdminManageTeamComponent } from './pages/admin-manage-team/admin-manage
 import { MatTabsModule } from '@angular/material/tabs';
 import { ModalConfirmsComponent } from './modal/modal-confirms/modal-confirms.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
+import { MonitorComponent } from './pages/monitor/monitor.component';
+import { ModalAddBoxComponent } from './modal/modal-add-box/modal-add-box.component';
+import { ModalRemarkComponent } from './modal/modal-remark/modal-remark.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ChartModule } from 'angular2-chartjs';
+import { GraphAllComponent } from './pages/graph-all/graph-all.component';
+import { ModalProfileComponent } from './modal/modal-profile/modal-profile.component';
+import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.component';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -50,7 +60,14 @@ const apiSrvCfg = environment;
     OrderComponent,
     SelectOptionComponent,
     AdminManageTeamComponent,
-    ModalConfirmsComponent
+    ModalConfirmsComponent,
+    OrderReportDetailComponent,
+    MonitorComponent,
+    ModalAddBoxComponent,
+    ModalRemarkComponent,
+    GraphAllComponent,
+    ModalProfileComponent,
+    ModalMaxBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -68,14 +85,21 @@ const apiSrvCfg = environment;
     NgxSpinnerModule,
     HttpClientModule,
     MatTabsModule,
-    AuthModule.forRoot(apiSrvCfg)
+    MatPaginatorModule,
+    ChartModule,
+    AuthModule.forRoot(apiSrvCfg),
+    SlideshowModule
   ],
   entryComponents: [
     ModalCreateTeamComponent,
     ModalCreateMemberComponent,
     ModalAddressComponent,
     SelectOptionComponent,
-    ModalConfirmsComponent
+    ModalConfirmsComponent,
+    ModalAddBoxComponent,
+    ModalRemarkComponent,
+    ModalProfileComponent,
+    ModalMaxBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

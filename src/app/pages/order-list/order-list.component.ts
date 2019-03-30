@@ -1,3 +1,4 @@
+import { MonitorService } from './../../services/monitor/monitor.service';
 import { ModalConfirmsComponent } from './../../modal/modal-confirms/modal-confirms.component';
 import { TeameServiceService } from './../../services/teams-service/teame-service.service';
 import { Component, OnInit, Type } from '@angular/core';
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order/order.service';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-order-list',
@@ -14,7 +16,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  dataOrderOwner: any;
+  dataTeam: any;
+  dataOrderAll: Array<any> = [];
   dataOrderMember: any;
   idMember: Array<String> = [];
   user: any;
@@ -50,7 +53,8 @@ export class OrderListComponent implements OnInit {
     public router: Router,
     public ngxSpinner: NgxSpinnerService,
     public order: OrderService,
-    public teamService: TeameServiceService
+    public teamService: TeameServiceService,
+    private monitorService: MonitorService
 
   ) { }
 
@@ -69,8 +73,8 @@ export class OrderListComponent implements OnInit {
       this.idMember.push(id);
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
-      // console.log(this.user)
-
+      console.log(this.teamID)
+      this.getTeam();
       this.getOrderOwnerAndMember();
       // console.log(this.rolesUser);
       if (!user.data.ref1) {
@@ -87,7 +91,7 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
-      // console.log(this.dataorder)
+      console.log(this.dataorder)
     } catch (error) {
       // console.log(error)
     }
@@ -109,21 +113,29 @@ export class OrderListComponent implements OnInit {
       });
     });
   }
+  async getTeam() {
+    try {
+      let res: any = await this.teamService.getById(this.teamID);
+      this.dataTeam = res.data;
+      console.log(res);
+    } catch (error) {
 
+    }
+  }
   async getOrderOwnerAndMember() {
     this.ngxSpinner.show();
     try {
       if (this.rolesUser === 'owner') {
         console.log(this.idMember)
         let resOder: any = await this.order.getOrder(this.teamID);
-        this.dataOrderOwner = resOder.data;
-        console.log(resOder)
+        this.dataOrderAll = resOder.data;
+        console.log(this.dataOrderAll)
         this.ngxSpinner.hide();
       }
       if (this.rolesUser === 'staff') {
         // console.log(this.user.data._id)
         let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
-        this.dataOrderMember = resOrderByUser.data;
+        this.dataOrderAll = resOrderByUser.data;
         console.log(this.dataOrderMember);
         this.ngxSpinner.hide();
       }
@@ -132,7 +144,6 @@ export class OrderListComponent implements OnInit {
     }
   }
   async onDelete(item) {
-    // console.log(item);
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
@@ -144,11 +155,10 @@ export class OrderListComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(async result => {
-        // console.log(result)
+
         if (result) {
           let res: any = await this.order.deleteOrder(item._id);
-          // console.log(res);
-          // console.log(item);
+
           this.ngOnInit();
         }
       });
@@ -157,6 +167,9 @@ export class OrderListComponent implements OnInit {
 
     }
   }
+
+
+
   onClickEdit(item) {
     try {
       console.log(item._id);
@@ -166,7 +179,88 @@ export class OrderListComponent implements OnInit {
 
     }
   }
-  sendOrder() {
-    console.log('order');
+
+  async sendOrder() {
+    if (this.dataOrderAll.length > 0) {
+      try {
+        const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+          width: '400px',
+          data: {
+            title: 'ยืนยันการส่งใบสั่งซื้อ',
+            message: "ต้องการส่งใบสั่งซื้อหรือไม่?"
+          },
+          disableClose: true
+        });
+        let tot = 0
+        let dataOrder = [];
+
+        dialogRef.afterClosed().subscribe(async result => {
+          this.dataOrderAll.forEach(total => {
+            console.log(total);
+            tot += total.totalamount;
+            dataOrder.push({
+              customer: {
+                firstname: total.customer.firstname,
+                lastname: total.customer.lastname,
+                tel: total.customer.tel,
+                address: total.customer.address[0]
+              },
+              orderno: total.orderno,
+              items: total.items,
+              totalamount: total.totalamount,
+              user_id: total.user_id,
+              paymenttype: total.paymenttype,
+            })
+          });
+          if (result) {
+            let sendOrder: any = {
+              team: {
+                team_id: this.teamID,
+                teamname: this.dataTeam.name,
+                codeteam: this.dataTeam.codeteam
+              },
+              orders: dataOrder,
+              status: 'waitwithdrawal',
+              totalorderamount: tot
+            }
+            console.log(sendOrder);
+            let resMonitor: any = await this.monitorService.sendOrderToMonitor(sendOrder);
+            console.log(resMonitor);
+            if (resMonitor) {
+              let res: any = await this.order.sendOrderAll(this.teamID);
+              console.log(res);
+            }
+            this.getOrderOwnerAndMember();
+          }
+        })
+
+
+      } catch (error) {
+
+      }
+    }
+
   }
 }
+
+
+// onDelete(item) {
+  //   console.log(item)
+  //   Swal.fire({
+  //     title: 'ต้องการลบใบสั่งซื้อใช่หรือไม่?',
+  //     type: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#ff4081',
+  //     cancelButtonColor: '#d33',
+  //     cancelButtonText: 'ไม่ใช่',
+  //     confirmButtonText: 'ใช่!'
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       Swal.fire(
+  //         'Deleted!',
+  //         'Your file has been deleted.',
+  //         'success'
+  //       )
+  //     }
+  //   })
+  // }

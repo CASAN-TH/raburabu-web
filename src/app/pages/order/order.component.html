@@ -1,105 +1,121 @@
-<div class="row mt-3" style="height: 85vh;">
-  <div class="col-6 pl-1 pr-1">
-    <div class="border-order" style="width: 100%;height: 100%;">
-      <div class="row pl-4 pr-3">
-        <div class="col-4 mt-2 pr-0 pl-0" style="display: inline;" *ngFor="let item of prodData"
-          (click)="openmodal(item)">
-          <img class="img-prod-style" [src]="item.image">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="row mt-3" style="height: 85vh;" name="rowOrder">
+  <div class="col-6 mr-0" name="colLeft">
+    <!-- <div class="border-order" style="height: 100%;width: 100%;" name="divProd"> -->
+      <div class="row scroll-y" name="rowImageProd" style="height: 90vh;padding-left: 5px;">
+        <div class="col-4 mt-2 pr-0 pl-0 cursor-pointer full-width princing-item" style="display: inline;"
+          *ngFor="let item of prodData" (click)="openmodal(item)" name="colImageProd">
+          <div class="ellipsis border-prod" style="width: 95%;background-color: white;margin-right: 0px">
+            <img class="img-prod-style" [src]="item.image" name="imageProd">
+            <p class="text-name-prod mb-0 border-text pt-1"> <span class="ml-2">{{item.name}}</span> </p>
+            <p class="text-price-prod mb-1"> <span class="ml-2">฿{{item.price | number}}</span> </p>
+          </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
-  <div class="col-6 pl-1 pr-1">
-    <div class="row">
-      <div class="col-12 text-right">
-        <i class="material-icons cursor-pointer" style="font-size: 20px" (click)="onEditAddress()">
+  <div class="col-6 pl-0 pr-3" name="colRight">
+    <div class="row" name="rowAddress">
+      <div class="col-12 text-right" name="colEditAddress">
+        <i class="material-icons cursor-pointer" style="font-size: 20px" (click)="onEditAddress()"
+          name="iconEditAddress">
           edit
         </i>
       </div>
-      <div class="col-12">
-        <span class="font-address" *ngIf="address">
+      <div class="col-12" name="colAddress">
+        <span class="font-address" *ngIf="address" name="spanAddress">
           <p class="ml-2 mb-1" *ngIf="address && address.firstname">
-            <span>ชื่อ: </span> <span class="mr-2">{{address.firstname}}</span>
-            <span>{{address.lastname}}</span></p>
-          <p class="ml-2 mb-1"><span>ที่อยู่: </span> <span>{{address.address.houseno}} {{address.address.village}}
+            <span>ชื่อ: </span> <span class="mr-2" name="customerFirstname">{{address.firstname}}</span>
+            <span name="customerLastname">{{address.lastname}}</span></p>
+          <p class="ml-2 mb-1"><span>ที่อยู่: </span> <span name="customerAddress">{{address.address.houseno}}
+              {{address.address.village}}
               {{address.address.street}}
               ต.{{address.address.subdistrict}} อ.{{address.address.district}} จ.{{address.address.province}}
               {{address.address.zipcode}}</span></p>
-          <p class="ml-2 mb-1"><span>เบอร์โทร: </span> <span>{{address.tel}}</span></p>
+          <p class="ml-2 mb-1"><span>เบอร์โทร: </span> <span name="customerTel">{{address.tel}}</span></p>
         </span>
       </div>
     </div>
 
-    <div class="border-order scroll" style="width: 100%;height: 290px;">
-      <span *ngFor="let item of data.items;let i = index">
-        <div class="row mt-2">
-          <div class="col-6 text-left">
-            <p class="ml-4 mb-1"> <span>{{item.name}}</span></p>
+    <div class="border-order scroll" style="width: 100%;height: 280px;" name="divProdList">
+      <span *ngFor="let item of data.items;let i = index" name="spanProdList">
+        <div class="row mt-2" name="rowProdList">
+          <div class="col-6 text-left" name="colProdName">
+            <p class="ml-4 mb-1"> <span name="item.name">{{item.name}}</span></p>
           </div>
-          <div class="col-6 text-right">
-            <i class="material-icons cursor-pointer" (click)="deleteProd(item , i)">
+          <div class="col-6 text-right" name="colDeleteProd">
+            <i class="material-icons cursor-pointer" (click)="deleteProd(item , i)" name="iconDeleteProd">
               delete_outline
             </i>
           </div>
-          <div class="col-12" *ngFor="let itm of item.option">
-            <div class="row" *ngFor="let it of itm.value">
-              <div class="col-4 text-right">
-                <span class="font-color" style="font-size: 13px">{{it.name}}</span>
+          <div class="col-12" *ngFor="let itm of item.option" name="colOption">
+            <div class="row" *ngFor="let it of itm.value" name="rowValue">
+              <div class="col-4 text-right" name="colValue">
+                <span class="font-color" style="font-size: 13px" name="it.name">{{it.name}}</span>
               </div>
-              <div class="col-4 text-right"><span class="font-color" style="font-size: 13px">{{it.qty}}</span> <span
-                  class="font-color"> * </span> <span style="font-size: 13px" class="font-color">{{item.price}}</span>
+              <div class="col-4 text-right" name="ColSumOption"><span class="font-color" style="font-size: 13px"
+                  name="it.qty">{{it.qty}}</span> <span class="font-color" name="mutiplePrice"> * </span>
+                <span style="font-size: 13px" class="font-color" name="item.price">{{item.price | number}}</span>
               </div>
-              <div class="col-4 text-center"> <span class="font-color"
-                  style="font-size: 13px">{{it.qty * item.price}}</span> </div>
+              <div class="col-4 text-center" name="colSumProd">
+                <span class="font-color" style="font-size: 13px" name="sumPrice">{{it.qty * item.price | number}}</span>
+              </div>
             </div>
           </div>
-          <div class="col-8 text-right">รวม</div>
-          <div class="col-4 text-center">{{item.amount}}</div>
+          <div class="col-8 text-right" name="colTextSum">รวม</div>
+          <div class="col-4 text-center" name="colSumAll">{{item.amount | number}}</div>
         </div>
-        <div class="row mt-2">
-          <div class="col-1"></div>
-          <div class="col-2 border-prod-list"></div>
-          <div class="col-2 border-prod-list"></div>
-          <div class="col-2 border-prod-list"></div>
-          <div class="col-2 border-prod-list"></div>
-          <div class="col-2 border-prod-list"></div>
-          <div class="col-1"></div>
+        <div class="row mt-2" name="rowBorder">
+          <div class="col-1" name="colBorder0"></div>
+          <div class="col-2 border-prod-list" name="colBorder1"></div>
+          <div class="col-2 border-prod-list" name="colBorder2"></div>
+          <div class="col-2 border-prod-list" name="colBorder3"></div>
+          <div class="col-2 border-prod-list" name="colBorder4"></div>
+          <div class="col-2 border-prod-list" name="colBorder5"></div>
+          <div class="col-1" name="colBorder6"></div>
         </div>
       </span>
     </div>
-    <div class="row">
-      <div class="col-12 col-md-5 text-left">
-        <p class="ml-3 mt-3 ellipsis">ประเภทการชำระเงิน</p>
+    <div class="row" name="rowPaymenttype">
+      <div class="col-12 col-md-5 text-left" name="colPaymenttype">
+        <p class="ml-3 mt-3 ellipsis" name="textPaymenttype">ประเภทการชำระเงิน</p>
       </div>
-      <div class="col-12 col-md-7 text-right">
-        <mat-form-field class="example-full-width">
-          <mat-select placeholder="กรุณาเลือกประเภทการชำระเงิน" [(ngModel)]="namePayment">
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let item of paymentType" [value]="item" (click)="selectPaymentType(item)">
+      <div class="col-12 col-md-7 text-right" name="colSelect">
+        <mat-form-field class="example-full-width" name="mffSelect">
+          <mat-select placeholder="กรุณาเลือกประเภทการชำระเงิน" [(ngModel)]="namePayment" name="matSelectPaymenttype">
+            <mat-option name="matOptionPaymenttype">None</mat-option>
+            <mat-option *ngFor="let item of paymentType" [value]="item" (click)="selectPaymentType(item)"
+              name="showOption">
               {{item}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </div>
-    <div class="row">
-      <div class="col-6 text-left">
-        <p class="ml-3 mt-3">รวม</p>
+    <div class="row" name="rowSumPrice">
+      <div class="col-6 text-left" name="colSumtext">
+        <p class="ml-3 mt-3" name="sumText">รวม</p>
       </div>
-      <div class="col-6 text-right">
-        <p class="mr-3 mt-3"> <span>{{data.totalamount}}</span> <span> บาท</span></p>
+      <div class="col-6 text-right" name="colSumPrice">
+        <p class="mr-3 mt-3" name="pSumPrice"> <span name="sumPrice">{{data.totalamount | number}}</span>
+          <span name="textBaht">
+            บาท</span>
+        </p>
       </div>
     </div>
 
-
-    <div class="row mb-3">
-      <div class="col-6">
-        <button mat-stroked-button color="accent" class="btn-style" (click)="onCancel()">ยกเลิก</button>
+    <div class="row mb-3" name="rowBtn">
+      <div class="col-6" name="colBtnCancel">
+        <button mat-stroked-button color="accent" class="btn-style" (click)="onCancel()"
+          name="btnCancel">ยกเลิก</button>
       </div>
-      <div class="col-6">
+      <div class="col-6" name="colBtnSave">
         <button mat-stroked-button color="accent" (click)="onSave()" class="btn-style btn-border-style"
-          [disabled]="data.items.length === 0 || !namePayment">บันทึก</button>
+          [disabled]="data.items.length === 0 || !namePayment" name="btnSave">บันทึก</button>
       </div>
     </div>
 

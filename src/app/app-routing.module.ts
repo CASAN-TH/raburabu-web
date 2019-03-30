@@ -1,3 +1,5 @@
+import { GraphAllComponent } from './pages/graph-all/graph-all.component';
+import { OrderReportDetailComponent } from './pages/order-report-detail/order-report-detail.component';
 import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { NgModule } from "@angular/core";
@@ -9,6 +11,7 @@ import { ManageMemberComponent } from "./pages/manage-member/manage-member.compo
 import { OrderListComponent } from "./pages/order-list/order-list.component";
 import { OrderComponent } from "./pages/order/order.component";
 import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
+import { MonitorComponent } from "./pages/monitor/monitor.component";
 
 const routes: Routes = [
   {
@@ -24,7 +27,9 @@ const routes: Routes = [
   { path: "order-list", component: OrderListComponent },
   { path: "order", component: OrderComponent },
   { path: "admin-manage-team", component: AdminManageTeamComponent },
-
+  { path: "order-report-detail", component: OrderReportDetailComponent },
+  { path: "monitor", component: MonitorComponent },
+  { path: "graph-all", component: GraphAllComponent }
 ];
 
 @NgModule({

@@ -1,82 +1,83 @@
-<mat-horizontal-stepper [linear]="!isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <mat-dialog-content class="mat-typography">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>ชื่อลูกค้า</ng-template>
-        <div class="row mt-3">
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร" [(ngModel)]="data.tel"
-                formControlName="tel" required>
+<mat-horizontal-stepper [linear]="!isLinear" #stepper name="mat-horizontal-stepper">
+  <mat-step name="mat-step-firstFromGroup" [stepControl]="firstFormGroup">
+    <mat-dialog-content name="mat-dialog-content-firstFormGroup" class="mat-typography">
+      <form name="form-firstFormGroup" [formGroup]="firstFormGroup">
+        <ng-template name="ng-template-name-customer" matStepLabel>ชื่อลูกค้า</ng-template>
+        <div class="row mt-3" name="divRowDetailCustomer">
+          <div class="col-12 col-md-6" name="divColKeyTel">
+            <mat-form-field class="example-full-width" name="mat-form-field-keyTel">
+              <input name="inputkeyTel" matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร"
+                [(ngModel)]="data.tel" formControlName="tel" required (keyup)="checkNumber($event)">
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6 d-none d-md-block"></div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname" formControlName="firstName"
-                required>
+          <div name='divNone' class="col-12 col-md-6 d-none d-md-block"></div>
+          <div name="divColFirstName" class="col-12 col-md-6">
+            <mat-form-field name="mat-form-field-firstName" class="example-full-width">
+              <input name="inputKeyFirstName" matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname"
+                formControlName="firstName" required>
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname" formControlName="lastName"
-                required>
+          <div class="col-12 col-md-6" name="divColLastname">
+            <mat-form-field name="mat-form-field-lastname " class="example-full-width">
+              <input name="inputKeyLastname" matInput placeholder="กรุณากรอกนามสกุล" [(ngModel)]="data.lastname"
+                formControlName="lastName" required>
             </mat-form-field>
           </div>
         </div>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <div>
-        <button [disabled]="!data.tel || !data.firstname || !data.lastname " mat-button matStepperNext>ถัดไป</button>
+    <mat-dialog-actions align="end" name="mat-dialog-actions-detail-customer">
+      <div name="divBtn">
+        <button name="btnNext" [disabled]="!data.tel || !data.firstname || !data.lastname " mat-button
+          matStepperNext>ถัดไป</button>
       </div>
     </mat-dialog-actions>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>ที่อยู่ลูกค้า</ng-template>
-      <mat-dialog-content class="mat-typography">
-
-        <div class="row mt-3">
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกบ้านเลขที่" [(ngModel)]="data.address.houseno"
-                formControlName="houseno" required>
+  <mat-step name="mat-step-secondFormgroup" [stepControl]="secondFormGroup">
+    <form name="form-secondFormFroup" [formGroup]="secondFormGroup">
+      <ng-template name="ng-template-addressCustomer" matStepLabel>ที่อยู่ลูกค้า</ng-template>
+      <mat-dialog-content name="mat-dialog-content-secondFormGroup" class="mat-typography">
+        <div name="divRowAddressCustomer" class="row mt-3">
+          <div name="divColHousenoCustomer" class="col-12 col-md-6">
+            <mat-form-field name="mat-form-field-houseno" class="example-full-width">
+              <input matInput placeholder="กรุณากรอกบ้านเลขที่" name="inputKeyHouseno"
+                [(ngModel)]="data.address.houseno" formControlName="houseno" required>
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกหมู่บ้าน" [(ngModel)]="data.address.village"
+          <div class="col-12 col-md-6" name="divColVillage">
+            <mat-form-field class="example-full-width" name="mat-form-field-village">
+              <input matInput placeholder="กรุณากรอกหมู่บ้าน" name="inputKeyVillage" [(ngModel)]="data.address.village"
                 formControlName="village">
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกถนน/ซอย" [(ngModel)]="data.address.street" formControlName="street">
+          <div class="col-12 col-md-6" name="divColStreet">
+            <mat-form-field class="example-full-width" name="mat-form-field-street">
+              <input matInput placeholder="กรุณากรอกถนน/ซอย" name="inputKeyStreet" [(ngModel)]="data.address.street"
+                formControlName="street">
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกตำบล" [(ngModel)]="data.address.subdistrict"
-                formControlName="subdistrict" required>
+          <div class="col-12 col-md-6" name="divColSubdistrict">
+            <mat-form-field class="example-full-width" name="mat-form-field-subdistrict">
+              <input matInput placeholder="กรุณากรอกตำบล" name="inputKeySubdistrict"
+                [(ngModel)]="data.address.subdistrict" formControlName="subdistrict" required>
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกอำเภอ" [(ngModel)]="data.address.district"
+          <div class="col-12 col-md-6" name="divColDistrict">
+            <mat-form-field class="example-full-width" name="mat-form-field-district">
+              <input matInput placeholder="กรุณากรอกอำเภอ" name="inputKeyDistrict" [(ngModel)]="data.address.district"
                 formControlName="district" required>
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกจังหวัด" [(ngModel)]="data.address.province"
+          <div class="col-12 col-md-6" name="divColProvince">
+            <mat-form-field class="example-full-width" name="mat-form-field-province">
+              <input matInput placeholder="กรุณากรอกจังหวัด" name="inputKeyProvince" [(ngModel)]="data.address.province"
                 formControlName="province" required>
             </mat-form-field>
           </div>
-          <div class="col-12 col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="กรุณากรอกรหัสไปรษณีย์" [(ngModel)]="data.address.zipcode"
-                formControlName="zipcode" required>
+          <div class="col-12 col-md-6" name="divColZipcode">
+            <mat-form-field class="example-full-width" name="mat-form-field-zipcode">
+              <input matInput placeholder="กรุณากรอกรหัสไปรษณีย์" name="inputKeyZipcode"
+                [(ngModel)]="data.address.zipcode" formControlName="zipcode" required>
             </mat-form-field>
           </div>
         </div>
@@ -84,12 +85,12 @@
 
     </form>
 
-    <mat-dialog-actions>
-      <div class="col-6  text-left">
-        <button mat-button matStepperPrevious>ย้อนกลับ</button>
+    <mat-dialog-actions name="mat-dialog-actions-secondFormGroup">
+      <div class="col-6  text-left" name="divBtnBackSecondformgroup">
+        <button mat-button matStepperPrevious name="btnBackSecondformgroup">ย้อนกลับ</button>
       </div>
-      <div class="col-6 text-right">
-        <button mat-button matStepperNext (click)="next()"
+      <div class="col-6 text-right" name="divColbtnNext">
+        <button mat-button matStepperNext name="btnNextSecondFrom" (click)="next()"
           [disabled]="!data.address.houseno || !data.address.subdistrict || !data.address.district || !data.address.province || !data.address.zipcode">เสร็จสิ้น</button>
 
       </div>

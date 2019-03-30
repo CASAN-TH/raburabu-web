@@ -77,7 +77,7 @@ export class SelectOptionComponent implements OnInit {
       }],
       amount: this.totalQty * this.data.price
     }
-    // console.log(data)
+    console.log(data)
     this.sendData.emit(data);
     this.dialogRef.close('close');
   }
@@ -103,6 +103,15 @@ export class SelectOptionComponent implements OnInit {
       });
     }
     // console.log(this.selectOption);
+  }
+
+  checkNumber(e, l) {
+    console.log(this.selectOption[l]);
+    console.log(e);
+    let regEx = new RegExp(/^[0-9]+$/);
+    if (!(regEx.test(e.key) || e.key === 'Backspace' || e.key === 'Control' || e.key === 'Alt' || e.key === 'Shift' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+      this.selectOption[l].qty = this.selectOption[l].qty.substring(0, this.selectOption[l].qty.length - 1);
+    }
   }
 
 
