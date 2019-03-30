@@ -9,7 +9,6 @@ import { OrderService } from 'src/app/services/order/order.service';
   styleUrls: ['./modal-address.component.scss']
 })
 export class ModalAddressComponent implements OnInit {
-  isLinear = false;
   @Output() dataCutomer: EventEmitter<any> = new EventEmitter();
   isLinear = false;
   firstFormGroup: FormGroup;
