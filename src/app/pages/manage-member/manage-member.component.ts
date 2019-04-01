@@ -114,9 +114,10 @@ export class ManageMemberComponent implements OnInit {
     this.ngxSpinner.show();
     try {
       let res: any = await this.teameServicec.getById(this.team_id);
+      console.log(res);
       this.dataTeam = res.data;
       this.ngxSpinner.hide();
-      // console.log(this.dataTeam);
+      console.log(this.dataTeam);
       let resp: any = this.dataTeam.members.filter((e) => {
         if (e.member_id === this.userId) {
           this.dataUserID = e;
