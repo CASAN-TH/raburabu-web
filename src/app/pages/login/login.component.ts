@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
       let res: any = await this.teameService.me();
       window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
-      // console.log(res.data.roles[0]);
+      // // console.log(res.data.roles[0]);
       if (res.data.roles[0] === 'stockstaff') {
         this.router.navigate(["/monitor"]);
       }

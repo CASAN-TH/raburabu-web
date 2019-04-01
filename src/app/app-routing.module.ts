@@ -17,27 +17,7 @@ let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"))
 const routes: Routes = [
   {
     path: "",
-    redirectTo: !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "manage-member" : user.data.roles[0] === "staff" ? "manage-member" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "home" : "",
-    pathMatch: "full"
-  },
-  {
-    path: "home",
-    redirectTo: !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "manage-member" : user.data.roles[0] === "staff" ? "manage-member" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "home" : "",
-    pathMatch: "full"
-  },
-  {
-    path: "manage-member",
-    redirectTo:  !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "manage-member" : user.data.roles[0] === "staff" ? "manage-member" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "home" : "",
-    pathMatch: "full"
-  },
-  {
-    path: "order-list",
-    redirectTo:  !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "order-list" : user.data.roles[0] === "staff" ? "order-list" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "home" : "",
-    pathMatch: "full"
-  },
-  {
-    path: "order",
-    redirectTo:  !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "order" : user.data.roles[0] === "staff" ? "order" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "home" : "",
+    redirectTo: !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "manage-member" : user.data.roles[0] === "staff" ? "manage-member" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "user" ?  "home" : "",
     pathMatch: "full"
   },
   { path: "home", component: HomeComponent, canActivate: [AuthGuardService] },
