@@ -78,7 +78,7 @@ export class ModalAddBoxComponent implements OnInit {
     if (this.chkProduck === true) {
       this.useProduct.push({
         name: item.name,
-        qty: this.keyDataQty
+        qty: this.keyDataQty ? this.keyDataQty : item.qtyAll ? item.qtyAll : item.qty
       })
       this.dataLabel.productall[i].active = true
     } else {
@@ -86,7 +86,7 @@ export class ModalAddBoxComponent implements OnInit {
       this.useProduct.splice(j, 1);
       this.dataLabel.productall[i].active = false
     }
-    // console.log(this.useProduct);
+    console.log(this.useProduct);
   }
 
   async confirmLabel() {

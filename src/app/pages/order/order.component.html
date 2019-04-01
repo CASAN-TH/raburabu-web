@@ -3,22 +3,22 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <div class="row mt-3" style="height: 85vh;" name="rowOrder">
-  <div class="col-6 pl-1 pr-1" name="colLeft">
-    <div class="border-order" style="width: 100%;height: 100%;" name="divProd">
-      <div class="row pl-4 pr-3" name="rowImageProd">
+  <div class="col-6 mr-0" name="colLeft">
+    <!-- <div class="border-order" style="height: 100%;width: 100%;" name="divProd"> -->
+      <div class="row scroll-y" name="rowImageProd" style="height: 90vh;padding-left: 5px;">
         <div class="col-4 mt-2 pr-0 pl-0 cursor-pointer full-width princing-item" style="display: inline;"
           *ngFor="let item of prodData" (click)="openmodal(item)" name="colImageProd">
-          <div class="ellipsis border-prod" style="width: 95%;background-color: white">
+          <div class="ellipsis border-prod" style="width: 95%;background-color: white;margin-right: 0px">
             <img class="img-prod-style" [src]="item.image" name="imageProd">
             <p class="text-name-prod mb-0 border-text pt-1"> <span class="ml-2">{{item.name}}</span> </p>
             <p class="text-price-prod mb-1"> <span class="ml-2">฿{{item.price | number}}</span> </p>
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
-  <div class="col-6 pl-1 pr-1" name="colRight">
+  <div class="col-6 pl-0 pr-3" name="colRight">
     <div class="row" name="rowAddress">
       <div class="col-12 text-right" name="colEditAddress">
         <i class="material-icons cursor-pointer" style="font-size: 20px" (click)="onEditAddress()"

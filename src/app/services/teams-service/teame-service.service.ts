@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -11,8 +11,8 @@ export class TeameServiceService {
     public http: HttpClient,
   ) { }
   private authorizationHeader() {
-    const token = window.localStorage.getItem('token@raburabu-web-dev');
-    // console.log(token);
+    // const token = window.localStorage.getItem('token@raburabu-web-dev');
+    const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     return headers;
   }

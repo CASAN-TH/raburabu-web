@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { MatDialog } from '@angular/material';
 import { SelectOptionComponent } from 'src/app/modal/select-option/select-option.component';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ModalAddressComponent } from 'src/app/modal/modal-address/modal-address.component';
 import { ModalConfirmsComponent } from 'src/app/modal/modal-confirms/modal-confirms.component';

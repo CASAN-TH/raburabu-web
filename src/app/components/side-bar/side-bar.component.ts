@@ -4,7 +4,7 @@ import { AuthService } from 'ng6-md-auth';
 import { Router } from '@angular/router';
 import { SideBarService } from './side-bar.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
 
 @Component({
