@@ -1,3 +1,6 @@
+<div name="divTeamReject"  *ngIf="teamId" class="mt-5">
+    <h2 name="TeamReject" class="text-center text-red">คุณถูกทีม {{nameTeam}} ปฏิเสธ</h2>
+</div>
 <div class="row" style="display: flex;align-items: center;height: 90vh;" name="rowBtn">
     <div class="col-6 col-md-6 text-right" name="colBtn">
         <button mat-stroked-button color="accent" (click)="openDialog()" class="style-btn"
