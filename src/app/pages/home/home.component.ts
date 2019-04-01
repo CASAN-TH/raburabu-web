@@ -22,12 +22,9 @@ export class HomeComponent implements OnInit {
     public ngxSpinner: NgxSpinnerService,
     public teameService: TeameServiceService,
 
-  ) { }
-
-  ngOnInit() {
+  ) { 
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.teamId = user.data.ref1
-    this.getTeam();
     if (user.data.ref1) {
       this.router.navigate(['/manage-member']);
       // console.log('asd');
@@ -35,6 +32,10 @@ export class HomeComponent implements OnInit {
     // if (user.data.roles[0] === 'admin') {
     //   this.router.navigate(['/admin-manage-team']);
     // }
+  }
+
+  ngOnInit() {
+    this.getTeam();
   }
 
 
