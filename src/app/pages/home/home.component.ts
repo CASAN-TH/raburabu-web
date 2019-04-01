@@ -19,14 +19,14 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    if (user.data.ref1) {
-      this.router.navigate(['/manage-member']);
-      // console.log('asd');
-    }
-    if (user.data.roles[0] === 'admin') {
-      this.router.navigate(['/admin-manage-team']);
-    }
+    // let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    // if (user.data.ref1) {
+    //   this.router.navigate(['/manage-member']);
+    //   // console.log('asd');
+    // }
+    // if (user.data.roles[0] === 'admin') {
+    //   this.router.navigate(['/admin-manage-team']);
+    // }
   }
 
 
