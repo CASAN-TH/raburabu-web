@@ -188,6 +188,7 @@ export class ManageMemberComponent implements OnInit {
             status: 'retire'
           }
           let res: any = await this.teameServicec.approveMember(this.team_id, dataApprove);
+          console.log(res)
           if (res) {
             this.statusWaitApprove = []
             this.dataUserID = ''

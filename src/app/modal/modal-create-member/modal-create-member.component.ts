@@ -23,7 +23,7 @@ export class ModalCreateMemberComponent implements OnInit {
   ngOnInit() {
     this.getTeam();
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'))
-    // console.log(res)
+    console.log(res)
     this.user_id = res.data._id;
   }
   cancel() {
