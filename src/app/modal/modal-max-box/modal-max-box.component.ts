@@ -8,6 +8,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
   styleUrls: ['./modal-max-box.component.scss']
 })
 export class ModalMaxBoxComponent implements OnInit {
+
+  dataBinding: any;
   order_id: any;
   dataProductInbox: any;
   dataTeam: any;
@@ -30,12 +32,27 @@ export class ModalMaxBoxComponent implements OnInit {
       this.dataTeam.orders.forEach(order => {
         if (this.data.order_id === order._id) {
           this.dataProductInbox = order.labels
+          let i = 0;
+          this.dataProductInbox.forEach(data => {
+            console.log(data)
+            this.dataProductInbox[i].sumQty = 0
+            if (data.productlist.length === 1) {
+              data.productlist.forEach(dataPro => {
+                this.dataProductInbox[i].sumQty += dataPro.qty
+              });
+            } else {
+              let j = 0;
+              data.productlist.forEach(dataPro => {
+                this.dataProductInbox[i].sumQty += dataPro.qty
+                j++;
+              });
+            }
+              i++;
+          });
         }
       });
-      console.log(this.dataProductInbox)
-
     } catch (error) {
-
+      console.log(error);
     }
 
   }
