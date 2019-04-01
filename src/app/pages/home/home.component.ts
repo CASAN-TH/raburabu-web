@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.teamId = user.data.ref1
     this.getTeam();
-    // if (user.data.ref1) {
-    //   this.router.navigate(['/manage-member']);
-    //   // console.log('asd');
-    // }
+    if (user.data.ref1) {
+      this.router.navigate(['/manage-member']);
+      // console.log('asd');
+    }
     // if (user.data.roles[0] === 'admin') {
     //   this.router.navigate(['/admin-manage-team']);
     // }

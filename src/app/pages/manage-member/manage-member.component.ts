@@ -154,7 +154,8 @@ export class ManageMemberComponent implements OnInit {
         if (result) {
           let dataApprove: any = {
             member_id: item.member_id,
-            status: 'staff'
+            status: 'staff',
+            statusmember: 'approve'
           }
           let res: any = await this.teameServicec.approveMember(this.team_id, dataApprove);
           if (res) {
@@ -188,7 +189,9 @@ export class ManageMemberComponent implements OnInit {
         if (result) {
           let dataApprove: any = {
             member_id: item.member_id,
-            status: 'retire'
+            status: 'retire',
+            statusmember: 'retire'
+
           }
           let res: any = await this.teameServicec.approveMember(this.team_id, dataApprove);
           console.log(res)
