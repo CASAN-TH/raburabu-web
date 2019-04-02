@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-
+  remark: any;
   teamId: any;
   nameTeam: any;
 
@@ -26,11 +26,15 @@ export class HomeComponent implements OnInit {
   ) {
     this.getMe();
 
-    // let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     // this.teamId = user.data.ref1
     // if (user.data.ref1) {
-    //   this.router.navigate(['/manage-member']);
+    //   if (user.data.ref1 != "") {
+    //     this.router.navigate(['/manage-member']);
+    //   }
     // }
+
+
     // if (user.data.roles[0] === 'admin') {
     //   this.router.navigate(['/admin-manage-team']);
     // }
@@ -84,11 +88,15 @@ export class HomeComponent implements OnInit {
 
       console.log(user.data);
       this.teamId = user.data.ref1
-      // if (user.data.ref1) {
-      //   if (user.data.ref1 != '') {
-      //     this.router.navigate(['/manage-member']);
-      //   }
-      // }
+      if (user.data.ref1) {
+        if (user.data.ref1 != '') {
+          this.router.navigate(['/manage-member']);
+        }
+      }
+      if (user.data.remarkrejectteam.length > 0) {
+        this.remark = user.data.remarkrejectteam[user.data.remarkrejectteam.length - 1];
+        console.log(this.remark);
+      }
       if (user.data.statusmember === 'retire') {
         for (let i = 0; i < user.data.historyaboutteam.length; i++) {
           const historyaboutteam = user.data.historyaboutteam[i];

@@ -65,7 +65,7 @@ export class MonitorComponent implements OnInit {
 
   async getMonitorTeam() {
     try {
-      this.ngxSpiner.show()
+      // this.ngxSpiner.show()
       this.waitwithdrawal = [];
       this.waitpack = [];
       this.waitshipping = [];
@@ -93,7 +93,7 @@ export class MonitorComponent implements OnInit {
   }
 
   async getMonitor() {
-    this.ngxSpiner.show()
+    // this.ngxSpiner.show()
     this.waitwithdrawal = [];
     this.waitpack = [];
     this.waitshipping = [];

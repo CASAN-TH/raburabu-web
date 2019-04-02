@@ -1,7 +1,20 @@
-<div name="divTeamReject"  *ngIf="nameTeam" class="mt-5">
+<!-- <div name="divTeamReject" *ngIf="nameTeam" class="mt-5">
     <h2 name="TeamReject" class="text-center text-red">คุณถูกทีม {{nameTeam.teamname}} ปฏิเสธ</h2>
 </div>
+<div *ngIf="remark" class="mt-5">
+    <h2 class="text-center text-red"> {{remark.remark}}</h2>
+</div> -->
 <div class="row" style="display: flex;align-items: center;height: 90vh;" name="rowBtn">
+    <div class="col-12">
+        <div class="row" style="display: flow-root;">
+            <div name="divTeamReject" *ngIf="nameTeam" class="word-wrap">
+                <h2 name="TeamReject" class="text-center text-red">คุณถูกทีม {{nameTeam.teamname}} ปฏิเสธ</h2>
+            </div>
+            <div *ngIf="remark" class="word-wrap">
+                <h2 class="text-center text-red"> {{remark.remark}}</h2>
+            </div>
+        </div>
+    </div>
     <div class="col-6 col-md-6 text-right" name="colBtn">
         <button mat-stroked-button color="accent" (click)="openDialog()" class="style-btn"
             name="btnCreate">เริ่มธุรกิจ</button>

@@ -11,15 +11,18 @@
     max-height: inherit !important;
 }
 
-::ng-deep .mat-dialog-content {
-    display: block;
-    margin: 0 -24px;
-    padding: 0 24px;
-    max-height: 75vh;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+::ng-deep.mat-dialog-container {
+    display: block !important;
+    padding: 24px !important;
+    border-radius: 4px !important;
+    box-sizing: border-box !important;
+    overflow: auto !important;
+    outline: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: inherit !important;
+    max-height: inherit !important;
 }
-
 ::ng-deep .mat-ink-bar {
     border-radius: 6px !important;
     position: absolute !important;

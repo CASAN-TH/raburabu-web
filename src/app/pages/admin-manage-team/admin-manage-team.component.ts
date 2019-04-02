@@ -3,6 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
 import { MatDialog } from '@angular/material';
+import { ModalRemarkComponent } from 'src/app/modal/modal-remark/modal-remark.component';
 
 @Component({
   selector: 'app-admin-manage-team',
@@ -26,7 +27,7 @@ export class AdminManageTeamComponent implements OnInit {
   }
 
   async getTeam() {
-    this.ngXspinner.show();
+    // this.ngXspinner.show();
     try {
       let res: any = await this.teameService.getTeam();
       this.dataTeam = res.data;
@@ -84,7 +85,7 @@ export class AdminManageTeamComponent implements OnInit {
 
   async onReject(item) {
     try {
-      const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+      const dialogRef = this.dialog.open(ModalRemarkComponent, {
         width: '400px',
         data: {
           title: "ปฏิเสธการสร้างทีม",
@@ -92,14 +93,16 @@ export class AdminManageTeamComponent implements OnInit {
         },
         disableClose: true
       });
-      dialogRef.afterClosed().subscribe(async result => {
+      dialogRef.componentInstance.outPutRemark.subscribe(async result => {
+        console.log(result)
         if (result) {
           let body = {
-            status: 'reject'
+            status: 'reject',
+            remark: result
           }
-          // console.log(item);
+          console.log(body);
           let res: any = await this.teameService.adminManageTeam(item._id, body);
-          // console.log(res);
+          console.log(res);
           this.waitApprove = [];
           this.approve = [];
           this.getTeam();

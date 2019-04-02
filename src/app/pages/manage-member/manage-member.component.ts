@@ -113,7 +113,7 @@ export class ManageMemberComponent implements OnInit {
   }
 
   async getDataMember() {
-    this.ngxSpinner.show();
+    // this.ngxSpinner.show();
     try {
       let res: any = await this.teameServicec.getById(this.team_id);
       console.log(res);
@@ -233,7 +233,7 @@ export class ManageMemberComponent implements OnInit {
       console.log(user)
       if (!user.data.ref1) {
         this.router.navigate(['/home']);
-        // console.log('asd');
+        console.log('asd');
       } else {
         // console.log('sdf');
         this.team_id = user.data.ref1;
