@@ -8,7 +8,7 @@
   <div name="divColKeyRemark" class="col-12">
     <form name="formKeyRemark">
       <mat-form-field name="mat-form-field-remark" class="example-full-width">
-        <input name="keyRemark" matInput>
+        <input name="keyRemark" [(ngModel)]="remark" matInput>
       </mat-form-field>
     </form>
   </div>
@@ -19,6 +19,6 @@
     <button name="btnCancel" class="mr-4" mat-stroked-button color="accent">ยกเลิก</button>
   </div>
   <div name="divBtnConfirm" class="col-6 text-left">
-    <button name="btnConfirm" class="ml-4 border-btn" mat-stroked-button color="accent">ตกลง</button>
+    <button name="btnConfirm" class="ml-4 border-btn" mat-stroked-button color="accent" (click)="confirm()">ตกลง</button>
   </div>
 </div>

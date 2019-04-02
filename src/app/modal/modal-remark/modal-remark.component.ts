@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-modal-remark',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-remark.component.scss']
 })
 export class ModalRemarkComponent implements OnInit {
-
-  constructor() { }
-
+  @Output() outPutRemark: EventEmitter<any> = new EventEmitter();
+  remark: any;
+  constructor(
+    public dialogRef: MatDialogRef<ModalRemarkComponent>,
+      ) { }
   ngOnInit() {
   }
-
+  confirm() {
+    this.outPutRemark.emit(this.remark);
+    this.dialogRef.close()
+  }
 }

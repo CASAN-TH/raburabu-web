@@ -14,7 +14,30 @@
         <mat-tab label="ประวัติการสั่งซื้อ">
           <div class="row">
             <div class="col-12">
+              <div class="mt-4" *ngIf="dataHistory && dataHistory.length === 0">
+                <p class="text-center no-data">ไม่มีประวัติการสั่งซื้อ</p>
+              </div>
+              <div class="table-responsive mt-2" *ngIf="dataHistory && dataHistory.length > 0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" width="100px">วันที่</th>
+                      <th scope="col" width="150px">หมายเลขออเดอร์</th>
+                      <th scope="col" width="100px">ราคารวม</th>
+                      <th scope="col" width="200px">ชื่อผู้สั่งซื้อสินค้า</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of dataHistory">
+                      <th scope="row">{{item.created |  date :'MMM d, y' }}</th>
+                      <td>{{item.orderno}}</td>
+                      <td>{{item.totalamount | number}}</td>
+                      <td>{{item.customer.firstname}} {{item.customer.lastname}}</td>
+                    </tr>
 
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </mat-tab>
