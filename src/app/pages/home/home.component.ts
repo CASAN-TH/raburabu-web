@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+
   teamId: any;
   nameTeam: any;
 
@@ -22,20 +23,21 @@ export class HomeComponent implements OnInit {
     public ngxSpinner: NgxSpinnerService,
     public teameService: TeameServiceService,
 
-  ) { 
-    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    this.teamId = user.data.ref1
-    if (user.data.ref1) {
-      this.router.navigate(['/manage-member']);
-      // console.log('asd');
-    }
+  ) {
+    this.getMe();
+
+    // let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    // this.teamId = user.data.ref1
+    // if (user.data.ref1) {
+    //   this.router.navigate(['/manage-member']);
+    // }
     // if (user.data.roles[0] === 'admin') {
     //   this.router.navigate(['/admin-manage-team']);
     // }
   }
 
   ngOnInit() {
-    this.getTeam();
+    // this.getTeam();
   }
 
 
@@ -67,12 +69,39 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  async getTeam() {
-    try {
-      let res: any = await this.teameService.getById(this.teamId);
-      this.nameTeam = res.data.name;
-    } catch (error) {
+  // async getTeam() {
+  //   try {
+  //     let res: any = await this.teameService.getById(this.teamId);
+  //     this.nameTeam = res.data.name;
+  //   } catch (error) {
 
+  //   }
+  // }
+  async getMe() {
+    try {
+      let user: any = await this.teameService.me()
+      // let i: any;
+
+      console.log(user.data);
+      this.teamId = user.data.ref1
+      // if (user.data.ref1) {
+      //   if (user.data.ref1 != '') {
+      //     this.router.navigate(['/manage-member']);
+      //   }
+      // }
+      if (user.data.statusmember === 'retire') {
+        for (let i = 0; i < user.data.historyaboutteam.length; i++) {
+          const historyaboutteam = user.data.historyaboutteam[i];
+          this.nameTeam = historyaboutteam
+        }
+        console.log(this.nameTeam)
+      }
+
+
+
+
+    } catch (error) {
+      console.log(error);
     }
   }
 }

@@ -15,16 +15,23 @@ import { MonitorComponent } from "./pages/monitor/monitor.component";
 import { environment } from "src/environments/environment";
 let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
 const routes: Routes = [
+  // {
+  //   path: "",
+  //   redirectTo: !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "manage-member" : user.data.roles[0] === "staff" ? "manage-member" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "user" ?  "home" : "",
+  //   pathMatch: "full"
+  // },
   {
-    path: "",
-    redirectTo: !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "manage-member" : user.data.roles[0] === "staff" ? "manage-member" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "user" ?  "home" : "",
-    pathMatch: "full"
+    path: "home", component: HomeComponent, canActivate: [AuthGuardService],
+    data: {
+      allowedRoles: ['user']
+    }
   },
-  { path: "home", component: HomeComponent, canActivate: [AuthGuardService] },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
-  { path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService] },
+  { path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService] , data: {
+    allowedRoles: ['user','staff','owner']
+  }},
   { path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService] },
   { path: "order", component: OrderComponent, canActivate: [AuthGuardService] },
   { path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService] },

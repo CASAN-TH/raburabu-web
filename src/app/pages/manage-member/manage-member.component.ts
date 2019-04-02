@@ -46,18 +46,20 @@ export class ManageMemberComponent implements OnInit {
     // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
     // this.team_id = team.data._id
     // if (!team) {
-    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    if (!user.data.ref1) {
-      this.router.navigate(['/home']);
-      // console.log('asd');
-    } else {
-      // console.log('sdf');
-      this.team_id = user.data.ref1;
-      this.user = user.data.roles[0];
-      this.getDataMember();
-      this.userId = user.data._id
-      this.chartData();
-    }
+    // let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    // console.log(user)
+    this.getMe();
+    // if (!user.data.ref1) {
+    //   this.router.navigate(['/home']);
+    // } else {
+    //   this.team_id = user.data.ref1;
+    //   this.user = user.data.roles[0];
+    //   this.getDataMember();
+    //   this.userId = user.data._id
+    //   this.chartData();
+    //   this.getMe();
+    // }
+
   }
 
   chartData() {
@@ -223,6 +225,25 @@ export class ManageMemberComponent implements OnInit {
       // console.log(data);
       // this.address = data;
       // });
+    }
+  }
+  async getMe() {
+    try {
+      let user: any = await this.teameServicec.me()
+      console.log(user)
+      if (!user.data.ref1) {
+        this.router.navigate(['/home']);
+        // console.log('asd');
+      } else {
+        // console.log('sdf');
+        this.team_id = user.data.ref1;
+        this.user = user.data.roles[0];
+        this.getDataMember();
+        this.userId = user.data._id
+        this.chartData();
+      }
+    } catch (error) {
+
     }
   }
 
