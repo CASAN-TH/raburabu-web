@@ -1,3 +1,4 @@
+import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ModalCreateTeamComponent } from './../../modal/modal-create-team/modal-create-team.component';
@@ -12,21 +13,29 @@ import { environment } from 'src/environments/environment';
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+  teamId: any;
+  nameTeam: any;
+
   constructor(
     public dialog: MatDialog,
     public router: Router,
-    public ngxSpinner: NgxSpinnerService
-  ) { }
+    public ngxSpinner: NgxSpinnerService,
+    public teameService: TeameServiceService,
 
-  ngOnInit() {
-    // let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // if (user.data.ref1) {
-    //   this.router.navigate(['/manage-member']);
-    //   // console.log('asd');
-    // }
+  ) { 
+    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    this.teamId = user.data.ref1
+    if (user.data.ref1) {
+      this.router.navigate(['/manage-member']);
+      // console.log('asd');
+    }
     // if (user.data.roles[0] === 'admin') {
     //   this.router.navigate(['/admin-manage-team']);
     // }
+  }
+
+  ngOnInit() {
+    this.getTeam();
   }
 
 
@@ -57,5 +66,13 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['manage-member']);
       }
     });
+  }
+  async getTeam() {
+    try {
+      let res: any = await this.teameService.getById(this.teamId);
+      this.nameTeam = res.data.name;
+    } catch (error) {
+
+    }
   }
 }

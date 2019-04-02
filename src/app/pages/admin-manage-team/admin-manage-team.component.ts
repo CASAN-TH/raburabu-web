@@ -56,7 +56,10 @@ export class AdminManageTeamComponent implements OnInit {
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
-        data: { message: "ต้องการอนุมัติทีมใช่หรือไม่?" },
+        data: {
+          title: "อนุมัติการสร้างทีม",
+          message: "ต้องการอนุมัติการสร้างทีมใช่หรือไม่?"
+        },
         disableClose: true
       });
       dialogRef.afterClosed().subscribe(async result => {
@@ -83,7 +86,10 @@ export class AdminManageTeamComponent implements OnInit {
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
-        data: { message: "ต้องการอนุมัติทีมใช่หรือไม่?" },
+        data: {
+          title: "ปฏิเสธการสร้างทีม",
+          message: "ต้องการปฏิเสธการสร้างทีมใช่หรือไม่?"
+        },
         disableClose: true
       });
       dialogRef.afterClosed().subscribe(async result => {
