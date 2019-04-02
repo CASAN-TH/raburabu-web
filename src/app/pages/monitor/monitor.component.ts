@@ -65,7 +65,7 @@ export class MonitorComponent implements OnInit {
 
   async getMonitorTeam() {
     try {
-      this.ngxSpiner.show()
+      // this.ngxSpiner.show()
       this.waitwithdrawal = [];
       this.waitpack = [];
       this.waitshipping = [];
@@ -93,7 +93,7 @@ export class MonitorComponent implements OnInit {
   }
 
   async getMonitor() {
-    this.ngxSpiner.show()
+    // this.ngxSpiner.show()
     this.waitwithdrawal = [];
     this.waitpack = [];
     this.waitshipping = [];
@@ -158,22 +158,32 @@ export class MonitorComponent implements OnInit {
   }
 
   async addBox(itm, item) {
-    // console.log(item);
-    let QtyData: any;
     let sumQty = 0;
     let res: any = await this.monitorService.getLabel(itm._id);
     console.log(res);
     res.data.productall.forEach(dataQty => {
-      QtyData = dataQty.qtyAll;
-      console.log(dataQty.qtyAll)
       if (dataQty.qtyAll) {
-        console.log(dataQty.qtyAll);
         sumQty += dataQty.qtyAll === null ? 0 : dataQty.qtyAll
       }
     });
-    console.log(QtyData);
-    console.log(sumQty)
-    if (QtyData === undefined || sumQty > 0) {
+    if (sumQty === 0 && itm.labels.length > 0) {
+      let data = {
+        order_id: itm._id,
+        monitor_id: item._id
+      }
+      const dialogRef = this.dialog.open(ModalMaxBoxComponent, {
+        width: '600px',
+        data: data,
+        height: '400px',
+        disableClose: false
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.getMonitor();
+        }
+      });
+    } else {
       let data = {
         order_id: itm._id,
         monitor_id: item._id
@@ -192,25 +202,6 @@ export class MonitorComponent implements OnInit {
         }
       });
 
-    }
-
-    if ((QtyData === null && sumQty === 0) || sumQty === 0) {
-      let data = {
-        order_id: itm._id,
-        monitor_id: item._id
-      }
-      const dialogRef = this.dialog.open(ModalMaxBoxComponent, {
-        width: '600px',
-        data: data,
-        height: '400px',
-        disableClose: false
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getMonitor();
-        }
-      });
     }
 
 

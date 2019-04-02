@@ -11,6 +11,7 @@ import { HistoryServiceService } from 'src/app/services/history-service/history-
   styleUrls: ['./modal-profile.component.scss']
 })
 export class ModalProfileComponent implements OnInit {
+  dataHistory: any;
   typeChart: any;
   dataChart: any;
   optionsChart: any;
@@ -33,7 +34,7 @@ export class ModalProfileComponent implements OnInit {
     }, 1);
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     // this.user = user.data;
-    console.log(this.data);
+    // console.log(this.data);
     if (this.data) {
       this.getUser();
     } else {
@@ -68,6 +69,8 @@ export class ModalProfileComponent implements OnInit {
   async getHistory(_id) {
     let res: any = await this.historyService.getHistory(_id);
     console.log(res);
+    this.dataHistory = res.data;
+    console.log(this.dataHistory);
   }
 
   chartData() {

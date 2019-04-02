@@ -46,18 +46,20 @@ export class ManageMemberComponent implements OnInit {
     // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
     // this.team_id = team.data._id
     // if (!team) {
-    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    if (!user.data.ref1) {
-      this.router.navigate(['/home']);
-      // console.log('asd');
-    } else {
-      // console.log('sdf');
-      this.team_id = user.data.ref1;
-      this.user = user.data.roles[0];
-      this.getDataMember();
-      this.userId = user.data._id
-      this.chartData();
-    }
+    // let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    // console.log(user)
+    this.getMe();
+    // if (!user.data.ref1) {
+    //   this.router.navigate(['/home']);
+    // } else {
+    //   this.team_id = user.data.ref1;
+    //   this.user = user.data.roles[0];
+    //   this.getDataMember();
+    //   this.userId = user.data._id
+    //   this.chartData();
+    //   this.getMe();
+    // }
+
   }
 
   chartData() {
@@ -111,12 +113,13 @@ export class ManageMemberComponent implements OnInit {
   }
 
   async getDataMember() {
-    this.ngxSpinner.show();
+    // this.ngxSpinner.show();
     try {
       let res: any = await this.teameServicec.getById(this.team_id);
+      console.log(res);
       this.dataTeam = res.data;
       this.ngxSpinner.hide();
-      // console.log(this.dataTeam);
+      console.log(this.dataTeam);
       let resp: any = this.dataTeam.members.filter((e) => {
         if (e.member_id === this.userId) {
           this.dataUserID = e;
@@ -143,7 +146,7 @@ export class ManageMemberComponent implements OnInit {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
         data: {
-          tltle: "ยืนยันเข้าร่วมทีม",
+          title: "ยืนยันการเข้าร่วมทีม",
           message: "คุณต้องการอนุมัติผู้ใช้ท่านนี้เข้าสู่ทีมหรือไม่?"
         },
         disableClose: true
@@ -154,7 +157,8 @@ export class ManageMemberComponent implements OnInit {
         if (result) {
           let dataApprove: any = {
             member_id: item.member_id,
-            status: 'staff'
+            status: 'staff',
+            statusmember: 'approve'
           }
           let res: any = await this.teameServicec.approveMember(this.team_id, dataApprove);
           if (res) {
@@ -176,7 +180,10 @@ export class ManageMemberComponent implements OnInit {
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
-        data: { message: "ปฏิเสธสมาชิกเข้าสู่ทีม?" },
+        data: {
+          title: "ปฏิเสธเข้าร่วมทีม",
+          message: "ปฏิเสธสมาชิกเข้าสู่ทีม?"
+        },
         disableClose: true
       });
 
@@ -185,9 +192,12 @@ export class ManageMemberComponent implements OnInit {
         if (result) {
           let dataApprove: any = {
             member_id: item.member_id,
-            status: 'retire'
+            status: 'retire',
+            statusmember: 'retire'
+
           }
           let res: any = await this.teameServicec.approveMember(this.team_id, dataApprove);
+          console.log(res)
           if (res) {
             this.statusWaitApprove = []
             this.dataUserID = ''
@@ -215,6 +225,25 @@ export class ManageMemberComponent implements OnInit {
       // console.log(data);
       // this.address = data;
       // });
+    }
+  }
+  async getMe() {
+    try {
+      let user: any = await this.teameServicec.me()
+      console.log(user)
+      if (!user.data.ref1) {
+        this.router.navigate(['/home']);
+        console.log('asd');
+      } else {
+        // console.log('sdf');
+        this.team_id = user.data.ref1;
+        this.user = user.data.roles[0];
+        this.getDataMember();
+        this.userId = user.data._id
+        this.chartData();
+      }
+    } catch (error) {
+
     }
   }
 

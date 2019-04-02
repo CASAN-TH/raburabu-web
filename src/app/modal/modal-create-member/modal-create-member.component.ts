@@ -10,7 +10,9 @@ import { TeameServiceService } from 'src/app/services/teams-service/teame-servic
   styleUrls: ['./modal-create-member.component.scss']
 })
 export class ModalCreateMemberComponent implements OnInit {
+  nameTeam: any;
   user_id: any;
+  teamId: any;
   dataTeam: any;
   selected: any;
   waitApprove: Array<any> = [];
@@ -23,7 +25,8 @@ export class ModalCreateMemberComponent implements OnInit {
   ngOnInit() {
     this.getTeam();
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'))
-    // console.log(res)
+    console.log(res)
+    this.teamId = res.data.ref1;
     this.user_id = res.data._id;
   }
   cancel() {
@@ -77,4 +80,5 @@ export class ModalCreateMemberComponent implements OnInit {
       console.log(error);
     }
   }
+ 
 }
