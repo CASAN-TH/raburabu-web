@@ -88,11 +88,11 @@ export class HomeComponent implements OnInit {
 
       console.log(user.data);
       this.teamId = user.data.ref1
-      if (user.data.ref1) {
-        if (user.data.ref1 != '') {
-          this.router.navigate(['/manage-member']);
-        }
-      }
+      // if (user.data.ref1) {
+      //   if (user.data.ref1 != '') {
+      //     this.router.navigate(['/manage-member']);
+      //   }
+      // }
       if (user.data.remarkrejectteam.length > 0) {
         this.remark = user.data.remarkrejectteam[user.data.remarkrejectteam.length - 1];
         console.log(this.remark);

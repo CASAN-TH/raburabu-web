@@ -11,11 +11,14 @@ export class ModalRemarkComponent implements OnInit {
   remark: any;
   constructor(
     public dialogRef: MatDialogRef<ModalRemarkComponent>,
-      ) { }
+  ) { }
   ngOnInit() {
   }
   confirm() {
     this.outPutRemark.emit(this.remark);
+    this.dialogRef.close()
+  }
+  cancel() {
     this.dialogRef.close()
   }
 }
