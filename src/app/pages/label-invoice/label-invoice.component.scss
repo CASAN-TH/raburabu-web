@@ -1,2 +1,7 @@
-.invoice { page-break-after: always; }
-.invoice:last-child { page-break-after: avoid; }
+.invoice {
+    page-break-after: always !important;
+}
+
+.invoice:last-child {
+    page-break-after: avoid;
+}

@@ -1,96 +1,102 @@
-<h1 name="headNameteam" *ngIf="dataReport && dataReport.teamname"> ทีม {{dataReport.teamname}} </h1>
-<h3>ตารางสรุปยอดการเบิกสินค้า</h3>
+<div [class.isPrinting]="printService.isPrinting">
 
-<div class="table-responsive" *ngIf="dataReport && dataReport.reportall">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col" width="120">ชื่อสินค้า</th>
-        <th scope="col" width="120">จำนวน</th>
-        <th scope="col" width="120">ราคา(ต่อหน่วย)</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let item of dataReport.reportall.items">
-      <tr>
-        <td scope="row "><span class="text-epils">- {{item.name}}</span>
-          <div class="ml-4" *ngFor="let itm of item.type">
-            {{itm.name}}
-          </div>
-        </td>
-        <td>
-      <tr style="border-top: none;">
-        <td style="border-top: none;"></td>
-      </tr>
-      <!-- <div>123</div> -->
-      <div *ngFor="let itm of item.type">
-        {{itm.qty}}
-      </div>
-      </td>
-      <td>{{item.price}}</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <th scope="col" width="120">รวม</th>
-      <th scope="col" width="120">{{dataReport.reportall.totalqty}}</th>
-      <th scope="col" width="120">{{dataReport.reportall.totalprice | number}}</th>
+  <h1 name="headNameteam" *ngIf="dataReport && dataReport.teamname"> ทีม {{dataReport.teamname}} </h1>
+  <h3>ตารางสรุปยอดการเบิกสินค้า</h3>
 
-    </tfoot>
-  </table>
-</div>
-
-<h3>ตารางรายละเอียดการเบิกสินค้า</h3>
-
-<div class="table-responsive mt-4" *ngIf="dataReport && dataReport.reportDetail">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col" width="120">ผู้รับ</th>
-        <th scope="col" width="120">รายละเอียด</th>
-        <th scope="col" width="80">จำนวน</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let item of dataReport.reportDetail">
-      <tr>
-        <td scope="row "> <span class="text-epils">{{item.customer.firstname}}</span> <span
-            class="text-epils">{{item.customer.lastname}}</span>
-        </td>
-        <td>
-          <div class="row " *ngFor="let itm of item.items">
-            <div class="col-12 text-epils ">
-              - {{itm.name}}
+  <div class="table-responsive" *ngIf="dataReport && dataReport.reportall">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" width="120">ชื่อสินค้า</th>
+          <th scope="col" width="120">จำนวน</th>
+          <th scope="col" width="120">ราคา(ต่อหน่วย)</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of dataReport.reportall.items">
+        <tr>
+          <td scope="row "><span class="text-epils">- {{item.name}}</span>
+            <div class="ml-4" *ngFor="let itm of item.type">
+              {{itm.name}}
             </div>
-            <div class="col-12 ">
-              <div class="row " *ngFor="let it of itm.value">
-                <div class="col-12 ml-4 text-epils ">
-                  {{it.name}}
+          </td>
+          <td>
+        <tr style="border-top: none;">
+          <td style="border-top: none;"></td>
+        </tr>
+        <!-- <div>123</div> -->
+        <div *ngFor="let itm of item.type">
+          {{itm.qty}}
+        </div>
+        </td>
+        <td>{{item.price}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <th scope="col" width="120">รวม</th>
+        <th scope="col" width="120">{{dataReport.reportall.totalqty}}</th>
+        <th scope="col" width="120">{{dataReport.reportall.totalprice | number}}</th>
+
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>ตารางรายละเอียดการเบิกสินค้า</h3>
+
+  <div class="table-responsive mt-4" *ngIf="dataReport && dataReport.reportDetail">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" width="120">ผู้รับ</th>
+          <th scope="col" width="120">รายละเอียด</th>
+          <th scope="col" width="80">จำนวน</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of dataReport.reportDetail">
+        <tr>
+          <td scope="row "> <span class="text-epils">{{item.customer.firstname}}</span> <span
+              class="text-epils">{{item.customer.lastname}}</span>
+          </td>
+          <td>
+            <div class="row " *ngFor="let itm of item.items">
+              <div class="col-12 text-epils ">
+                - {{itm.name}}
+              </div>
+              <div class="col-12 ">
+                <div class="row " *ngFor="let it of itm.value">
+                  <div class="col-12 ml-4 text-epils ">
+                    {{it.name}}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
-        <td>
-          <div class="row " *ngFor="let itm of item.items">
-      <tr style="border-top: none;">
-        <td style="border-top: none;"></td>
-      </tr>
-      <div class="col-12 " *ngFor="let it of itm.value">
-        {{it.qty}}
-      </div>
-</div>
+          </td>
+          <td>
+            <div class="row " *ngFor="let itm of item.items">
+        <tr style="border-top: none;">
+          <td style="border-top: none;"></td>
+        </tr>
+        <div class="col-12 " *ngFor="let it of itm.value">
+          {{it.qty}}
+        </div>
+  </div>
 
-</td>
-</tr>
-</tbody>
+  </td>
+  </tr>
+  </tbody>
 
-</table>
+  </table>
 </div>
 <div class="row mb-3" name="divRowBtn">
   <div name="divColBtn" class="col-12 text-right">
     <button name="btnBack" mat-stroked-button color="accent" (click)="goBack()">ย้อนกลับ</button>
-    <router-outlet></router-outlet>
-    <p>x</p>
-    <router-outlet name="print"></router-outlet>
-    <button name="btnPrint" mat-stroked-button color="accent" (click)="onPrintInvoice()" class="ml-2">พิมพ์ใบเบิกสินค้า</button>
+    <div [class.isPrinting]="printService.isPrinting">
+      <router-outlet></router-outlet>
+      <router-outlet name="print"></router-outlet>
+    </div>
+
+    <button name="btnPrint" mat-stroked-button color="accent" (click)="onPrintInvoice()"
+      class="ml-2">พิมพ์ใบเบิกสินค้า</button>
   </div>
 </div>
 
+</div>

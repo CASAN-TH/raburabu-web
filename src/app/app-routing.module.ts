@@ -45,15 +45,15 @@ const routes: Routes = [
     outlet: 'print',
     component: PrintLayoutComponent,
     children: [
-      { path: 'invoice', component: OrderinvoiceComponent }
+      { path: 'invoice/:invoiceIds', component: OrderinvoiceComponent }
     ]
   },
   {
-    path: 'print-label',
-    outlet: 'print-label',
+    path: 'printlabel',
+    outlet: 'printlabel',
     component: PrintLabelComponent,
     children: [
-      { path: 'invoice-label/:invoiceIds', component: LabelInvoiceComponent }
+      { path: 'invoicelabel/:invoiceIds', component: LabelInvoiceComponent }
     ]
   }
 ];

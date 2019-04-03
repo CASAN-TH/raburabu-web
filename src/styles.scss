@@ -13,7 +13,12 @@ $custom-typography: mat-typography-config(
 body{
     font-family: 'Kanit' !important;
 }
-@media print {
-    app-root > * { display: none; }
-    app-root app-print-label { display: block; }
+
+  @media print {
+    .isPrinting > * { display: none; }
+    .isPrinting app-print-layout { display: block; }
+  }
+  @media printlabel {
+    .isPrinting > * { display: none; }
+    .isPrinting app-print-label { display: block; }
   }
