@@ -87,9 +87,11 @@
 <div class="row mb-3" name="divRowBtn">
   <div name="divColBtn" class="col-12 text-right">
     <button name="btnBack" mat-stroked-button color="accent" (click)="goBack()">ย้อนกลับ</button>
-    <router-outlet></router-outlet>
-    <p>x</p>
-    <router-outlet name="print"></router-outlet>
+    <div [class.isPrinting]="printService.isPrinting">
+      <router-outlet></router-outlet>
+      <router-outlet name="print"></router-outlet>
+    </div>
+   
     <button name="btnPrint" mat-stroked-button color="accent" (click)="onPrintInvoice()" class="ml-2">พิมพ์ใบเบิกสินค้า</button>
   </div>
 </div>
