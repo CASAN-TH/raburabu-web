@@ -13,6 +13,8 @@ import { OrderComponent } from "./pages/order/order.component";
 import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
 import { MonitorComponent } from "./pages/monitor/monitor.component";
 import { environment } from "src/environments/environment";
+import { PrintLayoutComponent } from "./pages/print-layout/print-layout.component";
+import { OrderinvoiceComponent } from "./pages/orderinvoice/orderinvoice.component";
 let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
 const routes: Routes = [
   {
@@ -35,6 +37,14 @@ const routes: Routes = [
   { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService] },
   { path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
+  
+  { path: 'print',
+    outlet: 'print',
+    component: PrintLayoutComponent,
+    children: [
+      { path: 'invoice', component: OrderinvoiceComponent }
+    ]
+  }
 ];
 
 @NgModule({

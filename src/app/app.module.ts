@@ -41,6 +41,8 @@ import { GraphAllComponent } from './pages/graph-all/graph-all.component';
 import { ModalProfileComponent } from './modal/modal-profile/modal-profile.component';
 import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
+import { PrintLayoutComponent } from './pages/print-layout/print-layout.component';
+import { OrderinvoiceComponent } from './pages/orderinvoice/orderinvoice.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -67,7 +69,9 @@ const apiSrvCfg = environment;
     ModalRemarkComponent,
     GraphAllComponent,
     ModalProfileComponent,
-    ModalMaxBoxComponent
+    ModalMaxBoxComponent,
+    PrintLayoutComponent,
+    OrderinvoiceComponent
   ],
   imports: [
     BrowserModule,
