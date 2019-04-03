@@ -43,6 +43,8 @@ import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.compon
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { PrintLayoutComponent } from './pages/print-layout/print-layout.component';
 import { OrderinvoiceComponent } from './pages/orderinvoice/orderinvoice.component';
+import { PrintLabelComponent } from './pages/print-label/print-label.component';
+import { LabelInvoiceComponent } from './pages/label-invoice/label-invoice.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -71,7 +73,9 @@ const apiSrvCfg = environment;
     ModalProfileComponent,
     ModalMaxBoxComponent,
     PrintLayoutComponent,
-    OrderinvoiceComponent
+    OrderinvoiceComponent,
+    PrintLabelComponent,
+    LabelInvoiceComponent
   ],
   imports: [
     BrowserModule,

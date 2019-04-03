@@ -15,6 +15,8 @@ import { MonitorComponent } from "./pages/monitor/monitor.component";
 import { environment } from "src/environments/environment";
 import { PrintLayoutComponent } from "./pages/print-layout/print-layout.component";
 import { OrderinvoiceComponent } from "./pages/orderinvoice/orderinvoice.component";
+import { PrintLabelComponent } from "./pages/print-label/print-label.component";
+import { LabelInvoiceComponent } from "./pages/label-invoice/label-invoice.component";
 let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
 const routes: Routes = [
   {
@@ -37,12 +39,21 @@ const routes: Routes = [
   { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService] },
   { path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
-  
-  { path: 'print',
+
+  {
+    path: 'print',
     outlet: 'print',
     component: PrintLayoutComponent,
     children: [
       { path: 'invoice', component: OrderinvoiceComponent }
+    ]
+  },
+  {
+    path: 'print-label',
+    outlet: 'print-label',
+    component: PrintLabelComponent,
+    children: [
+      { path: 'invoice-label/:invoiceIds', component: LabelInvoiceComponent }
     ]
   }
 ];
