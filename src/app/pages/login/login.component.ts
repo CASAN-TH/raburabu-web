@@ -62,11 +62,9 @@ export class LoginComponent implements OnInit {
       }
       if (res.data.ref1) {
         this.router.navigate(["/manage-member"]);
-      }
-      // if (res.data.roles[0] === 'user' && res.data.ref1 && res.data.ref1 != '') {
-      //   this.router.navigate(["/manage-member"]);
-      // }
-      if (res.data.roles[0] === 'user') {
+      } else if (res.data.roles[0] === 'user' && res.data.ref1 != '') {
+        this.router.navigate(["/manage-member"]);
+      } else if (res.data.roles[0] === 'user') {
         this.router.navigate(["/home"]);
       }
 

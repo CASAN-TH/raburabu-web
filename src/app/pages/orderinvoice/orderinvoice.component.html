@@ -1,5 +1,29 @@
-<div class="invoice"
-     *ngFor="let invoice of invoiceIds; let i = index">
-  <h1>Invoice Num. {{ invoice }}</h1>
-  Amount: {{ (invoiceDetails[i] | async)?.amount }}
-</div>
+<table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col" width="300">#</th>
+        <th scope="col"  width="300">First</th>
+        <th scope="col"  width="300">Last</th>
+        <th scope="col"  width="300">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
