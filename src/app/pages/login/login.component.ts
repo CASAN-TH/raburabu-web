@@ -38,10 +38,6 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
-
-
-
-
   ) {
     this.userAuth.isLoggingIn.subscribe(() => {
       this.spinner.show();
