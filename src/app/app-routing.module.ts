@@ -19,15 +19,15 @@ import { PrintLabelComponent } from "./pages/print-label/print-label.component";
 import { LabelInvoiceComponent } from "./pages/label-invoice/label-invoice.component";
 let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
 const routes: Routes = [
-  // {
-  //   path: "",
-  //   redirectTo: !user ? "login" : user.data.roles[0] === "admin" ? "admin-manage-team" : user.data.roles[0] === "owner" ? "manage-member" : user.data.roles[0] === "staff" ? "manage-member" : user.data.roles[0] === "stockstaff" ? "monitor" : user.data.roles[0] === "packstaff" ? "monitor" : user.data.roles[0] === "user" ? "home" : "",
-  //   pathMatch: "full"
-  // },
+  {
+    path: "",
+    redirectTo: "login",
+    pathMatch: 'full'
+  },
   {
     path: "home", component: HomeComponent, canActivate: [AuthGuardService],
     data: {
-      allowedRoles: ['user']
+      allowedRoles: [user.data.roles[0] === 'user']
     }
   },
   { path: "login", component: LoginComponent },
@@ -60,7 +60,7 @@ const routes: Routes = [
   },
   {
     path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService], data: {
-      allowedRoles: ['owner', 'admin', 'stockstaff','packstaff']
+      allowedRoles: ['owner', 'admin', 'stockstaff', 'packstaff']
     }
   },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
