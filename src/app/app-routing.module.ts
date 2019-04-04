@@ -12,17 +12,16 @@ import { OrderListComponent } from "./pages/order-list/order-list.component";
 import { OrderComponent } from "./pages/order/order.component";
 import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
 import { MonitorComponent } from "./pages/monitor/monitor.component";
-import { environment } from "src/environments/environment";
 import { PrintLayoutComponent } from "./pages/print-layout/print-layout.component";
 import { OrderinvoiceComponent } from "./pages/orderinvoice/orderinvoice.component";
 import { PrintLabelComponent } from "./pages/print-label/print-label.component";
 import { LabelInvoiceComponent } from "./pages/label-invoice/label-invoice.component";
-let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
+
 const routes: Routes = [
   {
     path: "",
     redirectTo: "login",
-    pathMatch: 'full'
+    pathMatch: "full"
   },
   {
     path: "home", component: HomeComponent, canActivate: [AuthGuardService],
@@ -31,39 +30,39 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
   {
-    path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService], 
+    path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService],
   },
   {
     path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService]
   },
   {
-    path: "order", component: OrderComponent, canActivate: [AuthGuardService], 
+    path: "order", component: OrderComponent, canActivate: [AuthGuardService],
   },
   {
-    path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService], 
+    path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService],
   },
   {
-    path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService], 
+    path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService],
   },
   {
-    path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService], 
+    path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService],
   },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
 
   {
-    path: 'print',
-    outlet: 'print',
+    path: "print",
+    outlet: "print",
     component: PrintLayoutComponent,
     children: [
-      { path: 'invoice/:invoiceIds', component: OrderinvoiceComponent }
+      { path: "invoice/:invoiceIds", component: OrderinvoiceComponent }
     ]
   },
   {
-    path: 'printlabel',
-    outlet: 'printlabel',
+    path: "printlabel",
+    outlet: "printlabel",
     component: PrintLabelComponent,
     children: [
-      { path: 'invoicelabel/:invoiceIds', component: LabelInvoiceComponent }
+      { path: "invoicelabel/:invoiceIds", component: LabelInvoiceComponent }
     ]
   }
 ];
