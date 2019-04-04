@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MonitorService } from './../../services/monitor/monitor.service';
 import { Component, OnInit } from '@angular/core';
@@ -42,6 +43,6 @@ export class OrderReportDetailComponent implements OnInit {
     }
   }
   onPrintInvoice() {
-   
+    window.open(environment.apiUrl + '/api/monitor/reportdetail/' + this.moniter_id)
   }
 }
