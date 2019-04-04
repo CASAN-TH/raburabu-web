@@ -7,7 +7,9 @@ export const environment = {
   environment: "dev",
   appName: "raburabu-web",
   // apiUrl: "http://54.251.134.2"
-  apiUrl: "http://54.251.134.2"
+  // apiUrl: "http://18.136.120.17"
+  apiUrl: "http://13.229.80.32"
+  
 };
 
 /*

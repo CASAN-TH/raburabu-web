@@ -71,8 +71,8 @@ export class SideBarComponent implements OnInit {
       disableClose: false
     });
     // dialogRef.componentInstance.dataCutomer.subscribe(data => {
-      // console.log(data);
-      // this.address = data;
+    // console.log(data);
+    // this.address = data;
     // });
   }
 

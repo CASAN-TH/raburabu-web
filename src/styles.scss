@@ -5,20 +5,10 @@
 @import url('https://fonts.googleapis.com/css?family=Prompt:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin-ext');
 
 @import '~@angular/material/theming';
-$custom-typography: mat-typography-config(
-    $font-family: 'Kanit'
+$custom-typography: mat-typography-config($font-family: 'Kanit'
 );
 @include mat-core($custom-typography);
 
-body{
+body {
     font-family: 'Kanit' !important;
 }
-
-  @media print {
-    .isPrinting > * { display: none; }
-    .isPrinting app-print-layout { display: block; }
-  }
-  @media printlabel {
-    .isPrinting > * { display: none; }
-    .isPrinting app-print-label { display: block; }
-  }

@@ -1,8 +1,8 @@
+import { environment } from './../../../environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MonitorService } from './../../services/monitor/monitor.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PrintService } from 'src/app/services/print/print.service';
 
 @Component({
   selector: 'app-order-report-detail',
@@ -18,14 +18,13 @@ export class OrderReportDetailComponent implements OnInit {
     private monitorService: MonitorService,
     private route: ActivatedRoute,
     public ngxSpinner: NgxSpinnerService,
-    public printService: PrintService
 
   ) { }
 
   ngOnInit() {
     let id: any = this.route.snapshot.paramMap.get('id');
     this.moniter_id = id;
-    console.log(this.moniter_id);
+    // console.log(this.moniter_id);
     this.getDataReport();
 
   }
@@ -37,15 +36,13 @@ export class OrderReportDetailComponent implements OnInit {
     try {
       let res: any = await this.monitorService.getReportMonitorById(this.moniter_id);
       this.dataReport = res.data;
-      console.log(res);
+      // console.log(res);
       this.ngxSpinner.hide();
     } catch (error) {
       this.ngxSpinner.hide();
     }
   }
   onPrintInvoice() {
-    const invoiceIds = ['101', '102'];
-    this.printService
-      .printDocument('invoice', invoiceIds);
+    window.open(environment.apiUrl + '/api/monitor/reportdetail/' + this.moniter_id)
   }
 }

@@ -22,7 +22,7 @@ export class ModalMaxBoxComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.data.order_id)
+    // console.log(this.data.order_id)
     this.getMonitorByid();
   }
   async getMonitorByid() {
@@ -34,7 +34,7 @@ export class ModalMaxBoxComponent implements OnInit {
           this.dataProductInbox = order.labels
           let i = 0;
           this.dataProductInbox.forEach(data => {
-            console.log(data)
+            // console.log(data)
             this.dataProductInbox[i].sumQty = 0
             if (data.productlist.length === 1) {
               data.productlist.forEach(dataPro => {
