@@ -26,42 +26,27 @@ const routes: Routes = [
   },
   {
     path: "home", component: HomeComponent, canActivate: [AuthGuardService],
-    data: {
-      allowedRoles: [user.data.roles[0] === 'user']
-    }
   },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
   {
-    path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService], data: {
-      allowedRoles: ['owner', 'user', 'staff']
-    }
+    path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService], 
   },
   {
-    path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService], data: {
-      allowedRoles: ['owner', 'staff']
-    }
+    path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService]
   },
   {
-    path: "order", component: OrderComponent, canActivate: [AuthGuardService], data: {
-      allowedRoles: ['owner', 'staff']
-    }
+    path: "order", component: OrderComponent, canActivate: [AuthGuardService], 
   },
   {
-    path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService], data: {
-      allowedRoles: ['admin']
-    }
+    path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService], 
   },
   {
-    path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService], data: {
-      allowedRoles: ['stockstaff']
-    }
+    path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService], 
   },
   {
-    path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService], data: {
-      allowedRoles: ['owner', 'admin', 'stockstaff', 'packstaff']
-    }
+    path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService], 
   },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
 
