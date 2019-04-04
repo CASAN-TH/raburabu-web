@@ -12,10 +12,7 @@ import { OrderListComponent } from "./pages/order-list/order-list.component";
 import { OrderComponent } from "./pages/order/order.component";
 import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
 import { MonitorComponent } from "./pages/monitor/monitor.component";
-import { PrintLayoutComponent } from "./pages/print-layout/print-layout.component";
-import { OrderinvoiceComponent } from "./pages/orderinvoice/orderinvoice.component";
-import { PrintLabelComponent } from "./pages/print-label/print-label.component";
-import { LabelInvoiceComponent } from "./pages/label-invoice/label-invoice.component";
+
 
 const routes: Routes = [
   {
@@ -49,22 +46,6 @@ const routes: Routes = [
   },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
 
-  {
-    path: "print",
-    outlet: "print",
-    component: PrintLayoutComponent,
-    children: [
-      { path: "invoice/:invoiceIds", component: OrderinvoiceComponent }
-    ]
-  },
-  {
-    path: "printlabel",
-    outlet: "printlabel",
-    component: PrintLabelComponent,
-    children: [
-      { path: "invoicelabel/:invoiceIds", component: LabelInvoiceComponent }
-    ]
-  }
 ];
 
 @NgModule({

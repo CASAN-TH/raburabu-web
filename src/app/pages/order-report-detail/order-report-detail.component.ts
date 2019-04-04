@@ -2,7 +2,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MonitorService } from './../../services/monitor/monitor.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PrintService } from 'src/app/services/print/print.service';
 
 @Component({
   selector: 'app-order-report-detail',
@@ -18,7 +17,6 @@ export class OrderReportDetailComponent implements OnInit {
     private monitorService: MonitorService,
     private route: ActivatedRoute,
     public ngxSpinner: NgxSpinnerService,
-    public printService: PrintService
 
   ) { }
 
@@ -44,8 +42,6 @@ export class OrderReportDetailComponent implements OnInit {
     }
   }
   onPrintInvoice() {
-    const invoiceIds = ['101', '102'];
-    this.printService
-      .printDocument('invoice', invoiceIds);
+   
   }
 }
