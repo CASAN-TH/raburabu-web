@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
@@ -20,6 +21,7 @@ export class ModalCreateMemberComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ModalCreateTeamComponent>,
     public teameService: TeameServiceService,
+    public ngxSpinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -75,10 +77,10 @@ export class ModalCreateMemberComponent implements OnInit {
         window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(update));
       }
       this.dialogRef.close('createMember');
-
+      this.ngxSpinner.show();
     } catch (error) {
       console.log(error);
     }
   }
- 
+
 }

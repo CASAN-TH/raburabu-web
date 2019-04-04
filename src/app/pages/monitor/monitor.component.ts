@@ -55,6 +55,8 @@ export class MonitorComponent implements OnInit {
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     this.user = user.data;
+    this.ngxSpiner.hide();
+
     // console.log(user);
     if (this.user.roles[0] === 'owner') {
       this.getMonitorTeam();

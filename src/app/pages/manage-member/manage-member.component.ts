@@ -43,6 +43,7 @@ export class ManageMemberComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.ngxSpinner.hide();
     // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
     // this.team_id = team.data._id
     // if (!team) {
