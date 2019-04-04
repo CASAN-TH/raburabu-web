@@ -68,9 +68,9 @@ export class ModalProfileComponent implements OnInit {
   }
   async getHistory(_id) {
     let res: any = await this.historyService.getHistory(_id);
-    console.log(res);
+    // console.log(res);
     this.dataHistory = res.data;
-    console.log(this.dataHistory);
+    // console.log(this.dataHistory);
   }
 
   chartData() {

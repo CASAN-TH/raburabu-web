@@ -78,7 +78,7 @@ export class ModalAddressComponent implements OnInit {
   }
 
   checkNumber(e) {
-    console.log(e);
+    // console.log(e);
     let regEx = new RegExp(/^[0-9]+$/);
     if (!(regEx.test(e.key) || e.key === 'Backspace' || e.key === 'Control' || e.key === 'Alt' || e.key === 'Shift' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
       this.data.tel = this.data.tel.substring(0, this.data.tel.length - 1);

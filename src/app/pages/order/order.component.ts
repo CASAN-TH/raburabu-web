@@ -58,7 +58,7 @@ export class OrderComponent implements OnInit {
       this.getProd();
       let _id = await this.route.snapshot.paramMap.get('idOrder');
       this.idOrder = await JSON.parse(_id);
-      console.log(this.idOrder);
+      // console.log(this.idOrder);
       // console.log(this.address);
       if (this.idOrder) {
         this.getOrderById();
@@ -78,16 +78,16 @@ export class OrderComponent implements OnInit {
           this.address.address = address;
         });
         this.data.items = res.data.items;
-        console.log(res.data.paymenttype.name);
+        // console.log(res.data.paymenttype.name);
         let index = this.paymentType.findIndex(name => name === res.data.paymenttype.name);
-        console.log(index);
+        // console.log(index);
         this.namePayment = this.paymentType[index];
         this.data.totalamount = 0
         this.data.items.forEach(sum => {
           this.data.totalamount += sum.amount
         });
       }
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -100,7 +100,7 @@ export class OrderComponent implements OnInit {
       // console.log(res);
       this.prodData = res.data;
       this.ngxSpinner.hide();
-      console.log(this.prodData);
+      // console.log(this.prodData);
     } catch (error) {
       this.ngxSpinner.hide();
 
@@ -169,15 +169,15 @@ export class OrderComponent implements OnInit {
         totalamount: this.data.totalamount,
         user_id: user.data._id
       }
-      console.log(body);
+      // console.log(body);
       if (this.idOrder) {
         let res: any = await this.orderService.editOrder(this.idOrder, body);
-        console.log(res);
+        // console.log(res);
         this.ngxSpinner.hide();
         this.router.navigate(['/order-list']);
       } else {
         let res: any = await this.orderService.saveOrder(body);
-        console.log(res);
+        // console.log(res);
         this.ngxSpinner.hide();
         this.router.navigate(['/order-list']);
       }

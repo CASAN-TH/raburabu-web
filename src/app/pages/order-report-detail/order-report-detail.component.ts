@@ -25,7 +25,7 @@ export class OrderReportDetailComponent implements OnInit {
   ngOnInit() {
     let id: any = this.route.snapshot.paramMap.get('id');
     this.moniter_id = id;
-    console.log(this.moniter_id);
+    // console.log(this.moniter_id);
     this.getDataReport();
 
   }
@@ -37,7 +37,7 @@ export class OrderReportDetailComponent implements OnInit {
     try {
       let res: any = await this.monitorService.getReportMonitorById(this.moniter_id);
       this.dataReport = res.data;
-      console.log(res);
+      // console.log(res);
       this.ngxSpinner.hide();
     } catch (error) {
       this.ngxSpinner.hide();

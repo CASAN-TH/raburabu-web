@@ -19,7 +19,7 @@ export class LabelInvoiceComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.invoiceIds)
+    // console.log(this.invoiceIds)
     // setTimeout(window.print);
     this.invoiceDetails = this.invoiceIds
       .map(id => this.getInvoiceDetails(id));

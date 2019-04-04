@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
       let res: any = await this.teameService.me();
       window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
-      console.log(res);
+      // console.log(res);
       if (res.data.roles[0] === 'stockstaff') {
         this.router.navigate(["/monitor"]);
       }
@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    console.log(res);
+    // console.log(res);
     if (res && res.data) {
       if (res.data.roles[0] === 'stockstaff') {
         this.router.navigate(["/monitor"]);

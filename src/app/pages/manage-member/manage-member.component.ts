@@ -103,7 +103,7 @@ export class ManageMemberComponent implements OnInit {
     this.dataChart.datasets.forEach(data => {
       this.dataChart.datasets[i].borderColor = this.colorChart[i];
       this.dataChart.datasets[i].backgroundColor = this.bgChart;
-      console.log(data);
+      // console.log(data);
       i++;
     });
     this.optionsChart = {
@@ -116,10 +116,10 @@ export class ManageMemberComponent implements OnInit {
     // this.ngxSpinner.show();
     try {
       let res: any = await this.teameServicec.getById(this.team_id);
-      console.log(res);
+      // console.log(res);
       this.dataTeam = res.data;
       this.ngxSpinner.hide();
-      console.log(this.dataTeam);
+      // console.log(this.dataTeam);
       let resp: any = this.dataTeam.members.filter((e) => {
         if (e.member_id === this.userId) {
           this.dataUserID = e;
@@ -230,10 +230,10 @@ export class ManageMemberComponent implements OnInit {
   async getMe() {
     try {
       let user: any = await this.teameServicec.me()
-      console.log(user)
+      // console.log(user)
       if (!user.data.ref1) {
         this.router.navigate(['/home']);
-        console.log('asd');
+        // console.log('asd');
       } else {
         // console.log('sdf');
         this.team_id = user.data.ref1;

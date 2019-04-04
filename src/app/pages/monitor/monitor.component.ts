@@ -71,7 +71,7 @@ export class MonitorComponent implements OnInit {
       this.waitshipping = [];
       this.complete = [];
       let res: any = await this.monitorService.getMonitorTeam(this.user.ref1);
-      console.log(res);
+      // console.log(res);
       res.data.forEach(data => {
         if (data.status === "waitwithdrawal") {
           this.waitwithdrawal.push(data);
@@ -160,7 +160,7 @@ export class MonitorComponent implements OnInit {
   async addBox(itm, item) {
     let sumQty = 0;
     let res: any = await this.monitorService.getLabel(itm._id);
-    console.log(res);
+    // console.log(res);
     res.data.productall.forEach(dataQty => {
       if (dataQty.qtyAll) {
         sumQty += dataQty.qtyAll === null ? 0 : dataQty.qtyAll

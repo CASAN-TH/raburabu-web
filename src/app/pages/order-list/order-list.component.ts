@@ -69,11 +69,11 @@ export class OrderListComponent implements OnInit {
       let id: any = {
         userid: this.user.data._id
       }
-      console.log(id);
+      // console.log(id);
       this.idMember.push(id);
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
-      console.log(this.teamID)
+      // console.log(this.teamID)
       this.getTeam();
       this.getOrderOwnerAndMember();
       // console.log(this.rolesUser);
@@ -91,7 +91,7 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
-      console.log(this.dataorder)
+      // console.log(this.dataorder)
     } catch (error) {
       // console.log(error)
     }
@@ -117,7 +117,7 @@ export class OrderListComponent implements OnInit {
     try {
       let res: any = await this.teamService.getById(this.teamID);
       this.dataTeam = res.data;
-      console.log(res);
+      // console.log(res);
     } catch (error) {
 
     }
@@ -126,17 +126,17 @@ export class OrderListComponent implements OnInit {
     this.ngxSpinner.show();
     try {
       if (this.rolesUser === 'owner') {
-        console.log(this.idMember)
+        // console.log(this.idMember)
         let resOder: any = await this.order.getOrder(this.teamID);
         this.dataOrderAll = resOder.data;
-        console.log(this.dataOrderAll)
+        // console.log(this.dataOrderAll)
         this.ngxSpinner.hide();
       }
       if (this.rolesUser === 'staff') {
         // console.log(this.user.data._id)
         let resOrderByUser: any = await this.order.getOrderByUser(this.user.data._id);
         this.dataOrderAll = resOrderByUser.data;
-        console.log(this.dataOrderMember);
+        // console.log(this.dataOrderMember);
         this.ngxSpinner.hide();
       }
     } catch (error) {
@@ -172,7 +172,7 @@ export class OrderListComponent implements OnInit {
 
   onClickEdit(item) {
     try {
-      console.log(item._id);
+      // console.log(item._id);
       this.router.navigate(['/order', { idOrder: JSON.stringify(item._id), si: false }]);
 
     } catch (error) {
@@ -196,7 +196,7 @@ export class OrderListComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(async result => {
           this.dataOrderAll.forEach(total => {
-            console.log(total);
+            // console.log(total);
             tot += total.totalamount;
             dataOrder.push({
               customer: {
@@ -223,12 +223,12 @@ export class OrderListComponent implements OnInit {
               status: 'waitwithdrawal',
               totalorderamount: tot
             }
-            console.log(sendOrder);
+            // console.log(sendOrder);
             let resMonitor: any = await this.monitorService.sendOrderToMonitor(sendOrder);
-            console.log(resMonitor);
+            // console.log(resMonitor);
             if (resMonitor) {
               let res: any = await this.order.sendOrderAll(this.teamID);
-              console.log(res);
+              // console.log(res);
             }
             this.getOrderOwnerAndMember();
           }

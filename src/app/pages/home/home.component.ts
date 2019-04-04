@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
       let user: any = await this.teameService.me()
       // let i: any;
 
-      console.log(user.data);
+      // console.log(user.data);
       this.teamId = user.data.ref1
       // if (user.data.ref1) {
       //   if (user.data.ref1 != '') {
@@ -95,14 +95,14 @@ export class HomeComponent implements OnInit {
       // }
       if (user.data.remarkrejectteam.length > 0) {
         this.remark = user.data.remarkrejectteam[user.data.remarkrejectteam.length - 1];
-        console.log(this.remark);
+        // console.log(this.remark);
       }
       if (user.data.statusmember === 'retire') {
         for (let i = 0; i < user.data.historyaboutteam.length; i++) {
           const historyaboutteam = user.data.historyaboutteam[i];
           this.nameTeam = historyaboutteam
         }
-        console.log(this.nameTeam)
+        // console.log(this.nameTeam)
       }
 
 
