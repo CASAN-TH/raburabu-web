@@ -36,7 +36,7 @@ export class ModalAddBoxComponent implements OnInit {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
       // this.protoData = res.data;
       this.dataLabel = res.data;
-      console.log(this.dataLabel)
+      // console.log(this.dataLabel)
     } catch (error) {
 
     }
@@ -64,7 +64,7 @@ export class ModalAddBoxComponent implements OnInit {
         this.dataLabel.productall[i].qty = this.protoData.productall[i].qty
       } else if (value == 0) {
         this.dataLabel.productall[i].qty = 1
-        console.log(this.dataLabel.productall[i]);
+        // console.log(this.dataLabel.productall[i]);
       } else {
         let number = Number.isNaN(value);
         // console.log(number);
@@ -78,7 +78,7 @@ export class ModalAddBoxComponent implements OnInit {
       // console.log('2');
       if (value > this.protoData.productall[i].qtyAll) {
         this.dataLabel.productall[i] = this.protoData.productall[i]
-        console.log(this.dataLabel.productall[i]);
+        // console.log(this.dataLabel.productall[i]);
       } else if (value == 0) {
         // console.log('2.2');
         let data = {
@@ -87,7 +87,7 @@ export class ModalAddBoxComponent implements OnInit {
           qtyAll: 1
         }
         this.dataLabel.productall[i] = data
-        console.log(this.dataLabel.productall[i]);
+        // console.log(this.dataLabel.productall[i]);
       } else {
         let number = Number.isNaN(value);
         // console.log(number);
@@ -101,9 +101,10 @@ export class ModalAddBoxComponent implements OnInit {
 
   selectProduct(e, item, i) {
     item.qty = parseInt(item.qty);
+    this.chkProduck = false;
     // console.log(item);
-    this.chkProduck = e.checked
-    if (this.chkProduck === true) {
+    // this.chkProduck = e.checked
+    if (e.checked === true) {
       this.useProduct.push({
         name: item.name,
         qty: item.qtyAll ? item.qtyAll : item.qty
@@ -116,6 +117,13 @@ export class ModalAddBoxComponent implements OnInit {
       this.dataLabel.productall[i].active = false
       // console.log(this.useProduct);
     }
+    this.dataLabel.productall.forEach(data => {
+      // console.log(data);
+      if (data.active === true) {
+        this.chkProduck = true
+      }
+    });
+    // console.log(this.useProduct);
   }
 
   async confirmLabel() {
