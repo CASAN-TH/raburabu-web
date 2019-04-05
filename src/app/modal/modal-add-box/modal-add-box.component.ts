@@ -44,43 +44,45 @@ export class ModalAddBoxComponent implements OnInit {
     try {
       let respTeam: any = await this.monitorService.getMonitor(this.data.monitor_id);
       this.dataTeam = respTeam.data;
-      console.log(this.dataTeam)
+      // console.log(this.dataTeam)
     } catch (error) {
 
     }
 
   }
   async keyQty(e, i) {
-    console.log(e);
+    // console.log(e);
     let value = parseInt(e)
     let res: any = await this.monitorService.getLabel(this.data.order_id);
     this.protoData = res.data;
-    console.log(this.protoData);
+    // console.log(this.protoData);
     if (!this.protoData.productall[i].qtyAll) {
-      console.log('1');
+      // console.log('1');
       if (value > this.protoData.productall[i].qty) {
         this.dataLabel.productall[i].qty = this.protoData.productall[i].qty
         // this.keyDataQty = this.protoData.productall[i].qty
       } else {
-        let number = Number.isNaN(e);
+        let number = Number.isNaN(value);
         console.log(number);
-        if (number) {
+        if (!number) {
           this.dataLabel.productall[i].qty = parseInt(e)
         }
       }
+      console.log(this.dataLabel.productall);
     }
     if (this.protoData.productall[i].qtyAll) {
-      console.log('2');
+      // console.log('2');
       if (value > this.protoData.productall[i].qtyAll) {
         this.dataLabel.productall[i] = this.protoData.productall[i]
         // this.keyDataQty = this.protoData.productall[i].qtyAll
       } else {
-        let number = Number.isNaN(e);
+        let number = Number.isNaN(value);
         console.log(number);
-        if (number) {
+        if (!number) {
           this.dataLabel.productall[i].qtyAll = parseInt(e)
         }
       }
+      console.log(this.dataLabel.productall);
     }
   }
 
@@ -129,8 +131,9 @@ export class ModalAddBoxComponent implements OnInit {
       }
       this.dataTeamOrder.orders[res].labels.push(data)
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
-      // console.log(resp);
+      console.log(resp);
       this.thisDialogRef.close('clse');
+      console.log(this.dataTeamOrder);
     } catch (error) {
       console.log(error);
     }
