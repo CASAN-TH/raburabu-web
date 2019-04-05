@@ -117,10 +117,10 @@ export class MonitorComponent implements OnInit {
       }
     });
     this.ngxSpiner.hide();
-    // console.log(this.waitwithdrawal);
-    // console.log(this.waitpack);
-    // console.log(this.waitshipping);
-    // console.log(this.complete);
+    console.log(this.waitwithdrawal);
+    console.log(this.waitpack);
+    console.log(this.waitshipping);
+    console.log(this.complete);
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {

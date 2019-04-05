@@ -6,7 +6,7 @@
           <div name="divWaitWithdrawal">
             <div class="row mt-3" name="rowTeamDetail">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail">
-                <h5 class="mb-0 text-overflow" name="textOrderNo">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo">รหัสใบสั่งซื้อ: {{item.monitorno}}</h5>
                 <h5 class="mb-0 text-overflow" name="item.team.teamname">ชื่อทีม: {{item.team.teamname}}</h5>
                 <h5 class="mb-0 text-overflow" name="item.team.totalorderamount">รวมออเดอร์: {{item.totalorderamount | number}}</h5>
               </div>
@@ -60,7 +60,7 @@
           <div name="divWaitPack">
             <div class="row mt-3" name="rowTeamDetail2">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail2">
-                <h5 class="mb-0 text-overflow" name="textOrderNo2">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo2">รหัสใบสั่งซื้อ: {{item2.monitorno}}</h5>
                 <h5 class="mb-0 text-overflow" name="item2.team.teamname">ชื่อทีม: {{item2.team.teamname}}</h5>
                 <h5 class="mb-0 text-overflow" name="item2.totalorderamount">รวมออเดอร์: {{item2.totalorderamount | number}}</h5>
               </div>
@@ -90,11 +90,14 @@
                 <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel">
                   <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel">เลขที่พัสดุ:
                     {{itm2.labels[itm2.page ? itm2.page : 0].trackno}}</span>
-                  <span style="display: block" name="textOrderNoLabel" class="text-overflow">รหัสใบสั่งซื้อ:
-                    {{itm2.labels[itm2.page ? itm2.page : 0]._id}}</span>
+                  <!-- <span style="display: block" name="textOrderNoLabel" class="text-overflow">รหัสใบสั่งซื้อ:
+                    {{itm2.labels[itm2.page ? itm2.page : 0]._id}}</span> -->
                   <span style="display: block" name="textCustomerLabel" class="text-overflow">ชื่อผู้สั่ง:
                     <span class="mr-2"> {{itm2.labels[itm2.page ? itm2.page : 0].customer.firstname}}</span>
                     <span>{{itm2.labels[itm2.page ? itm2.page : 0].customer.lastname}}</span>
+                  </span>
+                  <span>
+                    <span *ngFor="let prod of itm2.labels[itm2.page ? itm2.page : 0].productlist"><small><small>{{prod.name}} = {{prod.qty}}, </small></small></span>
                   </span>
                   <!-- <span style="display: block" class="mb-2" name="textAmountLabel">จำนวนสินค้า:
                     {{data[datalength].totalqty}} ชิ้น
@@ -136,7 +139,7 @@
           <div name="divWaitShipping">
             <div class="row mt-3" name="rowTeamDetail3">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail3">
-                <h5 class="mb-0 text-overflow" name="textOrderNo3 ">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo3 ">รหัสใบสั่งซื้อ: {{item3.monitorno}}</h5>
                 <h5 class="mb-0 text-overflow" name="item3.team.teamname">ชื่อทีม: {{item3.team.teamname}}</h5>
                 <h5 class="mb-0 text-overflow" name="item3.team.totalorderamount">รวมออเดอร์: {{item3.totalorderamount | number}}</h5>
               </div>
@@ -202,7 +205,7 @@
           <div name="divComplete">
             <div class="row mt-3" name="rowTeamDetail4">
               <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail4">
-                <h5 class="mb-0 text-overflow" name="textOrderNo4">รหัสใบสั่งซื้อ: 110050308564</h5>
+                <h5 class="mb-0 text-overflow" name="textOrderNo4">รหัสใบสั่งซื้อ: {{item4.monitorno}}</h5>
                 <h5 class="mb-0 text-overflow" name="item4.team.teamname">ชื่อทีม: {{item4.team.teamname}}</h5>
                 <h5 class="mb-0 text-overflow" name="item4.totalorderamount">รวมออเดอร์: {{item4.totalorderamount | number}}</h5>
               </div>
