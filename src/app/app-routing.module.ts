@@ -15,11 +15,11 @@ import { MonitorComponent } from "./pages/monitor/monitor.component";
 
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: "login",
-    pathMatch: "full"
-  },
+  // {
+  //   path: "",
+  //   redirectTo: "login",
+  //   pathMatch: "full"
+  // },
   {
     path: "home", component: HomeComponent, canActivate: [AuthGuardService],
   },
