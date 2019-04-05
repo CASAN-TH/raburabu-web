@@ -35,7 +35,7 @@ export class ModalAddBoxComponent implements OnInit {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
       // this.protoData = res.data;
       this.dataLabel = res.data;
-      console.log(this.dataLabel)
+      // console.log(this.dataLabel)
     } catch (error) {
 
     }
@@ -44,49 +44,51 @@ export class ModalAddBoxComponent implements OnInit {
     try {
       let respTeam: any = await this.monitorService.getMonitor(this.data.monitor_id);
       this.dataTeam = respTeam.data;
-      console.log(this.dataTeam)
+      // console.log(this.dataTeam)
     } catch (error) {
 
     }
 
   }
   async keyQty(e, i) {
-    console.log(e);
+    // console.log(e);
     let value = parseInt(e)
     let res: any = await this.monitorService.getLabel(this.data.order_id);
     this.protoData = res.data;
-    console.log(this.protoData);
+    // console.log(this.protoData);
     if (!this.protoData.productall[i].qtyAll) {
-      console.log('1');
+      // console.log('1');
       if (value > this.protoData.productall[i].qty) {
         this.dataLabel.productall[i].qty = this.protoData.productall[i].qty
         // this.keyDataQty = this.protoData.productall[i].qty
       } else {
-        let number = Number.isNaN(e);
-        console.log(number);
-        if (number) {
+        let number = Number.isNaN(value);
+        // console.log(number);
+        if (!number) {
           this.dataLabel.productall[i].qty = parseInt(e)
         }
       }
+      // console.log(this.dataLabel.productall);
     }
     if (this.protoData.productall[i].qtyAll) {
-      console.log('2');
+      // console.log('2');
       if (value > this.protoData.productall[i].qtyAll) {
         this.dataLabel.productall[i] = this.protoData.productall[i]
         // this.keyDataQty = this.protoData.productall[i].qtyAll
       } else {
-        let number = Number.isNaN(e);
-        console.log(number);
-        if (number) {
+        let number = Number.isNaN(value);
+        // console.log(number);
+        if (!number) {
           this.dataLabel.productall[i].qtyAll = parseInt(e)
         }
       }
+      // console.log(this.dataLabel.productall);
     }
   }
 
   selectProduct(e, item, i) {
     item.qty = parseInt(item.qty);
-    console.log(item);
+    // console.log(item);
     this.chkProduck = e.checked
     if (this.chkProduck === true) {
       this.useProduct.push({
@@ -94,12 +96,12 @@ export class ModalAddBoxComponent implements OnInit {
         qty: item.qtyAll ? item.qtyAll : item.qty
       })
       this.dataLabel.productall[i].active = true
-      console.log(this.useProduct);
+      // console.log(this.useProduct);
     } else {
       let j = this.useProduct.findIndex(function (data) { return data.name === item.name })
       this.useProduct.splice(j, 1);
       this.dataLabel.productall[i].active = false
-      console.log(this.useProduct);
+      // console.log(this.useProduct);
     }
   }
 
@@ -131,6 +133,7 @@ export class ModalAddBoxComponent implements OnInit {
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
       // console.log(resp);
       this.thisDialogRef.close('clse');
+      // console.log(this.dataTeamOrder);
     } catch (error) {
       console.log(error);
     }

@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
   ) {
+    // this.userAuth.isLoggingIn.observers=[]
     this.userAuth.isLoggingIn.subscribe(() => {
       this.spinner.show();
     });
@@ -56,14 +57,17 @@ export class LoginComponent implements OnInit {
       if (res.data.roles[0] === 'admin') {
         this.router.navigate(["/admin-manage-team"]);
       }
-      if (res.data.ref1) {
-        this.router.navigate(["/manage-member"]);
-      } else if (res.data.roles[0] === 'user' && res.data.ref1 != '') {
-        this.router.navigate(["/manage-member"]);
-      } else if (res.data.roles[0] === 'user') {
-        this.router.navigate(["/home"]);
+      if (res.data.roles[0] === 'user') {
+        if (res.data.ref1) {
+          if (res.data.ref1 === '') {
+            this.router.navigate(["/home"]);
+          } else {
+            this.router.navigate(["/manage-member"]);
+          }
+        } else {
+          this.router.navigate(["/home"]);
+        }
       }
-
       if (res.data.roles[0] === 'owner') {
         this.router.navigate(["/manage-member"]);
       }
@@ -87,35 +91,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // console.log(res);
-
-    if (res && res.data) {
-      if (res.data.roles[0] === 'user') {
-        if (res.data.ref1 === '') {
-          this.router.navigate(["/home"]);
-        } else if (res.data.ref1 !== '') {
-          this.router.navigate(["/manage-member"]);
-        }
-      }
-
-      if (res.data.roles[0] === 'stockstaff') {
-        this.router.navigate(["/monitor"]);
-      }
-      if (res.data.roles[0] === 'packstaff') {
-        this.router.navigate(["/monitor"]);
-      }
-      if (res.data.roles[0] === 'admin') {
-        this.router.navigate(["/admin-manage-team"]);
-      }
-      if (res.data.roles[0] === 'owner') {
-        this.router.navigate(["/manage-member"]);
-      }
-      if (res.data.roles[0] === 'staff') {
-        this.router.navigate(["/manage-member"]);
-      }
-    }
-  }
+  ngOnInit() {}
 
 }

@@ -41,6 +41,7 @@ import { GraphAllComponent } from './pages/graph-all/graph-all.component';
 import { ModalProfileComponent } from './modal/modal-profile/modal-profile.component';
 import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
+import { BlankComponent } from './pages/blank/blank.component';
 
 
 const apiSrvCfg = environment;
@@ -69,6 +70,7 @@ const apiSrvCfg = environment;
     GraphAllComponent,
     ModalProfileComponent,
     ModalMaxBoxComponent,
+    BlankComponent,
     
   ],
   imports: [
