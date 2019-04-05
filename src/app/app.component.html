@@ -1,11 +1,11 @@
 <!-- The content below is only a placeholder and can be replaced. -->
 <mat-sidenav-container fullscreen>
-  <app-header-toolbar></app-header-toolbar>
+  <app-header-toolbar *ngIf="!(currentPage === '/login' || currentPage === '/register' || currentPage === '/')"></app-header-toolbar>
   <mat-sidenav position="end" #appDrawer class="sidenav" [fixedInViewport]="true" mode="{{mode}}" opened="{{ opened }}"
     style="background-color:rgb(250, 250, 250)">
     <app-side-bar></app-side-bar>
   </mat-sidenav>
-  <div class="container">
+  <div [ngClass]="!(currentPage === '/login' || currentPage === '/register' || currentPage === '/') ? 'container': ''">
     <router-outlet></router-outlet>
   </div>
   <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#ff9558" type="ball-atom">

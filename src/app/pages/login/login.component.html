@@ -1,14 +1,14 @@
 <div class="content" name="divContent">
-    <div class="row" name="rowLogin">
-        <div class="col-md-7 col-sm-12" name="colImage">
-            <div style="display:block; width: 100%" >
-                <slideshow [imageUrls]="images" [height]="'91.7vh'" [showArrows]="false"
-                    [autoPlay]="true" [autoPlayInterval]="5500" [backgroundSize]="'cover'" [showDots]="true"
-                    [dotColor]="'#010101'" [lazyLoad]="true" [autoPlayWaitForLazyLoad]="true" [hideOnNoSlides]="true">
+    <div class="row display-size" name="rowLogin">
+        <div class="col-lg-8 col-md-7 d-none d-sm-none d-md-block d-lg-block" name="colImage">
+            <div style="display:block; width: 100%">
+                <slideshow [imageUrls]="images" [height]="'100vh'" [showArrows]="false" [autoPlay]="true"
+                    [autoPlayInterval]="5500" [backgroundSize]="'cover'" [showDots]="true" [dotColor]="'#010101'"
+                    [lazyLoad]="true" [autoPlayWaitForLazyLoad]="true" [hideOnNoSlides]="true">
                 </slideshow>
             </div>
         </div>
-        <div class="col-md-5 col-sm-12" name="colLogin">
+        <div class="col-lg-4 col-md-5 col-sm-12 position-ui" name="colLogin">
             <auth-login></auth-login>
         </div>
     </div>
