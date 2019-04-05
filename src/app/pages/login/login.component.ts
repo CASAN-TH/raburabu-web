@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
       // console.log(token);
       if (token && this.user === null) {
-        console.log('1');
+        // console.log('1');
         this.user = this.userAuth.user;
         let res: any = await this.teameService.me();
         window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));

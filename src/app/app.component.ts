@@ -25,7 +25,7 @@ export class AppComponent {
       if (e instanceof NavigationEnd) {
         // console.log(e.url);
         this.currentPage = e.url;
-        console.log(this.currentPage);
+        // console.log(this.currentPage);
       }
     });
   }
