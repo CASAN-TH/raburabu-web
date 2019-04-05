@@ -37,10 +37,13 @@ export class RegisterComponent implements OnInit {
     });
     this.userAuth.isLoggedIn.subscribe(async value => {
       this.spinner.hide();
-      let res: any = await this.teameService.me();
-      window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
-      if (this.userAuth.user) {
-        this.router.navigate(["/home"]);
+      const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
+      if (token) {
+        let res: any = await this.teameService.me();
+        window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
+        if (this.userAuth.user) {
+          this.router.navigate(["/home"]);
+        }
       }
     });
 
