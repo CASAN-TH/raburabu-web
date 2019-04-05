@@ -39,10 +39,11 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
   ) {
-    // this.userAuth.isLoggingIn.observers=[]
+    this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggingIn.subscribe(() => {
       this.spinner.show();
     });
+    this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggedIn.subscribe(async value => {
       this.spinner.hide();
       let res: any = await this.teameService.me();
@@ -75,6 +76,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/manage-member"]);
       }
     });
+    this.userAuth.isLoggedFail.observers = []
     this.userAuth.isLoggedFail.subscribe(error => {
       this.spinner.hide();
       if (error.error) {
@@ -91,6 +93,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
