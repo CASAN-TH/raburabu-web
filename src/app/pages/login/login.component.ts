@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   };
-  userAl: any;
   images = [
     {
       "url": "https://scontent.fbkk6-2.fna.fbcdn.net/v/t1.0-9/52480822_299030194146477_8270205720268374016_n.jpg?_nc_cat=104&_nc_oc=AQn0i9RPmFkv474C5c4zlGkrXcRLSgIZGpvlXwByDpfAfIG7L0XDpFPW_1kpS3Dn9dU&_nc_ht=scontent.fbkk6-2.fna&oh=9bc5cae21ac34c20511ca7cf761d0df8&oe=5D40F1E0"
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
   ) {
-    this.userAl = this.userAuth.user;
 
     // this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggingIn.subscribe(() => {
