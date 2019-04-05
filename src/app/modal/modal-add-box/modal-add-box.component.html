@@ -42,6 +42,6 @@
 
 <mat-dialog-actions align="end" name="mat-dialog-action">
   <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
-  <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || this.chkProduck === false"
+  <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || chkProduck === false"
     (click)="confirmLabel()" cdkFocusInitial>ยืนยัน</button>
 </mat-dialog-actions>
