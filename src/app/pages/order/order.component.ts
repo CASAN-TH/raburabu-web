@@ -211,6 +211,7 @@ export class OrderComponent implements OnInit {
         this.data.items.forEach(sum => {
           this.data.totalamount += sum.amount
         });
+        this.ngxSpinner.hide();
       }
     });
   }
