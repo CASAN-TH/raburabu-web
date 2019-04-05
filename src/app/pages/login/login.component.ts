@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   };
+  userAl: any;
   images = [
     {
       "url": "https://scontent.fbkk6-2.fna.fbcdn.net/v/t1.0-9/52480822_299030194146477_8270205720268374016_n.jpg?_nc_cat=104&_nc_oc=AQn0i9RPmFkv474C5c4zlGkrXcRLSgIZGpvlXwByDpfAfIG7L0XDpFPW_1kpS3Dn9dU&_nc_ht=scontent.fbkk6-2.fna&oh=9bc5cae21ac34c20511ca7cf761d0df8&oe=5D40F1E0"
@@ -39,49 +40,46 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
   ) {
-    let res: any = this.teameService.me();
-    window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
+    this.userAl = this.userAuth.user;
 
-    if (!res) {
-      this.userAuth.isLoggingIn.subscribe(() => {
-        this.spinner.show();
-      });
-    } else {
-      this.userAuth.isLoggedIn.subscribe(async value => {
-        this.spinner.hide();
-        // console.log(res);
-        if (res.data.roles[0] === 'stockstaff') {
-          this.router.navigate(["/monitor"]);
-        }
-        if (res.data.roles[0] === 'packstaff') {
-          this.router.navigate(["/monitor"]);
-        }
-        if (res.data.roles[0] === 'admin') {
-          this.router.navigate(["/admin-manage-team"]);
-        }
-        if (res.data.roles[0] === 'user') {
-          if (res.data.ref1) {
-            if (res.data.ref1 === '') {
-              this.router.navigate(["/home"]);
-            } else {
-              this.router.navigate(["/manage-member"]);
-            }
-          } else {
+    // this.userAuth.isLoggingIn.observers = []
+    this.userAuth.isLoggingIn.subscribe(() => {
+      this.spinner.show();
+    });
+    // this.userAuth.isLoggingIn.observers = []
+    this.userAuth.isLoggedIn.subscribe(async value => {
+      this.spinner.hide();
+      let res: any = await this.teameService.me();
+      window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
+      // console.log(res);
+      if (res.data.roles[0] === 'stockstaff') {
+        this.router.navigate(["/monitor"]);
+      }
+      if (res.data.roles[0] === 'packstaff') {
+        this.router.navigate(["/monitor"]);
+      }
+      if (res.data.roles[0] === 'admin') {
+        this.router.navigate(["/admin-manage-team"]);
+      }
+      if (res.data.roles[0] === 'user') {
+        if (res.data.ref1) {
+          if (res.data.ref1 === '') {
             this.router.navigate(["/home"]);
+          } else {
+            this.router.navigate(["/manage-member"]);
           }
+        } else {
+          this.router.navigate(["/home"]);
         }
-        if (res.data.roles[0] === 'owner') {
-          this.router.navigate(["/manage-member"]);
-        }
-        if (res.data.roles[0] === 'staff') {
-          this.router.navigate(["/manage-member"]);
-        }
-      });
-    }
-    // this.userAuth.isLoggingIn.observers = []
-
-    // this.userAuth.isLoggingIn.observers = []
-
+      }
+      if (res.data.roles[0] === 'owner') {
+        this.router.navigate(["/manage-member"]);
+      }
+      if (res.data.roles[0] === 'staff') {
+        this.router.navigate(["/manage-member"]);
+      }
+    });
+    this.userAuth.isLoggedFail.observers = []
     this.userAuth.isLoggedFail.subscribe(error => {
       this.spinner.hide();
       if (error.error) {
