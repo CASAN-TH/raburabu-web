@@ -30,26 +30,28 @@ export class ModalAddBoxComponent implements OnInit {
     this.getDataLabel();
     this.getMonitorByid();
   }
+
   async getDataLabel() {
     try {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
       // this.protoData = res.data;
       this.dataLabel = res.data;
-      // console.log(this.dataLabel)
+      console.log(this.dataLabel)
     } catch (error) {
 
     }
   }
+
   async getMonitorByid() {
     try {
       let respTeam: any = await this.monitorService.getMonitor(this.data.monitor_id);
       this.dataTeam = respTeam.data;
       // console.log(this.dataTeam)
     } catch (error) {
-
+      console.log(error);
     }
-
   }
+
   async keyQty(e, i) {
     // console.log(e);
     let value = parseInt(e)
@@ -60,7 +62,9 @@ export class ModalAddBoxComponent implements OnInit {
       // console.log('1');
       if (value > this.protoData.productall[i].qty) {
         this.dataLabel.productall[i].qty = this.protoData.productall[i].qty
-        // this.keyDataQty = this.protoData.productall[i].qty
+      } else if (value == 0) {
+        this.dataLabel.productall[i].qty = 1
+        console.log(this.dataLabel.productall[i]);
       } else {
         let number = Number.isNaN(value);
         // console.log(number);
@@ -74,7 +78,16 @@ export class ModalAddBoxComponent implements OnInit {
       // console.log('2');
       if (value > this.protoData.productall[i].qtyAll) {
         this.dataLabel.productall[i] = this.protoData.productall[i]
-        // this.keyDataQty = this.protoData.productall[i].qtyAll
+        console.log(this.dataLabel.productall[i]);
+      } else if (value == 0) {
+        // console.log('2.2');
+        let data = {
+          name: this.dataLabel.productall[i].name,
+          qty: this.dataLabel.productall[i].qty,
+          qtyAll: 1
+        }
+        this.dataLabel.productall[i] = data
+        console.log(this.dataLabel.productall[i]);
       } else {
         let number = Number.isNaN(value);
         // console.log(number);

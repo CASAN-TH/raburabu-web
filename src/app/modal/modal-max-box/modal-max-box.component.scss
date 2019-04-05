@@ -19,3 +19,12 @@
     min-height: inherit !important;
     max-height: inherit !important;
 }
+
+::ng-deep .mat-dialog-content {
+    display: block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    max-height: 65vh;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+}
