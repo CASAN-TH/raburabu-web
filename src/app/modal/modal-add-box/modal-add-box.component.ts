@@ -35,7 +35,7 @@ export class ModalAddBoxComponent implements OnInit {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
       // this.protoData = res.data;
       this.dataLabel = res.data;
-      console.log(this.dataLabel)
+      // console.log(this.dataLabel)
     } catch (error) {
 
     }
@@ -63,12 +63,12 @@ export class ModalAddBoxComponent implements OnInit {
         // this.keyDataQty = this.protoData.productall[i].qty
       } else {
         let number = Number.isNaN(value);
-        console.log(number);
+        // console.log(number);
         if (!number) {
           this.dataLabel.productall[i].qty = parseInt(e)
         }
       }
-      console.log(this.dataLabel.productall);
+      // console.log(this.dataLabel.productall);
     }
     if (this.protoData.productall[i].qtyAll) {
       // console.log('2');
@@ -77,18 +77,18 @@ export class ModalAddBoxComponent implements OnInit {
         // this.keyDataQty = this.protoData.productall[i].qtyAll
       } else {
         let number = Number.isNaN(value);
-        console.log(number);
+        // console.log(number);
         if (!number) {
           this.dataLabel.productall[i].qtyAll = parseInt(e)
         }
       }
-      console.log(this.dataLabel.productall);
+      // console.log(this.dataLabel.productall);
     }
   }
 
   selectProduct(e, item, i) {
     item.qty = parseInt(item.qty);
-    console.log(item);
+    // console.log(item);
     this.chkProduck = e.checked
     if (this.chkProduck === true) {
       this.useProduct.push({
@@ -96,12 +96,12 @@ export class ModalAddBoxComponent implements OnInit {
         qty: item.qtyAll ? item.qtyAll : item.qty
       })
       this.dataLabel.productall[i].active = true
-      console.log(this.useProduct);
+      // console.log(this.useProduct);
     } else {
       let j = this.useProduct.findIndex(function (data) { return data.name === item.name })
       this.useProduct.splice(j, 1);
       this.dataLabel.productall[i].active = false
-      console.log(this.useProduct);
+      // console.log(this.useProduct);
     }
   }
 
@@ -131,9 +131,9 @@ export class ModalAddBoxComponent implements OnInit {
       }
       this.dataTeamOrder.orders[res].labels.push(data)
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
-      console.log(resp);
+      // console.log(resp);
       this.thisDialogRef.close('clse');
-      console.log(this.dataTeamOrder);
+      // console.log(this.dataTeamOrder);
     } catch (error) {
       console.log(error);
     }
