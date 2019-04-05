@@ -2,7 +2,7 @@
   <div class="col-12 border-bottom" name="colTeamDetail">
     <h1 class="ellipsis" *ngIf="dataTeam && dataTeam.name" name="textTeamName">{{dataTeam.name}}</h1>
     <h4 *ngIf="dataTeam && dataTeam.codeteam" name="textCodeTeam">{{dataTeam.codeteam}}</h4>
-    <p *ngIf="dataTeam && dataTeam.detail" name="textTeamDetail">{{dataTeam.detail}}</p>
+    <p *ngIf="dataTeam && dataTeam.detail" class="text-wrap" name="textTeamDetail">{{dataTeam.detail}}</p>
   </div>
 </div>
 <div class="row">

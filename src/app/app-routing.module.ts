@@ -12,38 +12,26 @@ import { OrderListComponent } from "./pages/order-list/order-list.component";
 import { OrderComponent } from "./pages/order/order.component";
 import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
 import { MonitorComponent } from "./pages/monitor/monitor.component";
+import { BlankComponent } from "./pages/blank/blank.component";
 
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "login",
+    redirectTo: "blank",
     pathMatch: "full"
   },
-  {
-    path: "home", component: HomeComponent, canActivate: [AuthGuardService],
-  },
+  { path: "blank", component: BlankComponent },
+  { path: "home", component: HomeComponent, canActivate: [AuthGuardService] },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
-  {
-    path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService],
-  },
-  {
-    path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService]
-  },
-  {
-    path: "order", component: OrderComponent, canActivate: [AuthGuardService],
-  },
-  {
-    path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService],
-  },
-  {
-    path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService],
-  },
-  {
-    path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService],
-  },
+  { path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService] },
+  { path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService] },
+  { path: "order", component: OrderComponent, canActivate: [AuthGuardService] },
+  { path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService] },
+  { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService]},
+  { path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
 
 ];

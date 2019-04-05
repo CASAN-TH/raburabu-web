@@ -29,7 +29,7 @@ export class TeameServiceService {
     return this.http.get(environment.apiUrl + '/api/teams/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
   me() {
-    return this.http.get(environment.apiUrl + '/api/me', { headers: this.authorizationHeader() }).toPromise();
+      return this.http.get(environment.apiUrl + '/api/me', { headers: this.authorizationHeader() }).toPromise();
   }
   updateMe(body) {
     return this.http.put(environment.apiUrl + '/api/me', body, { headers: this.authorizationHeader() }).toPromise();

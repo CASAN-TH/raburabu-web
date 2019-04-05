@@ -22,16 +22,17 @@ export class LoginComponent implements OnInit {
       "url": "https://scontent.fbkk6-2.fna.fbcdn.net/v/t1.0-9/52480822_299030194146477_8270205720268374016_n.jpg?_nc_cat=104&_nc_oc=AQn0i9RPmFkv474C5c4zlGkrXcRLSgIZGpvlXwByDpfAfIG7L0XDpFPW_1kpS3Dn9dU&_nc_ht=scontent.fbkk6-2.fna&oh=9bc5cae21ac34c20511ca7cf761d0df8&oe=5D40F1E0"
     },
     {
-      "url": "https://scontent.fbkk6-1.fna.fbcdn.net/v/t1.0-9/53001544_299945844054912_2322368497180475392_n.jpg?_nc_cat=110&_nc_oc=AQnoCcci9-EQITpp13q3QzI_A22reylq3biSDbfMcO27BFsgu9i551RiYoC7vLUZUM0&_nc_ht=scontent.fbkk6-1.fna&oh=be612f5918805b3bf8490b7f770813d7&oe=5D4EC98D"
+      "url": "https://scontent.fbkk6-1.fna.fbcdn.net/v/t1.0-9/45694378_707555726291993_3720922226577375232_n.jpg?_nc_cat=110&_nc_oc=AQnjtrpAuO04QoXGyaO8NDS9Yc0htUAKz9ots_Lo6Ag0UYeVyFsdbFcmpb7s6IeFdA4&_nc_ht=scontent.fbkk6-1.fna&oh=a6080cc64871d549458c1ca78cb2a88e&oe=5D35BD52"
     },
     {
-      "url": "https://scontent.fbkk6-1.fna.fbcdn.net/v/t1.0-9/50924294_288806775168819_3114814092418744320_n.jpg?_nc_cat=105&_nc_oc=AQk1i8oXJIuaqMfAJ9xkxeyLaMqrXU-HjCdkYSrhQplYZViHH78CaoXE9T7zWcU9US4&_nc_ht=scontent.fbkk6-1.fna&oh=a8f7acdc410c962859bdef77a672c9bd&oe=5D457819"
+      "url": "https://scontent.fbkk6-1.fna.fbcdn.net/v/t1.0-9/46188555_709547979426101_842997605125324800_n.jpg?_nc_cat=110&_nc_oc=AQlkEKn1rpT7qVeKbkHdFlUSC60F_kpZFcHoyq-8iA1U5dwPa6hmkOAnOzUBQWJXw2c&_nc_ht=scontent.fbkk6-1.fna&oh=b5978f1ee6de8876d7c7120c40b4a74d&oe=5D3855F9"
     },
     {
-      "url": "https://scontent.fbkk6-2.fna.fbcdn.net/v/t1.0-9/52532776_294061217976708_1335635997563551744_n.jpg?_nc_cat=104&_nc_oc=AQnmJb9CLbS60FfQjREkgKA4IiP_2CptvKJvTHOzshPky1ocITXarI3ttoM1wPlA1Xo&_nc_ht=scontent.fbkk6-2.fna&oh=95f1bce438b73f6d076d570d4640d65e&oe=5D058580"
+      "url": "https://scontent.fbkk6-1.fna.fbcdn.net/v/t1.0-9/45410438_704292896618276_383800936155316224_n.jpg?_nc_cat=100&_nc_oc=AQlcAV2weYHzczayvanNeMjEsIxaEHpSreP8bmAmGbF30XfN-mlyYDkl03uqHq7ZzK8&_nc_ht=scontent.fbkk6-1.fna&oh=13e9d174e0e07ec9d8aa3e305e1ee009&oe=5D3ECC6C"
     }
   ]
   hide = true;
+  user: any = null;
   constructor(
     private userAuth: AuthService,
     private router: Router,
@@ -39,38 +40,53 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
   ) {
+
+    // this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggingIn.subscribe(() => {
       this.spinner.show();
     });
+    // this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggedIn.subscribe(async value => {
       this.spinner.hide();
-      let res: any = await this.teameService.me();
-      window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
-      // console.log(res);
-      if (res.data.roles[0] === 'stockstaff') {
-        this.router.navigate(["/monitor"]);
-      }
-      if (res.data.roles[0] === 'packstaff') {
-        this.router.navigate(["/monitor"]);
-      }
-      if (res.data.roles[0] === 'admin') {
-        this.router.navigate(["/admin-manage-team"]);
-      }
-      if (res.data.ref1) {
-        this.router.navigate(["/manage-member"]);
-      } else if (res.data.roles[0] === 'user' && res.data.ref1 != '') {
-        this.router.navigate(["/manage-member"]);
-      } else if (res.data.roles[0] === 'user') {
-        this.router.navigate(["/home"]);
+      const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
+      // console.log(token);
+      if (token && this.user === null) {
+        // console.log('1');
+        this.user = this.userAuth.user;
+        let res: any = await this.teameService.me();
+        window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
+        // console.log(res);
+
+        if (res.data.roles[0] === 'stockstaff') {
+          this.router.navigate(["/monitor"]);
+        }
+        if (res.data.roles[0] === 'packstaff') {
+          this.router.navigate(["/monitor"]);
+        }
+        if (res.data.roles[0] === 'admin') {
+          this.router.navigate(["/admin-manage-team"]);
+        }
+        if (res.data.roles[0] === 'user') {
+          if (res.data.ref1) {
+            if (res.data.ref1 === '') {
+              this.router.navigate(["/home"]);
+            } else {
+              this.router.navigate(["/manage-member"]);
+            }
+          } else {
+            this.router.navigate(["/home"]);
+          }
+        }
+        if (res.data.roles[0] === 'owner') {
+          this.router.navigate(["/manage-member"]);
+        }
+        if (res.data.roles[0] === 'staff') {
+          this.router.navigate(["/manage-member"]);
+        }
       }
 
-      if (res.data.roles[0] === 'owner') {
-        this.router.navigate(["/manage-member"]);
-      }
-      if (res.data.roles[0] === 'staff') {
-        this.router.navigate(["/manage-member"]);
-      }
     });
+    this.userAuth.isLoggedFail.observers = []
     this.userAuth.isLoggedFail.subscribe(error => {
       this.spinner.hide();
       if (error.error) {
@@ -87,35 +103,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // console.log(res);
-
-    if (res && res.data) {
-      if (res.data.roles[0] === 'user') {
-        if (res.data.ref1 === '') {
-          this.router.navigate(["/home"]);
-        } else if (res.data.ref1 !== '') {
-          this.router.navigate(["/manage-member"]);
-        }
-      }
-
-      if (res.data.roles[0] === 'stockstaff') {
-        this.router.navigate(["/monitor"]);
-      }
-      if (res.data.roles[0] === 'packstaff') {
-        this.router.navigate(["/monitor"]);
-      }
-      if (res.data.roles[0] === 'admin') {
-        this.router.navigate(["/admin-manage-team"]);
-      }
-      if (res.data.roles[0] === 'owner') {
-        this.router.navigate(["/manage-member"]);
-      }
-      if (res.data.roles[0] === 'staff') {
-        this.router.navigate(["/manage-member"]);
-      }
-    }
-  }
+  ngOnInit() { }
 
 }
