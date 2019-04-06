@@ -176,7 +176,7 @@ export class MonitorComponent implements OnInit {
       const dialogRef = this.dialog.open(ModalMaxBoxComponent, {
         width: '600px',
         data: data,
-        height: '400px',
+        height: '450px',
         disableClose: false
       });
 
@@ -194,7 +194,7 @@ export class MonitorComponent implements OnInit {
       const dialogRef = this.dialog.open(ModalAddBoxComponent, {
         width: '600px',
         data: data,
-        height: '400px',
+        height: '450px',
         disableClose: false
       });
 
@@ -209,7 +209,27 @@ export class MonitorComponent implements OnInit {
 
 
   }
+  selectbox(monitor,order,box) {
+    console.log(box);
+    let data = {
+      order_id: order._id,
+      monitor_id: monitor._id,
+      box: box
+    }
+    // console.log(data)
+    const dialogRef = this.dialog.open(ModalAddBoxComponent, {
+      width: '600px',
+      data: data,
+      height: '450px',
+      disableClose: false
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getMonitor();
+      }
+    });
+  }
   async toWaitPack(item) {
     // console.log(item);
     let body = {
@@ -275,7 +295,7 @@ export class MonitorComponent implements OnInit {
   }
   printLabel(item) {
     console.log(item)
-    window.open(environment.apiUrl + '/api/monitor/reportlable/'+item._id)
+    window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
   }
 
 }

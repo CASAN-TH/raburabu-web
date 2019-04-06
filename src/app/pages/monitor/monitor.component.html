@@ -87,11 +87,10 @@
                 </span>
                 <span style="display: block" class="mb-2 text-overflow" name="itm2.totalamount">รวม:
                   {{itm2.totalamount | number}}</span>
-                <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel">
+                <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel" >
                   <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel">เลขที่พัสดุ:
                     {{itm2.labels[itm2.page ? itm2.page : 0].trackno}}</span>
-                  <!-- <span style="display: block" name="textOrderNoLabel" class="text-overflow">รหัสใบสั่งซื้อ:
-                    {{itm2.labels[itm2.page ? itm2.page : 0]._id}}</span> -->
+                  
                   <span style="display: block" name="textCustomerLabel" class="text-overflow">ชื่อผู้สั่ง:
                     <span class="mr-2"> {{itm2.labels[itm2.page ? itm2.page : 0].customer.firstname}}</span>
                     <span>{{itm2.labels[itm2.page ? itm2.page : 0].customer.lastname}}</span>
@@ -99,9 +98,7 @@
                   <span>
                     <span *ngFor="let prod of itm2.labels[itm2.page ? itm2.page : 0].productlist"><small><small>{{prod.name}} = {{prod.qty}}, </small></small></span>
                   </span>
-                  <!-- <span style="display: block" class="mb-2" name="textAmountLabel">จำนวนสินค้า:
-                    {{data[datalength].totalqty}} ชิ้น
-                  </span> -->
+                  
                 </div>
                 <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm2.labels.length < 1"
                   name="colNoLabel">

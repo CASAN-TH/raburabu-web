@@ -20,7 +20,7 @@ export class ModalAddBoxComponent implements OnInit {
   constructor(
     private thisDialogRef: MatDialogRef<ModalConfirmsComponent>,
     @Inject(MAT_DIALOG_DATA) public data = {
-      order_id: '', monitor_id: ''
+      order_id: '', monitor_id: '', box: null
     },
     private monitorService: MonitorService
   ) { }
@@ -29,6 +29,7 @@ export class ModalAddBoxComponent implements OnInit {
     // console.log(this.data);
     this.getDataLabel();
     this.getMonitorByid();
+
   }
 
   async getDataLabel() {

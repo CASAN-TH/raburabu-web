@@ -20,6 +20,7 @@
         <p class="mb-1 text-overflow ml-3 mb-3" name="item.totalamount"><span>รวม: </span>
           <span class="color-price">{{item.totalamount | number }} </span>
           <span>บาท</span></p>
+          <p class="ml-3"><small>ผู้ขาย: {{item.createby.displayname}}</small></p>
           <span class="d-none d-sm-none d-md-block" style="text-align: center;" name="spanBtn">
             <button mat-stroked-button color="accent" name="btnEdit" (click)='onClickEdit(item)'
               class="mb-1 mr-2 style-btn">เเก้ไข</button>
