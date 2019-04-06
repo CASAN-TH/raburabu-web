@@ -2,15 +2,29 @@
   <mat-step name="mat-step-firstFromGroup" [stepControl]="firstFormGroup">
     <mat-dialog-content name="mat-dialog-content-firstFormGroup" class="mat-typography">
       <form name="form-firstFormGroup" [formGroup]="firstFormGroup">
-        <ng-template name="ng-template-name-customer" matStepLabel>ชื่อลูกค้า</ng-template>
+        <ng-template name="ng-template-name-customer" matStepLabel>เบอร์โทรลูกค้า</ng-template>
         <div class="row mt-3" name="divRowDetailCustomer">
           <div class="col-12 col-md-6" name="divColKeyTel">
             <mat-form-field class="example-full-width" name="mat-form-field-keyTel">
               <input name="inputkeyTel" matInput type="tel" maxlength="10" placeholder="กรุณากรอกเบอร์โทร"
-                [(ngModel)]="data.tel" formControlName="tel" required (keyup)="checkNumber($event)">
+                [(ngModel)]="data.tel" formControlName="tel" required>
             </mat-form-field>
           </div>
           <div name='divNone' class="col-12 col-md-6 d-none d-md-block"></div>
+        </div>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" name="mat-dialog-actions-detail-customer">
+      <div name="divBtn">
+        <button name="btnNextFirstForm" mat-button (click)="goForward(stepper)">ถัดไป</button>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step name="mat-step-secondFormgroup" [stepControl]="secondFormGroup">
+    <form name="form-secondFormFroup" [formGroup]="secondFormGroup">
+      <ng-template name="ng-template-addressCustomer" matStepLabel>ชื่อ-ที่อยู่จัดส่ง</ng-template>
+      <mat-dialog-content name="mat-dialog-content-secondFormGroup" class="mat-typography">
+        <div name="divRowAddressCustomer" class="row mt-3">
           <div name="divColFirstName" class="col-12 col-md-6">
             <mat-form-field name="mat-form-field-firstName" class="example-full-width">
               <input name="inputKeyFirstName" matInput placeholder="กรุณากรอกชื่อ" [(ngModel)]="data.firstname"
@@ -23,21 +37,6 @@
                 formControlName="lastName" required>
             </mat-form-field>
           </div>
-        </div>
-      </form>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end" name="mat-dialog-actions-detail-customer">
-      <div name="divBtn">
-        <button name="btnNext" [disabled]="!data.tel || !data.firstname || !data.lastname " mat-button
-          matStepperNext>ถัดไป</button>
-      </div>
-    </mat-dialog-actions>
-  </mat-step>
-  <mat-step name="mat-step-secondFormgroup" [stepControl]="secondFormGroup">
-    <form name="form-secondFormFroup" [formGroup]="secondFormGroup">
-      <ng-template name="ng-template-addressCustomer" matStepLabel>ที่อยู่ลูกค้า</ng-template>
-      <mat-dialog-content name="mat-dialog-content-secondFormGroup" class="mat-typography">
-        <div name="divRowAddressCustomer" class="row mt-3">
           <div name="divColHousenoCustomer" class="col-12 col-md-6">
             <mat-form-field name="mat-form-field-houseno" class="example-full-width">
               <input matInput placeholder="กรุณากรอกบ้านเลขที่" name="inputKeyHouseno"
@@ -91,7 +90,7 @@
       </div>
       <div class="col-6 text-right" name="divColbtnNext">
         <button mat-button matStepperNext name="btnNextSecondFrom" (click)="next()"
-          [disabled]="!data.address.houseno || !data.address.subdistrict || !data.address.district || !data.address.province || !data.address.zipcode">เสร็จสิ้น</button>
+          [disabled]="!data.firstname || !data.lastname || !data.address.houseno || !data.address.subdistrict || !data.address.district || !data.address.province || !data.address.zipcode">เสร็จสิ้น</button>
 
       </div>
     </mat-dialog-actions>

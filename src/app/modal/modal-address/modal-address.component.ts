@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input, Inject, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderService } from 'src/app/services/order/order.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-modal-address',
@@ -13,6 +14,7 @@ export class ModalAddressComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   data: any = {
     tel: '',
     firstname: '',
@@ -28,32 +30,55 @@ export class ModalAddressComponent implements OnInit {
       zipcode: ''
     }
   }
+
+
+  mobnumPattern = "^((\\+91-?)|0)?[0-9]{10}$";
+  postnumPattern = "^((91-?)|0)?[0-9]{5}$";
+  customersData: any;
   constructor(
     private _formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ModalAddressComponent>,
     @Inject(MAT_DIALOG_DATA) public address: any = {},
     private orderService: OrderService,
+    private customerService: CustomerService,
     private cdRef: ChangeDetectorRef
 
   ) {
     this.firstFormGroup = this._formBuilder.group({
-      tel: '',
-      firstName: '',
-      lastName: ''
+      tel: ['', Validators.pattern(this.mobnumPattern)]
     });
     this.secondFormGroup = this._formBuilder.group({
+      firstName: '',
+      lastName: '',
       houseno: '',
       village: '',
       street: '',
       subdistrict: '',
       district: '',
       province: '',
-      zipcode: ''
+      zipcode: ['', Validators.pattern(this.postnumPattern)]
     });
+
   }
 
   async ngOnInit() {
+
+    this.getCustomers();
     this.getAddress()
+  }
+
+  async getCustomers() {
+
+    try {
+      let res: any = await this.customerService.customerList();
+      console.log(res.data);
+      this.customersData = res.data;
+
+    } catch (error) {
+      console.log(error);
+
+    }
+
   }
 
   async getAddress() {
@@ -75,6 +100,24 @@ export class ModalAddressComponent implements OnInit {
 
   exit() {
     this.dialogRef.close();
+  }
+
+  goForward(stepper: MatStepper) {
+    console.log(this.data);
+    var a = 0;
+    this.customersData.forEach(cust => {
+      a += 1;
+      if(cust.tel === this.data.tel){
+        this.data.firstname = cust.firstname;
+        this.data.lastname = cust.lastname;
+        this.data.address = cust.address[cust.address.length-1];
+      }
+      if(a = this.customersData.length){
+      stepper.next();
+    }
+    });
+    
+    
   }
 
   checkNumber(e) {

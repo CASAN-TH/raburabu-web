@@ -20,6 +20,9 @@ export class CustomerService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     return headers;
   }
+  customerList() {
+    return this.http.get(environment.apiUrl + '/api/customers', { headers: this.authorizationHeader() }).toPromise()
+  }
   createCustomer(body) {
     return this.http.post(environment.apiUrl + '/api/customers', body, { headers: this.authorizationHeader() }).toPromise()
   }
