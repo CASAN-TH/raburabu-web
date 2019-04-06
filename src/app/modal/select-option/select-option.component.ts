@@ -59,12 +59,16 @@ export class SelectOptionComponent implements OnInit {
   }
 
   done() {
+    var valid = true;
     this.totalQty = 0;
     this.data.option.forEach(element => {
       this.nameOption = element.name;
     });
     this.selectOption.forEach(res => {
       // console.log(res);
+      if(!res.qty){
+        valid = false;
+      }
       this.totalQty = this.totalQty + parseInt(res.qty);
       // console.log(this.totalQty);
     });
@@ -78,14 +82,19 @@ export class SelectOptionComponent implements OnInit {
       amount: this.totalQty * this.data.price
     }
     // console.log(data)
-    this.sendData.emit(data);
-    this.dialogRef.close('close');
+    if(valid){
+      this.sendData.emit(data);
+      this.dialogRef.close('close');
+    }
+    
   }
 
   addQty(l, e) {
     // console.log(e);
     this.selectOption[l].qty = parseInt(e);
   }
+
+  
 
   select(itm, i, k) {
     if (!this.dataBinding.option[k].value[i].active) {
