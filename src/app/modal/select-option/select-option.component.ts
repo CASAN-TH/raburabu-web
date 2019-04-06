@@ -46,7 +46,7 @@ export class SelectOptionComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ["", [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -66,7 +66,7 @@ export class SelectOptionComponent implements OnInit {
     });
     this.selectOption.forEach(res => {
       // console.log(res);
-      if(!res.qty){
+      if(!res.qty || res.qty < 1){
         valid = false;
       }
       this.totalQty = this.totalQty + parseInt(res.qty);

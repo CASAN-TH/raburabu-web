@@ -51,7 +51,7 @@
             <span name="nameProduct" class="mr-3">{{optionProd.name}}</span>
             <mat-form-field name="mat-form-field-key-qty">
               <!-- <input class="font-input" matInput [(ngModel)]="qty" formControlName="secondCtrl" required> -->
-              <input name="keyQty" matInput placeholder="กรุณากรอกจำนวนสินค้า" (ngModelChange)="addQty(l,$event)" 
+              <input name="keyQty" matInput placeholder="กรุณากรอกจำนวนสินค้า (ขั้นต่ำ 1 ชิ้น)" (ngModelChange)="addQty(l,$event)" 
                 [value]="!optionProd.qty ? 1 : optionProd.qty" formControlName="secondCtrl" type="number">
             </mat-form-field>
           </div>
