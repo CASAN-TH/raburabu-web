@@ -114,6 +114,8 @@ export class SelectOptionComponent implements OnInit {
     // console.log(this.selectOption);
   }
 
+
+  // พี่โก๋ยกเลิกการใช้
   checkNumber(e, l) {
     // console.log(this.selectOption[l]);
     // console.log(e);

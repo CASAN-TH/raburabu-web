@@ -1,6 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class ModalCreateTeamComponent implements OnInit {
   user_id: any;
   constructor(
     public dialogRef: MatDialogRef<ModalCreateTeamComponent>,
+    private snackBar: MatSnackBar,
     public teameService: TeameServiceService
   ) { }
 
@@ -33,7 +34,7 @@ export class ModalCreateTeamComponent implements OnInit {
         user_id: this.user_id
       }
       let res: any = await this.teameService.createTeam(creteTame);
-      // console.log(res);
+      console.log(res);
       // window.localStorage.setItem(environment.apiUrl + '@team', JSON.stringify(res));
       let resMe: any = await this.teameService.me()
       if (resMe) {
@@ -46,7 +47,10 @@ export class ModalCreateTeamComponent implements OnInit {
       }
       this.dialogRef.close('createTeam');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      this.snackBar.open(error.error ? error.error.message : "foubd unknow error", "Error", {
+        duration: 2000,
+      });
     }
 
     // console.log(this.codeteamUpper, this.nameteam, this.detailteam);
