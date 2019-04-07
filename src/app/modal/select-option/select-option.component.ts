@@ -11,6 +11,7 @@ import { OrderComponent } from 'src/app/pages/order/order.component';
 })
 export class SelectOptionComponent implements OnInit {
   @Output() sendData: EventEmitter<any> = new EventEmitter();
+  checked: false;
   checkIcon: any;
   nameOption: any;
   qty: any;
@@ -91,7 +92,7 @@ export class SelectOptionComponent implements OnInit {
     //   value: this.selectOption
     // }];
     // this.data.totalqty = this.totalQty;
-    
+
     // console.log(data)
     if (valid) {
       stepper.next();
@@ -124,7 +125,7 @@ export class SelectOptionComponent implements OnInit {
       amount: this.totalQty * this.data.price
     }
     // console.log(data)
-    if (valid) {
+    if (valid && this.selectOption.length > 0) {
       this.sendData.emit(data);
       this.dialogRef.close('close');
     }
@@ -136,7 +137,20 @@ export class SelectOptionComponent implements OnInit {
     this.selectOption[l].qty = parseInt(e);
   }
 
-
+  selectall() {
+    this.dataBinding.option.forEach(opt => {
+      opt.value.forEach(val => {
+        val.active = this.checked;
+        if (this.checked) {
+          val.qty = 1;
+          this.selectOption.push(val);
+        } else {
+          let j = this.selectOption.findIndex(function (data) { return data.name === val.name });
+          this.selectOption.splice(j, 1);
+        }
+      })
+    });
+  }
 
   select(itm, i, k) {
     if (!this.dataBinding.option[k].value[i].active) {

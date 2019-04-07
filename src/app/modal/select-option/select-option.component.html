@@ -30,12 +30,18 @@
         </div>
         <div class="row">
 
-          </div>
+        </div>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions name="mat-dialog-actions-first" align="end">
-      <button name="btnNextFirst" mat-button matStepperNext (click)="next()"
-        [disabled]="selectOption.length < 1">ถัดไป</button>
+    <mat-dialog-actions name="mat-dialog-actions-first">
+      <div name="divColBtnBack" class="col-6 text-left">
+          <mat-checkbox  [(ngModel)]="checked" (change)="selectall()">เลือกทั้งหมด</mat-checkbox>
+      </div>
+      <div name="divColBtnDone" class="col-6 text-right">
+        <button name="btnNextFirst" mat-button matStepperNext (click)="next()"
+          [disabled]="selectOption.length < 1">ถัดไป</button>
+      </div>
+
 
     </mat-dialog-actions>
   </mat-step>
@@ -95,7 +101,7 @@
               </mat-card-content>
               <div class="row">
                 <div name="colIcon" class="col-12 text-center col-md-12">
-                  <h3 style="color:green">จำนวน {{itm.qty | number}} ชิ้น</h3>
+                  <h3 style="color:#ff4081">จำนวน {{itm.qty | number}} ชิ้น</h3>
                 </div>
 
               </div>
