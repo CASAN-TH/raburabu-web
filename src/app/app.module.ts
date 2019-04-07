@@ -42,6 +42,7 @@ import { ModalProfileComponent } from './modal/modal-profile/modal-profile.compo
 import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { BlankComponent } from './pages/blank/blank.component';
+import { NumberOnlyDirective } from './number.directive';
 
 
 const apiSrvCfg = environment;
@@ -71,6 +72,7 @@ const apiSrvCfg = environment;
     ModalProfileComponent,
     ModalMaxBoxComponent,
     BlankComponent,
+    NumberOnlyDirective,
     
   ],
   imports: [
