@@ -2,7 +2,7 @@
 <mat-dialog-content name="mat-dialog-content-selectTeam" class="mat-typography">
   <div class="overflow-team" name="divSelectTeam">
     <div class="row flex" name="divRowSelectTeam" *ngIf="approve && approve.length > 0">
-      <div class="col-12 col-md-4 col-lg-4 mb-3" name="divNgForTeam" *ngFor="let item of approve"
+      <div class="col-12 col-md-4 col-lg-4 mb-3" id="divNgForTeam-{{item.codeteam}}" *ngFor="let item of approve"
         (click)="selectItem(item)">
         <mat-card class="example-card cursor-pointer border-card" name="mat-card-Team" style="box-shadow: none;">
           <i class="material-icons position-check" name="icon-check" *ngIf="selected === item">

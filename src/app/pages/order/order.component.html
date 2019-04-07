@@ -55,19 +55,20 @@
           <div class="col-12" *ngFor="let itm of item.option" name="colOption">
             <div class="row" *ngFor="let it of itm.value" name="rowValue">
               <div class="col-4 text-right" name="colValue">
-                <span class="font-color" style="font-size: 13px" name="it.name">{{it.name}}</span>
+                <span class="font-color" style="font-size: 13px" name="it.name">เบอร์ {{it.name}}</span>
               </div>
-              <div class="col-4 text-right" name="ColSumOption"><span class="font-color" style="font-size: 13px"
-                  name="it.qty">{{it.qty}}</span> <span class="font-color" name="mutiplePrice"> * </span>
-                <span style="font-size: 13px" class="font-color" name="item.price">{{item.price | number}}</span>
+              <div class="col-8  text-right" name="ColSumOption"><span class="font-color pr-5" style="font-size: 13px"
+                  name="it.qty">{{it.qty}}</span> 
+                  <!-- <span class="font-color" name="mutiplePrice"> * </span>
+                <span style="font-size: 13px" class="font-color" name="item.price">{{item.price | number}}</span> -->
               </div>
-              <div class="col-4 text-center" name="colSumProd">
+              <!-- <div class="col-4 text-center" name="colSumProd">
                 <span class="font-color" style="font-size: 13px" name="sumPrice">{{it.qty * item.price | number}}</span>
-              </div>
+              </div> -->
             </div>
           </div>
-          <div class="col-8 text-right" name="colTextSum">รวม</div>
-          <div class="col-4 text-center" name="colSumAll">{{item.amount | number}}</div>
+          <div class="col-8 text-right" name="colTextSum">จำนวนรวม</div>
+          <div class="col-4 text-center" name="colSumAll">{{item.totalqty | number}}<span class="ml-3">ชิ้น</span></div>
         </div>
         <div class="row mt-2" name="rowBorder">
           <div class="col-1" name="colBorder0"></div>
@@ -81,12 +82,12 @@
       </span>
     </div>
     <div class="row" name="rowPaymenttype">
-      <div class="col-12 col-md-5 text-left" name="colPaymenttype">
+      <div class="col-12 col-md-7 text-left" name="colPaymenttype">
         <p class="ml-3 mt-3 ellipsis" name="textPaymenttype">ประเภทการชำระเงิน</p>
       </div>
-      <div class="col-12 col-md-7 text-right" name="colSelect">
+      <div class="col-12 col-md-5 text-right" name="colSelect">
         <mat-form-field class="example-full-width" name="mffSelect">
-          <mat-select placeholder="กรุณาเลือกประเภทการชำระเงิน" [(ngModel)]="namePayment" name="matSelectPaymenttype">
+          <mat-select class="text-right" placeholder="กรุณาเลือกประเภทการชำระเงิน" [(ngModel)]="namePayment" name="matSelectPaymenttype">
             <mat-option name="matOptionPaymenttype">None</mat-option>
             <mat-option *ngFor="let item of paymentType" [value]="item" (click)="selectPaymentType(item)"
               name="showOption">
@@ -97,14 +98,17 @@
       </div>
     </div>
     <div class="row" name="rowSumPrice">
-      <div class="col-6 text-left" name="colSumtext">
-        <p class="ml-3 mt-3" name="sumText">รวม</p>
+      <div class="col-7 text-left" name="colSumtext">
+        <p class="ml-3 mt-3" name="sumText">รวมเป็นเงิน</p>
       </div>
-      <div class="col-6 text-right" name="colSumPrice">
-        <p class="mr-3 mt-3" name="pSumPrice"> <span name="sumPrice">{{data.totalamount | number}}</span>
+      <div class="col-5 text-right" name="colSumPrice">
+        <!-- <p class="mr-3 mt-3" name="pSumPrice"> <span name="sumPrice">{{data.totalamount | number}}</span>
           <span name="textBaht">
             บาท</span>
-        </p>
+        </p> -->
+        <mat-form-field class="example-full-width text-right" name="mat-form-field-district">
+            <input matInput type="number" placeholder="กรุณากรอกจำนวนเงินรวม" [(ngModel)]="data.totalamount"required>
+          </mat-form-field>
       </div>
     </div>
 

@@ -22,7 +22,7 @@
     <div class="div-list-style" *ngIf="waitApprove && waitApprove.length > 0" name="divWaitApprove">
       <div class="row border-bt mb-2" *ngFor="let item of waitApprove" name="rowForWaitApprove">
         <div class="col-2 mt-2 mb-2 text-left text-overflow" name="colCodeteam">
-          <span name="item.codeteam">{{item.codeteam}}</span>
+          <span id="codeteam-{{item.codeteam}}">{{item.codeteam}}</span>
         </div>
         <div class="col-3 mt-2 mb-2  text-left text-overflow" name="colName">
           <span name="item.name">{{item.name}}</span>
@@ -32,7 +32,7 @@
         </div>
         <div class="col-3 mt-2 mb-2  text-center" name="colBtn">
           <button mat-stroked-button class="mr-1 border-btn mb-1" color="accent" (click)="onApprove(item)"
-            name="btnApprove">อนุมัติ</button>
+            id="btnApprove-{{item.codeteam}}">อนุมัติ</button>
           <button mat-stroked-button color="accent" (click)="onReject(item)" name="btnReject">ปฏิเสธ</button>
         </div>
       </div>

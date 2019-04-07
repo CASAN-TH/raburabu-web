@@ -43,7 +43,7 @@ export class BlankComponent implements OnInit {
         this.router.navigate(["/manage-member"]);
       }
       if (res.data.roles[0] === 'staff') {
-        this.router.navigate(["/manage-member"]);
+        this.router.navigate(["/order-list"]);
       }
     } else {
       this.router.navigate(["/login"]);

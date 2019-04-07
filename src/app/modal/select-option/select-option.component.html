@@ -51,8 +51,9 @@
             <span name="nameProduct" class="mr-3">{{optionProd.name}}</span>
             <mat-form-field name="mat-form-field-key-qty">
               <!-- <input class="font-input" matInput [(ngModel)]="qty" formControlName="secondCtrl" required> -->
-              <input name="keyQty" matInput placeholder="กรุณากรอกจำนวนสินค้า (ขั้นต่ำ 1 ชิ้น)" (ngModelChange)="addQty(l,$event)" 
-                [value]="!optionProd.qty ? 1 : optionProd.qty" formControlName="secondCtrl" type="number">
+              <input name="keyQty" matInput placeholder="กรุณากรอกจำนวนสินค้า (ขั้นต่ำ 1 ชิ้น)"
+                (ngModelChange)="addQty(l,$event)" [value]="!optionProd.qty ? 1 : optionProd.qty"
+                formControlName="secondCtrl" type="number">
             </mat-form-field>
           </div>
           <div name="divColNotUseNow2" class="col-2 text-left">
@@ -71,10 +72,48 @@
 
       </div>
       <div name="divColBtnDone" class="col-6 text-right">
-        <button mat-button name="btnDone"  (click)="done()">เสร็จสิ้น</button>
+        <button mat-button name="btnDone" (click)="nextconfirm(stepper)">ถัดไป</button>
 
       </div>
     </mat-dialog-actions>
   </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" name="mat-step-third">
+    <mat-dialog-content class="mat-typography" name="mat-dialog-content-third">
+      <form [formGroup]="thirdFormGroup" name="form-second">
+        <ng-template name="ng-template-แนืดรพท" matStepLabel>ยืนยันรายการ</ng-template>
+        <h1>{{data.name}}</h1>
+        <div class="row" name="divRowValue">
+          <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of selectOption ;let i = index"
+            (click)="select(itm,i,k)">
+            <mat-card name="cardValue" class="example-card card-height pt-2 text-center">
+              <mat-card-content name="mat-card-content-name-value">
+                <p name="nameValue">
+                  {{itm.name}}
+                </p>
+              </mat-card-content>
+              <div class="row">
+                <div name="colIcon" class="col-12 text-center col-md-12">
+                  <h3 style="color:green">จำนวน {{itm.qty}} ชิ้น</h3>
+                </div>
+                
+              </div>
 
+            </mat-card>
+          </div>
+        </div>
+
+        
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions name="mat-dialog-actions-third">
+      <div name="divColBtnBack" class="col-6 text-left">
+        <button name="btnBack" mat-button matStepperPrevious>ย้อนกลับ</button>
+
+      </div>
+      <div name="divColBtnDone" class="col-6 text-right">
+        <button mat-button name="btnDone" (click)="done()">ยืนยัน</button>
+
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
 </mat-horizontal-stepper>

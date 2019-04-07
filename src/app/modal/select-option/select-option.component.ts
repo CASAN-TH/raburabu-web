@@ -1,7 +1,7 @@
 import { ProductsService } from './../../services/products/products.service';
 import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatStepper } from '@angular/material';
 import { OrderComponent } from 'src/app/pages/order/order.component';
 
 @Component({
@@ -23,6 +23,7 @@ export class SelectOptionComponent implements OnInit {
   dataBinding: any;
   qtyInput: any;
   totalQty: any = 0;
+  thirdFormGroup: FormGroup;
   constructor(
     private _formBuilder: FormBuilder,
     public servicePorduct: ProductsService,
@@ -48,6 +49,9 @@ export class SelectOptionComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ["", [Validators.required, Validators.min(1)]]
     });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ["", [Validators.required, Validators.min(1)]]
+    });
   }
 
   selectProduct(i) {
@@ -58,6 +62,43 @@ export class SelectOptionComponent implements OnInit {
     this.selectOption
   }
 
+  nextconfirm(stepper: MatStepper) {
+    var valid = true;
+    this.totalQty = 0;
+    this.data.option.forEach(element => {
+      this.nameOption = element.name;
+    });
+    this.selectOption.forEach(res => {
+      // console.log(res);
+      if (!res.qty || res.qty < 1) {
+        valid = false;
+      }
+      this.totalQty = this.totalQty + parseInt(res.qty);
+      // console.log(this.totalQty);
+    });
+    // let data: any = {
+    //   name: this.data.name,
+    //   price: this.data.price,
+    //   option: [{
+    //     name: this.nameOption,
+    //     value: this.selectOption
+    //   }],
+    //   totalqty: this.totalQty,
+    //   amount: this.totalQty * this.data.price
+    // }
+    // this.data.option = [{
+    //   name: this.nameOption,
+    //   value: this.selectOption
+    // }];
+    // this.data.totalqty = this.totalQty;
+    
+    // console.log(data)
+    if (valid) {
+      stepper.next();
+      // this.sendData.emit(data);
+      // this.dialogRef.close('close');
+    }
+  }
   done() {
     var valid = true;
     this.totalQty = 0;
@@ -66,7 +107,7 @@ export class SelectOptionComponent implements OnInit {
     });
     this.selectOption.forEach(res => {
       // console.log(res);
-      if(!res.qty || res.qty < 1){
+      if (!res.qty || res.qty < 1) {
         valid = false;
       }
       this.totalQty = this.totalQty + parseInt(res.qty);
@@ -79,14 +120,15 @@ export class SelectOptionComponent implements OnInit {
         name: this.nameOption,
         value: this.selectOption
       }],
+      totalqty: this.totalQty,
       amount: this.totalQty * this.data.price
     }
     // console.log(data)
-    if(valid){
+    if (valid) {
       this.sendData.emit(data);
       this.dialogRef.close('close');
     }
-    
+
   }
 
   addQty(l, e) {
@@ -94,7 +136,7 @@ export class SelectOptionComponent implements OnInit {
     this.selectOption[l].qty = parseInt(e);
   }
 
-  
+
 
   select(itm, i, k) {
     if (!this.dataBinding.option[k].value[i].active) {

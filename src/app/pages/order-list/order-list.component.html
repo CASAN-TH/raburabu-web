@@ -5,6 +5,8 @@
         <span name="spanIconAdd" class="btn-add-style cursor">
           <p name="iconAdd" class="mb-0" style="margin-top: -5px">+</p>
         </span>
+        <p>เพิ่มรายการขาย</p>
+        
       </div>
     </div>
 
@@ -17,9 +19,10 @@
             class="mr-1">{{item.customer.firstname}}</span>
           <span name="item.customer.lastname">{{item.customer.lastname}}</span></p>
         <p class="mb-1 text-overflow ml-3" name="item.customer.tel"><span>โทร: </span> <span>{{item.customer.tel}}</span></p>
-        <p class="mb-1 text-overflow ml-3 mb-3" name="item.totalamount"><span>รวม: </span>
+        <p class="mb-1 text-overflow ml-3" name="item.totalamount"><span>รวม: </span>
           <span class="color-price">{{item.totalamount | number }} </span>
           <span>บาท</span></p>
+          <p class="ml-3"><small>การชำระเงิน: {{item.paymenttype.name}}</small></p>
           <p class="ml-3"><small>ผู้ขาย: {{item.createby.displayname}}</small></p>
           <span class="d-none d-sm-none d-md-block" style="text-align: center;" name="spanBtn">
             <button mat-stroked-button color="accent" name="btnEdit" (click)='onClickEdit(item)'

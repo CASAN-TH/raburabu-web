@@ -29,8 +29,8 @@ export class OrderComponent implements OnInit {
   }
   namePayment: any = '';
   paymentType: Array<any> = [
-    'ชำระเงินปลายทาง'
-    , 'ชำระเงินผ่านธนาคาร'
+    'เก็บเงินปลายทาง'
+    , 'โอนแล้ว'
 
   ];
   idOrder: any;
@@ -82,10 +82,10 @@ export class OrderComponent implements OnInit {
         let index = this.paymentType.findIndex(name => name === res.data.paymenttype.name);
         // console.log(index);
         this.namePayment = this.paymentType[index];
-        this.data.totalamount = 0
-        this.data.items.forEach(sum => {
-          this.data.totalamount += sum.amount
-        });
+        this.data.totalamount = res.data.totalamount;
+        // this.data.items.forEach(sum => {
+        //   this.data.totalamount += sum.amount
+        // });
       }
       // console.log(res);
     } catch (error) {
@@ -118,10 +118,10 @@ export class OrderComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         this.data.items.push(res);
         // console.log(this.data);
-        this.data.totalamount = 0
-        this.data.items.forEach(sum => {
-          this.data.totalamount += sum.amount
-        });
+        // this.data.totalamount = 0;
+        // this.data.items.forEach(sum => {
+        //   this.data.totalamount += sum.amount
+        // });
         // console.log(this.data.totalamount);
       });
     });
@@ -207,17 +207,31 @@ export class OrderComponent implements OnInit {
 
       if (result) {
         this.data.items.splice(i, 1);
-        this.data.totalamount = 0
-        this.data.items.forEach(sum => {
-          this.data.totalamount += sum.amount
-        });
+        // this.data.totalamount = 0
+        // this.data.items.forEach(sum => {
+        //   this.data.totalamount += sum.amount
+        // });
         this.ngxSpinner.hide();
       }
     });
   }
 
   onCancel() {
-    this.router.navigate(['/order-list']);
+    const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+      width: '400px',
+      data: {
+        title: "ยกเลิกรายการขาย",
+        message: "คุณต้องการยกเลิกรายการขายใช่ หรือไม่?"
+      },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      // console.log(result)
+      if (result) {
+        this.router.navigate(['/order-list']);
+      }
+    });
+    //
   }
 
 
