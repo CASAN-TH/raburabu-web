@@ -68,6 +68,19 @@
     background-color: white;
 }
 
+.princing-item:hover {
+    transform: scale(1.05);
+}
+
+.princing-item:hover .deco-layer--1 {
+    -webkit-transform: translate3d(15px, 0, 0);
+    transform: translate3d(15px, 0, 0);
+}
+
+.princing-item:hover .deco-layer--2 {
+    -webkit-transform: translate3d(-15px, 0, 0);
+    transform: translate3d(-15px, 0, 0);
+}
 // .swal2-popup.swal2-styled.swal2-confirm {
 //     border: 1px solid;
 //     border-radius: .25em;

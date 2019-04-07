@@ -218,7 +218,7 @@ export class ManageMemberComponent implements OnInit {
       let _id = item.member_id;
       const dialogRef = this.dialog.open(ModalProfileComponent, {
         width: '800px',
-        height: '500px',
+        // height: '700px',
         data: _id,
         disableClose: false
       });

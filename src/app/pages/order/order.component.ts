@@ -111,18 +111,13 @@ export class OrderComponent implements OnInit {
   openmodal(i) {
     const dialogRef = this.dialog.open(SelectOptionComponent, {
       width: '800px',
+      height: 'auto',
       data: i,
       disableClose: false
     });
     dialogRef.componentInstance.sendData.subscribe(res => {
       dialogRef.afterClosed().subscribe(result => {
         this.data.items.push(res);
-        // console.log(this.data);
-        // this.data.totalamount = 0;
-        // this.data.items.forEach(sum => {
-        //   this.data.totalamount += sum.amount
-        // });
-        // console.log(this.data.totalamount);
       });
     });
   }
@@ -130,7 +125,6 @@ export class OrderComponent implements OnInit {
   onEditAddress() {
     const dialogRef = this.dialog.open(ModalAddressComponent, {
       width: '800px',
-      // height: '500px',
       data: this.address,
       disableClose: false
     });
