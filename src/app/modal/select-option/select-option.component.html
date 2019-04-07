@@ -80,7 +80,7 @@
 
       </div>
       <div name="divColBtnDone" class="col-6 text-right">
-        <button mat-button name="btnDone" (click)="nextconfirm(stepper)">ถัดไป</button>
+        <button mat-button name="btnDone" [disabled]="selectOption.length === 0" (click)="nextconfirm(stepper)">ถัดไป</button>
 
       </div>
     </mat-dialog-actions>

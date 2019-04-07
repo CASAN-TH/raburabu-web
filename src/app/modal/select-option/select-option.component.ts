@@ -121,6 +121,7 @@ export class SelectOptionComponent implements OnInit {
   }
 
   selectall() {
+    this.selectOption=[];
     this.dataBinding.option.forEach(opt => {
       opt.value.forEach(val => {
         val.active = this.checked;
