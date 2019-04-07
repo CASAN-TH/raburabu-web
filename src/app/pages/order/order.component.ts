@@ -214,8 +214,8 @@ export class OrderComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalConfirmsComponent, {
       width: '400px',
       data: {
-        title: "ยกเลิกรายการขาย",
-        message: "คุณต้องการยกเลิกรายการขายใช่ หรือไม่?"
+        title: "ยืนยันการออกจากการบันทึกคำสั่งซื้อ",
+        message: "คุณไม่ต้องการบันทึกการเปลี่ยนแปลงใช่ หรือไม่?"
       },
       disableClose: true
     });
