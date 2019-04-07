@@ -121,7 +121,7 @@
 
       </div>
       <div name="divColBtnDone" class="col-6 text-right">
-        <button mat-button name="btnDone" (click)="done()">ยืนยัน</button>
+        <button mat-button name="btnDone" [disabled]="selectOption.length === 0" (click)="done()">ยืนยัน</button>
 
       </div>
     </mat-dialog-actions>
