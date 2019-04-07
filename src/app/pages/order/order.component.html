@@ -32,8 +32,8 @@
             <span>ชื่อ: </span> <span class="mr-2" name="customerFirstname">{{address.firstname}}</span>
             <span name="customerLastname">{{address.lastname}}</span></p>
           <p class="ml-2 mb-1"><span>ที่อยู่: </span> <span name="customerAddress">{{address.address.houseno}}
-              {{address.address.village}}
-              {{address.address.street}}
+              <!-- {{address.address.village}}
+              {{address.address.street}} -->
               ต.{{address.address.subdistrict}} อ.{{address.address.district}} จ.{{address.address.province}}
               {{address.address.zipcode}}</span></p>
           <p class="ml-2 mb-1"><span>เบอร์โทร: </span> <span name="customerTel">{{address.tel}}</span></p>
@@ -54,8 +54,8 @@
           </div>
           <div class="col-12" *ngFor="let itm of item.option" name="colOption">
             <div class="row" *ngFor="let it of itm.value" name="rowValue">
-              <div class="col-4 text-right" name="colValue">
-                <span class="font-color" style="font-size: 13px" name="it.name">เบอร์ {{it.name}}</span>
+              <div class="col-4 text-left" name="colValue">
+                <span class="font-color pl-5" style="font-size: 13px" name="it.name">{{itm.name}} {{it.name}}</span>
               </div>
               <div class="col-8  text-right" name="ColSumOption"><span class="font-color pr-5" style="font-size: 13px"
                   name="it.qty">{{it.qty | number}}</span> 

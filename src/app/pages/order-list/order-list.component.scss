@@ -81,6 +81,26 @@
     -webkit-transform: translate3d(-15px, 0, 0);
     transform: translate3d(-15px, 0, 0);
 }
+
+.border-prod {
+    border: solid 1px lightgray;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.border-text{
+    border-top: solid 1px lightgray;
+}
+
+.border-prod:hover {
+    border: solid 1px rgb(0, 0, 160);
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
 // .swal2-popup.swal2-styled.swal2-confirm {
 //     border: 1px solid;
 //     border-radius: .25em;
