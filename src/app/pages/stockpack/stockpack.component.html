@@ -1,0 +1,282 @@
+<mat-tab-group dynamicHeight name="tabGroup" class="mt-3">
+    <mat-tab label="รอการเบิก" name="tabWaitWithdrawal">
+      <div class="row">
+        <div class="col-12 text-center" *ngIf="waitwithdrawal && waitwithdrawal.length < 1" name="colNoWaitWithdrawal">
+          <span name="textNoWaitWithdrawal">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
+        </div>
+        <div class="col-12 pt-3" *ngIf="waitwithdrawal && waitwithdrawal.length > 0" name="colWaitWithdrawal">
+          <div class="row mt-3" *ngFor="let item of waitwithdrawal">
+            <div class="col-12">
+              <mat-toolbar color="accent" class="border-top">
+                <mat-toolbar-row>
+                  <span>รหัสใบสั่งซื้อ: {{item.monitorno}}</span>
+                  <span class="example-spacer pl-5"><small>ทีม: {{item.team.teamname}}</small></span>
+                  <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon">print</mat-icon>
+                  <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send</mat-icon>
+                </mat-toolbar-row>
+              </mat-toolbar>
+              <div class="row border-bottom">
+                <div class="col-6" *ngFor="let item of item.orders">
+                  <mat-card class="m-3">
+                    <mat-card-header>
+                      <mat-card-subtitle>
+                        <span>ออเดอร์: </span>
+                        <span class="color-oder">{{item.orderno}}</span>
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p class="mb-1 text-overflow ml-3" name="item.customer.firstname"><span>ชื่อผู้รับ: </span> <span
+                          class="mr-1">{{item.customer.firstname}}</span>
+                        <span name="item.customer.lastname">{{item.customer.lastname}}</span></p>
+  
+                      <p class="mb-1 text-overflow ml-3" name="item.customer.tel">
+                        <span>{{item.customer.address.houseno}}
+                          ต.{{item.customer.address.subdistrict}}
+                          อ.{{item.customer.address.district}}
+                          จ.{{item.customer.address.province}}
+                          {{item.customer.address.zipcode}}
+                        </span></p>
+                      <p class="mb-1 text-overflow ml-3" name="item.customer.tel"><span>โทร: </span>
+                        <span>{{item.customer.tel}}</span></p>
+                      <p class="ml-3"><small>{{item.paymenttype.name}}</small></p>
+                      <div class="row ml-1 mr-1">
+                        <div class="col-2 border-prod text-center">1=40</div>
+                        <div class="col-2 border-prod text-center">2=40</div>
+                        <div class="col-2 border-prod text-center">3=40</div>
+                        <div class="col-2 border-prod text-center">4=40</div>
+                        <div class="col-2 border-prod text-center">5=40</div>
+                        <div class="col-2 border-prod text-center">6=40</div>
+                        <div class="col-2 border-prod text-center">7=40</div>
+                        <div class="col-2 border-prod text-center">8=40</div>
+                        <div class="col-2 border-prod text-center">9=40</div>
+                        <div class="col-2 border-prod text-center">10=40</div>
+                        <div class="col-2 border-prod text-center">11=40</div>
+                        <div class="col-2 border-prod text-center">12=40</div>
+                      </div>
+  
+  
+                    </mat-card-content>
+                    <mat-card-actions class="text-right">
+  
+                      <button mat-icon-button color="accent">
+                        <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                      </button>
+                      <button mat-icon-button color="accent">
+                        <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                      </button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+  
+    </mat-tab>
+  
+    <mat-tab label="รอการเเพ็ค" name="tabWaitPack">
+      <div class="row" name="rowWaitPack">
+        <div class="col-12" *ngIf="waitpack && waitpack.length > 0" name="colWaitPack">
+          <div class="border-bt" *ngFor="let item2 of waitpack;let i2 = index" name="divForWaitPack">
+            <div name="divWaitPack">
+              <div class="row mt-3" name="rowTeamDetail2">
+                <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail2">
+                  <h5 class="mb-0 text-overflow" name="textOrderNo2">รหัสใบสั่งซื้อ: {{item2.monitorno}}</h5>
+                  <h5 class="mb-0 text-overflow" name="item2.team.teamname">ชื่อทีม: {{item2.team.teamname}}</h5>
+                  <h5 class="mb-0 text-overflow" name="item2.totalorderamount">รวมออเดอร์:
+                    {{item2.totalorderamount | number}}</h5>
+                </div>
+                <div *ngIf="user.roles[0]==='packstaff'"
+                  class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
+                  name="colBtnWaitPack">
+                  <button mat-stroked-button color="accent" class="style-btn" name="btnPack"
+                    (click)="toWaitShipping(item2)">เเพ็คสินค้าเเล้ว</button>
+                </div>
+                <div *ngIf="user.roles[0]==='packstaff'"
+                  class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
+                  name="colBtnWaitPack2">
+                  <button mat-stroked-button color="accent" class="style-btn full-width" name="btnPack"
+                    (click)="toWaitShipping(item2)">เเพ็คสินค้าเเล้ว</button>
+                </div>
+              </div>
+              <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff2">
+                <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
+                  *ngFor="let itm2 of item2.orders;let j2 = index" name="colOrderStaff2">
+                  <span style="display: block" class="mt-2 text-overflow" name="itm2.orderno">รหัสใบสั่งซื้อ:
+                    {{itm2.orderno}}</span>
+                  <span style="display: block" name="textName2">ชื่อผู้สั่ง:
+                    <span class="mr-2" name="itm2.customer.firstname">{{itm2.customer.firstname}}</span>
+                    <span class="text-overflow" name="itm2.customer.lastname">{{itm2.customer.lastname}}</span>
+                  </span>
+                  <span style="display: block" class="mb-2 text-overflow" name="itm2.totalamount">รวม:
+                    {{itm2.totalamount | number}}</span>
+                  <div class="border-top mt-2 min-label-height" *ngIf="itm2.labels.length > 0" name="divLabel">
+                    <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel">เลขที่พัสดุ:
+                      {{itm2.labels[itm2.page ? itm2.page : 0].trackno}}</span>
+  
+                    <span style="display: block" name="textCustomerLabel" class="text-overflow">ชื่อผู้สั่ง:
+                      <span class="mr-2"> {{itm2.labels[itm2.page ? itm2.page : 0].customer.firstname}}</span>
+                      <span>{{itm2.labels[itm2.page ? itm2.page : 0].customer.lastname}}</span>
+                    </span>
+                    <span>
+                      <span *ngFor="let prod of itm2.labels[itm2.page ? itm2.page : 0].productlist"><small><small>{{prod.name}}
+                            = {{prod.qty}}, </small></small></span>
+                    </span>
+  
+                  </div>
+                  <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm2.labels.length < 1"
+                    name="colNoLabel">
+                    <span name="textNoLabel">ยังไม่มีใบปะหน้ากล่อง</span>
+                  </div>
+                  <mat-paginator [length]="itm2.labels.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
+                    class="full-width" (page)="pageEvent = $event;" (click)="pageWaitPack(pageEvent,i2,j2)"
+                    name="pagingLabel">
+                  </mat-paginator>
+                  <div *ngIf="user.roles[0]==='packstaff'" class="row" name="rowBtnLabel">
+                    <div class="col-6 pl-0 pr-0" name="colBtnLabel">
+                      <button mat-stroked-button color="accent" class="full-width btn-list-style" name="btnPrint"
+                        (click)="printLabel(itm2)">พิมพ์</button>
+                    </div>
+                    <div class="col-6 pl-0 pr-0" name="colBtnLabel2">
+                      <button mat-stroked-button color="accent" class="full-width btn-list-style"
+                        (click)="addBox(itm2,item2)" name="btnAddBox">เพิ่มกล่อง</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-4 text-center" *ngIf="waitpack && waitpack.length < 1" name="colNoWaitPack">
+          <span name="textNoWaitPack">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
+        </div>
+      </div>
+    </mat-tab>
+  
+    <mat-tab label="รอการจัดส่ง" name="tabWaitShipping">
+      <div class="row" name="rowWaitShipping">
+        <div class="col-12" *ngIf="waitshipping && waitshipping.length > 0" name="colWaitShipping">
+          <div class="border-bt" *ngFor="let item3 of waitshipping;let i3 = index" name="divForWaitShipping">
+            <div name="divWaitShipping">
+              <div class="row mt-3" name="rowTeamDetail3">
+                <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail3">
+                  <h5 class="mb-0 text-overflow" name="textOrderNo3 ">รหัสใบสั่งซื้อ: {{item3.monitorno}}</h5>
+                  <h5 class="mb-0 text-overflow" name="item3.team.teamname">ชื่อทีม: {{item3.team.teamname}}</h5>
+                  <h5 class="mb-0 text-overflow" name="item3.team.totalorderamount">รวมออเดอร์:
+                    {{item3.totalorderamount | number}}</h5>
+                </div>
+                <div *ngIf="user.roles[0]==='packstaff'"
+                  class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-none d-xs-none d-sm-block d-md-block"
+                  name="colBtnWaitShipping">
+                  <button mat-stroked-button color="accent" class="style-btn" name="btnShipping"
+                    (click)="toComplete(item3)">จัดส่งเเล้ว</button>
+                </div>
+                <div *ngIf="user.roles[0]==='packstaff'"
+                  class="col-12 col-xs-12 col-sm-6 col-md-6 text-right d-block d-xs-block d-sm-none d-md-none"
+                  name="colBtnWaitShipping">
+                  <button mat-stroked-button color="accent" class="style-btn full-width" name="btnShipping"
+                    (click)="toComplete(item3)">จัดส่งเเล้ว</button>
+                </div>
+              </div>
+              <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff3">
+                <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
+                  *ngFor="let itm3 of item3.orders;let j3 = index" name="colOrderStaff3">
+                  <span style="display: block" class="mt-2" name="itm3.orderno">รหัสใบสั่งซื้อ: {{itm3.orderno}}</span>
+                  <span style="display: block" name="textName3">ชื่อผู้สั่ง:
+                    <span class="mr-2" name="itm3.customer.firstname">{{itm3.customer.firstname}}</span>
+                    <span name="itm3.customer.lastname">{{itm3.customer.lastname}}</span>
+                  </span>
+                  <span style="display: block" class="mb-2" name="itm3.totalamount">รวม:
+                    {{itm3.totalamount | number}}</span>
+                  <div class="border-top mt-2 min-label-height" *ngIf="itm3.labels.length > 0" name="divLabel2">
+                    <span style="display: block" class="mt-2" name="textTrackLabel2" class="text-overflow">เลขที่พัสดุ:
+                      {{itm3.labels[itm3.page ? itm3.page : 0].trackno}}
+                    </span>
+                    <span style="display: block" name="textOrderNoLabel2" class="text-overflow">รหัสใบสั่งซื้อ:
+                      {{itm3.labels[itm3.page ? itm3.page : 0]._id}}</span>
+                    <span style="display: block" name="textCustomerLabel2" class="text-overflow"> ชื่อผู้สั่ง:
+                      <span class="mr-2"> {{itm3.labels[itm3.page ? itm3.page : 0].customer.firstname}}</span>
+                      <span>{{itm3.labels[itm3.page ? itm3.page : 0].customer.lastname}}</span>
+                    </span>
+                    <!-- <span style="display: block" class="mb-2" name="textAmountLabel2">จำนวนสินค้า:
+                      {{data[datalength].totalqty}} ชิ้น</span> -->
+                  </div>
+                  <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm3.labels.length < 1"
+                    name="colNoLabel2">
+                    <span name="textNoLabel2">ยังไม่มีใบปะหน้ากล่อง</span>
+                  </div>
+                  <mat-paginator [length]="itm3.labels.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
+                    class="full-width" (page)="pageEvent = $event;" (click)="pageWaitShipping(pageEvent,i3,j3)"
+                    name="pagingLabel2">
+                  </mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-4 text-center" *ngIf="waitshipping && waitshipping.length < 1" name="colNoWaitShipping">
+          <span name="textNoWaitShipping">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
+        </div>
+      </div>
+    </mat-tab>
+  
+    <mat-tab label="เสร็จสิ้น" name="tabComplete">
+      <div class="row" name="rowComplete">
+        <div class="col-12" *ngIf="complete && complete.length > 0" name="colComplete">
+          <div class="border-bt" *ngFor="let item4 of complete;let i4 = index" name="divForComplete">
+            <div name="divComplete">
+              <div class="row mt-3" name="rowTeamDetail4">
+                <div class="col-12 col-xs-12 col-sm-6 col-md-6" name="colTeamDetail4">
+                  <h5 class="mb-0 text-overflow" name="textOrderNo4">รหัสใบสั่งซื้อ: {{item4.monitorno}}</h5>
+                  <h5 class="mb-0 text-overflow" name="item4.team.teamname">ชื่อทีม: {{item4.team.teamname}}</h5>
+                  <h5 class="mb-0 text-overflow" name="item4.totalorderamount">รวมออเดอร์:
+                    {{item4.totalorderamount | number}}</h5>
+                </div>
+              </div>
+              <div class="row mt-2 mb-3 scroll-x mr-2" name="rowOrderStaff4">
+                <div class="col-8 col-sm-6 col-md-4 col-lg-3 ml-3 mt-2 mb-2 border-order"
+                  *ngFor="let itm4 of item4.orders;let j4 = index" name="colOrderStaff4">
+                  <span style="display: block" class="mt-2 text-overflow" name="itm4.orderno">รหัสใบสั่งซื้อ:
+                    {{itm4.orderno}}</span>
+                  <span style="display: block" name="textName4">ชื่อผู้สั่ง:
+                    <span class="mr-2 " name="itm4.customer.firstname">{{itm4.customer.firstname}}</span>
+                    <span class="text-overflow" name="itm4.customer.lastname">{{itm4.customer.lastname}}</span>
+                  </span>
+                  <span style="display: block" class="mb-2" name="itm4.totalamount">รวม:
+                    {{itm4.totalamount | number}}</span>
+                  <div class="border-top mt-2 min-label-height" *ngIf="itm4.labels.length > 0" name="divLabel3">
+                    <span style="display: block" class="mt-2 text-overflow" name="textTrackLabel3">เลขที่พัสดุ:
+                      {{itm4.labels[itm4.page ? itm4.page : 0].trackno}}
+                    </span>
+                    <span style="display: block" name="textOrderNoLabel3" class="text-overflow">รหัสใบสั่งซื้อ:
+                      {{itm4.labels[itm4.page ? itm4.page : 0]._id}}
+                    </span>
+                    <span style="display: block" name="textCustomerLabel3" class="text-overflow">ชื่อผู้สั่ง:
+                      <span class="mr-2"> {{itm4.labels[itm4.page ? itm4.page : 0].customer.firstname}}</span>
+                      <span>{{itm4.labels[itm4.page ? itm4.page : 0].customer.lastname}}</span>
+                    </span>
+                    <!-- <span style="display: block" class="mb-2" name="textAmountLabel3">จำนวนสินค้า:
+                      {{data[datalength].totalqty}} ชิ้น</span> -->
+                  </div>
+                  <div class="col-12 border-top mt-2 pt-2 min-label-height text-center" *ngIf="itm4.labels.length < 1"
+                    name="colNoComplete">
+                    <span name="textNoLabel3">ยังไม่มีใบปะหน้ากล่อง</span>
+                  </div>
+                  <mat-paginator [length]="itm4.labels.length" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
+                    class="full-width" (page)="pageEvent = $event;" (click)="pageComplete(pageEvent,i4,j4)"
+                    name="pagingLabel3">
+                  </mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-4 text-center" *ngIf="complete && complete.length < 1" name="colNoComplete">
+          <span name="textNoComplete">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>

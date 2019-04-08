@@ -43,7 +43,8 @@ import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.compon
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { BlankComponent } from './pages/blank/blank.component';
 import { NumberOnlyDirective } from './number.directive';
-
+import { OwnDashboadComponent} from './pages/own-dashboad/own-dashboad.component';
+import { StockpackComponent } from './pages/stockpack/stockpack.component';
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -73,7 +74,8 @@ const apiSrvCfg = environment;
     ModalMaxBoxComponent,
     BlankComponent,
     NumberOnlyDirective,
-    
+    OwnDashboadComponent,
+    StockpackComponent
   ],
   imports: [
     BrowserModule,

@@ -59,6 +59,9 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    // this.order.onNewMessage().subscribe(msg => {
+    //   console.log('got a msg: ' + msg);
+    // });
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     // console.log(user.data.roles[0]);
     if (user.data.roles[0] === 'user') {

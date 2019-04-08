@@ -1,13 +1,17 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import * as io from 'socket.io-client';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-
-  constructor(public http: HttpClient, ) { }
+  private socket: SocketIOClient.Socket;
+  constructor(public http: HttpClient, ) { 
+    this.socket = io('http://localhost:3000');
+  }
 
   private authorizationHeader() {
     const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
@@ -40,4 +44,5 @@ export class OrderService {
   sendOrderAll(id) {
     return this.http.put(environment.apiUrl + '/api/order/sendorder/' + id, null, { headers: this.authorizationHeader() }).toPromise();
   }
+
 }

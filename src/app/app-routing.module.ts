@@ -14,6 +14,7 @@ import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage
 import { MonitorComponent } from "./pages/monitor/monitor.component";
 import { BlankComponent } from "./pages/blank/blank.component";
 import { OwnDashboadComponent } from "./pages/own-dashboad/own-dashboad.component";
+import { StockpackComponent } from "./pages/stockpack/stockpack.component";
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
   { path: "own-dashboard", component: OwnDashboadComponent, canActivate: [AuthGuardService] },
+  { path: "stock-dashboard", component: StockpackComponent, canActivate: [AuthGuardService] },
   { path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService] },
   { path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService] },
   { path: "order", component: OrderComponent, canActivate: [AuthGuardService] },

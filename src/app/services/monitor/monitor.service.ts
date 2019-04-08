@@ -1,15 +1,18 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import * as io from 'socket.io-client';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonitorService {
-
-  constructor(
-    public http: HttpClient,
-  ) { }
+  private socket: SocketIOClient.Socket;
+  constructor(public http: HttpClient, ) { 
+    // this.socket = io('http://localhost:3000');
+  }
+  
   private authorizationHeader() {
     // const token = window.localStorage.getItem('token@raburabu-web-dev');
     // console.log(token);
@@ -43,4 +46,14 @@ export class MonitorService {
   getMonitorTeam(id) {
     return this.http.get(environment.apiUrl + '/api/monitor/team/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
+
+
+  // HANDLER
+  // onCreated() {
+  //   return Observable.create(observer => {
+  //     this.socket.on('monitor-created', msg => {
+  //       observer.next(msg);
+  //     });
+  //   });
+  // }
 }
