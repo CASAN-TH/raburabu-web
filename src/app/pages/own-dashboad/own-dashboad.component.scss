@@ -1,0 +1,60 @@
+.side-join{
+    min-height: 30rem;
+}
+
+.example-card {
+    max-width: 400px;
+    background-color: whitesmoke;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .color-orange{
+    color: #ff4081;
+  }
+
+  .color-yellow{
+    color: orange;
+  }
+
+  .color-green{
+    color: green;
+  }
+
+  .princing-item:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.princing-item:hover .deco-layer--1 {
+    -webkit-transform: translate3d(15px, 0, 0);
+    transform: translate3d(15px, 0, 0);
+}
+
+.princing-item:hover .deco-layer--2 {
+    -webkit-transform: translate3d(-15px, 0, 0);
+    transform: translate3d(-15px, 0, 0);
+}
+
+.border-prod {
+    border: solid 1px lightgray;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.border-text{
+    border-top: solid 1px lightgray;
+}
+
+.border-prod:hover {
+    border: solid 1px #ff4081;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}

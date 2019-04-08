@@ -13,6 +13,7 @@ import { OrderComponent } from "./pages/order/order.component";
 import { AdminManageTeamComponent } from "./pages/admin-manage-team/admin-manage-team.component";
 import { MonitorComponent } from "./pages/monitor/monitor.component";
 import { BlankComponent } from "./pages/blank/blank.component";
+import { OwnDashboadComponent } from "./pages/own-dashboad/own-dashboad.component";
 
 
 const routes: Routes = [
@@ -26,11 +27,12 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
+  { path: "own-dashboard", component: OwnDashboadComponent, canActivate: [AuthGuardService] },
   { path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService] },
   { path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService] },
   { path: "order", component: OrderComponent, canActivate: [AuthGuardService] },
   { path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService] },
-  { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService]},
+  { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService] },
   { path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
 

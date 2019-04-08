@@ -11,4 +11,11 @@ $custom-typography: mat-typography-config($font-family: 'Kanit'
 
 body {
     font-family: 'Kanit' !important;
+    button:focus {
+        outline: 0px dotted;
+    }
 }
+
+
+
+
