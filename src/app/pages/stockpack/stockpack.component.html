@@ -11,11 +11,11 @@
               <mat-toolbar-row>
                 <span>รหัสใบสั่งซื้อ: {{item.monitorno}}</span>
                 <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item.team.teamname}}</small></span>
-                <button mat-icon-button (click)="print(item._id)">
+                <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="print(item._id)">
                   <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon">print
                   </mat-icon>
                 </button>
-                <button mat-icon-button (click)="toWaitPack(item)">
+                <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="toWaitPack(item)">
                   <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
                   </mat-icon>
                 </button>
@@ -73,11 +73,11 @@
               <mat-toolbar-row>
                 <span>รหัสใบสั่งซื้อ: {{item2.monitorno}}</span>
                 <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item2.team.teamname}}</small></span>
-                <button mat-icon-button >
-                  <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon">print
+                <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'">
+                  <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon" >print
                   </mat-icon>
                 </button>
-                <button mat-icon-button (click)="toWaitShipping(item2)">
+                <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="toWaitShipping(item2)">
                   <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
                   </mat-icon>
                 </button>
@@ -120,9 +120,9 @@
                           </div>
                         </div>
                       </mat-card-content>
-                      <mat-card-actions class="text-right">
+                      <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
                         <button mat-icon-button color="accent">
-                          <mat-icon aria-label="Example icon-button with a heart icon">print</mat-icon>
+                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">print</mat-icon>
                         </button>
                         <button mat-icon-button color="accent">
                           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
@@ -156,7 +156,7 @@
                   <span>รหัสใบสั่งซื้อ: {{item3.monitorno}}</span>
                   <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item3.team.teamname}}</small></span>
                   
-                  <button mat-icon-button (click)="toComplete(item3)">
+                  <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="toComplete(item3)">
                     <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
                     </mat-icon>
                   </button>
@@ -199,7 +199,7 @@
                             </div>
                           </div>
                         </mat-card-content>
-                        <mat-card-actions class="text-right">
+                        <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
                           
                           <button mat-icon-button color="accent">
                             <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
