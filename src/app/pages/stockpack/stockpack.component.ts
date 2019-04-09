@@ -157,6 +157,7 @@ export class StockpackComponent implements OnInit {
     });
   }
 
+  
   async toComplete(item) {
     // console.log(item);
     let body = {
