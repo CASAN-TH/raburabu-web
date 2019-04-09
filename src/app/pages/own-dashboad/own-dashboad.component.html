@@ -54,13 +54,22 @@
         <mat-card-title>รายชื่อผู้ขอร่วมทีม</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="row mt-3">
+        <div *ngIf="statusWaitApprove.lenght === 0">
+          <h2 class="text-epils">
+            ไม่มีการสมัครสมาชิก
+          </h2>
+        </div>
+        <div class="row mt-3" *ngFor="let item of statusWaitApprove">
           <div class="col-12">
-            <mat-card class="example-card princing-item ">
+            <mat-card class="example-card princing-item text-epils">
               <mat-card-header>
-                  <img src="https://scontent.fbkk2-8.fna.fbcdn.net/v/t1.0-9/53394986_10216100548899945_1841734894816854016_n.jpg?_nc_cat=100&_nc_ht=scontent.fbkk2-8.fna&oh=94645458181c1a2768d139a6103ac47c&oe=5D42A12F" mat-card-avatar>
-                <mat-card-title>ธีรศักดิ์ ทับฤทธิ์</mat-card-title>
-                <mat-card-subtitle>theert87@yahoo.com</mat-card-subtitle>
+                <img src="http://www.investorz.com/styles/invz_pc/theme/images/avatar-default.gif" mat-card-avatar>
+                <mat-card-title>
+                  <div class="text-epils">
+                    <span >{{item.displayname}}</span>
+                  </div>
+                </mat-card-title>
+                <mat-card-subtitle><span class="text-epils">theert87@yahoo.com</span></mat-card-subtitle>
               </mat-card-header>
 
               <mat-card-actions>
@@ -68,8 +77,34 @@
 
                 <div class="row">
                   <div class="col-6 text-center">
-                    <button style="width: 100%" mat-button color="accent" 
-                      name="btnReject">ไม่อนุมัติ</button>
+                    <button style="width: 100%" mat-button color="accent" name="btnReject"
+                      (click)="cancel(item)">ไม่อนุมัติ</button>
+                  </div>
+                  <div class="col-6 text-center">
+                    <button style="width: 100%" mat-button color="primary" (click)="approve(item)">อนุมัติ</button>
+                  </div>
+                </div>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+        <!-- <div class="row mt-3">
+          <div class="col-12">
+            <mat-card class="example-card princing-item ">
+              <mat-card-header>
+                <img
+                  src="https://scontent.fbkk2-8.fna.fbcdn.net/v/t1.0-9/49792289_2461017833912757_2179822960737517568_o.jpg?_nc_cat=105&_nc_ht=scontent.fbkk2-8.fna&oh=3fa23c94042c8a01db9e470e54cd0d82&oe=5D3A0649"
+                  mat-card-avatar>
+                <mat-card-title>กันทิมา โสภกุล</mat-card-title>
+                <mat-card-subtitle>kantima@yahoo.com</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-actions>
+
+
+                <div class="row">
+                  <div class="col-6 text-center">
+                    <button style="width: 100%" mat-button color="accent" name="btnReject">ไม่อนุมัติ</button>
                   </div>
                   <div class="col-6 text-center">
                     <button style="width: 100%" mat-button color="primary">อนุมัติ</button>
@@ -78,32 +113,7 @@
               </mat-card-actions>
             </mat-card>
           </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-              <mat-card class="example-card princing-item ">
-                <mat-card-header>
-                  <img src="https://scontent.fbkk2-8.fna.fbcdn.net/v/t1.0-9/49792289_2461017833912757_2179822960737517568_o.jpg?_nc_cat=105&_nc_ht=scontent.fbkk2-8.fna&oh=3fa23c94042c8a01db9e470e54cd0d82&oe=5D3A0649" mat-card-avatar>
-                  <mat-card-title>กันทิมา โสภกุล</mat-card-title>
-                  <mat-card-subtitle>kantima@yahoo.com</mat-card-subtitle>
-                </mat-card-header>
-  
-                <mat-card-actions>
-  
-  
-                  <div class="row">
-                    <div class="col-6 text-center">
-                      <button style="width: 100%" mat-button color="accent" 
-                        name="btnReject">ไม่อนุมัติ</button>
-                    </div>
-                    <div class="col-6 text-center">
-                      <button style="width: 100%" mat-button color="primary" >อนุมัติ</button>
-                    </div>
-                  </div>
-                </mat-card-actions>
-              </mat-card>
-            </div>
-          </div>
+        </div> -->
       </mat-card-content>
     </mat-card>
   </div>

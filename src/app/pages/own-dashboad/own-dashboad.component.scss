@@ -58,3 +58,8 @@
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
 }
+.text-epils {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
