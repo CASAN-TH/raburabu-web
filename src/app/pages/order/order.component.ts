@@ -118,6 +118,7 @@ export class OrderComponent implements OnInit {
     dialogRef.componentInstance.sendData.subscribe(res => {
       dialogRef.afterClosed().subscribe(result => {
         this.data.items.push(res);
+        this.getProd();
       });
     });
   }

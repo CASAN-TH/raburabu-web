@@ -77,12 +77,12 @@ export class SelectOptionComponent implements OnInit {
       this.totalQty = this.totalQty + parseInt(res.qty);
       // console.log(this.totalQty);
     });
-    
+
     if (valid) {
       stepper.next();
-      
     }
   }
+
   done() {
     var valid = true;
     this.totalQty = 0;
@@ -121,7 +121,7 @@ export class SelectOptionComponent implements OnInit {
   }
 
   selectall() {
-    this.selectOption=[];
+    this.selectOption = [];
     this.dataBinding.option.forEach(opt => {
       opt.value.forEach(val => {
         val.active = this.checked;
@@ -136,17 +136,7 @@ export class SelectOptionComponent implements OnInit {
     });
   }
 
-  checkedIsAll() {
-  
-    if (this.selectOption.length >= this.dataBinding.option[0].value.length) {
-      this.checked = true;
-    }else{
-      this.checked = false;
-    }
-  }
-
   select(itm, i, k) {
-
     if (!this.dataBinding.option[k].value[i].active) {
       this.dataBinding.option[k].value[i].active = true
       this.dataBinding.option[k].value[i].qty = 1
@@ -161,9 +151,16 @@ export class SelectOptionComponent implements OnInit {
         }
       });
     }
-
     this.checkedIsAll();
     // console.log(this.selectOption);
+  }
+
+  checkedIsAll() {
+    if (this.selectOption.length >= this.dataBinding.option[0].value.length) {
+      this.checked = true;
+    } else {
+      this.checked = false;
+    }
   }
 
 

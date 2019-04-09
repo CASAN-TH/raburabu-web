@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class OrderService {
   private socket: SocketIOClient.Socket;
   constructor(public http: HttpClient, ) { 
-    this.socket = io('http://localhost:3000');
+    // this.socket = io('http://localhost:3000');
   }
 
   private authorizationHeader() {
