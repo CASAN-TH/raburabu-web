@@ -28,14 +28,14 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "forgot", component: ForgotComponent },
-  { path: "own-dashboard", component: OwnDashboadComponent, canActivate: [AuthGuardService] },
-  { path: "stock-dashboard", component: StockpackComponent, canActivate: [AuthGuardService] },
+  { path: "manage-member-oldest", component: OwnDashboadComponent, canActivate: [AuthGuardService] },
+  { path: "monitor", component: StockpackComponent, canActivate: [AuthGuardService] },
   { path: "manage-member", component: ManageMemberComponent, canActivate: [AuthGuardService] },
   { path: "order-list", component: OrderListComponent, canActivate: [AuthGuardService] },
   { path: "order", component: OrderComponent, canActivate: [AuthGuardService] },
   { path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService] },
   { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService] },
-  { path: "monitor", component: MonitorComponent, canActivate: [AuthGuardService] },
+  { path: "monitor-oldest", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
 
 ];

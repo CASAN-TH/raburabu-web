@@ -22,24 +22,9 @@ export class StockpackComponent implements OnInit {
     public ngxSpiner: NgxSpinnerService
   ) { }
   datalength: any = 0;
-  data: any = [
-    {
-      trackno: '1D1245822DA55TH',
-      orderno: '1100501307564',
-      name: 'พลวัฒน์ ช่างเก็บ',
-      totalqty: '15',
-    }, {
-      trackno: '2D1245822DA55TH',
-      orderno: '1100501307564',
-      name: 'เพียว ช่างเก็บ',
-      totalqty: '17',
-    }, {
-      trackno: '3D1245822DA55TH',
-      orderno: '1100501307564',
-      name: 'ช่างเก็บ พลวัฒน์',
-      totalqty: '19',
-    },
-  ]
+  // data: any = [
+
+  // ]
   length = 100;
   pageSize = 1;
   pageSizeOptions: number[] = [1];
@@ -114,124 +99,27 @@ export class StockpackComponent implements OnInit {
       }
     });
     this.ngxSpiner.hide();
-    console.log(this.waitwithdrawal);
-    console.log(this.waitpack);
-    console.log(this.waitshipping);
-    console.log(this.complete);
+    // console.log(this.waitwithdrawal);
+    // console.log(this.waitpack);
+    // console.log(this.waitshipping);
+    // console.log(this.complete);
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  }
-
-  pageWaitPack(e, i, j) {
-    // console.log(i, j);
-    if (e) {
-      // console.log(e);
-      this.waitpack[i].orders[j].page = e.pageIndex
-      // console.log(this.waitpack);
-    }
-  }
-
-  pageWaitShipping(e, i, j) {
-    // console.log(i, j);
-    if (e) {
-      // console.log(e);
-      this.waitshipping[i].orders[j].page = e.pageIndex
-      // console.log(this.waitshipping);
-    }
-  }
-
-  pageComplete(e, i, j) {
-    // console.log(i, j);
-    if (e) {
-      // console.log(e);
-      this.complete[i].orders[j].page = e.pageIndex
-      // console.log(this.waitshipping);
-    }
-  }
-
-  gotoOrderReport(item) {
-    // console.log(item);
-    this.router.navigate(["/order-report-detail", { id: item._id }]);
-  }
-
-  async addBox(itm, item) {
-    let sumQty = 0;
-    let res: any = await this.monitorService.getLabel(itm._id);
-    // console.log(res);
-    res.data.productall.forEach(dataQty => {
-      if (dataQty.qtyAll) {
-        sumQty += dataQty.qtyAll === null ? 0 : dataQty.qtyAll
-      }
-    });
-    if (sumQty === 0 && itm.labels.length > 0) {
-      let data = {
-        order_id: itm._id,
-        monitor_id: item._id
-      }
-      const dialogRef = this.dialog.open(ModalMaxBoxComponent, {
-        width: '600px',
-        data: data,
-        height: '450px',
-        disableClose: false
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getMonitor();
-        }
-      });
-    } else {
-      let data = {
-        order_id: itm._id,
-        monitor_id: item._id
-      }
-      // console.log(data)
-      const dialogRef = this.dialog.open(ModalAddBoxComponent, {
-        width: '600px',
-        data: data,
-        height: '450px',
-        disableClose: false
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getMonitor();
-        }
-      });
-
-    }
-
-
-
-  }
-  selectbox(monitor,order,box) {
-    console.log(box);
-    let data = {
-      order_id: order._id,
-      monitor_id: monitor._id,
-      box: box
-    }
-    // console.log(data)
-    const dialogRef = this.dialog.open(ModalAddBoxComponent, {
-      width: '600px',
-      data: data,
-      height: '450px',
-      disableClose: false
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getMonitor();
-      }
-    });
-  }
   async toWaitPack(item) {
     // console.log(item);
+    item.orders.forEach(order => {
+      // console.log(order);
+      order.labels.push({
+        address: order.customer.address,
+        customer: order.customer,
+        productlist: order.items
+      })
+    });
     let body = {
-      status: 'waitpack'
+      status: 'waitpack',
+      orders: item.orders
     }
+    // console.log(body);
     const dialogRef = this.dialog.open(ModalConfirmsComponent, {
       width: '400px',
       data: { title: "การเบิกสินค้า", message: "คุณต้องการยืนยันการเบิกสินค้าหรือไม่" },
@@ -268,6 +156,7 @@ export class StockpackComponent implements OnInit {
       }
     });
   }
+
   async toComplete(item) {
     // console.log(item);
     let body = {
@@ -290,6 +179,11 @@ export class StockpackComponent implements OnInit {
 
 
   }
+
+  print(moniter_id) {
+    window.open(environment.apiUrl + '/api/monitor/reportdetail/' + moniter_id)
+  }
+
   printLabel(item) {
     console.log(item)
     window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
