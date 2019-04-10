@@ -1,19 +1,17 @@
+import { ModalConfirmsComponent } from './../../modal/modal-confirms/modal-confirms.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, PageEvent } from '@angular/material';
 import { MonitorService } from 'src/app/services/monitor/monitor.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
-import { ModalMaxBoxComponent } from 'src/app/modal/modal-max-box/modal-max-box.component';
-import { ModalAddBoxComponent } from 'src/app/modal/modal-add-box/modal-add-box.component';
-import { ModalConfirmsComponent } from 'src/app/modal/modal-confirms/modal-confirms.component';
 
 @Component({
-  selector: 'app-stockpack',
-  templateUrl: './stockpack.component.html',
-  styleUrls: ['./stockpack.component.scss']
+  selector: 'app-search-monitor-all',
+  templateUrl: './search-monitor-all.component.html',
+  styleUrls: ['./search-monitor-all.component.scss']
 })
-export class StockpackComponent implements OnInit {
+export class SearchMonitorAllComponent implements OnInit {
   user: any;
   constructor(
     private router: Router,
@@ -38,15 +36,16 @@ export class StockpackComponent implements OnInit {
   allMonitor: any = [];
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
+    console.log(user);
     this.user = user.data;
     this.ngxSpiner.hide();
 
     // console.log(user);
-    if (this.user.roles[0] === 'owner') {
-      this.getMonitorTeam();
-    } else {
-      this.getMonitor();
-    }
+
+    this.getMonitorTeam();
+
+    this.getMonitor();
+
   }
 
   async getMonitorTeam() {
@@ -59,6 +58,7 @@ export class StockpackComponent implements OnInit {
       this.allMonitor = [];
       let res: any = await this.monitorService.getMonitorTeam(this.user.ref1);
       this.allMonitor = res.data;
+      console.log(this.allMonitor);
       res.data.forEach(data => {
         if (data.status === "waitwithdrawal") {
           this.waitwithdrawal.push(data);
@@ -88,7 +88,9 @@ export class StockpackComponent implements OnInit {
     this.allMonitor = [];
     let res: any = await this.monitorService.getMonitorAll();
     this.allMonitor = res.data;
+    console.log(this.allMonitor)
     res.data.forEach(data => {
+      // console.log(data)
       if (data.status === "waitwithdrawal") {
         this.waitwithdrawal.push(data);
       }
@@ -103,8 +105,8 @@ export class StockpackComponent implements OnInit {
       }
     });
     this.ngxSpiner.hide();
-    // console.log(this.waitwithdrawal);
-    // console.log(this.waitpack);
+    console.log(this.waitwithdrawal);
+    console.log(this.waitpack);
     // console.log(this.waitshipping);
     // console.log(this.complete);
   }
@@ -192,8 +194,5 @@ export class StockpackComponent implements OnInit {
   printLabel(item) {
     console.log(item)
     window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
-  }
-  gotoSearch() {
-    this.router.navigate(['/search-monitor'])
   }
 }

@@ -14,13 +14,16 @@ export class FilterKeywordPipe implements PipeTransform {
     }
     // filter items array, items which match and return true will be
     // kept, false will be filtered out
+    console.log(items);
     if (items) {
       let res1: any = items.filter(item => item.monitorno.indexOf(filter) !== -1);
+      console.log(res1)
       if (res1.length < 1) {
         let res2: any = [];
         items.forEach(itm => {
+          console.log(itm)
           let resOrder: any = itm.orders.filter(it => it.orderno.indexOf(filter) !== -1);
-          // console.log(resOrder);
+          console.log(resOrder);
           if (resOrder.length > 0) {
             resOrder.forEach(resO => {
               res2.push(itm);

@@ -15,6 +15,7 @@ import { MonitorComponent } from "./pages/monitor/monitor.component";
 import { BlankComponent } from "./pages/blank/blank.component";
 import { OwnDashboadComponent } from "./pages/own-dashboad/own-dashboad.component";
 import { StockpackComponent } from "./pages/stockpack/stockpack.component";
+import { SearchMonitorAllComponent } from "./pages/search-monitor-all/search-monitor-all.component";
 
 
 const routes: Routes = [
@@ -37,6 +38,9 @@ const routes: Routes = [
   { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService] },
   { path: "monitor-oldest", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
+  { path: "search-monitor", component: SearchMonitorAllComponent, canActivate: [AuthGuardService] },
+
+
 
 ];
 

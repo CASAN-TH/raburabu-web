@@ -1,0 +1,88 @@
+<div class="row mt-3">
+  <div class="col-12 col-xs-12 col-sm-8 col-md-6">
+    <mat-form-field class="full-width">
+      <span matPrefix>ค้นหา &nbsp;</span>
+      <input [(ngModel)]="keyword" matInput placeholder="เลขที่ใบสั่งซื้อ, ชื่อผู้สั่ง, เบอร์โทรศัพท์">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 pt-3" name="colWaitWithdrawal">
+    <div class="row mt-3" *ngFor="let item of (allMonitor | filterKeyword: keyword )">
+      <div class="col-12">
+        <mat-toolbar color="accent" class="border-top">
+          <mat-toolbar-row>
+            <span>รหัสใบสั่งซื้อ: {{item.monitorno}}</span>
+            <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item.team.teamname}}</small></span>
+            <span *ngIf="item.status === 'waitwithdrawal'">(รอการเบิก)</span>
+            <span *ngIf="item.status === 'waitpack'">(รอการแพ็ค)</span>
+            <span *ngIf="item.status === 'waitshipping'">(รอการจัดส่ง)</span>
+            <span *ngIf="item.status === 'complete'">(เสร็จสิ้น)</span>
+            <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="print(item._id)">
+              <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon">print
+              </mat-icon>
+            </button>
+            <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="toWaitPack(item)">
+              <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
+              </mat-icon>
+            </button>
+
+          </mat-toolbar-row>
+        </mat-toolbar>
+        <div class="row border-bottom">
+          <div class="col-12 col-md-6" *ngFor="let itm of item.orders">
+            <mat-card class="m-3">
+              <mat-card-header>
+                <mat-card-subtitle>
+                  <span>ออเดอร์: </span>
+                  <span class="color-oder">{{itm.orderno}}</span>
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
+                    class="mr-1">{{itm.customer.firstname}}</span>
+                  <span>{{itm.customer.lastname}}</span></p>
+
+                <p class="mb-1 text-overflow ml-3" name="itm.customer.tel">
+                  <span>{{itm.customer.address.houseno}}
+                    ต.{{itm.customer.address.subdistrict}}
+                    อ.{{itm.customer.address.district}}
+                    จ.{{itm.customer.address.province}}
+                    {{itm.customer.address.zipcode}}
+                  </span></p>
+                <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
+                  <span>{{itm.customer.tel}}</span></p>
+                <p class="ml-3"><small>{{itm.paymenttype.name}}</small></p>
+                <div class="row" *ngFor="let prod of itm.productlist">
+                  <p class="ml-3 mt-2">{{prod.name}}</p>
+                  <div class="col-12">
+                    <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
+                      <div class="col-4 col-md-3 col-lg-2 border-prod text-center" *ngFor="let val of opt.value">
+                        {{val.name}} = {{val.qty}}</div>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+              <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
+                <button mat-icon-button color="accent">
+                  <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">print
+                  </mat-icon>
+                </button>
+                <button mat-icon-button color="accent">
+                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                </button>
+                <button mat-icon-button color="accent">
+                  <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                </button>
+              </mat-card-actions>
+              <mat-card-actions class="text-right">
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

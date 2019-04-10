@@ -46,6 +46,7 @@ import { NumberOnlyDirective } from './number.directive';
 import { OwnDashboadComponent} from './pages/own-dashboad/own-dashboad.component';
 import { StockpackComponent } from './pages/stockpack/stockpack.component';
 import { FilterKeywordPipe } from './pipes/filter-keyword.pipe';
+import { SearchMonitorAllComponent } from './pages/search-monitor-all/search-monitor-all.component';
 
 
 const apiSrvCfg = environment;
@@ -79,6 +80,7 @@ const apiSrvCfg = environment;
     OwnDashboadComponent,
     StockpackComponent,
     FilterKeywordPipe,
+    SearchMonitorAllComponent,
   ],
   imports: [
     BrowserModule,
