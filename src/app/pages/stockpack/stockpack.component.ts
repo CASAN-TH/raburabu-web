@@ -35,6 +35,7 @@ export class StockpackComponent implements OnInit {
   waitshipping: any = [];
   complete: any = [];
   keyword: string;
+  allMonitor: any = [];
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     this.user = user.data;
@@ -55,8 +56,9 @@ export class StockpackComponent implements OnInit {
       this.waitpack = [];
       this.waitshipping = [];
       this.complete = [];
+      this.allMonitor = [];
       let res: any = await this.monitorService.getMonitorTeam(this.user.ref1);
-      // console.log(res);
+      this.allMonitor = res.data;
       res.data.forEach(data => {
         if (data.status === "waitwithdrawal") {
           this.waitwithdrawal.push(data);
@@ -83,8 +85,9 @@ export class StockpackComponent implements OnInit {
     this.waitpack = [];
     this.waitshipping = [];
     this.complete = [];
+    this.allMonitor = [];
     let res: any = await this.monitorService.getMonitorAll();
-    // console.log(res);
+    this.allMonitor = res.data;
     res.data.forEach(data => {
       if (data.status === "waitwithdrawal") {
         this.waitwithdrawal.push(data);
