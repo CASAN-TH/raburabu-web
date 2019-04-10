@@ -34,6 +34,7 @@ export class StockpackComponent implements OnInit {
   label: any = [];
   waitshipping: any = [];
   complete: any = [];
+  keyword: string;
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     this.user = user.data;
@@ -157,7 +158,7 @@ export class StockpackComponent implements OnInit {
     });
   }
 
-  
+
   async toComplete(item) {
     // console.log(item);
     let body = {

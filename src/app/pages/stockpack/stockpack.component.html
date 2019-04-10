@@ -1,3 +1,14 @@
+<div class="row">
+  <div class="col-12 col-xs-12 col-sm-4 col-md-4">
+    <mat-form-field class="full-width">
+      <span matPrefix>ค้นหา &nbsp;</span>
+      <input [(ngModel)]="keyword" matInput placeholder="เลขที่ใบสั่งซื้อ, ชื่อผู้สั่ง, เบอร์โทรศัพท์">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+</div>
+
+
 <mat-tab-group dynamicHeight name="tabGroup" class="mt-3">
   <mat-tab label="รอการเบิก" name="tabWaitWithdrawal">
     <div class="row">
@@ -5,7 +16,7 @@
         <span name="textNoWaitWithdrawal">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
       </div>
       <div class="col-12 pt-3" *ngIf="waitwithdrawal && waitwithdrawal.length > 0" name="colWaitWithdrawal">
-        <div class="row mt-3" *ngFor="let item of waitwithdrawal">
+        <div class="row mt-3" *ngFor="let item of (waitwithdrawal | filterKeyword: keyword )">
           <div class="col-12">
             <mat-toolbar color="accent" class="border-top">
               <mat-toolbar-row>

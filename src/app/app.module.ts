@@ -45,6 +45,8 @@ import { BlankComponent } from './pages/blank/blank.component';
 import { NumberOnlyDirective } from './number.directive';
 import { OwnDashboadComponent} from './pages/own-dashboad/own-dashboad.component';
 import { StockpackComponent } from './pages/stockpack/stockpack.component';
+import { FilterKeywordPipe } from './pipes/filter-keyword.pipe';
+
 
 const apiSrvCfg = environment;
 @NgModule({
@@ -75,7 +77,8 @@ const apiSrvCfg = environment;
     BlankComponent,
     NumberOnlyDirective,
     OwnDashboadComponent,
-    StockpackComponent
+    StockpackComponent,
+    FilterKeywordPipe,
   ],
   imports: [
     BrowserModule,
