@@ -39,7 +39,7 @@
                   <span class="color-oder">{{itm.orderno}}</span>
                 </mat-card-subtitle>
               </mat-card-header>
-              <mat-card-content>
+              <mat-card-content *ngIf="item.status != 'waitpack'">
                 <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
                     class="mr-1">{{itm.customer.firstname}}</span>
                   <span>{{itm.customer.lastname}}</span></p>
@@ -54,31 +54,80 @@
                 <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
                   <span>{{itm.customer.tel}}</span></p>
                 <p class="ml-3"><small>{{itm.paymenttype.name}}</small></p>
-                <div class="row" *ngFor="let prod of itm.productlist">
-                  <p class="ml-3 mt-2">{{prod.name}}</p>
-                  <div class="col-12">
-                    <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
-                      <div class="col-4 col-md-3 col-lg-2 border-prod text-center" *ngFor="let val of opt.value">
-                        {{val.name}} = {{val.qty}}</div>
-                    </div>
-                  </div>
-                </div>
+
               </mat-card-content>
-              <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
-                <button mat-icon-button color="accent">
-                  <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">print
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="accent">
-                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                </button>
-                <button mat-icon-button color="accent">
-                  <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
-                </button>
-              </mat-card-actions>
+         
+
               <mat-card-actions class="text-right">
               </mat-card-actions>
             </mat-card>
+
+
+
+            <!-- <mat-card *ngIf="item.status === 'waitpack'">
+              <div class="row border-bottom">
+                <div class="col-12" *ngFor="let itm2 of itm.orders">
+                  <div class="row ml-3 mt-3">
+                    <span>ออเดอร์: </span>
+                    <span class="color-oder">{{itm2.orderno}}</span>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6" *ngFor="let label2 of itm2.labels; let i=index">
+                      <mat-card class="m-3">
+                        <mat-card-content>
+                          <div class="row">
+                            <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
+                          </div>
+                          <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
+                              class="mr-1">{{label2.customer.firstname}}</span>
+                            <span>{{label2.customer.lastname}}</span></p>
+
+                          <p class="mb-1 text-overflow ml-3">
+                            <span>{{label2.address.houseno}}
+                              ต.{{label2.address.subdistrict}}
+                              อ.{{label2.address.district}}
+                              จ.{{label2.address.province}}
+                              {{label2.address.zipcode}}
+                            </span></p>
+                          <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
+                            <span>{{itm2.customer.tel}}</span></p>
+                          <p class="ml-3"><small>{{itm2.paymenttype.name}}</small></p>
+                          <div class="row" *ngFor="let prod of label2.productlist">
+                            <p class="ml-3 mt-2">{{prod.name}}</p>
+                            <div class="col-12">
+                              <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
+                                <div class="col-4 col-md-3 col-lg-2 border-prod text-center"
+                                  *ngFor="let val of opt.value">{{val.name}} = {{val.qty}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </mat-card-content>
+                        <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
+                          <button mat-icon-button color="accent">
+                            <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">
+                              print
+                            </mat-icon>
+                          </button>
+                          <button mat-icon-button color="accent">
+                            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                          </button>
+                          <button mat-icon-button color="accent">
+                            <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                          </button>
+                        </mat-card-actions>
+                      </mat-card>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card> -->
+
+
+
+
+
+
+
           </div>
         </div>
       </div>
