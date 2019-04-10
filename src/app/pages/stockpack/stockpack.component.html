@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-12 col-xs-12 col-sm-4 col-md-4">
+<div class="row mt-3">
+  <div class="col-12 col-xs-12 col-sm-8 col-md-6">
     <mat-form-field class="full-width">
       <span matPrefix>ค้นหา &nbsp;</span>
       <input [(ngModel)]="keyword" matInput placeholder="เลขที่ใบสั่งซื้อ, ชื่อผู้สั่ง, เบอร์โทรศัพท์">
@@ -8,11 +8,11 @@
   </div>
 </div>
 
-
-<mat-tab-group dynamicHeight name="tabGroup" class="mt-3">
+<mat-tab-group dynamicHeight name="tabGroup" class="mt-1">
   <mat-tab label="รอการเบิก" name="tabWaitWithdrawal">
     <div class="row">
-      <div class="col-12 text-center mt-4" *ngIf="waitwithdrawal && waitwithdrawal.length < 1" name="colNoWaitWithdrawal">
+      <div class="col-12 text-center mt-4" *ngIf="waitwithdrawal && waitwithdrawal.length < 1"
+        name="colNoWaitWithdrawal">
         <span name="textNoWaitWithdrawal">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
       </div>
       <div class="col-12 pt-3" *ngIf="waitwithdrawal && waitwithdrawal.length > 0" name="colWaitWithdrawal">
@@ -85,7 +85,7 @@
                 <span>รหัสใบสั่งซื้อ: {{item2.monitorno}}</span>
                 <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item2.team.teamname}}</small></span>
                 <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'">
-                  <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon" >print
+                  <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon">print
                   </mat-icon>
                 </button>
                 <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="toWaitShipping(item2)">
@@ -133,7 +133,8 @@
                       </mat-card-content>
                       <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
                         <button mat-icon-button color="accent">
-                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">print</mat-icon>
+                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">print
+                          </mat-icon>
                         </button>
                         <button mat-icon-button color="accent">
                           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
@@ -160,139 +161,139 @@
         <span name="textNoWaitShipping">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
       </div>
       <div class="col-12 pt-3" *ngIf="waitshipping && waitshipping.length > 0" name="colWaitWithdrawal">
-          <div class="row mt-3" *ngFor="let item3 of waitshipping">
-            <div class="col-12">
-              <mat-toolbar color="accent" class="border-top">
-                <mat-toolbar-row>
-                  <span>รหัสใบสั่งซื้อ: {{item3.monitorno}}</span>
-                  <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item3.team.teamname}}</small></span>
-                  
-                  <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="toComplete(item3)">
-                    <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
-                    </mat-icon>
-                  </button>
-                </mat-toolbar-row>
-              </mat-toolbar>
-              <div class="row border-bottom">
-                <div class="col-12" *ngFor="let itm3 of item3.orders">
-                  <div class="row ml-3 mt-3">
-                    <span>ออเดอร์: </span>
-                    <span class="color-oder">{{itm3.orderno}}</span>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-md-6" *ngFor="let label3 of itm3.labels; let i=index">
-                      <mat-card class="m-3">
-                        <mat-card-content>
-                          <div class="row">
-                            <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
-                          </div>
-                          <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
-                              class="mr-1">{{label3.customer.firstname}}</span>
-                            <span>{{label3.customer.lastname}}</span></p>
-  
-                          <p class="mb-1 text-overflow ml-3">
-                            <span>{{label3.address.houseno}}
-                              ต.{{label3.address.subdistrict}}
-                              อ.{{label3.address.district}}
-                              จ.{{label3.address.province}}
-                              {{label3.address.zipcode}}
-                            </span></p>
-                          <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
-                            <span>{{itm3.customer.tel}}</span></p>
-                          <p class="ml-3"><small>{{itm3.paymenttype.name}}</small></p>
-                          <div class="row" *ngFor="let prod of label3.productlist">
-                            <p class="ml-3 mt-2">{{prod.name}}</p>
-                            <div class="col-12">
-                              <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
-                                <div class="col-4 col-md-3 col-lg-2 border-prod text-center"
-                                  *ngFor="let val of opt.value">{{val.name}} = {{val.qty}}</div>
-                              </div>
+        <div class="row mt-3" *ngFor="let item3 of waitshipping">
+          <div class="col-12">
+            <mat-toolbar color="accent" class="border-top">
+              <mat-toolbar-row>
+                <span>รหัสใบสั่งซื้อ: {{item3.monitorno}}</span>
+                <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item3.team.teamname}}</small></span>
+
+                <button mat-icon-button *ngIf="user.roles[0]==='stockstaff'" (click)="toComplete(item3)">
+                  <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
+                  </mat-icon>
+                </button>
+              </mat-toolbar-row>
+            </mat-toolbar>
+            <div class="row border-bottom">
+              <div class="col-12" *ngFor="let itm3 of item3.orders">
+                <div class="row ml-3 mt-3">
+                  <span>ออเดอร์: </span>
+                  <span class="color-oder">{{itm3.orderno}}</span>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6" *ngFor="let label3 of itm3.labels; let i=index">
+                    <mat-card class="m-3">
+                      <mat-card-content>
+                        <div class="row">
+                          <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
+                        </div>
+                        <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
+                            class="mr-1">{{label3.customer.firstname}}</span>
+                          <span>{{label3.customer.lastname}}</span></p>
+
+                        <p class="mb-1 text-overflow ml-3">
+                          <span>{{label3.address.houseno}}
+                            ต.{{label3.address.subdistrict}}
+                            อ.{{label3.address.district}}
+                            จ.{{label3.address.province}}
+                            {{label3.address.zipcode}}
+                          </span></p>
+                        <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
+                          <span>{{itm3.customer.tel}}</span></p>
+                        <p class="ml-3"><small>{{itm3.paymenttype.name}}</small></p>
+                        <div class="row" *ngFor="let prod of label3.productlist">
+                          <p class="ml-3 mt-2">{{prod.name}}</p>
+                          <div class="col-12">
+                            <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
+                              <div class="col-4 col-md-3 col-lg-2 border-prod text-center"
+                                *ngFor="let val of opt.value">{{val.name}} = {{val.qty}}</div>
                             </div>
                           </div>
-                        </mat-card-content>
-                        <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
-                          
-                          <button mat-icon-button color="accent">
-                            <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
-                          </button>
-                        </mat-card-actions>
-                      </mat-card>
-                    </div>
+                        </div>
+                      </mat-card-content>
+                      <mat-card-actions class="text-right" *ngIf="user.roles[0]==='stockstaff'">
+
+                        <button mat-icon-button color="accent">
+                          <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                        </button>
+                      </mat-card-actions>
+                    </mat-card>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-  
         </div>
+
+      </div>
     </div>
   </mat-tab>
 
   <mat-tab label="เสร็จสิ้น" name="tabComplete">
     <div class="row" name="rowComplete">
-      
+
       <div class="col-12 mt-4 text-center" *ngIf="complete && complete.length < 1" name="colNoComplete">
         <span name="textNoComplete">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
       </div>
       <div class="col-12 pt-3" *ngIf="complete && complete.length > 0" name="colWaitWithdrawal">
-          <div class="row mt-3" *ngFor="let item4 of complete">
-            <div class="col-12">
-              <mat-toolbar color="accent" class="border-top">
-                <mat-toolbar-row>
-                  <span>รหัสใบสั่งซื้อ: {{item4.monitorno}}</span>
-                  <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item4.team.teamname}}</small></span>
-                  
-                </mat-toolbar-row>
-              </mat-toolbar>
-              <div class="row border-bottom">
-                <div class="col-12" *ngFor="let itm4 of item4.orders">
-                  <div class="row ml-3 mt-3">
-                    <span>ออเดอร์: </span>
-                    <span class="color-oder">{{itm4.orderno}}</span>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-md-6" *ngFor="let label4 of itm4.labels; let i=index">
-                      <mat-card class="m-3">
-                        <mat-card-content>
-                          <div class="row">
-                            <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
-                          </div>
-                          <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
-                              class="mr-1">{{label4.customer.firstname}}</span>
-                            <span>{{label4.customer.lastname}}</span></p>
-  
-                          <p class="mb-1 text-overflow ml-3">
-                            <span>{{label4.address.houseno}}
-                              ต.{{label4.address.subdistrict}}
-                              อ.{{label4.address.district}}
-                              จ.{{label4.address.province}}
-                              {{label4.address.zipcode}}
-                            </span></p>
-                          <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
-                            <span>{{itm4.customer.tel}}</span></p>
-                          <p class="ml-3"><small>{{itm4.paymenttype.name}}</small></p>
-                          <div class="row" *ngFor="let prod of label4.productlist">
-                            <p class="ml-3 mt-2">{{prod.name}}</p>
-                            <div class="col-12">
-                              <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
-                                <div class="col-4 col-md-3 col-lg-2 border-prod text-center"
-                                  *ngFor="let val of opt.value">{{val.name}} = {{val.qty}}</div>
-                              </div>
+        <div class="row mt-3" *ngFor="let item4 of complete">
+          <div class="col-12">
+            <mat-toolbar color="accent" class="border-top">
+              <mat-toolbar-row>
+                <span>รหัสใบสั่งซื้อ: {{item4.monitorno}}</span>
+                <span class="example-spacer pl-5 d-none d-md-block"><small>ทีม: {{item4.team.teamname}}</small></span>
+
+              </mat-toolbar-row>
+            </mat-toolbar>
+            <div class="row border-bottom">
+              <div class="col-12" *ngFor="let itm4 of item4.orders">
+                <div class="row ml-3 mt-3">
+                  <span>ออเดอร์: </span>
+                  <span class="color-oder">{{itm4.orderno}}</span>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6" *ngFor="let label4 of itm4.labels; let i=index">
+                    <mat-card class="m-3">
+                      <mat-card-content>
+                        <div class="row">
+                          <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
+                        </div>
+                        <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
+                            class="mr-1">{{label4.customer.firstname}}</span>
+                          <span>{{label4.customer.lastname}}</span></p>
+
+                        <p class="mb-1 text-overflow ml-3">
+                          <span>{{label4.address.houseno}}
+                            ต.{{label4.address.subdistrict}}
+                            อ.{{label4.address.district}}
+                            จ.{{label4.address.province}}
+                            {{label4.address.zipcode}}
+                          </span></p>
+                        <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
+                          <span>{{itm4.customer.tel}}</span></p>
+                        <p class="ml-3"><small>{{itm4.paymenttype.name}}</small></p>
+                        <div class="row" *ngFor="let prod of label4.productlist">
+                          <p class="ml-3 mt-2">{{prod.name}}</p>
+                          <div class="col-12">
+                            <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
+                              <div class="col-4 col-md-3 col-lg-2 border-prod text-center"
+                                *ngFor="let val of opt.value">{{val.name}} = {{val.qty}}</div>
                             </div>
                           </div>
-                        </mat-card-content>
-                        <mat-card-actions class="text-right">
-                          
-                        </mat-card-actions>
-                      </mat-card>
-                    </div>
+                        </div>
+                      </mat-card-content>
+                      <mat-card-actions class="text-right">
+
+                      </mat-card-actions>
+                    </mat-card>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-  
         </div>
+
+      </div>
     </div>
   </mat-tab>
 </mat-tab-group>

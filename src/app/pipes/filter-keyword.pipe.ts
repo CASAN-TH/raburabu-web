@@ -8,7 +8,7 @@ export class FilterKeywordPipe implements PipeTransform {
 
   transform(items: any = [], filter: string): any {
     // console.log(filter);
-    console.log(items);
+    // console.log(items);
     if (!items || !filter) {
       return items;
     }
@@ -27,24 +27,50 @@ export class FilterKeywordPipe implements PipeTransform {
             });
           }
         });
-        console.log(res2);
+        // console.log(res2);
         if (res2.length < 1) {
           let res3: any = [];
+          items.forEach(itm => {
+            let resTel: any = itm.orders.filter(it => it.customer.tel.indexOf(filter) !== -1);
+            // console.log(resTel);
+            if (resTel.length > 0) {
+              resTel.forEach(resT => {
+                res3.push(itm);
+              });
+            }
+          });
           if (res3.length < 1) {
+            let res4: any = [];
             items.forEach(itm => {
-              let resTel: any = itm.orders.filter(it => it.customer.tel.indexOf(filter) !== -1);
-              console.log(resTel);
-              if (resTel.length > 0) {
-                resTel.forEach(resT => {
-                  res3.push(itm);
+              let resFname: any = itm.orders.filter(it => it.customer.firstname.indexOf(filter) !== -1);
+              // console.log(resFname);
+              if (resFname.length > 0) {
+                resFname.forEach(resT => {
+                  res4.push(itm);
                 });
               }
             });
-            if (res3.length < 1) {
-              console.log('w');
+            if (res4.length < 1) {
+              let res5: any = [];
+              items.forEach(itm => {
+                let resLname: any = itm.orders.filter(it => it.customer.lastname.indexOf(filter) !== -1);
+                // console.log(resLname);
+                if (resLname.length > 0) {
+                  resLname.forEach(resT => {
+                    res5.push(itm);
+                  });
+                }
+              });
+              if (res5.length < 1) {
+                console.log('ไม่ตรงอะไรเลยอะ');
+              } else {
+                return res5
+              }
             } else {
-              return res3
+              return res4
             }
+          } else {
+            return res3
           }
         } else {
           return res2
@@ -52,8 +78,6 @@ export class FilterKeywordPipe implements PipeTransform {
       } else {
         return res1
       }
-      console.log();
-      // return result
     }
 
   }
