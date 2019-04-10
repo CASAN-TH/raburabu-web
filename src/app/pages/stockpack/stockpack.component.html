@@ -1,8 +1,8 @@
 <div class="row mt-3">
   <div class="col-12 col-xs-12 col-sm-8 col-md-6">
-    <mat-form-field class="full-width">
+    <mat-form-field class="full-width" (click)="gotoSearch()">
       <span matPrefix>ค้นหา &nbsp;</span>
-      <input (click)="gotoSearch()" matInput placeholder="เลขที่ใบสั่งซื้อ, ชื่อผู้สั่ง, เบอร์โทรศัพท์">
+      <input disabled matInput placeholder="เลขที่ใบสั่งซื้อ, ชื่อผู้สั่ง, เบอร์โทรศัพท์">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </div>
@@ -16,7 +16,7 @@
         <span name="textNoWaitWithdrawal">ยังไม่มีรายการสั่งซื้อในขณะนี้</span>
       </div>
       <div class="col-12 pt-3" *ngIf="waitwithdrawal && waitwithdrawal.length > 0" name="colWaitWithdrawal">
-        <div class="row mt-3" *ngFor="let item of (waitwithdrawal | filterKeyword: keyword )">
+        <div class="row mt-3" *ngFor="let item of waitwithdrawal">
           <div class="col-12">
             <mat-toolbar color="accent" class="border-top">
               <mat-toolbar-row>
