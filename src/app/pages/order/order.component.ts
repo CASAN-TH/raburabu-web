@@ -48,7 +48,7 @@ export class OrderComponent implements OnInit {
   prodData: any;
 
   async ngOnInit() {
-    this.ngxSpinner.hide();
+    // this.ngxSpinner.hide();
     this.ngxSpinner.show();
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.teamId = user.data.ref1;

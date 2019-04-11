@@ -59,7 +59,7 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.ngxSpinner.hide();
+    // this.ngxSpinner.hide();
     this.ngxSpinner.show();
     // this.order.onNewMessage().subscribe(msg => {
     //   console.log('got a msg: ' + msg);

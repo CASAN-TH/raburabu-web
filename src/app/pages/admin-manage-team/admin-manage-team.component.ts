@@ -23,30 +23,23 @@ export class AdminManageTeamComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ngXspinner.hide()
+    // this.ngXspinner.hide()
     this.ngXspinner.show();
     this.getTeam();
   }
 
   async getTeam() {
-    // this.ngXspinner.show();
     try {
       let res: any = await this.teameService.getTeam();
       this.dataTeam = res.data;
       this.dataTeam.forEach(data => {
-        // console.log(waitApprove)
         if (data.status === 'waitapprove') {
           this.waitApprove.push(data);
-          // console.log(this.waitApprove);
-
         } else if (data.status === 'approve') {
           this.approve.push(data);
-          // console.log(this.approve);
         }
         this.ngXspinner.hide();
       });
-      // console.log(this.waitApprove);
-      // console.log(res);
     } catch (error) {
       this.ngXspinner.hide();
       console.log(error);
@@ -54,8 +47,6 @@ export class AdminManageTeamComponent implements OnInit {
   }
 
   async onApprove(item) {
-    // this.ngXspinner.show();
-
     try {
       const dialogRef = this.dialog.open(ModalConfirmsComponent, {
         width: '400px',
@@ -70,19 +61,15 @@ export class AdminManageTeamComponent implements OnInit {
           let body = {
             status: 'approve'
           }
-          // console.log(item);
           let res: any = await this.teameService.adminManageTeam(item._id, body);
-          // console.log(res);
           this.waitApprove = [];
           this.approve = [];
           this.getTeam();
         }
       });
-
     } catch (error) {
-
+      console.log(error);
     }
-
   }
 
   async onReject(item) {
@@ -111,9 +98,8 @@ export class AdminManageTeamComponent implements OnInit {
         }
       });
     } catch (error) {
-
+      console.log(error);
     }
-
   }
 
 }

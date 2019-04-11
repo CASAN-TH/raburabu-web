@@ -43,7 +43,7 @@ export class ManageMemberComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.ngxSpinner.hide();
+    // this.ngxSpinner.hide();
     this.ngxSpinner.show();
     // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
     // this.team_id = team.data._id
@@ -67,11 +67,9 @@ export class ManageMemberComponent implements OnInit {
   async getMe() {
     try {
       let user: any = await this.teameServicec.me()
-      // console.log(user)
       if (!user.data.ref1) {
         this.router.navigate(['/home']);
       } else {
-        // console.log('sdf');
         this.team_id = user.data.ref1;
         this.user = user.data.roles[0];
         this.getDataMember();
@@ -135,16 +133,12 @@ export class ManageMemberComponent implements OnInit {
   }
 
   async getDataMember() {
-    // this.ngxSpinner.show();
     try {
       let res: any = await this.teameServicec.getById(this.team_id);
-      // console.log(res);
       this.dataTeam = res.data;
-      // console.log(this.dataTeam);
       let resp: any = this.dataTeam.members.filter((e) => {
         if (e.member_id === this.userId) {
           this.dataUserID = e;
-          // console.log(this.dataUserID);
         }
       })
       this.dataTeam.members.forEach(members => {
@@ -153,7 +147,6 @@ export class ManageMemberComponent implements OnInit {
         }
         if (members.status === 'staff') {
           this.statusMember.push(members);
-          // console.log(this.statusMember);
         }
       });
       this.ngxSpinner.hide();
@@ -175,7 +168,6 @@ export class ManageMemberComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(async result => {
-        // console.log(result)
         if (result) {
           let dataApprove: any = {
             member_id: item.member_id,
@@ -189,7 +181,6 @@ export class ManageMemberComponent implements OnInit {
             this.statusMember = []
             this.getDataMember();
           }
-          // console.log(res);
         }
       });
 
@@ -210,7 +201,6 @@ export class ManageMemberComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(async result => {
-        // console.log(result)
         if (result) {
           let dataApprove: any = {
             member_id: item.member_id,
@@ -226,7 +216,6 @@ export class ManageMemberComponent implements OnInit {
             this.statusMember = []
             this.ngOnInit();
           }
-          // console.log(res);
         }
       });
 
@@ -239,7 +228,6 @@ export class ManageMemberComponent implements OnInit {
       let _id = item.member_id;
       const dialogRef = this.dialog.open(ModalProfileComponent, {
         width: '800px',
-        // height: '700px',
         data: _id,
         disableClose: false
       });

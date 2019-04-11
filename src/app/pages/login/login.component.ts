@@ -40,12 +40,9 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private teameService: TeameServiceService,
   ) {
-
-    // this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggingIn.subscribe(() => {
       this.spinner.show();
     });
-    // this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggedIn.subscribe(async value => {
       // this.spinner.hide();
       const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);

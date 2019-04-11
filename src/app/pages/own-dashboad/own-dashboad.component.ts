@@ -34,7 +34,7 @@ export class OwnDashboadComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ngxSpinner.hide();
+    // this.ngxSpinner.hide();
     this.ngxSpinner.show();
     this.chartData();
     let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));

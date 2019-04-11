@@ -26,24 +26,12 @@ export class HomeComponent implements OnInit {
   ) {
     this.getMe();
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // this.teamId = user.data.ref1
-    // if (user.data.ref1) {
-    //   if (user.data.ref1 != "") {
-    //     this.router.navigate(['/manage-member']);
-    //   }
-    // }
-
-
-    // if (user.data.roles[0] === 'admin') {
-    //   this.router.navigate(['/admin-manage-team']);
-    // }
   }
 
   ngOnInit() {
-    this.ngxSpinner.hide();
+    // this.ngxSpinner.hide();
     this.ngxSpinner.show();
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // console.log(res);
     if (res && res.data) {
       if (res.data.roles[0] === 'user') {
         if (res.data.ref1) {
@@ -86,7 +74,6 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result)
       if (result) {
         this.router.navigate(['manage-member']);
       }
@@ -96,7 +83,6 @@ export class HomeComponent implements OnInit {
   createmember() {
     const dialogRef = this.dialog.open(ModalCreateMemberComponent, {
       width: '800px',
-      // height:'400px',
       disableClose: false
     });
 

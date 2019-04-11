@@ -17,9 +17,8 @@ export class BlankComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.spinner.hide()
+    // this.spinner.hide()
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // console.log(res);
     if (res && res.data) {
       if (res.data.roles[0] === 'user') {
         if (res.data.ref1) {
