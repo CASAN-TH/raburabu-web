@@ -35,6 +35,7 @@ export class SearchMonitorAllComponent implements OnInit {
   allMonitor: any = [];
 
   ngOnInit() {
+    this.ngxSpiner.hide();
     this.ngxSpiner.show();
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     console.log(user);

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MonitorService {
-  private socket: SocketIOClient.Socket;
+  // private socket: SocketIOClient.Socket;
   constructor(public http: HttpClient, ) { 
     // this.socket = io('http://localhost:3000');
   }

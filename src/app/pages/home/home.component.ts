@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
 
   ) {
     this.getMe();
-
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     // this.teamId = user.data.ref1
     // if (user.data.ref1) {
@@ -41,6 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ngxSpinner.hide();
     this.ngxSpinner.show();
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     // console.log(res);

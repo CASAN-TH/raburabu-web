@@ -15,6 +15,7 @@ export class GraphAllComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ngXspinner.hide();
     this.ngXspinner.show();
     this.chartData()
   }

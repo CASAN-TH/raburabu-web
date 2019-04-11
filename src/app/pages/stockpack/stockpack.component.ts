@@ -37,6 +37,7 @@ export class StockpackComponent implements OnInit {
   keyword: string;
   allMonitor: any = [];
   ngOnInit() {
+    this.ngxSpiner.hide()
     this.ngxSpiner.show()
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     this.user = user.data;

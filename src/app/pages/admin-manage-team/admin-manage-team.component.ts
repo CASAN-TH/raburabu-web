@@ -23,6 +23,7 @@ export class AdminManageTeamComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ngXspinner.hide()
     this.ngXspinner.show();
     this.getTeam();
   }

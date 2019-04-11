@@ -22,6 +22,7 @@ export class OrderReportDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ngxSpinner.hide();
     this.ngxSpinner.show();
     let id: any = this.route.snapshot.paramMap.get('id');
     this.moniter_id = id;

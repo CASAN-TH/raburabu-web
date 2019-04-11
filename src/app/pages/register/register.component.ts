@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.spinner.hide();
   }
 
 }
