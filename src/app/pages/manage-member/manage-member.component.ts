@@ -185,9 +185,9 @@ export class ManageMemberComponent implements OnInit {
       });
 
     } catch (error) {
-
+      this.ngxSpinner.hide();
+      console.log(error);
     }
-
   }
   async cancel(item) {
     try {
@@ -218,9 +218,9 @@ export class ManageMemberComponent implements OnInit {
           }
         }
       });
-
     } catch (error) {
-
+      this.ngxSpinner.hide();
+      console.log(error);
     }
   }
   onSeeDetailMember(item) {
@@ -231,10 +231,9 @@ export class ManageMemberComponent implements OnInit {
         data: _id,
         disableClose: false
       });
-      // dialogRef.componentInstance.dataCutomer.subscribe(data => {
-      // console.log(data);
-      // this.address = data;
-      // });
+      dialogRef.afterClosed().subscribe(async result => {
+        this.ngxSpinner.hide();
+      });
     }
   }
 
