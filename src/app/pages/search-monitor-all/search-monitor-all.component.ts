@@ -34,45 +34,45 @@ export class SearchMonitorAllComponent implements OnInit {
   complete: any = [];
   keyword: string;
   allMonitor: any = [];
+
   ngOnInit() {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
-    console.log(user);
+    // console.log(user);
     this.user = user.data;
     this.ngxSpiner.hide();
-
     // console.log(user);
-
-    this.getMonitorTeam();
-
-    this.getMonitor();
-
+    if (this.user.roles[0] === 'owner') {
+      this.getMonitorTeam();
+    } else {
+      this.getMonitor();
+    }
   }
 
   async getMonitorTeam() {
+    this.ngxSpiner.show()
     try {
-      // this.ngxSpiner.show()
-      this.waitwithdrawal = [];
-      this.waitpack = [];
-      this.waitshipping = [];
-      this.complete = [];
+      // this.waitwithdrawal = [];
+      // this.waitpack = [];
+      // this.waitshipping = [];
+      // this.complete = [];
       this.allMonitor = [];
       let res: any = await this.monitorService.getMonitorTeam(this.user.ref1);
-      this.allMonitor = res.data;
-      console.log(this.allMonitor);
-      res.data.forEach(data => {
-        if (data.status === "waitwithdrawal") {
-          this.waitwithdrawal.push(data);
-        }
-        if (data.status === "waitpack") {
-          this.waitpack.push(data)
-        }
-        if (data.status === "waitshipping") {
-          this.waitshipping.push(data)
-        }
-        if (data.status === "complete") {
-          this.complete.push(data)
-        }
-      });
+      this.allMonitor = await res.data;
+      // console.log(this.allMonitor);
+      // res.data.forEach(data => {
+      //   if (data.status === "waitwithdrawal") {
+      //     this.waitwithdrawal.push(data);
+      //   }
+      //   if (data.status === "waitpack") {
+      //     this.waitpack.push(data)
+      //   }
+      //   if (data.status === "waitshipping") {
+      //     this.waitshipping.push(data)
+      //   }
+      //   if (data.status === "complete") {
+      //     this.complete.push(data)
+      //   }
+      // });
       this.ngxSpiner.hide();
     } catch (error) {
 
@@ -80,35 +80,40 @@ export class SearchMonitorAllComponent implements OnInit {
   }
 
   async getMonitor() {
-    // this.ngxSpiner.show()
-    this.waitwithdrawal = [];
-    this.waitpack = [];
-    this.waitshipping = [];
-    this.complete = [];
-    this.allMonitor = [];
-    let res: any = await this.monitorService.getMonitorAll();
-    this.allMonitor = res.data;
-    console.log(this.allMonitor)
-    res.data.forEach(data => {
-      // console.log(data)
-      if (data.status === "waitwithdrawal") {
-        this.waitwithdrawal.push(data);
-      }
-      if (data.status === "waitpack") {
-        this.waitpack.push(data)
-      }
-      if (data.status === "waitshipping") {
-        this.waitshipping.push(data)
-      }
-      if (data.status === "complete") {
-        this.complete.push(data)
-      }
-    });
-    this.ngxSpiner.hide();
-    console.log(this.waitwithdrawal);
-    console.log(this.waitpack);
-    // console.log(this.waitshipping);
-    // console.log(this.complete);
+    this.ngxSpiner.show()
+    try {
+      // this.waitwithdrawal = [];
+      // this.waitpack = [];
+      // this.waitshipping = [];
+      // this.complete = [];
+      this.allMonitor = [];
+      let res: any = await this.monitorService.getMonitorAll();
+      this.allMonitor = res.data;
+      // console.log(this.allMonitor)
+      // res.data.forEach(data => {
+      //   // console.log(data)
+      //   if (data.status === "waitwithdrawal") {
+      //     this.waitwithdrawal.push(data);
+      //   }
+      //   if (data.status === "waitpack") {
+      //     this.waitpack.push(data)
+      //   }
+      //   if (data.status === "waitshipping") {
+      //     this.waitshipping.push(data)
+      //   }
+      //   if (data.status === "complete") {
+      //     this.complete.push(data)
+      //   }
+      // });
+      this.ngxSpiner.hide();
+      // console.log(this.waitwithdrawal);
+      // console.log(this.waitpack);
+      // console.log(this.waitshipping);
+      // console.log(this.complete);
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   async toWaitPack(item) {
