@@ -44,7 +44,7 @@ export class FilterKeywordPipe implements PipeTransform {
           if (res3.length < 1) {
             let res4: any = [];
             items.forEach(itm => {
-              let resFname: any = itm.orders.filter(it => it.customer.firstname.indexOf(filter) !== -1);
+              let resFname: any = itm.orders.filter(it => it.customer.firstname.indexOf(filter) !== -1 || it.customer.lastname.indexOf(filter) !== -1);
               // console.log(resFname);
               if (resFname.length > 0) {
                 resFname.forEach(resT => {
@@ -53,21 +53,22 @@ export class FilterKeywordPipe implements PipeTransform {
               }
             });
             if (res4.length < 1) {
-              let res5: any = [];
-              items.forEach(itm => {
-                let resLname: any = itm.orders.filter(it => it.customer.lastname.indexOf(filter) !== -1);
-                // console.log(resLname);
-                if (resLname.length > 0) {
-                  resLname.forEach(resT => {
-                    res5.push(itm);
-                  });
-                }
-              });
-              if (res5.length < 1) {
-                console.log('ไม่เจอไรเลยอะ');
-              } else {
-                return res5
-              }
+              console.log('ไม่เจอไรเลยอะ');
+              // let res5: any = [];
+              // items.forEach(itm => {
+              //   let resLname: any = itm.orders.filter(it => it.customer.lastname.indexOf(filter) !== -1);
+              //   // console.log(resLname);
+              //   if (resLname.length > 0) {
+              //     resLname.forEach(resT => {
+              //       res5.push(itm);
+              //     });
+              //   }
+              // });
+              // if (res5.length < 1) {
+              //   console.log('ไม่เจอไรเลยอะ');
+              // } else {
+              //   return res5
+              // }
             } else {
               return res4
             }
