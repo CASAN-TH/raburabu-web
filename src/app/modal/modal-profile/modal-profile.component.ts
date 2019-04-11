@@ -29,9 +29,9 @@ export class ModalProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.spinner.show();
-    }, 1);
+    // setTimeout(() => {
+    //   this.spinner.show();
+    // }, 1);
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     // this.user = user.data;
     // console.log(this.data);
