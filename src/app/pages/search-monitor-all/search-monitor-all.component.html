@@ -31,11 +31,11 @@
               <mat-icon class="example-icon mr-5" aria-hidden="false" aria-label="Example heart icon">print
               </mat-icon>
             </button>
-            <button mat-icon-button *ngIf="item.status === 'waitpack'" (click)="toWaitShipping(item2)">
+            <button mat-icon-button *ngIf="item.status === 'waitpack'" (click)="toWaitShipping(item)">
               <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
               </mat-icon>
             </button>
-            <button mat-icon-button *ngIf="item.status === 'waitshipping'" (click)="toComplete(item3)">
+            <button mat-icon-button *ngIf="item.status === 'waitshipping'" (click)="toComplete(item)">
               <mat-icon class="example-icon mr-3" aria-hidden="false" aria-label="Example delete icon">send
               </mat-icon>
             </button>
