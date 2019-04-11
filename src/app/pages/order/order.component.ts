@@ -48,6 +48,7 @@ export class OrderComponent implements OnInit {
   prodData: any;
 
   async ngOnInit() {
+    this.ngxSpinner.show();
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.teamId = user.data.ref1;
     // console.log(user)
@@ -88,13 +89,14 @@ export class OrderComponent implements OnInit {
         // });
       }
       // console.log(res);
+      this.ngxSpinner.hide();
     } catch (error) {
       console.log(error);
+      this.ngxSpinner.hide();
     }
   }
 
   async getProd() {
-    this.ngxSpinner.show();
     try {
       let res: any = await this.prodService.order();
       // console.log(res);
@@ -103,7 +105,7 @@ export class OrderComponent implements OnInit {
       // console.log(this.prodData);
     } catch (error) {
       this.ngxSpinner.hide();
-
+      console.log(error);
     }
 
   }

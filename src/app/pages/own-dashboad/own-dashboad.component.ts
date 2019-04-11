@@ -34,6 +34,7 @@ export class OwnDashboadComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ngxSpinner.show();
     this.chartData();
     let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.userId = user.data._id
@@ -85,7 +86,6 @@ export class OwnDashboadComponent implements OnInit {
       let res: any = await this.teameServicec.getById(this.team_id);
       // console.log(res);
       this.dataTeam = res.data;
-      this.ngxSpinner.hide();
       // console.log(this.dataTeam);
       let resp: any = this.dataTeam.members.filter((e) => {
         if (e.member_id === this.userId) {
@@ -103,6 +103,7 @@ export class OwnDashboadComponent implements OnInit {
           console.log(this.statusMember);
         }
       });
+      this.ngxSpinner.hide();
     } catch (error) {
       this.ngxSpinner.hide();
       console.log(error)

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     });
     // this.userAuth.isLoggingIn.observers = []
     this.userAuth.isLoggedIn.subscribe(async value => {
-      this.spinner.hide();
+      // this.spinner.hide();
       const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
       // console.log(token);
       if (token && this.user === null) {

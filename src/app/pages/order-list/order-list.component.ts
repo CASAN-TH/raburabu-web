@@ -59,6 +59,7 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.ngxSpinner.show();
     // this.order.onNewMessage().subscribe(msg => {
     //   console.log('got a msg: ' + msg);
     // });
@@ -90,10 +91,10 @@ export class OrderListComponent implements OnInit {
   }
 
   async getOrderList() {
-
     try {
       let res: any = await this.order.orderList();
       this.dataorder = res.data;
+      this.ngxSpinner.hide();
       // console.log(this.dataorder)
     } catch (error) {
       // console.log(error)
@@ -121,12 +122,12 @@ export class OrderListComponent implements OnInit {
       let res: any = await this.teamService.getById(this.teamID);
       this.dataTeam = res.data;
       // console.log(res);
+      this.ngxSpinner.hide();
     } catch (error) {
-
+      console.log(error);
     }
   }
   async getOrderOwnerAndMember() {
-    this.ngxSpinner.show();
     try {
       if (this.rolesUser === 'owner') {
         // console.log(this.idMember)
@@ -165,13 +166,10 @@ export class OrderListComponent implements OnInit {
           this.ngOnInit();
         }
       });
-
     } catch (error) {
-
+      console.log(error);
     }
   }
-
-
 
   onClickEdit(item) {
     try {
@@ -236,10 +234,8 @@ export class OrderListComponent implements OnInit {
             this.getOrderOwnerAndMember();
           }
         })
-
-
       } catch (error) {
-
+        console.log(error);
       }
     }
 

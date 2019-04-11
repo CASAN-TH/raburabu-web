@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-graph-all',
@@ -9,9 +10,12 @@ export class GraphAllComponent implements OnInit {
   typeChart: any;
   dataChart: any;
   optionsChart: any;
-  constructor() { }
+  constructor(
+    public ngXspinner: NgxSpinnerService,
+  ) { }
 
   ngOnInit() {
+    this.ngXspinner.show();
     this.chartData()
   }
   chartData() {
@@ -55,5 +59,6 @@ export class GraphAllComponent implements OnInit {
       responsive: true,
       maintainAspectRatio: false
     };
+    this.ngXspinner.hide();
   }
 }

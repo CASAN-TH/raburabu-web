@@ -22,6 +22,7 @@ export class OrderReportDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ngxSpinner.show();
     let id: any = this.route.snapshot.paramMap.get('id');
     this.moniter_id = id;
     // console.log(this.moniter_id);
@@ -32,7 +33,6 @@ export class OrderReportDetailComponent implements OnInit {
     this.router.navigate(['/monitor']);
   }
   async getDataReport() {
-    this.ngxSpinner.show();
     try {
       let res: any = await this.monitorService.getReportMonitorById(this.moniter_id);
       this.dataReport = res.data;

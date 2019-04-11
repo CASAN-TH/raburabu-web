@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ngxSpinner.show();
     let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     // console.log(res);
     if (res && res.data) {
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.router.navigate(["/login"]);
     }
+    this.ngxSpinner.hide();
   }
 
 

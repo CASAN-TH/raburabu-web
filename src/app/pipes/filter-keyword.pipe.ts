@@ -9,7 +9,7 @@ export class FilterKeywordPipe implements PipeTransform {
   transform(items: any = [], filter: string): any {
     // console.log(filter);
     // console.log(items);
-    if (!filter) {
+    if (!filter || !items) {
       return items;
     }
     // filter items array, items which match and return true will be
@@ -64,7 +64,7 @@ export class FilterKeywordPipe implements PipeTransform {
                 }
               });
               if (res5.length < 1) {
-                return items;
+                console.log('ไม่เจอไรเลยอะ');
               } else {
                 return res5
               }

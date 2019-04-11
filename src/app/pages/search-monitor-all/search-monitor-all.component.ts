@@ -21,7 +21,6 @@ export class SearchMonitorAllComponent implements OnInit {
   ) { }
   datalength: any = 0;
   // data: any = [
-
   // ]
   length = 100;
   pageSize = 1;
@@ -36,10 +35,10 @@ export class SearchMonitorAllComponent implements OnInit {
   allMonitor: any = [];
 
   ngOnInit() {
+    this.ngxSpiner.show();
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     // console.log(user);
     this.user = user.data;
-    this.ngxSpiner.hide();
     // console.log(user);
     if (this.user.roles[0] === 'owner') {
       this.getMonitorTeam();
@@ -49,7 +48,7 @@ export class SearchMonitorAllComponent implements OnInit {
   }
 
   async getMonitorTeam() {
-    this.ngxSpiner.show()
+    // this.ngxSpiner.show()
     try {
       // this.waitwithdrawal = [];
       // this.waitpack = [];
@@ -75,12 +74,13 @@ export class SearchMonitorAllComponent implements OnInit {
       // });
       this.ngxSpiner.hide();
     } catch (error) {
-
+      console.log(error);
+      this.ngxSpiner.hide();
     }
   }
 
   async getMonitor() {
-    this.ngxSpiner.show()
+    // this.ngxSpiner.show()
     try {
       // this.waitwithdrawal = [];
       // this.waitpack = [];
@@ -112,6 +112,7 @@ export class SearchMonitorAllComponent implements OnInit {
       // console.log(this.complete);
     } catch (error) {
       console.log(error);
+      this.ngxSpiner.hide();
     }
 
   }

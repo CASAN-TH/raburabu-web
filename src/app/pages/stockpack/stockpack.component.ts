@@ -37,10 +37,9 @@ export class StockpackComponent implements OnInit {
   keyword: string;
   allMonitor: any = [];
   ngOnInit() {
+    this.ngxSpiner.show()
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
     this.user = user.data;
-    this.ngxSpiner.hide();
-
     // console.log(user);
     if (this.user.roles[0] === 'owner') {
       this.getMonitorTeam();
@@ -50,8 +49,8 @@ export class StockpackComponent implements OnInit {
   }
 
   async getMonitorTeam() {
+    // this.ngxSpiner.show()
     try {
-      // this.ngxSpiner.show()
       this.waitwithdrawal = [];
       this.waitpack = [];
       this.waitshipping = [];
@@ -75,38 +74,44 @@ export class StockpackComponent implements OnInit {
       });
       this.ngxSpiner.hide();
     } catch (error) {
-
+      console.log(error);
+      this.ngxSpiner.hide();
     }
   }
 
   async getMonitor() {
     // this.ngxSpiner.show()
-    this.waitwithdrawal = [];
-    this.waitpack = [];
-    this.waitshipping = [];
-    this.complete = [];
-    this.allMonitor = [];
-    let res: any = await this.monitorService.getMonitorAll();
-    this.allMonitor = res.data;
-    res.data.forEach(data => {
-      if (data.status === "waitwithdrawal") {
-        this.waitwithdrawal.push(data);
-      }
-      if (data.status === "waitpack") {
-        this.waitpack.push(data)
-      }
-      if (data.status === "waitshipping") {
-        this.waitshipping.push(data)
-      }
-      if (data.status === "complete") {
-        this.complete.push(data)
-      }
-    });
-    this.ngxSpiner.hide();
-    // console.log(this.waitwithdrawal);
-    // console.log(this.waitpack);
-    // console.log(this.waitshipping);
-    // console.log(this.complete);
+    try {
+      this.waitwithdrawal = [];
+      this.waitpack = [];
+      this.waitshipping = [];
+      this.complete = [];
+      this.allMonitor = [];
+      let res: any = await this.monitorService.getMonitorAll();
+      this.allMonitor = res.data;
+      res.data.forEach(data => {
+        if (data.status === "waitwithdrawal") {
+          this.waitwithdrawal.push(data);
+        }
+        if (data.status === "waitpack") {
+          this.waitpack.push(data)
+        }
+        if (data.status === "waitshipping") {
+          this.waitshipping.push(data)
+        }
+        if (data.status === "complete") {
+          this.complete.push(data)
+        }
+      });
+      this.ngxSpiner.hide();
+      // console.log(this.waitwithdrawal);
+      // console.log(this.waitpack);
+      // console.log(this.waitshipping);
+      // console.log(this.complete);
+    } catch (error) {
+      console.log(error);
+      this.ngxSpiner.hide();
+    }
   }
 
   async toWaitPack(item) {
