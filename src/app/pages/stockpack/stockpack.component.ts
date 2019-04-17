@@ -105,10 +105,10 @@ export class StockpackComponent implements OnInit {
         }
       });
       this.ngxSpiner.hide();
-      // console.log(this.waitwithdrawal);
-      // console.log(this.waitpack);
-      // console.log(this.waitshipping);
-      // console.log(this.complete);
+      console.log(this.waitwithdrawal);
+      console.log(this.waitpack);
+      console.log(this.waitshipping);
+      console.log(this.complete);
     } catch (error) {
       console.log(error);
       this.ngxSpiner.hide();
