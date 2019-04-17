@@ -37,7 +37,7 @@ export class ModalAddBoxComponent implements OnInit {
       let res: any = await this.monitorService.getLabel(this.data.order_id);
       // this.protoData = res.data;
       this.dataLabel = res.data;
-      // console.log(this.dataLabel)
+      console.log(this.dataLabel)
     } catch (error) {
 
     }

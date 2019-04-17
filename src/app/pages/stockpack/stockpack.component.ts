@@ -216,24 +216,24 @@ export class StockpackComponent implements OnInit {
         sumQty += dataQty.qtyAll === null ? 0 : dataQty.qtyAll
       }
     });
-    if (sumQty === 0 && itm.labels.length > 0) {
-      let data = {
-        order_id: itm._id,
-        monitor_id: item._id
-      }
-      const dialogRef = this.dialog.open(ModalMaxBoxComponent, {
-        width: '600px',
-        data: data,
-        height: '450px',
-        disableClose: false
-      });
+    // if (sumQty === 0 && itm.labels.length > 0) {
+    //   let data = {
+    //     order_id: itm._id,
+    //     monitor_id: item._id
+    //   }
+    //   const dialogRef = this.dialog.open(ModalMaxBoxComponent, {
+    //     width: '600px',
+    //     data: data,
+    //     height: '450px',
+    //     disableClose: false
+    //   });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getMonitor();
-        }
-      });
-    } else {
+    //   dialogRef.afterClosed().subscribe(result => {
+    //     if (result) {
+    //       this.getMonitor();
+    //     }
+    //   });
+    // } else {
       let data = {
         order_id: itm._id,
         monitor_id: item._id
@@ -252,7 +252,7 @@ export class StockpackComponent implements OnInit {
         }
       });
 
-    }
+    // }
 
 
 
