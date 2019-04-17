@@ -242,7 +242,7 @@ export class StockpackComponent implements OnInit {
       const dialogRef = this.dialog.open(ModalAddBoxComponent, {
         width: '600px',
         data: data,
-        height: '450px',
+        // height: '450px',
         disableClose: false
       });
 
