@@ -199,6 +199,10 @@ export class StockpackComponent implements OnInit {
     console.log(item)
     window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
   }
+  printLabelAll(item) {
+    console.log(item);
+    window.open(environment.apiUrl + '/api/monitor/reportlableall/' + item._id)
+  }
   gotoSearch() {
     this.router.navigate(['/search-monitor'])
   }
