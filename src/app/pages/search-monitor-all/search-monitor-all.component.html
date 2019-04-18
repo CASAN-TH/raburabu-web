@@ -45,6 +45,7 @@
             </button>
           </mat-toolbar-row>
         </mat-toolbar>
+
         <div class="row border-bottom" *ngIf="item.status === 'waitwithdrawal'">
           <div class="col-12 col-md-6" *ngFor="let itm of item.orders">
             <mat-card class="m-3">
@@ -58,7 +59,6 @@
                 <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
                     class="mr-1">{{itm.customer.firstname}}</span>
                   <span>{{itm.customer.lastname}}</span></p>
-
                 <p class="mb-1 text-overflow ml-3" name="itm.customer.tel">
                   <span>{{itm.customer.address.houseno}}
                     ต.{{itm.customer.address.subdistrict}}
@@ -69,11 +69,11 @@
                 <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
                   <span>{{itm.customer.tel}}</span></p>
                 <p class="ml-3"><small>{{itm.paymenttype.name}}</small></p>
-
               </mat-card-content>
             </mat-card>
           </div>
         </div>
+
         <div class="row border-bottom mt-3"
           *ngIf="item.status === 'waitpack' || item.status === 'waitshipping' || item.status === 'complete'">
           <div class="col-12 col-md-12" *ngFor="let itm of item.orders">
