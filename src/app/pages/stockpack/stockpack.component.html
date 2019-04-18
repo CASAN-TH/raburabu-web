@@ -122,12 +122,14 @@
                           <span>{{itm2.customer.tel}}</span></p>
                         <p class="ml-3"><small>{{itm2.paymenttype.name}}</small></p>
                         <div class="row" *ngFor="let prod of label2.productlist">
-                          <p class="ml-3 mt-2">{{prod.name}}</p>
+                          <p class="ml-3 mt-2" *ngIf="prod.option[0].value.length > 0">{{prod.name}}</p>
                           <div class="col-12">
                             <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
                               <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center"
                                 *ngFor="let val of opt.value">
-                                <span class="font-option">{{val.name}} = {{val.qty}}</span>
+                                <span class="font-option">
+                                  {{val.name}} = {{val.qty}}
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -141,7 +143,7 @@
                           <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">print
                           </mat-icon>
                         </button>
-                        <button mat-icon-button color="accent">
+                        <button mat-icon-button color="accent" *ngIf="i > 0">
                           <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
                         </button>
                       </mat-card-actions>
@@ -204,7 +206,7 @@
                           <span>{{itm3.customer.tel}}</span></p>
                         <p class="ml-3"><small>{{itm3.paymenttype.name}}</small></p>
                         <div class="row" *ngFor="let prod of label3.productlist">
-                          <p class="ml-3 mt-2">{{prod.name}}</p>
+                          <p class="ml-3 mt-2" *ngIf="prod.option[0].value.length > 0">{{prod.name}}</p>
                           <div class="col-12">
                             <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
                               <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center"
@@ -278,7 +280,7 @@
                           <span>{{itm4.customer.tel}}</span></p>
                         <p class="ml-3"><small>{{itm4.paymenttype.name}}</small></p>
                         <div class="row" *ngFor="let prod of label4.productlist">
-                          <p class="ml-3 mt-2">{{prod.name}}</p>
+                          <p class="ml-3 mt-2" *ngIf="prod.option[0].value.length > 0">{{prod.name}}</p>
                           <div class="col-12">
                             <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
                               <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center"
