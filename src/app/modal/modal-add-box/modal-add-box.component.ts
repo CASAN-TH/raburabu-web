@@ -9,6 +9,7 @@ import { ModalConfirmsComponent } from '../modal-confirms/modal-confirms.compone
   styleUrls: ['./modal-add-box.component.scss']
 })
 export class ModalAddBoxComponent implements OnInit {
+  dataValue: Array<any> = [];
   dataCheckOpt: any;
   onCheck: boolean = false
   selectData: Array<any> = [];
@@ -173,17 +174,19 @@ export class ModalAddBoxComponent implements OnInit {
         qty: item.qty
       })
       this.dataLabel.productlist[i].option[j].value[k].active = true
-      this.selectData.push(item)
+      this.dataValue.push(item)
+      // console.log(this.dataValue)
+      // this.selectData.push(item)
     } else {
       let u = this.useProduct.findIndex(function (data) { return data.name === item.name })
       this.useProduct.splice(u, 1);
       this.dataLabel.productlist[i].option[j].value[k].active = false
-      this.selectData.forEach(res => {
+      this.dataValue.forEach(res => {
+        // console.log(res)
         if (res.name === item.name) {
-          let l = this.selectData.findIndex((data) => { return data.name === item.name })
-          this.selectData.splice(l, 1)
+          let l = this.dataValue.findIndex((data) => { return data.name === item.name })
+          this.dataValue.splice(l, 1)
         }
-        console.log(res)
       })
     }
     this.dataLabel.productlist.forEach(data => {
@@ -195,8 +198,8 @@ export class ModalAddBoxComponent implements OnInit {
         });
       });
     });
-    console.log(this.dataLabel)
-    console.log(this.selectData)
+    // console.log(this.dataLabel)
+    // console.log(this.dataValue)
     this.checkValue()
   }
   selectProductlist(item) {
@@ -223,7 +226,7 @@ export class ModalAddBoxComponent implements OnInit {
           this.selectData.splice(l, 1)
         })
       }
-      console.log(this.selectData);
+      // console.log(this.selectData);
     });
     this.checkSelectAll();
   }
@@ -232,7 +235,7 @@ export class ModalAddBoxComponent implements OnInit {
     console.log(this.dataCheckOpt)
     this.dataLabel.productlist.forEach(pro => {
       opt.push(pro)
-      console.log(pro)
+      // console.log(pro)
     });
     if (this.selectData.length >= opt.length) {
       this.onCheck = true
@@ -241,7 +244,14 @@ export class ModalAddBoxComponent implements OnInit {
     }
   }
   checkValue() {
-    console.log(this.selectData);
+    console.log(this.dataValue);
+    // console.log(this.dataCheckOpt);
+    let test = []
+    this.dataLabel.productlist.forEach(gogo => {
+      gogo.option[0].value.forEach(gogo2 => {
+        // console.log(gogo2);
+      });
+    });
     // if () {
 
     // }
