@@ -89,6 +89,7 @@ export class StockpackComponent implements OnInit {
       this.complete = [];
       this.allMonitor = [];
       let res: any = await this.monitorService.getMonitorAll();
+      // console.log(res);
       this.allMonitor = res.data;
       res.data.forEach(data => {
         if (data.status === "waitwithdrawal") {
@@ -207,10 +208,9 @@ export class StockpackComponent implements OnInit {
     this.router.navigate(['/search-monitor'])
   }
 
-  async addBox(itm, item) {
+  async addBox(itm, item, label2) {
     let sumQty = 0;
     let res: any = await this.monitorService.getLabel(itm._id);
-    // console.log(res);
     res.data.productall.forEach(dataQty => {
       if (dataQty.qtyAll) {
         sumQty += dataQty.qtyAll === null ? 0 : dataQty.qtyAll
@@ -234,23 +234,24 @@ export class StockpackComponent implements OnInit {
     //     }
     //   });
     // } else {
-      let data = {
-        order_id: itm._id,
-        monitor_id: item._id
-      }
-      // console.log(data)
-      const dialogRef = this.dialog.open(ModalAddBoxComponent, {
-        width: '600px',
-        data: data,
-        height: '450px',
-        disableClose: false
-      });
+    let data = {
+      order_id: itm._id,
+      monitor_id: item._id,
+      label_id: label2._id
+    }
+    // console.log(data)
+    const dialogRef = this.dialog.open(ModalAddBoxComponent, {
+      width: '600px',
+      data: data,
+      height: '500px',
+      disableClose: false
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getMonitor();
-        }
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getMonitor();
+      }
+    });
 
     // }
 

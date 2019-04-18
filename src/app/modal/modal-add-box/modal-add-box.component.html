@@ -1,6 +1,6 @@
 <mat-dialog-content name="mat-dialog-content" class="mat-typography">
   <div name="divOnRow" class="row">
-    
+
     <div *ngIf="dataLabel && dataLabel.customer " class="col-12" name="divAddressCustomer">
       <p>ชื่อ-ที่อยู่จัดส่ง</p>
       <p name="nameCustomer">{{dataLabel.customer.firstname}} {{dataLabel.customer.lastname}}</p>
@@ -10,18 +10,47 @@
         {{dataLabel.customer.address.province}}
         {{dataLabel.customer.address.zipcode}}</p>
     </div>
-    
-    <div *ngIf="dataLabel && dataLabel.productall" name="divHaveBorderAroud" class="col-12 border-around "
-      style="height: 200px;">
-      <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productall ;let i = index;">
-        <div name="divCheckBox" class="col-2 ">
-          <mat-checkbox [disabled]="item.qtyAll === 0" (change)="selectProduct($event,item,i)" name="nameCheckBox">
+    <div *ngIf="dataLabel" name="divHaveBorderAroud" class="col-12 border-around " style="height: 300px;">
+      <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productlist ;let i = index;">
+        <div name="divCheckBox" class="col-2 text-right">
+          <mat-checkbox [(ngModel)]="item.active" (change)="selectProductlist(item)" name="nameCheckBox">
           </mat-checkbox>
         </div>
-        <div name="nameProduct" class="col-6">
-          <p name="product">{{item.name}}</p>
+        <div class="col-10">
+          <p>{{item.name}}</p>
         </div>
-        <div name="divQty" class="col-4">
+        <div class="col-12">
+          <div class="row" *ngFor="let option of item.option ;let j = index;">
+            <!-- <div class="col-3 text-right">
+              <mat-checkbox class="margin-lef-select" (change)="selectProduct($event,option,i,j,k)" name="nameCheckBox">
+              </mat-checkbox>
+            </div>
+            <div class="col-9">
+              <p>{{option.name}}</p>
+            </div> -->
+            <div class="col-12">
+              <div class="row" *ngFor="let value of option.value;let k = index;">
+                <div class="col-3 text-right">
+                  <mat-checkbox class="margin-lef-select" [(ngModel)]="value.active" (change)="selectProduct($event,value,i,j,k)"
+                    name="nameCheckBox">
+                  </mat-checkbox>
+                </div>
+                <div class="col-6">
+                  {{value.name}}
+                </div>
+                <div class="col-3">
+                  <form name="formQty" class="example-form border-top-0">
+                    <mat-form-field name="mat-form-field-qty" class="example-full-width border-top-0">
+                      <input name="keyQty" [disabled]="value.active" (ngModelChange)="keyQty($event,i,j,k)"
+                        [(ngModel)]="value.qty" matInput placeholder="กรอกจำนวน">
+                    </mat-form-field>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div name="divQty" class="col-4">
           <form name="formQty" class="example-form border-top-0">
             <mat-form-field name="mat-form-field-qty" class="example-full-width border-top-0">
               <input [disabled]="item.active || item.qtyAll === 0" name="keyQty" (ngModelChange)="keyQty($event,i)"
@@ -29,23 +58,20 @@
                 placeholder="กรอกจำนวน">
             </mat-form-field>
           </form>
-        </div>
+        </div> -->
       </div>
-    </div>
-
-    <div name="divOnCol" class="col-12 mt-3">
-      <form name="formInput" class="example-form">
-        <mat-form-field name="mat-form-field" class="example-full-width">
-          <input type="tel" [(ngModel)]="trackno" name="keyTel" matInput placeholder="กรุณากรอกเลขที่พัสดุ">
-        </mat-form-field>
-        
-      </form>
     </div>
   </div>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end" name="mat-dialog-action">
-  <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
-  <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || chkProduck === false"
-    (click)="confirmLabel()" cdkFocusInitial>ยืนยัน</button>
+<mat-dialog-actions name="mat-dialog-action">
+  <div class="col-6 text-left">
+    <mat-checkbox [(ngModel)]="onCheck" (change)="selectAll()">เลือกทั้งหมด</mat-checkbox>
+  </div>
+  <div class="col-6 text-right">
+    <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
+    <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || chkProduck === false"
+      (click)="confirmLabel()" cdkFocusInitial>ยืนยัน</button>
+  </div>
+
 </mat-dialog-actions>

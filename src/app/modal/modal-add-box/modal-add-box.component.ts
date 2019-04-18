@@ -9,6 +9,9 @@ import { ModalConfirmsComponent } from '../modal-confirms/modal-confirms.compone
   styleUrls: ['./modal-add-box.component.scss']
 })
 export class ModalAddBoxComponent implements OnInit {
+  dataCheckOpt: any;
+  onCheck: boolean = false
+  selectData: Array<any> = [];
   keyDataQty: any;
   dataTeam: any;
   chkProduck: boolean = false
@@ -20,13 +23,13 @@ export class ModalAddBoxComponent implements OnInit {
   constructor(
     private thisDialogRef: MatDialogRef<ModalConfirmsComponent>,
     @Inject(MAT_DIALOG_DATA) public data = {
-      order_id: '', monitor_id: '', box: null
+      order_id: '', monitor_id: '', label_id: '', box: null
     },
     private monitorService: MonitorService
   ) { }
 
   ngOnInit() {
-    // console.log(this.data);
+    console.log(this.data.order_id);
     this.getDataLabel();
     this.getMonitorByid();
 
@@ -34,9 +37,23 @@ export class ModalAddBoxComponent implements OnInit {
 
   async getDataLabel() {
     try {
-      let res: any = await this.monitorService.getLabel(this.data.order_id);
+      let res: any = await this.monitorService.getMonitorAll()
+      console.log(res);
+      res.data.forEach(data => {
+        if (data.status === 'waitpack') {
+          data.orders.forEach(order => {
+            if (order) {
+              order.labels.forEach(labels => {
+                if (labels._id === this.data.label_id) {
+                  this.dataLabel = labels
+                }
+              });
+            }
+          });
+        }
+      });
       // this.protoData = res.data;
-      this.dataLabel = res.data;
+      // this.dataLabel = res.data;
       console.log(this.dataLabel)
     } catch (error) {
 
@@ -53,79 +70,42 @@ export class ModalAddBoxComponent implements OnInit {
     }
   }
 
-  async keyQty(e, i) {
-    // console.log(e);
+  async keyQty(e, i, j, k) {
     let value = parseInt(e)
     let res: any = await this.monitorService.getLabel(this.data.order_id);
     this.protoData = res.data;
-    // console.log(this.protoData);
     if (!this.protoData.productall[i].qtyAll) {
-      // console.log('1');
       if (value > this.protoData.productall[i].qty) {
         this.dataLabel.productall[i].qty = this.protoData.productall[i].qty
       } else if (value == 0) {
         this.dataLabel.productall[i].qty = 1
-        // console.log(this.dataLabel.productall[i]);
       } else {
         let number = Number.isNaN(value);
-        // console.log(number);
         if (!number) {
           this.dataLabel.productall[i].qty = parseInt(e)
         }
       }
-      // console.log(this.dataLabel.productall);
     }
     if (this.protoData.productall[i].qtyAll) {
-      // console.log('2');
       if (value > this.protoData.productall[i].qtyAll) {
         this.dataLabel.productall[i] = this.protoData.productall[i]
-        // console.log(this.dataLabel.productall[i]);
       } else if (value == 0) {
-        // console.log('2.2');
         let data = {
           name: this.dataLabel.productall[i].name,
           qty: this.dataLabel.productall[i].qty,
           qtyAll: 1
         }
         this.dataLabel.productall[i] = data
-        // console.log(this.dataLabel.productall[i]);
       } else {
         let number = Number.isNaN(value);
-        // console.log(number);
         if (!number) {
           this.dataLabel.productall[i].qtyAll = parseInt(e)
         }
       }
-      // console.log(this.dataLabel.productall);
     }
   }
 
-  selectProduct(e, item, i) {
-    item.qty = parseInt(item.qty);
-    this.chkProduck = false;
-    // console.log(item);
-    // this.chkProduck = e.checked
-    if (e.checked === true) {
-      this.useProduct.push({
-        name: item.name,
-        qty: item.qtyAll ? item.qtyAll : item.qty
-      })
-      this.dataLabel.productall[i].active = true
-      // console.log(this.useProduct);
-    } else {
-      let j = this.useProduct.findIndex(function (data) { return data.name === item.name })
-      this.useProduct.splice(j, 1);
-      this.dataLabel.productall[i].active = false
-      // console.log(this.useProduct);
-    }
-    this.dataLabel.productall.forEach(data => {
-      // console.log(data);
-      if (data.active === true) {
-        this.chkProduck = true
-      }
-    });
-    // console.log(this.useProduct);
-  }
+
 
   async confirmLabel() {
     let order_id = this.data.order_id
@@ -159,5 +139,111 @@ export class ModalAddBoxComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+  selectAll() {
+    console.log('all');
+    this.dataLabel.productlist.forEach(product => {
+      product.active = this.onCheck
+      product.option.forEach(option => {
+        // option.active = this.onCheck
+        option.value.forEach(value => {
+          value.active = this.onCheck
+        });
+      });
+      if (this.onCheck) {
+        this.selectData.push(product)
+      } else {
+        this.selectData.forEach(res => {
+          let l = this.selectData.findIndex((data) => { return data.name === product.name })
+          this.selectData.splice(l, 1)
+
+        })
+      }
+
+    });
+    console.log(this.selectData)
+  }
+  selectProduct(e, item, i, j, k) {
+    console.log(item)
+    item.qty = parseInt(item.qty);
+    this.chkProduck = false;
+    if (e.checked === true) {
+      this.useProduct.push({
+        name: item.name,
+        qty: item.qty
+      })
+      this.dataLabel.productlist[i].option[j].value[k].active = true
+      this.selectData.push(item)
+    } else {
+      let u = this.useProduct.findIndex(function (data) { return data.name === item.name })
+      this.useProduct.splice(u, 1);
+      this.dataLabel.productlist[i].option[j].value[k].active = false
+      this.selectData.forEach(res => {
+        if (res.name === item.name) {
+          let l = this.selectData.findIndex((data) => { return data.name === item.name })
+          this.selectData.splice(l, 1)
+        }
+        console.log(res)
+      })
+    }
+    this.dataLabel.productlist.forEach(data => {
+      data.option.forEach(dataOpt => {
+        dataOpt.value.forEach(dataVal => {
+          if (dataVal.active === true) {
+            this.chkProduck = true
+          }
+        });
+      });
+    });
+    console.log(this.dataLabel)
+    console.log(this.selectData)
+    this.checkValue()
+  }
+  selectProductlist(item) {
+    console.log(item)
+    this.dataCheckOpt = item
+    item.option.forEach(option => {
+      if (item.active === true) {
+        option.active = true
+      } else {
+        option.active = false
+      }
+      option.value.forEach(value => {
+        if (item.active === true) {
+          value.active = true
+        } else {
+          value.active = false
+        }
+      });
+      if (option.active === true) {
+        this.selectData.push(option)
+      } else {
+        this.selectData.forEach(res => {
+          let l = this.selectData.findIndex((data) => { return data.name === option.name })
+          this.selectData.splice(l, 1)
+        })
+      }
+      console.log(this.selectData);
+    });
+    this.checkSelectAll();
+  }
+  checkSelectAll() {
+    let opt = []
+    console.log(this.dataCheckOpt)
+    this.dataLabel.productlist.forEach(pro => {
+      opt.push(pro)
+      console.log(pro)
+    });
+    if (this.selectData.length >= opt.length) {
+      this.onCheck = true
+    } else {
+      this.onCheck = false
+    }
+  }
+  checkValue() {
+    console.log(this.selectData);
+    // if () {
+
+    // }
   }
 }

@@ -123,6 +123,7 @@ export class SelectOptionComponent implements OnInit {
   selectall() {
     this.selectOption = [];
     this.dataBinding.option.forEach(opt => {
+      console.log(opt)
       opt.value.forEach(val => {
         val.active = this.checked;
         if (this.checked) {
