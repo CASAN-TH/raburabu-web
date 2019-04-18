@@ -109,8 +109,9 @@
                     <p class="ml-3 mt-2">{{prod.name}}</p>
                     <div class="col-12">
                       <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
-                        <div class="col-4 col-md-3 col-lg-2 border-prod text-center" *ngFor="let val of opt.value">
-                          {{val.name}} = {{val.qty}}</div>
+                        <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center" *ngFor="let val of opt.value">
+                          <span class="font-option">{{val.name}} = {{val.qty}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
