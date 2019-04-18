@@ -45,7 +45,8 @@
             </button>
           </mat-toolbar-row>
         </mat-toolbar>
-        <div class="row border-bottom">
+
+        <div class="row border-bottom" *ngIf="item.status === 'waitwithdrawal'">
           <div class="col-12 col-md-6" *ngFor="let itm of item.orders">
             <mat-card class="m-3">
               <mat-card-header>
@@ -58,7 +59,6 @@
                 <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
                     class="mr-1">{{itm.customer.firstname}}</span>
                   <span>{{itm.customer.lastname}}</span></p>
-
                 <p class="mb-1 text-overflow ml-3" name="itm.customer.tel">
                   <span>{{itm.customer.address.houseno}}
                     ต.{{itm.customer.address.subdistrict}}
@@ -69,10 +69,23 @@
                 <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
                   <span>{{itm.customer.tel}}</span></p>
                 <p class="ml-3"><small>{{itm.paymenttype.name}}</small></p>
-
               </mat-card-content>
-              <mat-card-content *ngIf="item.status === 'waitpack'">
-                <div class="col-12 col-md-12" *ngFor="let label2 of itm.labels; let i=index">
+            </mat-card>
+          </div>
+        </div>
+
+        <div class="row border-bottom mt-3"
+          *ngIf="item.status === 'waitpack' || item.status === 'waitshipping' || item.status === 'complete'">
+          <div class="col-12 col-md-12" *ngFor="let itm of item.orders">
+            <span style="display: block" class="ml-3">
+              <span class="ml-3">ออเดอร์: </span>
+              <span class="color-oder">{{itm.orderno}}</span>
+            </span>
+            <div class="col-12 col-md-6" style="display: inline-block;vertical-align: top"
+              *ngFor="let label2 of itm.labels; let i=index">
+              <mat-card class="m-3">
+                <mat-card-content
+                  *ngIf="item.status === 'waitpack' || item.status === 'waitshipping' || item.status === 'complete'">
                   <div class="row">
                     <div class="col-12 text-right">
                       <span>กล่องที่ {{i + 1}}</span>
@@ -93,35 +106,31 @@
                     <span>{{itm.customer.tel}}</span></p>
                   <p class="ml-3"><small>{{itm.paymenttype.name}}</small></p>
                   <div class="row" *ngFor="let prod of label2.productlist">
-                    <p class="ml-3 mt-2">{{prod.name}}</p>
+                    <p class="ml-3 mt-2" *ngIf="prod.option[0].value.length > 0">{{prod.name}}</p>
                     <div class="col-12">
                       <div class="row ml-1 mr-1" *ngFor="let opt of prod.option">
-                        <div class="col-4 col-md-3 col-lg-2 border-prod text-center" *ngFor="let val of opt.value">
-                          {{val.name}} = {{val.qty}}</div>
+                        <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center" *ngFor="let val of opt.value">
+                          <span class="font-option">{{val.name}} = {{val.qty}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </mat-card-content>
-              <mat-card-actions class="text-right mb-0" *ngIf="item.status === 'waitpack'">
-                <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff'">
-                  <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm)">
-                    print
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff'">
-                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                </button>
-                <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff'">
-                  <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
-                </button>
-              </mat-card-actions>
-              <mat-card-actions class="text-right mb-0" *ngIf="item.status === 'waitshipping'">
-                <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff'">
-                  <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
-                </button>
-              </mat-card-actions>
-            </mat-card>
+                </mat-card-content>
+                <mat-card-actions class="text-right mb-0" *ngIf="item.status === 'waitpack'">
+                  <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff' && i === 0">
+                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                  </button>
+                  <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff'">
+                    <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm)">
+                      print
+                    </mat-icon>
+                  </button>
+                  <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff' && i > 0">
+                    <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
           </div>
         </div>
       </div>
