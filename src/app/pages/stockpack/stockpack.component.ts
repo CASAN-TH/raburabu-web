@@ -196,9 +196,14 @@ export class StockpackComponent implements OnInit {
     window.open(environment.apiUrl + '/api/monitor/reportdetail/' + moniter_id)
   }
 
-  printLabel(item) {
-    console.log(item)
-    window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
+  printLabel(item,item2,label) {
+    console.log(item2)
+    console.log(label)
+    let label_id: any;
+    item.labels.forEach(labels => {
+      console.log(labels)
+    });
+    window.open(environment.apiUrl + '/api/monitor/reportlable/' + label._id)
   }
   printLabelAll(item) {
     console.log(item);
