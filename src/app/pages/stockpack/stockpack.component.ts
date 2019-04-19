@@ -203,7 +203,7 @@ export class StockpackComponent implements OnInit {
     item.labels.forEach(labels => {
       console.log(labels)
     });
-    window.open(environment.apiUrl + '/api/monitor/reportlable/' + label._id)
+    window.open(environment.apiUrl + '/api/monitor/reportbylable/' + label._id)
   }
   printLabelAll(item) {
     console.log(item);
