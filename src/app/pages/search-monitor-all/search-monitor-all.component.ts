@@ -202,4 +202,24 @@ export class SearchMonitorAllComponent implements OnInit {
     console.log(item)
     window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
   }
+
+  deleteLabel(item) {
+    console.log(item);
+    const dialogRef = this.dialog.open(ModalConfirmsComponent, {
+      width: '400px',
+      data: { title: "การลบใบปะหน้ากล่อง", message: "คุณต้องการยืนยันการลบใบปะหน้ากล่องหรือไม่" },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        this.monitorService.deleteLabel(item._id);
+        this.ngxSpiner.show()
+        if (this.user.roles[0] === 'owner') {
+          this.getMonitorTeam();
+        } else {
+          this.getMonitor();
+        }
+      }
+    });
+  }
 }

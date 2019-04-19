@@ -144,7 +144,7 @@
                           </mat-icon>
                         </button>
                         <button mat-icon-button color="accent" *ngIf="itm2.labels.length > 1">
-                          <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="deleteLabel(label2)">delete</mat-icon>
                         </button>
                       </mat-card-actions>
                     </mat-card>
