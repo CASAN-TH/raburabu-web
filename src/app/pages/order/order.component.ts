@@ -120,7 +120,29 @@ export class OrderComponent implements OnInit {
     });
     dialogRef.componentInstance.sendData.subscribe(res => {
       dialogRef.afterClosed().subscribe(result => {
-        this.data.items.push(res);
+        console.log(res);
+        console.log(this.data);
+        let i: any = this.data.items.findIndex(function (prod) {
+          return prod.name === res.name
+        });
+        // console.log(check);
+        if (i < 0) {
+          this.data.items.push(res);
+        } else {
+          let sumTotal = this.data.items[i].totalqty + res.totalqty;
+          this.data.items[i].totalqty = sumTotal;
+          res.option[0].value.forEach(value => {
+            let j: any = this.data.items[i].option[0].value.findIndex(function (value2) {
+              return value.name === value2.name
+            });
+            if (j < 0) {
+              this.data.items[i].option[0].value.push(value);
+            } else {
+              let sumQty = this.data.items[i].option[0].value[j].qty + value.qty
+              this.data.items[i].option[0].value[j].qty = sumQty
+            }
+          });
+        }
         this.getProd();
       });
     });
