@@ -143,7 +143,7 @@
                           <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2)">print
                           </mat-icon>
                         </button>
-                        <button mat-icon-button color="accent">
+                        <button mat-icon-button color="accent" *ngIf="itm2.labels.length > 1">
                           <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
                         </button>
                       </mat-card-actions>

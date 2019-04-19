@@ -125,7 +125,7 @@
                       print
                     </mat-icon>
                   </button>
-                  <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff'">
+                  <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff' && itm.labels.length > 1">
                     <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
                   </button>
                 </mat-card-actions>
