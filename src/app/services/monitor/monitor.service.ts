@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class MonitorService {
   // private socket: SocketIOClient.Socket;
-  constructor(public http: HttpClient, ) { 
+  constructor(public http: HttpClient, ) {
     // this.socket = io('http://localhost:3000');
   }
-  
+
   private authorizationHeader() {
     // const token = window.localStorage.getItem('token@raburabu-web-dev');
     // console.log(token);
@@ -45,6 +45,9 @@ export class MonitorService {
   }
   getMonitorTeam(id) {
     return this.http.get(environment.apiUrl + '/api/monitor/team/' + id, { headers: this.authorizationHeader() }).toPromise();
+  }
+  deleteLabel(id) {
+    return this.http.delete(environment.apiUrl + '/api/monitor/deletebox/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
 
 
