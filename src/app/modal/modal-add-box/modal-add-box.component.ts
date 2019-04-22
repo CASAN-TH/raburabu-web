@@ -10,6 +10,7 @@ import { ModalConfirmsComponent } from '../modal-confirms/modal-confirms.compone
 })
 export class ModalAddBoxComponent implements OnInit {
   dataValue: Array<any> = [];
+  dataCheckOpt: any;
   onCheck: boolean = false
   selectData: Array<any> = [];
   keyDataQty: any;
@@ -20,6 +21,7 @@ export class ModalAddBoxComponent implements OnInit {
   useProduct: Array<any> = [];
   dataTeamOrder: any;
   protoData: any;
+  chkSelect: Array<any> = [];
   valueOption: Array<any> = [];
   constructor(
     private thisDialogRef: MatDialogRef<ModalConfirmsComponent>,
@@ -172,29 +174,30 @@ export class ModalAddBoxComponent implements OnInit {
     console.log(option)
     this.valueOption = []
     let optionName: '';
-    this.dataLabel.productlist[i].option[j].value[k].active = true
-    product.option.forEach(opt => {
-      optionName = opt.name
-      opt.value.forEach(val => {
-        if (val.active === true) {
-          console.log(val)
-          let v: any = val;
-          setTimeout(() => {
-            this.valueOption.push(v)
-          }, 100);
-          console.log(this.valueOption)
-        } else if (val.active === false) {
-          this.valueOption.forEach(valueO => {
-            if (valueO.name === item.name) {
-              let l = this.valueOption.findIndex((data) => { return data.name === item.name })
-              console.log(l)
-              this.valueOption.splice(l, 1)
-            }
-            console.log(valueO);
-          })
-        }
+    if (e.checked === true) {
+      this.dataLabel.productlist[i].option[j].value[k].active = true
+      product.option.forEach(opt => {
+        optionName = opt.name
+        opt.value.forEach(val => {
+          if (val.active === true) {
+            this.valueOption.push(val)
+          }
+        });
       });
-    });
+    } else {
+      let u = this.useProduct.findIndex(function (data) { return data.name === item.name })
+      this.useProduct.splice(u, 1);
+      this.dataLabel.productlist[i].option[j].value[k].active = false
+      this.valueOption.forEach(valueO => {
+        if (valueO.name === item.name) {
+          let l = this.valueOption.findIndex((data) => { return data.name === item.name })
+          console.log(l)
+          this.valueOption.splice(l, 1)
+        }
+        console.log(valueO);
+      })
+    }
+
     console.log(this.valueOption)
     let data = {
       name: product.name,
@@ -208,30 +211,26 @@ export class ModalAddBoxComponent implements OnInit {
       chkValue = option.value
     })
     console.log(chkValue)
-    console.log(data);
     if (chkValue.length >= option.value.length) {
       this.selectData.push(data)
     } else {
-      console.log(this.selectData);
       this.selectData.forEach(selData => {
-        console.log(selData.option)
-        if (selData.option.length > 0) {
-          selData.option[0].value.forEach(val => {
-            console.log(val)
-            if (val.name === item.name) {
-              let l = selData.option[0].value.findIndex((data) => { return data.name === item.name })
-              if (l >= 0) {
-                let m = this.selectData.findIndex((dataSelect) => { return dataSelect.name === selData.name })
-                if (m >= 0) {
-                  this.selectData.splice(m, 1)
-                }
+        console.log(selData)
+        selData.option[0].value.forEach(val => {
+          console.log(val)
+          if (val.name === item.name) {
+            let l = selData.option[0].value.findIndex((data) => { return data.name === item.name })
+            if (l >= 0) {
+              let m = this.selectData.findIndex((dataSelect) => { return dataSelect.name === selData.name })
+              if (m >= 0) {
+                this.selectData.splice(m, 1)
               }
             }
-          });
-        }
-
+          }
+        });
       });
     }
+    console.log(this.selectData);
     this.checkValue()
   }
 
@@ -254,7 +253,7 @@ export class ModalAddBoxComponent implements OnInit {
           this.selectData.push(option)
         } else {
           this.selectData.forEach(res => {
-
+            console.log(res);
             let l = this.selectData.findIndex((data) => { return data.name === option.name })
             this.selectData.splice(l, 1)
 
@@ -262,7 +261,6 @@ export class ModalAddBoxComponent implements OnInit {
         }
       });
     }
-    console.log(this.selectData);
     this.checkSelectAll();
   }
   checkForSelectAll() {
@@ -347,7 +345,7 @@ export class ModalAddBoxComponent implements OnInit {
     }
     console.log(this.selectData)
     console.log(this.dataLabel.productlist)
-
+    this.checkSelectAll()
   }
 
 }
