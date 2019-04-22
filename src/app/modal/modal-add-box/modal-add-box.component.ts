@@ -324,18 +324,13 @@ export class ModalAddBoxComponent implements OnInit {
         product.option.forEach(opt => {
           opt.value.forEach(val => {
             valueForCheck.push(val)
-            console.log(val)
-            console.log(val.active)
             if (val && val.active == true) {
               data.push(val)
             } else {
-              console.log('2')
               if (!val.active) {
                 data.forEach(re => {
-                  console.log(re);
                   if (re.name === val.name) {
                     let l = data.findIndex((data) => {
-                      console.log(data);
                       return data.name === val.name
                     })
                     data.splice(l, 1)
@@ -348,7 +343,23 @@ export class ModalAddBoxComponent implements OnInit {
         });
       }
     });
-    this.chkSelect.push(data)
+
+    if (data.length >= valueForCheck.length) {
+      this.chkSelect.push(data)
+    } else {
+      this.chkSelect.forEach(chk => {
+        chk.forEach(e => {
+          console.log(e);
+          if (e.active === false) {
+            let c = chk.findIndex((data) => { return data.name === e.name })
+            console.log(c)
+            this.chkSelect.splice(c, 1)
+
+          }
+
+        });
+      })
+    }
     console.log(this.chkSelect);
     console.log(data);
     console.log(valueForCheck)
