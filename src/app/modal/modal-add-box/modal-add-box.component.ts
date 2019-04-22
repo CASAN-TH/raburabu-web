@@ -10,7 +10,6 @@ import { ModalConfirmsComponent } from '../modal-confirms/modal-confirms.compone
 })
 export class ModalAddBoxComponent implements OnInit {
   dataValue: Array<any> = [];
-  dataCheckOpt: any;
   onCheck: boolean = false
   selectData: Array<any> = [];
   keyDataQty: any;
@@ -21,8 +20,7 @@ export class ModalAddBoxComponent implements OnInit {
   useProduct: Array<any> = [];
   dataTeamOrder: any;
   protoData: any;
-  test: Array<any> = [];
-  chkSelect: Array<any> = [];
+  valueOption: Array<any> = [];
   constructor(
     private thisDialogRef: MatDialogRef<ModalConfirmsComponent>,
     @Inject(MAT_DIALOG_DATA) public data = {
@@ -169,78 +167,74 @@ export class ModalAddBoxComponent implements OnInit {
     // console.log(this.selectData)
   }
   selectProduct(e, item, i, j, k, option, product) {
-    let productBig = [];
-    let pro: any;
-    product.option.forEach(pro => {
-      pro.value.forEach(val => {
-        productBig.push(val)
-      });
-    });
-
-    // console.log(productBig)
-
-    // console.log(pro)
-    item.qty = parseInt(item.qty);
-    this.chkProduck = false;
-    if (e.checked === true) {
-      this.useProduct.push({
-        name: item.name,
-        qty: item.qty
-      })
-      this.dataLabel.productlist[i].option[j].value[k].active = true
-      // this.dataValue.push({ dataItem: item, option_id: option._id })
-      // console.log(this.dataValue)
-      // if (option._id === ) {
-      this.dataLabel.productlist.forEach(proli => {
-
-        if (proli.name === product.name) {
-          proli.option.forEach(opt => {
-            opt.value.forEach(val => {
-              if (item._id === val._id) {
-                let data = {
-                  value: val,
-                  name: proli.name
-                }
-                this.selectData.push({ dataItem: data, option_id: option._id })
-              }
-            });
-          });
-
-        }
-      });
-
-
-      // }
-    } else {
-      let u = this.useProduct.findIndex(function (data) { return data.name === item.name })
-      this.useProduct.splice(u, 1);
-      this.dataLabel.productlist[i].option[j].value[k].active = false
-      this.selectData.forEach(res => {
-        if (res.dataItem.value.name === item.name) {
-          let l = this.selectData.findIndex((data) => {
-            // console.log(data)
-            return data.dataItem.value.name === item.name
+    console.log(product)
+    console.log(item)
+    console.log(option)
+    this.valueOption = []
+    let optionName: '';
+    this.dataLabel.productlist[i].option[j].value[k].active = true
+    product.option.forEach(opt => {
+      optionName = opt.name
+      opt.value.forEach(val => {
+        if (val.active === true) {
+          console.log(val)
+          let v: any = val;
+          setTimeout(() => {
+            this.valueOption.push(v)
+          }, 100);
+          console.log(this.valueOption)
+        } else if (val.active === false) {
+          this.valueOption.forEach(valueO => {
+            if (valueO.name === item.name) {
+              let l = this.valueOption.findIndex((data) => { return data.name === item.name })
+              console.log(l)
+              this.valueOption.splice(l, 1)
+            }
+            console.log(valueO);
           })
-          // console.log(l);
-          if (l >= 0) {
-            this.selectData.splice(l, 1)
-          }
-
         }
-      })
-    }
-    this.dataLabel.productlist.forEach(data => {
-      data.option.forEach(dataOpt => {
-        dataOpt.value.forEach(dataVal => {
-          if (dataVal.active === true) {
-            this.chkProduck = true
-          }
-        });
       });
     });
-    // console.log(this.selectData);
+    console.log(this.valueOption)
+    let data = {
+      name: product.name,
+      option: [{
+        name: optionName,
+        value: this.valueOption
+      }]
+    }
+    let chkValue = []
+    data.option.forEach(option => {
+      chkValue = option.value
+    })
+    console.log(chkValue)
+    console.log(data);
+    if (chkValue.length >= option.value.length) {
+      this.selectData.push(data)
+    } else {
+      console.log(this.selectData);
+      this.selectData.forEach(selData => {
+        console.log(selData.option)
+        if (selData.option.length > 0) {
+          selData.option[0].value.forEach(val => {
+            console.log(val)
+            if (val.name === item.name) {
+              let l = selData.option[0].value.findIndex((data) => { return data.name === item.name })
+              if (l >= 0) {
+                let m = this.selectData.findIndex((dataSelect) => { return dataSelect.name === selData.name })
+                if (m >= 0) {
+                  this.selectData.splice(m, 1)
+                }
+              }
+            }
+          });
+        }
+
+      });
+    }
     this.checkValue()
   }
+
   selectProductlist(item, i) {
     if (item.name === this.dataLabel.productlist[i].name) {
       this.dataLabel.productlist[i].option.forEach(option => {
@@ -260,15 +254,15 @@ export class ModalAddBoxComponent implements OnInit {
           this.selectData.push(option)
         } else {
           this.selectData.forEach(res => {
-            if (res) {
-              let l = this.selectData.findIndex((data) => { return data.name === option.name })
-              this.selectData.splice(l, 1)
-            }
+
+            let l = this.selectData.findIndex((data) => { return data.name === option.name })
+            this.selectData.splice(l, 1)
 
           })
         }
       });
     }
+    console.log(this.selectData);
     this.checkSelectAll();
   }
   checkForSelectAll() {
@@ -276,6 +270,8 @@ export class ModalAddBoxComponent implements OnInit {
     this.dataLabel.productlist.forEach(pro => {
       opt.push(pro)
     });
+    console.log(this.selectData)
+    console.log(opt)
     if (this.selectData.length >= opt.length) {
       this.dataLabel.productlist.forEach(pro => {
         if (pro.active === true) {
@@ -311,87 +307,47 @@ export class ModalAddBoxComponent implements OnInit {
     }
   }
   checkValue() {
-    let test = [];
+    console.log(this.selectData);
+    this.dataValue = []
+    let nameSelect = '';
+    let nameProduct = '';
+    let chkData = '';
 
-    let valueForCheck = [];
-    let nameOption: any;
-    let data = [];
-    this.selectData.forEach(sel => {
-      nameOption = sel.dataItem.name
-    })
-    this.dataLabel.productlist.forEach(product => {
-      if (nameOption === product.name) {
-        product.option.forEach(opt => {
-          opt.value.forEach(val => {
-            valueForCheck.push(val)
-            if (val && val.active == true) {
-              data.push(val)
-            } else {
-              if (!val.active) {
-                data.forEach(re => {
-                  if (re.name === val.name) {
-                    let l = data.findIndex((data) => {
-                      return data.name === val.name
-                    })
-                    data.splice(l, 1)
-                  }
-                })
-              }
+    console.log(this.selectData)
+    if (this.selectData.length > 0) {
+      this.selectData.forEach(selData => {
+        chkData = selData.option[0].value;
+        console.log(selData)
+        nameSelect = selData.name
+      });
 
-            }
+      this.dataLabel.productlist.forEach(product => {
+
+        if (nameSelect === product.name) {
+          nameProduct = product.name;
+          product.option[0].value.forEach(val => {
+            this.dataValue.push(val)
           });
+        }
+      });
+      console.log(nameProduct)
+      if (nameSelect === nameProduct && chkData.length >= this.dataValue.length) {
+        this.dataLabel.productlist.forEach(pro => {
+          if (nameSelect === pro.name) {
+            pro.active = true
+          }
         });
       }
-    });
-
-    if (data.length >= valueForCheck.length) {
-      this.chkSelect.push(data)
-    } else {
-      this.chkSelect.forEach(chk => {
-        chk.forEach(e => {
-          console.log(e);
-          if (e.active === false) {
-            let c = chk.findIndex((data) => { return data.name === e.name })
-            console.log(c)
-            this.chkSelect.splice(c, 1)
-
-          }
-
-        });
-      })
-    }
-    console.log(this.chkSelect);
-    console.log(data);
-    console.log(valueForCheck)
-    if (data.length >= valueForCheck.length) {
-
+    } if (this.selectData.length !== this.dataLabel.productlist.length) {
       this.dataLabel.productlist.forEach(pro => {
-        if (nameOption === pro.name) {
-          pro.active = true
-          // if (pro.active === true) {
-          //   this.test.push(pro)
-          // }
-        }
-      });
-      console.log(this.selectData)
-    } else {
-      this.dataLabel.productlist.forEach(pro => {
-        if (nameOption === pro.name) {
+        if (nameSelect !== pro.name) {
           pro.active = false
-          // if (pro.active === false) {
-          //   this.test.forEach(e => {
-          //     let l = this.test.findIndex((data) => { return data.name === pro.name })
-          //     console.log(l)
-          //     if (l >= 0) {
-          //       this.test.splice(l, 1)
-          //     }
-
-          //   })
-          // }
         }
       });
     }
-    console.log(this.test)
+    console.log(this.selectData)
+    console.log(this.dataLabel.productlist)
+
   }
 
 }

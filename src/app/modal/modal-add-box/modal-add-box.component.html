@@ -13,7 +13,8 @@
     <div *ngIf="dataLabel" name="divHaveBorderAroud" class="col-12 border-around " style="height: 300px;">
       <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productlist ;let i = index;">
         <div name="divCheckBox" class="col-2 text-right">
-          <mat-checkbox [(ngModel)]="item.active" (change)="selectProductlist(item,i)" name="nameCheckBox">
+          <mat-checkbox [(ngModel)]="item.active" (change)="selectProductlist(item,i)"
+            name="nameCheckBox">
           </mat-checkbox>
         </div>
         <div class="col-10">
@@ -31,8 +32,8 @@
             <div class="col-12">
               <div class="row" *ngFor="let value of option.value;let k = index;">
                 <div class="col-3 text-right">
-                  <mat-checkbox class="margin-lef-select" [(ngModel)]="value.active" (change)="selectProduct($event,value,i,j,k,option,item)"
-                    name="nameCheckBox">
+                  <mat-checkbox class="margin-lef-select" [(ngModel)]="value.active"
+                    (change)="selectProduct($event,value,i,j,k,option,item)" name="nameCheckBox">
                   </mat-checkbox>
                 </div>
                 <div class="col-6">
