@@ -32,7 +32,6 @@ export class ModalAddBoxComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.data.order_id);
     this.getDataLabel();
     this.getMonitorByid();
 
@@ -41,7 +40,6 @@ export class ModalAddBoxComponent implements OnInit {
   async getDataLabel() {
     try {
       let res: any = await this.monitorService.getMonitorAll()
-      // console.log(res);
       res.data.forEach(data => {
         if (data.status === 'waitpack') {
           data.orders.forEach(order => {
@@ -55,9 +53,6 @@ export class ModalAddBoxComponent implements OnInit {
           });
         }
       });
-      // this.protoData = res.data;
-      // this.dataLabel = res.data;
-      // console.log(this.dataLabel)
     } catch (error) {
 
     }
@@ -67,7 +62,6 @@ export class ModalAddBoxComponent implements OnInit {
     try {
       let respTeam: any = await this.monitorService.getMonitor(this.data.monitor_id);
       this.dataTeam = respTeam.data;
-      // console.log(this.dataTeam)
     } catch (error) {
       console.log(error);
     }
@@ -108,8 +102,6 @@ export class ModalAddBoxComponent implements OnInit {
     }
   }
 
-
-
   async confirmLabel() {
     let order_id = this.data.order_id
     this.dataTeamOrder = this.dataTeam
@@ -136,15 +128,13 @@ export class ModalAddBoxComponent implements OnInit {
       }
       this.dataTeamOrder.orders[res].labels.push(data)
       let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
-      // console.log(resp);
       this.thisDialogRef.close('clse');
-      // console.log(this.dataTeamOrder);
     } catch (error) {
       console.log(error);
     }
   }
+
   selectAll() {
-    // console.log('all');
     this.selectData = []
     this.dataLabel.productlist.forEach(product => {
       product.active = this.onCheck
@@ -160,18 +150,14 @@ export class ModalAddBoxComponent implements OnInit {
         this.selectData.forEach(res => {
           let l = this.selectData.findIndex((data) => { return data.name === product.name })
           this.selectData.splice(l, 1)
-
         })
       }
 
     });
     this.checkSelectAll()
-    // console.log(this.selectData)
   }
+
   selectProduct(e, item, i, j, k, option, product) {
-    console.log(product)
-    console.log(item)
-    console.log(option)
     this.valueOption = []
     let optionName: '';
     if (e.checked === true) {
@@ -191,14 +177,10 @@ export class ModalAddBoxComponent implements OnInit {
       this.valueOption.forEach(valueO => {
         if (valueO.name === item.name) {
           let l = this.valueOption.findIndex((data) => { return data.name === item.name })
-          console.log(l)
           this.valueOption.splice(l, 1)
         }
-        console.log(valueO);
       })
     }
-
-    console.log(this.valueOption)
     let data = {
       name: product.name,
       option: [{
@@ -210,14 +192,12 @@ export class ModalAddBoxComponent implements OnInit {
     data.option.forEach(option => {
       chkValue = option.value
     })
-    console.log(chkValue)
     if (chkValue.length >= option.value.length) {
       this.selectData.push(data)
     } else {
       this.selectData.forEach(selData => {
         console.log(selData)
         selData.option[0].value.forEach(val => {
-          console.log(val)
           if (val.name === item.name) {
             let l = selData.option[0].value.findIndex((data) => { return data.name === item.name })
             if (l >= 0) {
@@ -230,7 +210,7 @@ export class ModalAddBoxComponent implements OnInit {
         });
       });
     }
-    console.log(this.selectData);
+    console.log(this.selectData)
     this.checkValue()
   }
 
@@ -250,10 +230,9 @@ export class ModalAddBoxComponent implements OnInit {
           }
         });
         if (option.active === true) {
-          this.selectData.push(option)
+          this.selectData.push(this.dataLabel.productlist[i])
         } else {
           this.selectData.forEach(res => {
-            console.log(res);
             let l = this.selectData.findIndex((data) => { return data.name === option.name })
             this.selectData.splice(l, 1)
 
@@ -261,15 +240,15 @@ export class ModalAddBoxComponent implements OnInit {
         }
       });
     }
+    console.log(this.selectData)
     this.checkSelectAll();
   }
+
   checkForSelectAll() {
     let opt = []
     this.dataLabel.productlist.forEach(pro => {
       opt.push(pro)
     });
-    console.log(this.selectData)
-    console.log(opt)
     if (this.selectData.length >= opt.length) {
       this.dataLabel.productlist.forEach(pro => {
         if (pro.active === true) {
@@ -283,7 +262,9 @@ export class ModalAddBoxComponent implements OnInit {
         }
       });
     }
+    console.log(this.selectData)
   }
+
   checkSelectAll() {
     let opt = []
     this.dataLabel.productlist.forEach(pro => {
@@ -303,19 +284,17 @@ export class ModalAddBoxComponent implements OnInit {
         }
       });
     }
+    console.log(this.selectData)
   }
+
   checkValue() {
-    console.log(this.selectData);
     this.dataValue = []
     let nameSelect = '';
     let nameProduct = '';
     let chkData = '';
-
-    console.log(this.selectData)
     if (this.selectData.length > 0) {
       this.selectData.forEach(selData => {
         chkData = selData.option[0].value;
-        console.log(selData)
         nameSelect = selData.name
       });
 
@@ -328,7 +307,6 @@ export class ModalAddBoxComponent implements OnInit {
           });
         }
       });
-      console.log(nameProduct)
       if (nameSelect === nameProduct && chkData.length >= this.dataValue.length) {
         this.dataLabel.productlist.forEach(pro => {
           if (nameSelect === pro.name) {
@@ -344,7 +322,6 @@ export class ModalAddBoxComponent implements OnInit {
       });
     }
     console.log(this.selectData)
-    console.log(this.dataLabel.productlist)
     this.checkSelectAll()
   }
 
