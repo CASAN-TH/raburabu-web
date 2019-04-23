@@ -196,7 +196,7 @@ export class StockpackComponent implements OnInit {
     window.open(environment.apiUrl + '/api/monitor/reportdetail/' + moniter_id)
   }
 
-  printLabel(item,item2,label) {
+  printLabel(item, item2, label) {
     console.log(item2)
     console.log(label)
     let label_id: any;
@@ -264,7 +264,7 @@ export class StockpackComponent implements OnInit {
 
   }
 
-  deleteLabel(item) {
+  async deleteLabel(item) {
     console.log(item);
     const dialogRef = this.dialog.open(ModalConfirmsComponent, {
       width: '400px',
@@ -273,12 +273,14 @@ export class StockpackComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
-        this.monitorService.deleteLabel(item._id);
+        let res = await this.monitorService.deleteLabel(item._id);
         this.ngxSpiner.show()
-        if (this.user.roles[0] === 'owner') {
-          this.getMonitorTeam();
-        } else {
-          this.getMonitor();
+        if (res) {
+          if (this.user.roles[0] === 'owner') {
+            this.getMonitorTeam();
+          } else {
+            this.getMonitor();
+          }
         }
       }
     });

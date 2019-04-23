@@ -49,6 +49,9 @@ export class MonitorService {
   deleteLabel(id) {
     return this.http.delete(environment.apiUrl + '/api/monitor/deletebox/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
+  addLabel(id, body) {
+    return this.http.post(environment.apiUrl + '/api/monitor/addbox/' + id, body, { headers: this.authorizationHeader() }).toPromise();
+  }
 
 
   // HANDLER

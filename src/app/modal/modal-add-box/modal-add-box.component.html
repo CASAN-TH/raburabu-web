@@ -13,8 +13,7 @@
     <div *ngIf="dataLabel" name="divHaveBorderAroud" class="col-12 border-around " style="height: 300px;">
       <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productlist ;let i = index;">
         <div name="divCheckBox" class="col-2 text-right">
-          <mat-checkbox [(ngModel)]="item.active" (change)="selectProductlist(item,i)"
-            name="nameCheckBox">
+          <mat-checkbox [(ngModel)]="item.active" (change)="selectProductlist(item,i)" name="nameCheckBox">
           </mat-checkbox>
         </div>
         <div class="col-10">
@@ -71,8 +70,7 @@
   </div>
   <div class="col-6 text-right">
     <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
-    <button mat-button [mat-dialog-close]="true" name="btnConfrim" [disabled]="!trackno || chkProduck === false"
-      (click)="confirmLabel()" cdkFocusInitial>ยืนยัน</button>
+    <button mat-button name="btnConfrim" (click)="confirmLabel()" cdkFocusInitial>ยืนยัน</button>
   </div>
 
 </mat-dialog-actions>
