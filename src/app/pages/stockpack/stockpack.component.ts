@@ -192,38 +192,26 @@ export class StockpackComponent implements OnInit {
 
   }
 
-  print(moniter_id) {
+  async print(moniter_id) {
     window.open(environment.apiUrl + '/api/monitor/reportdetail/' + moniter_id)
-    if (this.user.roles[0] === 'owner') {
-      this.getMonitorTeam();
-    } else {
-      this.getMonitor();
-    }
+    // setTimeout(() => {
+    //   this.ngOnInit();
+    // }, 500);
   }
 
-  printLabel(item, item2, label) {
-    console.log(item2)
-    console.log(label)
-    let label_id: any;
-    item.labels.forEach(labels => {
-      console.log(labels)
-    });
+  async printLabel(item, item2, label) {
     window.open(environment.apiUrl + '/api/monitor/reportbylable/' + label._id)
-    if (this.user.roles[0] === 'owner') {
-      this.getMonitorTeam();
-    } else {
-      this.getMonitor();
-    }
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
 
-  printLabelAll(item) {
+  async printLabelAll(item) {
     console.log(item);
     window.open(environment.apiUrl + '/api/monitor/reportlableall/' + item._id)
-    if (this.user.roles[0] === 'owner') {
-      this.getMonitorTeam();
-    } else {
-      this.getMonitor();
-    }
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
 
   gotoSearch() {

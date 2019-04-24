@@ -35,7 +35,7 @@
             </mat-toolbar>
             <div class="row border-bottom">
               <div class="col-12 col-md-6" *ngFor="let itm of item.orders">
-                <mat-card class="m-3">
+                <mat-card class="m-3 box-shadow-false">
                   <mat-card-header>
                     <mat-card-subtitle>
                       <span>ออเดอร์: </span>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6" *ngFor="let label2 of itm2.labels; let i=index">
-                    <mat-card class="m-3" [ngClass]="label2.eprint === true ? 'bg-label-print' : ''">
+                    <mat-card class="m-3" [ngClass]="label2.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
                       <mat-card-content>
                         <div class="row">
                           <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
@@ -188,7 +188,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6" *ngFor="let label3 of itm3.labels; let i=index">
-                    <mat-card class="m-3">
+                    <mat-card class="m-3" [ngClass]="label3.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
                       <mat-card-content>
                         <div class="row">
                           <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
@@ -262,7 +262,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6" *ngFor="let label4 of itm4.labels; let i=index">
-                    <mat-card class="m-3">
+                    <mat-card class="m-3" [ngClass]="label4.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
                       <mat-card-content>
                         <div class="row">
                           <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>

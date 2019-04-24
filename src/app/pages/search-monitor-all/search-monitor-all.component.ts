@@ -196,12 +196,21 @@ export class SearchMonitorAllComponent implements OnInit {
   }
 
   print(moniter_id) {
-    window.open(environment.apiUrl + '/api/monitor/reportdetail/' + moniter_id)
+    window.open(environment.apiUrl + '/api/monitor/reportdetail/' + moniter_id);
   }
 
-  printLabel(item) {
-    console.log(item)
-    window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
+  printLabel(label2) {
+    window.open(environment.apiUrl + '/api/monitor/reportbylable/' + label2._id)
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
+  }
+
+  async printLabelAll(item) {
+    window.open(environment.apiUrl + '/api/monitor/reportlableall/' + item._id)
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
 
   deleteLabel(item) {
