@@ -41,6 +41,7 @@ export class ModalAddBoxComponent implements OnInit {
   async getDataLabel() {
     try {
       let res: any = await this.monitorService.getMonitorAll()
+      console.log(res);
       res.data.forEach(data => {
         if (data.status === 'waitpack') {
           data.orders.forEach(order => {
@@ -54,6 +55,7 @@ export class ModalAddBoxComponent implements OnInit {
           });
         }
       });
+      console.log(this.dataLabel);
     } catch (error) {
 
     }
@@ -133,8 +135,8 @@ export class ModalAddBoxComponent implements OnInit {
         productlist: this.prodData
       }
       console.log(body);
-      let resp = await this.monitorService.addLabel(this.data.order_id,body)
-      if(resp){
+      let resp = await this.monitorService.addLabel(this.data.order_id, body)
+      if (resp) {
         this.thisDialogRef.close('clse');
       }
     } catch (error) {

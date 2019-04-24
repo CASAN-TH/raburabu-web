@@ -4,11 +4,11 @@
     <div *ngIf="dataLabel && dataLabel.customer " class="col-12" name="divAddressCustomer">
       <p>ชื่อ-ที่อยู่จัดส่ง</p>
       <p name="nameCustomer">{{dataLabel.customer.firstname}} {{dataLabel.customer.lastname}}</p>
-      <p name="addressCustomer">{{dataLabel.customer.address.houseno}}
-        {{dataLabel.customer.address.village}} {{dataLabel.customer.address.street}}
-        {{dataLabel.customer.address.subdistrict}} {{dataLabel.customer.address.district}}
-        {{dataLabel.customer.address.province}}
-        {{dataLabel.customer.address.zipcode}}</p>
+      <p name="addressCustomer">{{dataLabel.address.houseno}}
+        {{dataLabel.address.village}} {{dataLabel.address.street}}
+        {{dataLabel.address.subdistrict}} {{dataLabel.address.district}}
+        {{dataLabel.address.province}}
+        {{dataLabel.address.zipcode}}</p>
     </div>
     <div *ngIf="dataLabel" name="divHaveBorderAroud" class="col-12 border-around " style="height: 300px;">
       <div name="divForDetailProduct" class="row mt-3" *ngFor="let item of dataLabel.productlist ;let i = index;">
