@@ -71,9 +71,28 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   async keyQty(e, i, j, k) {
+    let res: any = await this.monitorService.getMonitorAll()
+    res.data.forEach(data => {
+      if (data.status === 'waitpack') {
+        data.orders.forEach(order => {
+          if (order) {
+            order.labels.forEach(labels => {
+              if (labels._id === this.data.label_id) {
+                this.protoData = labels
+              }
+            });
+          }
+        });
+      }
+    });
     // let value = parseInt(e)
     // let res: any = await this.monitorService.getLabel(this.data.order_id);
     // this.protoData = res.data;
+    if (e > this.protoData.productlist[i].option[j].value[k].qty) {
+      this.dataLabel.productlist[i].option[j].value[k].qty = this.protoData.productlist[i].option[j].value[k].qty
+    } else if (e == 0) {
+      this.dataLabel.productlist[i].option[j].value[k].qty = 1
+    }
     // if (!this.protoData.productall[i].qtyAll) {
     //   if (value > this.protoData.productall[i].qty) {
     //     this.dataLabel.productall[i].qty = this.protoData.productall[i].qty

@@ -41,7 +41,7 @@
                 <div class="col-3">
                   <form name="formQty" class="example-form border-top-0">
                     <mat-form-field name="mat-form-field-qty" class="example-full-width border-top-0">
-                      <input name="keyQty" type="number" [disabled]="value.active" (ngModelChange)="keyQty($event,i,j,k)"
+                      <input name="keyQty" type="number" myNumberOnly [disabled]="value.active" (ngModelChange)="keyQty($event,i,j,k)"
                         [(ngModel)]="value.qty" matInput placeholder="กรอกจำนวน">
                     </mat-form-field>
                   </form>
