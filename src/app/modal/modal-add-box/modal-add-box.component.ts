@@ -106,31 +106,7 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   async confirmLabel() {
-    let order_id = this.data.order_id
-    this.dataTeamOrder = this.dataTeam
     try {
-      let res = this.dataTeamOrder.orders.findIndex(function (order) {
-        return order._id === order_id
-      })
-      let data = {
-        trackno: this.trackno,
-        customer: {
-          firstname: this.dataLabel.customer.firstname,
-          lastname: this.dataLabel.customer.lastname
-        },
-        address: {
-          houseno: this.dataLabel.customer.address.houseno,
-          village: this.dataLabel.customer.address.village,
-          street: this.dataLabel.customer.address.street,
-          subdistrict: this.dataLabel.customer.address.subdistrict,
-          district: this.dataLabel.customer.address.district,
-          province: this.dataLabel.customer.address.province,
-          zipcode: this.dataLabel.customer.address.zipcode
-        },
-        productlist: this.prodData
-      }
-      // this.dataTeamOrder.orders[res].labels.push(data)
-      // let resp = await this.monitorService.saveLabel(this.data.monitor_id, this.dataTeamOrder);
       let body = {
         productlist: this.prodData
       }
@@ -145,7 +121,8 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   selectAll() {
-    this.selectData = []
+    this.selectData = [];
+    this.prodData = [];
     this.dataLabel.productlist.forEach(product => {
       product.active = this.onCheck
       product.option.forEach(option => {
@@ -153,9 +130,16 @@ export class ModalAddBoxComponent implements OnInit {
           value.active = this.onCheck
         });
       });
+      console.log(product);
       if (this.onCheck) {
         this.selectData.push(product)
-        this.prodData.push(product)
+        this.prodData.push({
+          name: product.name,
+          option: [{
+            name: product.option[0].name,
+            value: product.option[0].value
+          }]
+        })
       } else {
         this.selectData.forEach(res => {
           let l = this.selectData.findIndex((data) => { return data.name === product.name })
@@ -285,8 +269,6 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   selectProductlist(item, i) {
-    console.log(item);
-    //เเก้นะอิอิ
     if (item.name === this.dataLabel.productlist[i].name) {
       this.dataLabel.productlist[i].option.forEach(option => {
         if (item.active === true) {
@@ -303,7 +285,6 @@ export class ModalAddBoxComponent implements OnInit {
         });
         if (option.active === true) {
           this.selectData.push(this.dataLabel.productlist[i]);
-          this.prodData.push(item)
         } else {
           this.selectData.forEach(res => {
             let l = this.selectData.findIndex((data) => { return data.name === this.dataLabel.productlist[i].name });
@@ -311,18 +292,40 @@ export class ModalAddBoxComponent implements OnInit {
             if (l >= 0) {
               this.selectData.splice(l, 1)
             }
-            let l2 = this.prodData.findIndex((data) => { return data.name === item.name });
-            console.log(l2);
-            if (l2 >= 0) {
-              this.prodData.splice(l2, 1)
-            }
           })
         }
       });
     }
-    // console.log(this.selectData);
-    console.log(this.prodData);
     this.checkSelectAll();
+    this.selectProdListData(item);
+  }
+
+  selectProdListData(item) {
+    console.log(item);
+    let iProd = this.prodData.findIndex((data) => { return data.name === item.name });
+    console.log(iProd);
+    if (item.active === true) {
+      if (iProd >= 0) {
+        this.prodData[iProd].option = []
+        this.prodData[iProd].option.push({
+          name: item.option[0].name,
+          value: item.option[0].value
+        })
+      } else {
+        this.prodData.push({
+          name: item.name,
+          option: [{
+            name: item.option[0].name,
+            value: item.option[0].value
+          }]
+        })
+      }
+    } else {
+      if (iProd >= 0) {
+        this.prodData.splice(iProd, 1);
+      }
+    }
+    console.log(this.prodData);
   }
 
   checkForSelectAll() {
