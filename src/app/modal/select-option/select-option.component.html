@@ -6,13 +6,13 @@
         <div class="row" name="divRowValue">
           <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index"
             (click)="select(itm,i,k)">
-            <mat-card name="cardValue" class="example-card card-height pt-2 text-center">
-              <img style="width: 59%; height: 90%;" [src]="itm.image">
+            <mat-card name="cardValue" class="example-card card-height pt-0 pr-0 pl-0 pb-0 mt-1 text-center">
+              <img style="width: 100%; object-fit: cover; height: 90%" [src]="itm.image">
               <mat-card-content name="mat-card-content-name-value">
                 <p name="nameValue">
                   {{itm.name}}
                 </p>
-                <i style="position: absolute;top: 19%;left: 31%;" name="iconCheck" class="material-icons icon "
+                <i style="position: absolute;top: 19%;left: 20%;" name="iconCheck" class="material-icons icon "
                   *ngIf="itm.active">
                   check_circle_outline
                 </i>
