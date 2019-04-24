@@ -285,6 +285,8 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   selectProductlist(item, i) {
+    console.log(item);
+    //เเก้นะอิอิ
     if (item.name === this.dataLabel.productlist[i].name) {
       this.dataLabel.productlist[i].option.forEach(option => {
         if (item.active === true) {
@@ -301,7 +303,7 @@ export class ModalAddBoxComponent implements OnInit {
         });
         if (option.active === true) {
           this.selectData.push(this.dataLabel.productlist[i]);
-          this.prodData.push(this.dataLabel.productlist[i])
+          this.prodData.push(item)
         } else {
           this.selectData.forEach(res => {
             let l = this.selectData.findIndex((data) => { return data.name === this.dataLabel.productlist[i].name });
@@ -309,7 +311,7 @@ export class ModalAddBoxComponent implements OnInit {
             if (l >= 0) {
               this.selectData.splice(l, 1)
             }
-            let l2 = this.prodData.findIndex((data) => { return data.name === this.dataLabel.productlist[i].name });
+            let l2 = this.prodData.findIndex((data) => { return data.name === item.name });
             console.log(l2);
             if (l2 >= 0) {
               this.prodData.splice(l2, 1)
