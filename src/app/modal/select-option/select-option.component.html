@@ -7,23 +7,28 @@
           <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index"
             (click)="select(itm,i,k)">
             <mat-card name="cardValue" class="example-card card-height pt-2 text-center">
+              <img style="width: 59%; height: 90%;" [src]="itm.image">
               <mat-card-content name="mat-card-content-name-value">
                 <p name="nameValue">
                   {{itm.name}}
                 </p>
+                <i style="position: absolute;top: 19%;left: 31%;" name="iconCheck" class="material-icons icon "
+                  *ngIf="itm.active">
+                  check_circle_outline
+                </i>
               </mat-card-content>
-              <div class="row">
+              <!-- <div class="row">
                 <div name="colIcon" class="col-12 text-center col-md-12">
                   <i name="iconCheck" class="material-icons icon " *ngIf="itm.active">
                     check_circle_outline
                   </i>
-                </div>
-                <!-- <div name="colIconMd-none" class="col-12 text-center d-md-none">
+                </div> -->
+              <!-- <div name="colIconMd-none" class="col-12 text-center d-md-none">
                   <i name="iconCheckMd-none" class="material-icons icon icon-position" *ngIf="itm.active">
                     check_circle_outline
                   </i>
                 </div> -->
-              </div>
+              <!-- </div> -->
 
             </mat-card>
           </div>
@@ -35,7 +40,7 @@
     </mat-dialog-content>
     <mat-dialog-actions name="mat-dialog-actions-first">
       <div name="divColBtnBack" class="col-6 text-left">
-          <mat-checkbox  [(ngModel)]="checked" (change)="selectall()">เลือกทั้งหมด</mat-checkbox>
+        <mat-checkbox [(ngModel)]="checked" (change)="selectall()">เลือกทั้งหมด</mat-checkbox>
       </div>
       <div name="divColBtnDone" class="col-6 text-right">
         <button name="btnNextFirst" mat-button matStepperNext (click)="next()"
@@ -80,7 +85,8 @@
 
       </div>
       <div name="divColBtnDone" class="col-6 text-right">
-        <button mat-button name="btnDone" [disabled]="selectOption.length === 0" (click)="nextconfirm(stepper)">ถัดไป</button>
+        <button mat-button name="btnDone" [disabled]="selectOption.length === 0"
+          (click)="nextconfirm(stepper)">ถัดไป</button>
 
       </div>
     </mat-dialog-actions>

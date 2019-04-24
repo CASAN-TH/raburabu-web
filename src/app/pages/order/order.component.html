@@ -5,16 +5,15 @@
 <div class="row mt-3" name="rowOrder">
   <div class="col-6 mr-0 scroll-y" name="colLeft" style="height: 90vh;">
     <!-- <div class="border-order" style="height: 100%;width: 100%;" name="divProd"> -->
-      <div class="row pt-2" name="rowImageProd" style="padding-left: 5px">
-        <div class="col-4 mt-2 pr-0 pl-0 cursor-pointer full-width princing-item" style="display: inline;"
-          *ngFor="let item of prodData" (click)="openmodal(item)" name="colImageProd">
-          <div class="ellipsis border-prod" style="width: 95%;background-color: white;margin-right: 0px">
-            <img class="img-prod-style" [src]="item.image" name="imageProd">
-            <p class="text-name-prod mb-0 border-text pt-1"> <span class="ml-2">{{item.name}}</span> </p>
-            <p class="text-price-prod mb-1"> <span class="ml-2">฿{{item.price | number}}</span> </p>
-          </div>
+    <div class="row pt-2" name="rowImageProd" style="padding-left: 5px">
+      <div class="col-4 mt-2 pr-0 pl-0 cursor-pointer full-width princing-item" style="display: inline;"
+        *ngFor="let item of prodData" (click)="openmodal(item)" name="colImageProd">
+        <div class="ellipsis border-prod" style="width: 95%;background-color: white;margin-right: 0px">
+          <img class="img-prod-style" [src]="item.image" name="imageProd">
+          <p class="text-name-prod mb-0 border-text pt-1"> <span class="ml-2">{{item.name}}</span> </p>
         </div>
       </div>
+    </div>
     <!-- </div> -->
   </div>
 
@@ -58,8 +57,8 @@
                 <span class="font-color pl-5" style="font-size: 13px" name="it.name">{{itm.name}} {{it.name}}</span>
               </div>
               <div class="col-8  text-right" name="ColSumOption"><span class="font-color pr-5" style="font-size: 13px"
-                  name="it.qty">{{it.qty | number}}</span> 
-                  <!-- <span class="font-color" name="mutiplePrice"> * </span>
+                  name="it.qty">{{it.qty | number}}</span>
+                <!-- <span class="font-color" name="mutiplePrice"> * </span>
                 <span style="font-size: 13px" class="font-color" name="item.price">{{item.price | number}}</span> -->
               </div>
               <!-- <div class="col-4 text-center" name="colSumProd">
@@ -87,7 +86,8 @@
       </div>
       <div class="col-12 col-md-5 text-right" name="colSelect">
         <mat-form-field class="example-full-width" name="mffSelect">
-          <mat-select class="text-right" placeholder="กรุณาเลือกประเภทการชำระเงิน" [(ngModel)]="namePayment" name="matSelectPaymenttype">
+          <mat-select class="text-right" placeholder="กรุณาเลือกประเภทการชำระเงิน" [(ngModel)]="namePayment"
+            name="matSelectPaymenttype">
             <mat-option name="matOptionPaymenttype">None</mat-option>
             <mat-option *ngFor="let item of paymentType" [value]="item" (click)="selectPaymentType(item)"
               name="showOption">
@@ -107,8 +107,8 @@
             บาท</span>
         </p> -->
         <mat-form-field class="example-full-width text-right" name="mat-form-field-district">
-            <input matInput myNumberOnly placeholder="กรุณากรอกจำนวนเงินรวม" [(ngModel)]="data.totalamount" required>
-          </mat-form-field>
+          <input matInput myNumberOnly placeholder="กรุณากรอกจำนวนเงินรวม" [(ngModel)]="data.totalamount" required>
+        </mat-form-field>
       </div>
     </div>
 
