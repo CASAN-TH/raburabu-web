@@ -44,6 +44,7 @@ export class SelectOptionComponent implements OnInit {
       });
     });
     this.dataBinding = this.data
+    console.log(this.dataBinding)
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -56,6 +57,7 @@ export class SelectOptionComponent implements OnInit {
   }
 
   selectProduct(i) {
+    console.log(i)
     this.selectOption.push(i);
   }
 
@@ -138,6 +140,7 @@ export class SelectOptionComponent implements OnInit {
   }
 
   select(itm, i, k) {
+    console.log(itm);
     if (!this.dataBinding.option[k].value[i].active) {
       this.dataBinding.option[k].value[i].active = true
       this.dataBinding.option[k].value[i].qty = 1

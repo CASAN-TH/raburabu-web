@@ -6,31 +6,33 @@
         <div class="row" name="divRowValue">
           <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of item.value ;let i = index"
             (click)="select(itm,i,k)">
-            <mat-card name="cardValue" class="example-card card-height pt-0 pr-0 pl-0 pb-0 mt-1 text-center">
-              <img style="width: 100%; object-fit: cover; height: 90%" [src]="itm.image">
-              <mat-card-content name="mat-card-content-name-value">
-                <p name="nameValue">
-                  {{itm.name}}
-                </p>
-                <i style="position: absolute;top: 19%;left: 20%;" name="iconCheck" class="material-icons icon "
-                  *ngIf="itm.active">
-                  check_circle_outline
-                </i>
-              </mat-card-content>
-              <!-- <div class="row">
-                <div name="colIcon" class="col-12 text-center col-md-12">
+            <mat-card name="cardValue" class="example-card card-height pt-0 pr-0 pl-0 pb-0 mt-2 text-center">
+              <div style="width: 100%;height: 100%;" class="team-img">
+                <img style="width: 100%; object-fit: cover; height: 100%; z-index: -1;" [src]="itm.image">
+                <div *ngIf="!itm.active || itm.active === false" class="name-product-opacity ">
+                  <p name="nameValue" class="mt-2">
+                    {{itm.name}}
+                  </p>
+                </div>
+                <div *ngIf="itm.active === true" [ngClass]="itm.active ? 'overlay':''">
+                  <div class="text">
+                    <p class="mb30 team-meta">{{itm.name}}</p>
+                  </div>
+                </div>
+                <div style="width: 100% ;position: absolute;top: 30%">
                   <i name="iconCheck" class="material-icons icon " *ngIf="itm.active">
                     check_circle_outline
                   </i>
-                </div> -->
-              <!-- <div name="colIconMd-none" class="col-12 text-center d-md-none">
-                  <i name="iconCheckMd-none" class="material-icons icon icon-position" *ngIf="itm.active">
-                    check_circle_outline
-                  </i>
-                </div> -->
-              <!-- </div> -->
+                </div>
+
+
+              </div>
+
 
             </mat-card>
+
+
+
           </div>
         </div>
         <div class="row">
@@ -57,20 +59,17 @@
         <ng-template name="ng-template-qty" matStepLabel>ระบุจำนวน</ng-template>
         <div name="divOptionProduct" class="row" *ngFor="let optionProd of selectOption;let l = index">
           <div name="divColNotUseNow" class="col-2 text-right">
-            <!-- <button mat-button class="border-add"><span class="font-size">-</span></button> -->
           </div>
           <div class="col-8 text-center" name="divColOption">
             <span name="optionProduct" class="mr-3">ตัวเลือก: </span>
             <span name="nameProduct" class="mr-3">{{optionProd.name}}</span>
             <mat-form-field name="mat-form-field-key-qty">
-              <!-- <input class="font-input" matInput [(ngModel)]="qty" formControlName="secondCtrl" required> -->
               <input name="keyQty" matInput placeholder="กรุณากรอกจำนวนสินค้า (ขั้นต่ำ 1 ชิ้น)"
                 (ngModelChange)="addQty(l,$event)" [value]="!optionProd.qty ? 1 : optionProd.qty"
                 formControlName="secondCtrl" myNumberOnly>
             </mat-form-field>
           </div>
           <div name="divColNotUseNow2" class="col-2 text-left">
-            <!-- <button mat-button class="border-add"> <span class="font-size">+</span> </button> -->
           </div>
         </div>
 
@@ -99,7 +98,8 @@
         <div class="row" name="divRowValue">
           <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of selectOption ;let i = index"
             (click)="select(itm,i,k)">
-            <mat-card name="cardValue" class="example-card card-height pt-2 text-center">
+            <mat-card name="cardValue" class="example-card card-height mt-2 pt-0 pr-0 pl-0 pb-0 text-center">
+              <img style="width: 100%; object-fit: cover; height: 70%" [src]="itm.image">
               <mat-card-content name="mat-card-content-name-value">
                 <p name="nameValue">
                   {{itm.name}}

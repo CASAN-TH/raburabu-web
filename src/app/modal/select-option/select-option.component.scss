@@ -70,3 +70,63 @@ input[type=number] {
     min-height: inherit !important;
     max-height: inherit !important;
 }
+
+.overlay {
+    border-radius: 0px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 1s ease;
+    background-color: #11181f;
+}
+
+.team-img {
+    position: relative;
+}
+
+.team-content {
+    position: absolute;
+    background-color: rgba(17, 24, 31, 0.65) !important;
+    bottom: 0px;
+    display: inline-block;
+    left: 0;
+    color: #fff;
+    right: 0;
+    padding: 9px;
+}
+
+.name-product-opacity {
+    position: absolute;
+    bottom: 0px;
+    /* left: 36px; */
+    background-color: rgba(17, 24, 31, 0.65);
+    width: 100%;
+    color: white;
+    height: 38px;
+}
+
+.text {
+    color: #fff;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    transform: translate(-26%, -26%);
+    -ms-transform: translate(-26%, -26%);
+    right: 0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+
+.team-img .overlay {
+    opacity: .8;
+}
+
+.team-img .team-content {
+    opacity: 0;
+}
