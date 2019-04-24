@@ -5,6 +5,7 @@ import { MatDialog, PageEvent } from '@angular/material';
 import { MonitorService } from 'src/app/services/monitor/monitor.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
+import { ModalAddBoxComponent } from 'src/app/modal/modal-add-box/modal-add-box.component';
 
 @Component({
   selector: 'app-search-monitor-all',
@@ -219,6 +220,31 @@ export class SearchMonitorAllComponent implements OnInit {
         } else {
           this.getMonitor();
         }
+      }
+    });
+  }
+  async addBox(itm, item, label2) {
+    let sumQty = 0;
+    let res: any = await this.monitorService.getLabel(itm._id);
+    res.data.productall.forEach(dataQty => {
+      if (dataQty.qtyAll) {
+        sumQty += dataQty.qtyAll === null ? 0 : dataQty.qtyAll
+      }
+    });
+    let data = {
+      order_id: itm._id,
+      monitor_id: item._id,
+      label_id: label2._id
+    }
+    const dialogRef = this.dialog.open(ModalAddBoxComponent, {
+      width: '600px',
+      data: data,
+      height: '500px',
+      disableClose: false
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getMonitor();
       }
     });
   }

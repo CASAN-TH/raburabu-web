@@ -70,7 +70,7 @@
   </div>
   <div class="col-6 text-right">
     <button mat-button mat-dialog-close name="btnCancel">ยกเลิก</button>
-    <button mat-button name="btnConfrim" (click)="confirmLabel()" cdkFocusInitial>ยืนยัน</button>
+    <button mat-button name="btnConfrim" (click)="confirmLabel()" cdkFocusInitial [disabled]="prodData.length < 1">ยืนยัน</button>
   </div>
 
 </mat-dialog-actions>

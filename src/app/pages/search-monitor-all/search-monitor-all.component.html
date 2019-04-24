@@ -117,7 +117,7 @@
                   </div>
                 </mat-card-content>
                 <mat-card-actions class="text-right mb-0" *ngIf="item.status === 'waitpack'">
-                  <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff' && i === 0">
+                  <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff' && i === 0" (click)="addBox(itm,item,label2)">
                     <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
                   </button>
                   <button mat-icon-button color="accent" *ngIf="user.roles[0]==='stockstaff'">
