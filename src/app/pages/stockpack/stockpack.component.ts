@@ -194,6 +194,11 @@ export class StockpackComponent implements OnInit {
 
   print(moniter_id) {
     window.open(environment.apiUrl + '/api/monitor/reportdetail/' + moniter_id)
+    if (this.user.roles[0] === 'owner') {
+      this.getMonitorTeam();
+    } else {
+      this.getMonitor();
+    }
   }
 
   printLabel(item, item2, label) {
@@ -204,11 +209,23 @@ export class StockpackComponent implements OnInit {
       console.log(labels)
     });
     window.open(environment.apiUrl + '/api/monitor/reportbylable/' + label._id)
+    if (this.user.roles[0] === 'owner') {
+      this.getMonitorTeam();
+    } else {
+      this.getMonitor();
+    }
   }
+
   printLabelAll(item) {
     console.log(item);
     window.open(environment.apiUrl + '/api/monitor/reportlableall/' + item._id)
+    if (this.user.roles[0] === 'owner') {
+      this.getMonitorTeam();
+    } else {
+      this.getMonitor();
+    }
   }
+
   gotoSearch() {
     this.router.navigate(['/search-monitor'])
   }

@@ -102,13 +102,13 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6" *ngFor="let label2 of itm2.labels; let i=index">
-                    <mat-card class="m-3">
+                    <mat-card class="m-3" [ngClass]="label2.eprint === true ? 'bg-label-print' : ''">
                       <mat-card-content>
                         <div class="row">
                           <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
                         </div>
                         <p class="mb-1 text-overflow ml-3"><span>ชื่อผู้รับ: </span> <span
-                            class="mr-1">{{label2.customer.firstname}}</span>
+                            class="mr-1">{{label2.customer.firstname}} {{label2.eprint}}</span>
                           <span>{{label2.customer.lastname}}</span></p>
 
                         <p class="mb-1 text-overflow ml-3">
@@ -140,11 +140,13 @@
                           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
                         </button>
                         <button mat-icon-button color="accent">
-                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="printLabel(itm2,item2,label2)">print
+                          <mat-icon aria-label="Example icon-button with a heart icon"
+                            (click)="printLabel(itm2,item2,label2)">print
                           </mat-icon>
                         </button>
                         <button mat-icon-button color="accent" *ngIf="itm2.labels.length > 1">
-                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="deleteLabel(label2)">delete</mat-icon>
+                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="deleteLabel(label2)">
+                            delete</mat-icon>
                         </button>
                       </mat-card-actions>
                     </mat-card>

@@ -83,7 +83,7 @@
             </span>
             <div class="col-12 col-md-6" style="display: inline-block;vertical-align: top"
               *ngFor="let label2 of itm.labels; let i=index">
-              <mat-card class="m-3">
+              <mat-card class="m-3" [ngClass]="label2.eprint === true ? 'bg-label-print' : ''">
                 <mat-card-content
                   *ngIf="item.status === 'waitpack' || item.status === 'waitshipping' || item.status === 'complete'">
                   <div class="row">
