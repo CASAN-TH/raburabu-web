@@ -63,6 +63,7 @@ export class SelectOptionComponent implements OnInit {
 
   next() {
     this.selectOption
+    console.log(this.selectOption)
   }
 
   nextconfirm(stepper: MatStepper) {

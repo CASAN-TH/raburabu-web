@@ -15,15 +15,17 @@
                   </p>
                 </div>
                 <div *ngIf="itm.active === true" [ngClass]="itm.active ? 'overlay':''">
-                  <div class="text">
-                    <p class="mb30 team-meta">{{itm.name}}</p>
-                  </div>
+
                 </div>
                 <div style="width: 100% ;position: absolute;top: 30%">
                   <i name="iconCheck" class="material-icons icon " *ngIf="itm.active">
                     check_circle_outline
                   </i>
                 </div>
+                <div *ngIf="itm.active === true" class="text">
+                  <p class="mb30 team-meta">{{itm.name}}</p>
+                </div>
+
 
 
               </div>
@@ -96,14 +98,14 @@
         <ng-template name="ng-template-แนืดรพท" matStepLabel>ยืนยันรายการ</ng-template>
         <h1>{{data.name}}</h1>
         <div class="row" name="divRowValue">
-          <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of selectOption ;let i = index"
-            (click)="select(itm,i,k)">
-            <mat-card name="cardValue" class="example-card card-height mt-2 pt-0 pr-0 pl-0 pb-0 text-center">
-              <img style="width: 100%; object-fit: cover; height: 70%" [src]="itm.image">
+          <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of selectOption ;let i = index">
+            <mat-card name="cardValue" class="example-card card-height2 mt-2 pt-0 pr-0 pl-0 pb-0 text-center">
               <mat-card-content name="mat-card-content-name-value">
-                <p name="nameValue">
-                  {{itm.name}}
-                </p>
+                <div class="mt-2">
+                  <p name="nameValue">
+                    {{itm.name}}
+                  </p>
+                </div>
               </mat-card-content>
               <div class="row">
                 <div name="colIcon" class="col-12 text-center col-md-12">
