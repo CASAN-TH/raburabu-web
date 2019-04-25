@@ -100,19 +100,14 @@
         <div class="row" name="divRowValue">
           <div name="divColValue" class="col-12 col-sm-6 col-md-3 mb-3" *ngFor="let itm of selectOption ;let i = index">
             <mat-card name="cardValue" class="example-card card-height2 mt-2 pt-0 pr-0 pl-0 pb-0 text-center">
-              <mat-card-content name="mat-card-content-name-value">
-                <div class="mt-2">
+              <mat-card-content name="mat-card-content-name-value" class="pt-3">
+                <div>
                   <p name="nameValue">
                     {{itm.name}}
                   </p>
+                  <h3 style="color:#ff4081" class="mb-0">จำนวน {{itm.qty | number}} ชิ้น</h3>
                 </div>
               </mat-card-content>
-              <div class="row">
-                <div name="colIcon" class="col-12 text-center col-md-12">
-                  <h3 style="color:#ff4081">จำนวน {{itm.qty | number}} ชิ้น</h3>
-                </div>
-
-              </div>
 
             </mat-card>
           </div>
