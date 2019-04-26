@@ -198,7 +198,7 @@ export class OrderListComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(async result => {
           this.dataOrderAll.forEach(total => {
-            // console.log(total);
+            console.log(total);
             tot += total.totalamount;
             dataOrder.push({
               customer: {
@@ -208,6 +208,7 @@ export class OrderListComponent implements OnInit {
                 address: total.customer.address[0]
               },
               orderno: total.orderno,
+              rewards: total.rewards,
               items: total.items,
               totalamount: total.totalamount,
               user_id: total.user_id,
@@ -227,10 +228,10 @@ export class OrderListComponent implements OnInit {
             }
             // console.log(sendOrder);
             let resMonitor: any = await this.monitorService.sendOrderToMonitor(sendOrder);
-            // console.log(resMonitor);
+            console.log(resMonitor);
             if (resMonitor) {
               let res: any = await this.order.sendOrderAll(this.teamID);
-              // console.log(res);
+
             }
             this.getOrderOwnerAndMember();
           }

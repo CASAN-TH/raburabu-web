@@ -15,6 +15,7 @@ import { ModalConfirmsComponent } from 'src/app/modal/modal-confirms/modal-confi
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  rewards: Array<any> = [];
   teamId: any;
   address: any;
   data: any = {
@@ -60,7 +61,7 @@ export class OrderComponent implements OnInit {
       this.getProd();
       let _id = await this.route.snapshot.paramMap.get('idOrder');
       this.idOrder = await JSON.parse(_id);
-      // console.log(this.idOrder);
+      console.log(this.idOrder);
       // console.log(this.address);
       if (this.idOrder) {
         this.getOrderById();
@@ -80,7 +81,7 @@ export class OrderComponent implements OnInit {
           this.address.address = address;
         });
         this.data.items = res.data.items;
-        // console.log(res.data.paymenttype.name);
+        console.log(this.data.items);
         let index = this.paymentType.findIndex(name => name === res.data.paymenttype.name);
         // console.log(index);
         this.namePayment = this.paymentType[index];
@@ -100,7 +101,7 @@ export class OrderComponent implements OnInit {
   async getProd() {
     try {
       let res: any = await this.prodService.order();
-      // console.log(res);
+      console.log(res);
       this.prodData = res.data;
       this.ngxSpinner.hide();
       // console.log(this.prodData);
@@ -123,26 +124,52 @@ export class OrderComponent implements OnInit {
         console.log(res);
         console.log(this.data);
         let i: any = this.data.items.findIndex(function (prod) {
+          console.log(prod)
           return prod.name === res.name
         });
+        let j: any = this.rewards.findIndex((data) => { return data.name == res.name })
         // console.log(check);
-        if (i < 0) {
-          this.data.items.push(res);
-        } else {
-          let sumTotal = this.data.items[i].totalqty + res.totalqty;
-          this.data.items[i].totalqty = sumTotal;
-          res.option[0].value.forEach(value => {
-            let j: any = this.data.items[i].option[0].value.findIndex(function (value2) {
-              return value.name === value2.name
+        if (res.reward === true) {
+          if (j < 0) {
+            this.rewards.push(res)
+            console.log(this.rewards)
+          } else {
+            let sumTotal = this.rewards[j].totalqty + res.totalqty;
+            this.rewards[j].totalqty = sumTotal;
+            res.option[0].value.forEach(value => {
+              let k: any = this.rewards[j].option[0].value.findIndex(function (value2) {
+                return value.name === value2.name
+              });
+              if (k < 0) {
+                this.rewards[j].option[0].value.push(value);
+              } else {
+                let sumQty = this.rewards[j].option[0].value[k].qty + value.qty
+                this.rewards[j].option[0].value[k].qty = sumQty
+              }
             });
-            if (j < 0) {
-              this.data.items[i].option[0].value.push(value);
-            } else {
-              let sumQty = this.data.items[i].option[0].value[j].qty + value.qty
-              this.data.items[i].option[0].value[j].qty = sumQty
-            }
-          });
+          }
+        } else {
+          if (i < 0) {
+            this.data.items.push(res);
+
+          } else {
+            let sumTotal = this.data.items[i].totalqty + res.totalqty;
+            this.data.items[i].totalqty = sumTotal;
+            res.option[0].value.forEach(value => {
+              let j: any = this.data.items[i].option[0].value.findIndex(function (value2) {
+                return value.name === value2.name
+              });
+              if (j < 0) {
+                this.data.items[i].option[0].value.push(value);
+              } else {
+                let sumQty = this.data.items[i].option[0].value[j].qty + value.qty
+                this.data.items[i].option[0].value[j].qty = sumQty
+              }
+            });
+          }
         }
+
+
         this.getProd();
       });
     });
@@ -182,6 +209,7 @@ export class OrderComponent implements OnInit {
             }
           ]
         },
+        rewards: this.rewards,
         items: this.data.items,
         paymenttype: {
           name: this.namePayment
@@ -189,15 +217,15 @@ export class OrderComponent implements OnInit {
         totalamount: this.data.totalamount,
         user_id: user.data._id
       }
-      // console.log(body);
+      // console.log(body)
       if (this.idOrder) {
         let res: any = await this.orderService.editOrder(this.idOrder, body);
-        // console.log(res);
+
         this.ngxSpinner.hide();
         this.router.navigate(['/order-list']);
       } else {
         let res: any = await this.orderService.saveOrder(body);
-        // console.log(res);
+
         this.ngxSpinner.hide();
         this.router.navigate(['/order-list']);
       }
@@ -214,6 +242,7 @@ export class OrderComponent implements OnInit {
   }
 
   deleteProd(item, i) {
+    console.log(item);
     const dialogRef = this.dialog.open(ModalConfirmsComponent, {
       width: '400px',
       data: {
@@ -226,7 +255,11 @@ export class OrderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
 
       if (result) {
-        this.data.items.splice(i, 1);
+        if (item.reward === true) {
+          this.rewards.splice(i, 1)
+        } else {
+          this.data.items.splice(i, 1);
+        }
         // this.data.totalamount = 0
         // this.data.items.forEach(sum => {
         //   this.data.totalamount += sum.amount

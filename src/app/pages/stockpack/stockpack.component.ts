@@ -89,7 +89,7 @@ export class StockpackComponent implements OnInit {
       this.complete = [];
       this.allMonitor = [];
       let res: any = await this.monitorService.getMonitorAll();
-      // console.log(res);
+      console.log(res);
       this.allMonitor = res.data;
       res.data.forEach(data => {
         if (data.status === "waitwithdrawal") {

@@ -101,6 +101,7 @@ export class SelectOptionComponent implements OnInit {
       // console.log(this.totalQty);
     });
     let data: any = {
+      reward: this.data.reward,
       name: this.data.name,
       price: this.data.price,
       option: [{
