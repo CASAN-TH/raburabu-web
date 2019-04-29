@@ -66,7 +66,7 @@ export class SideBarComponent implements OnInit {
   onGetProfile() {
     const dialogRef = this.dialog.open(ModalProfileComponent, {
       width: '800px',
-      height: '500px',
+      // height: '500px',
       // data: this.address,
       disableClose: false
     });
