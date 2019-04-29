@@ -102,7 +102,8 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6" *ngFor="let label2 of itm2.labels; let i=index">
-                    <mat-card class="m-3" [ngClass]="label2.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
+                    <mat-card class="m-3"
+                      [ngClass]="label2.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
                       <mat-card-content>
                         <div class="row">
                           <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
@@ -121,6 +122,21 @@
                         <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
                           <span>{{itm2.customer.tel}}</span></p>
                         <p class="ml-3"><small>{{itm2.paymenttype.name}}</small></p>
+                        <div *ngIf="itm2 && itm2.rewards">
+                          <div class="row" *ngFor="let reward2 of itm2.rewards">
+                            <p class="ml-3 mt-2" *ngIf="reward2 && reward2.name">{{reward2.name}}</p>
+                            <div class="col-12">
+                              <div class="row ml-1 mr-1" *ngFor="let optReward2 of reward2.option">
+                                <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center"
+                                  *ngFor="let valReward2 of optReward2.value">
+                                  <span class="font-option">
+                                    {{valReward2.name}} = {{valReward2.qty}}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="row" *ngFor="let prod of label2.productlist">
                           <p class="ml-3 mt-2">{{prod.name}}</p>
                           <div class="col-12">
@@ -188,7 +204,8 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6" *ngFor="let label3 of itm3.labels; let i=index">
-                    <mat-card class="m-3" [ngClass]="label3.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
+                    <mat-card class="m-3"
+                      [ngClass]="label3.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
                       <mat-card-content>
                         <div class="row">
                           <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
@@ -207,6 +224,21 @@
                         <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
                           <span>{{itm3.customer.tel}}</span></p>
                         <p class="ml-3"><small>{{itm3.paymenttype.name}}</small></p>
+                        <div *ngIf="itm3 && itm3.rewards">
+                          <div class="row" *ngFor="let reward3 of itm3.rewards">
+                            <p class="ml-3 mt-2" *ngIf="reward3 && reward3.name">{{reward3.name}}</p>
+                            <div class="col-12">
+                              <div class="row ml-1 mr-1" *ngFor="let optReward3 of reward3.option">
+                                <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center"
+                                  *ngFor="let valReward3 of optReward3.value">
+                                  <span class="font-option">
+                                    {{valReward3.name}} = {{valReward3.qty}}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="row" *ngFor="let prod of label3.productlist">
                           <p class="ml-3 mt-2">{{prod.name}}</p>
                           <div class="col-12">
@@ -262,7 +294,8 @@
                 </div>
                 <div class="row">
                   <div class="col-12 col-md-6" *ngFor="let label4 of itm4.labels; let i=index">
-                    <mat-card class="m-3" [ngClass]="label4.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
+                    <mat-card class="m-3"
+                      [ngClass]="label4.eprint === true ? 'bg-label-print , box-shadow-true' : 'box-shadow-false '">
                       <mat-card-content>
                         <div class="row">
                           <div class="col-12 text-right"><span>กล่องที่ {{i + 1}}</span></div>
@@ -281,6 +314,21 @@
                         <p class="mb-1 text-overflow ml-3"><span>โทร: </span>
                           <span>{{itm4.customer.tel}}</span></p>
                         <p class="ml-3"><small>{{itm4.paymenttype.name}}</small></p>
+                        <div *ngIf="itm4 && itm4.rewards">
+                          <div class="row" *ngFor="let reward4 of itm4.rewards">
+                            <p class="ml-3 mt-2" *ngIf="reward4 && reward4.name">{{reward4.name}}</p>
+                            <div class="col-12">
+                              <div class="row ml-1 mr-1" *ngFor="let optReward4 of reward4.option">
+                                <div class="col-4 col-md-3 col-lg-2 pt-1 pb-1 pl-0 pr-0 border-prod text-center"
+                                  *ngFor="let valReward4 of optReward4.value">
+                                  <span class="font-option">
+                                    {{valReward4.name}} = {{valReward4.qty}}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="row" *ngFor="let prod of label4.productlist">
                           <p class="ml-3 mt-2">{{prod.name}}</p>
                           <div class="col-12">
