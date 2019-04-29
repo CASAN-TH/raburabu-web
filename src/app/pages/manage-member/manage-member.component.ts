@@ -43,30 +43,14 @@ export class ManageMemberComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    // this.ngxSpinner.hide();
     this.ngxSpinner.show();
-    // let team: any = JSON.parse(window.localStorage.getItem(environment.apiUrl +'@team'));
-    // this.team_id = team.data._id
-    // if (!team) {
-    // let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // console.log(user)
     this.getMe();
-    // if (!user.data.ref1) {
-    //   this.router.navigate(['/home']);
-    // } else {
-    //   this.team_id = user.data.ref1;
-    //   this.user = user.data.roles[0];
-    //   this.getDataMember();
-    //   this.userId = user.data._id
-    //   this.chartData();
-    //   this.getMe();
-    // }
-
   }
 
   async getMe() {
     try {
-      let user: any = await this.teameServicec.me()
+      let user: any = await this.teameServicec.me();
+      window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(user));
       if (!user.data.ref1) {
         this.router.navigate(['/home']);
       } else {

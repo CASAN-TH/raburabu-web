@@ -28,10 +28,11 @@ export class HomeComponent implements OnInit {
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     // this.ngxSpinner.hide();
     this.ngxSpinner.show();
-    let res: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
+    let res: any = await this.teameService.me();
+    window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
     if (res && res.data) {
       if (res.data.roles[0] === 'user') {
         if (res.data.ref1) {
