@@ -31,7 +31,8 @@ export class AdminManageTeamComponent implements OnInit {
   async getTeam() {
     try {
       let res: any = await this.teameService.getTeam();
-      if (res) {
+      console.log(res);
+      if (res.data.length > 0) {
         this.dataTeam = res.data;
         this.dataTeam.forEach(data => {
           if (data.status === 'waitapprove') {

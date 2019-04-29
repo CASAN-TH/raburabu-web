@@ -51,7 +51,7 @@ export class SideBarComponent implements OnInit {
   onLogout() {
     this.userAuthSrv.logout();
     this.router.navigate(["/login"]);
-    window.localStorage.clear();
+    window.localStorage.clear(); 
   }
 
   onOrderList() {
