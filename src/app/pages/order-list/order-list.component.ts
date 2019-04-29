@@ -59,29 +59,20 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    // this.ngxSpinner.hide();
     this.ngxSpinner.show();
-    // this.order.onNewMessage().subscribe(msg => {
-    //   console.log('got a msg: ' + msg);
-    // });
-    let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
-    // console.log(user.data.roles[0]);
+    let user: any = await JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     if (user.data.roles[0] === 'user') {
       this.router.navigate(['/home']);
-      // console.log('asd');
     } else {
       this.user = user;
       let id: any = {
         userid: this.user.data._id
       }
-      // console.log(id);
       this.idMember.push(id);
       this.rolesUser = user.data.roles[0];
       this.teamID = user.data.ref1;
-      // console.log(this.teamID)
       this.getTeam();
       this.getOrderOwnerAndMember();
-      // console.log(this.rolesUser);
       if (!user.data.ref1) {
         this.router.navigate(['/home']);
         // console.log('asd');
@@ -94,11 +85,11 @@ export class OrderListComponent implements OnInit {
   async getOrderList() {
     try {
       let res: any = await this.order.orderList();
-      this.dataorder = res.data;
+      this.dataorder = await res.data;
       this.ngxSpinner.hide();
-      // console.log(this.dataorder)
     } catch (error) {
-      // console.log(error)
+      this.ngxSpinner.hide();
+      console.log(error)
     }
   }
 
@@ -231,7 +222,6 @@ export class OrderListComponent implements OnInit {
             // console.log(resMonitor);
             if (resMonitor) {
               let res: any = await this.order.sendOrderAll(this.teamID);
-
             }
             this.getOrderOwnerAndMember();
           }
@@ -240,7 +230,6 @@ export class OrderListComponent implements OnInit {
         console.log(error);
       }
     }
-
   }
 }
 
