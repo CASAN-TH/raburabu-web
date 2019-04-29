@@ -34,10 +34,14 @@ export class SideBarComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let res: any = await this.teameService.me();
+    const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
+    if(token){
+          let res: any = await this.teameService.me();
     if (res) {
       this.userAuth = res.data
     }
+    }
+
   }
 
   onManageMember() {
