@@ -31,17 +31,19 @@ export class AdminManageTeamComponent implements OnInit {
   async getTeam() {
     try {
       let res: any = await this.teameService.getTeam();
-      this.dataTeam = res.data;
-      this.dataTeam.forEach(data => {
-        if (data.status === 'waitapprove') {
-          this.waitApprove.push(data);
-        } else if (data.status === 'approve') {
-          this.approve.push(data);
-        }
+      if (res) {
+        this.dataTeam = res.data;
+        this.dataTeam.forEach(data => {
+          if (data.status === 'waitapprove') {
+            this.waitApprove.push(data);
+          } else if (data.status === 'approve') {
+            this.approve.push(data);
+          }
+          this.ngXspinner.hide();
+        });
+      } else {
         this.ngXspinner.hide();
-      });
-      this.ngXspinner.hide();
-
+      }
     } catch (error) {
       this.ngXspinner.hide();
       console.log(error);

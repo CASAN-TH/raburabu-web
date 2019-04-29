@@ -105,19 +105,21 @@ export class ModalAddressComponent implements OnInit {
   goForward(stepper: MatStepper) {
     console.log(this.data);
     var a = 0;
-    this.customersData.forEach(cust => {
-      a += 1;
-      if(cust.tel === this.data.tel){
-        this.data.firstname = cust.firstname;
-        this.data.lastname = cust.lastname;
-        this.data.address = cust.address[cust.address.length-1];
-      }
-      if(a = this.customersData.length){
+    if (this.customersData.length > 0) {
+      this.customersData.forEach(cust => {
+        a += 1;
+        if (cust.tel === this.data.tel) {
+          this.data.firstname = cust.firstname;
+          this.data.lastname = cust.lastname;
+          this.data.address = cust.address[cust.address.length - 1];
+        }
+        if (a = this.customersData.length) {
+          stepper.next();
+        }
+      });
+    } else {
       stepper.next();
     }
-    });
-    
-    
   }
 
   checkNumber(e) {
