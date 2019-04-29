@@ -87,15 +87,15 @@ export class AdminManageTeamComponent implements OnInit {
         disableClose: true
       });
       dialogRef.componentInstance.outPutRemark.subscribe(async result => {
-        console.log(result)
+        // console.log(result)
         if (result) {
           let body = {
             status: 'reject',
             remark: result
           }
-          console.log(body);
+          // console.log(body);
           let res: any = await this.teameService.adminManageTeam(item._id, body);
-          console.log(res);
+          // console.log(res);
           this.waitApprove = [];
           this.approve = [];
           this.getTeam();

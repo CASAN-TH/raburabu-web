@@ -61,7 +61,7 @@ export class OrderComponent implements OnInit {
       this.getProd();
       let _id = await this.route.snapshot.paramMap.get('idOrder');
       this.idOrder = await JSON.parse(_id);
-      console.log(this.idOrder);
+      // console.log(this.idOrder);
       // console.log(this.address);
       if (this.idOrder) {
         this.getOrderById();
@@ -81,7 +81,7 @@ export class OrderComponent implements OnInit {
           this.address.address = address;
         });
         this.data.items = res.data.items;
-        console.log(this.data.items);
+        // console.log(this.data.items);
         let index = this.paymentType.findIndex(name => name === res.data.paymenttype.name);
         // console.log(index);
         this.namePayment = this.paymentType[index];
@@ -101,7 +101,7 @@ export class OrderComponent implements OnInit {
   async getProd() {
     try {
       let res: any = await this.prodService.order();
-      console.log(res);
+      // console.log(res);
       this.prodData = res.data;
       this.ngxSpinner.hide();
       // console.log(this.prodData);
@@ -121,10 +121,10 @@ export class OrderComponent implements OnInit {
     });
     dialogRef.componentInstance.sendData.subscribe(res => {
       dialogRef.afterClosed().subscribe(result => {
-        console.log(res);
-        console.log(this.data);
+        // console.log(res);
+        // console.log(this.data);
         let i: any = this.data.items.findIndex(function (prod) {
-          console.log(prod)
+          // console.log(prod)
           return prod.name === res.name
         });
         let j: any = this.rewards.findIndex((data) => { return data.name == res.name })
@@ -132,7 +132,7 @@ export class OrderComponent implements OnInit {
         if (res.reward === true) {
           if (j < 0) {
             this.rewards.push(res)
-            console.log(this.rewards)
+            // console.log(this.rewards)
           } else {
             let sumTotal = this.rewards[j].totalqty + res.totalqty;
             this.rewards[j].totalqty = sumTotal;
@@ -242,7 +242,7 @@ export class OrderComponent implements OnInit {
   }
 
   deleteProd(item, i) {
-    console.log(item);
+    // console.log(item);
     const dialogRef = this.dialog.open(ModalConfirmsComponent, {
       width: '400px',
       data: {

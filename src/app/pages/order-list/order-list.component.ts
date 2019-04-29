@@ -228,7 +228,7 @@ export class OrderListComponent implements OnInit {
             }
             // console.log(sendOrder);
             let resMonitor: any = await this.monitorService.sendOrderToMonitor(sendOrder);
-            console.log(resMonitor);
+            // console.log(resMonitor);
             if (resMonitor) {
               let res: any = await this.order.sendOrderAll(this.teamID);
 

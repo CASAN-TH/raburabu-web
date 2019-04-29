@@ -40,7 +40,7 @@ export class OwnDashboadComponent implements OnInit {
     let user = JSON.parse(window.localStorage.getItem(environment.apiUrl + '@user'));
     this.userId = user.data._id
     this.team_id = user.data.ref1;
-    console.log(user);
+    // console.log(user);
     this.getDataMember();
   }
 
@@ -93,15 +93,15 @@ export class OwnDashboadComponent implements OnInit {
           this.dataUserID = e;
         }
       })
-      console.log(this.dataUserID);
+      // console.log(this.dataUserID);
       this.dataTeam.members.forEach(members => {
         if (members.status === 'waitapprove') {
           this.statusWaitApprove.push(members);
-          console.log(this.statusWaitApprove)
+          // console.log(this.statusWaitApprove)
         }
         if (members.status === 'staff') {
           this.statusMember.push(members);
-          console.log(this.statusMember);
+          // console.log(this.statusMember);
         }
       });
       this.ngxSpinner.hide();
@@ -131,7 +131,7 @@ export class OwnDashboadComponent implements OnInit {
 
           }
           let res: any = await this.teameServicec.approveMember(this.team_id, dataApprove);
-          console.log(res)
+          // console.log(res)
           if (res) {
             this.statusWaitApprove = []
             this.dataUserID = ''

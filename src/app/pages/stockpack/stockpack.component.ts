@@ -89,7 +89,7 @@ export class StockpackComponent implements OnInit {
       this.complete = [];
       this.allMonitor = [];
       let res: any = await this.monitorService.getMonitorAll();
-      console.log(res);
+      // console.log(res);
       this.allMonitor = res.data;
       res.data.forEach(data => {
         if (data.status === "waitwithdrawal") {
@@ -106,11 +106,7 @@ export class StockpackComponent implements OnInit {
         }
       });
       this.ngxSpiner.hide();
-      console.log(this.waitwithdrawal);
-      console.log(this.waitpack);
-      console.log(this.waitshipping);
-      console.log(this.complete);
-    } catch (error) {
+         } catch (error) {
       console.log(error);
       this.ngxSpiner.hide();
     }
@@ -207,7 +203,6 @@ export class StockpackComponent implements OnInit {
   }
 
   async printLabelAll(item) {
-    console.log(item);
     window.open(environment.apiUrl + '/api/monitor/reportlableall/' + item._id)
     setTimeout(() => {
       this.ngOnInit();
@@ -270,7 +265,6 @@ export class StockpackComponent implements OnInit {
   }
 
   async deleteLabel(item) {
-    console.log(item);
     const dialogRef = this.dialog.open(ModalConfirmsComponent, {
       width: '400px',
       data: { title: "การลบใบปะหน้ากล่อง", message: "คุณต้องการยืนยันการลบใบปะหน้ากล่องหรือไม่" },

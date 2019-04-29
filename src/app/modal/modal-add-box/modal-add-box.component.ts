@@ -41,7 +41,7 @@ export class ModalAddBoxComponent implements OnInit {
   async getDataLabel() {
     try {
       let res: any = await this.monitorService.getMonitorAll()
-      console.log(res);
+      // console.log(res);
       res.data.forEach(data => {
         if (data.status === 'waitpack') {
           data.orders.forEach(order => {
@@ -55,7 +55,7 @@ export class ModalAddBoxComponent implements OnInit {
           });
         }
       });
-      console.log(this.dataLabel);
+      // console.log(this.dataLabel);
     } catch (error) {
 
     }
@@ -129,7 +129,7 @@ export class ModalAddBoxComponent implements OnInit {
       let body = {
         productlist: this.prodData
       }
-      console.log(body);
+      // console.log(body);
       let resp = await this.monitorService.addLabel(this.data.order_id, body)
       if (resp) {
         this.thisDialogRef.close('clse');
@@ -149,7 +149,7 @@ export class ModalAddBoxComponent implements OnInit {
           value.active = this.onCheck
         });
       });
-      console.log(product);
+      // console.log(product);
       if (this.onCheck) {
         this.selectData.push(product)
         this.prodData.push({
@@ -167,7 +167,7 @@ export class ModalAddBoxComponent implements OnInit {
         this.prodData = [];
       }
     });
-    console.log(this.prodData);
+    // console.log(this.prodData);
     this.checkSelectAll()
   }
 
@@ -228,11 +228,11 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   selectProdData(e, item, i, j, k, option, product) {
-    console.log(item);
-    console.log(product);
+    // console.log(item);
+    // console.log(product);
     if (item.active === false) {
       let indexProd = this.prodData.findIndex(function (data) { return data.name === product.name });
-      console.log(indexProd);
+      // console.log(indexProd);
       let vOption = [];
       if (indexProd >= 0) {
         let iV = 0;
@@ -243,7 +243,7 @@ export class ModalAddBoxComponent implements OnInit {
           }
           iV++;
         });
-        console.log(vOption);
+        // console.log(vOption);
         this.prodData[indexProd].option[0].value = vOption
         if (this.prodData[indexProd].option[0].value.length < 1) {
           this.prodData.splice(indexProd, 1)
@@ -284,7 +284,7 @@ export class ModalAddBoxComponent implements OnInit {
         }
       }
     }
-    console.log(this.prodData);
+    // console.log(this.prodData);
   }
 
   selectProductlist(item, i) {
@@ -307,7 +307,7 @@ export class ModalAddBoxComponent implements OnInit {
         } else {
           this.selectData.forEach(res => {
             let l = this.selectData.findIndex((data) => { return data.name === this.dataLabel.productlist[i].name });
-            console.log(l);
+            // console.log(l);
             if (l >= 0) {
               this.selectData.splice(l, 1)
             }
@@ -320,9 +320,9 @@ export class ModalAddBoxComponent implements OnInit {
   }
 
   selectProdListData(item) {
-    console.log(item);
+    // console.log(item);
     let iProd = this.prodData.findIndex((data) => { return data.name === item.name });
-    console.log(iProd);
+    // console.log(iProd);
     if (item.active === true) {
       if (iProd >= 0) {
         this.prodData[iProd].option = []
@@ -344,7 +344,7 @@ export class ModalAddBoxComponent implements OnInit {
         this.prodData.splice(iProd, 1);
       }
     }
-    console.log(this.prodData);
+    // console.log(this.prodData);
   }
 
   checkForSelectAll() {

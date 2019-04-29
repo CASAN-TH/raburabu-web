@@ -71,7 +71,7 @@ export class ModalAddressComponent implements OnInit {
 
     try {
       let res: any = await this.customerService.customerList();
-      console.log(res.data);
+      // console.log(res.data);
       this.customersData = res.data;
 
     } catch (error) {
@@ -103,7 +103,7 @@ export class ModalAddressComponent implements OnInit {
   }
 
   goForward(stepper: MatStepper) {
-    console.log(this.data);
+    // console.log(this.data);
     var a = 0;
     if (this.customersData.length > 0) {
       this.customersData.forEach(cust => {

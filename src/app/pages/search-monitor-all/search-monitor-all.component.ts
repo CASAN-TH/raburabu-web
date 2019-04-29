@@ -39,7 +39,7 @@ export class SearchMonitorAllComponent implements OnInit {
     // this.ngxSpiner.hide();
     this.ngxSpiner.show();
     let user: any = JSON.parse(window.localStorage.getItem(environment.apiUrl + "@user"));
-    console.log(user);
+    // console.log(user);
     this.user = user.data;
     // console.log(user);
     if (this.user.roles[0] === 'owner') {
@@ -214,7 +214,7 @@ export class SearchMonitorAllComponent implements OnInit {
   }
 
   deleteLabel(item) {
-    console.log(item);
+    // console.log(item);
     const dialogRef = this.dialog.open(ModalConfirmsComponent, {
       width: '400px',
       data: { title: "การลบใบปะหน้ากล่อง", message: "คุณต้องการยืนยันการลบใบปะหน้ากล่องหรือไม่" },

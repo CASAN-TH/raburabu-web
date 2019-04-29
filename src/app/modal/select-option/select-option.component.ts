@@ -44,7 +44,7 @@ export class SelectOptionComponent implements OnInit {
       });
     });
     this.dataBinding = this.data
-    console.log(this.dataBinding)
+    // console.log(this.dataBinding)
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -57,13 +57,13 @@ export class SelectOptionComponent implements OnInit {
   }
 
   selectProduct(i) {
-    console.log(i)
+    // console.log(i)
     this.selectOption.push(i);
   }
 
   next() {
     this.selectOption
-    console.log(this.selectOption)
+    // console.log(this.selectOption)
   }
 
   nextconfirm(stepper: MatStepper) {
@@ -127,7 +127,7 @@ export class SelectOptionComponent implements OnInit {
   selectall() {
     this.selectOption = [];
     this.dataBinding.option.forEach(opt => {
-      console.log(opt)
+      // console.log(opt)
       opt.value.forEach(val => {
         val.active = this.checked;
         if (this.checked) {
@@ -142,7 +142,7 @@ export class SelectOptionComponent implements OnInit {
   }
 
   select(itm, i, k) {
-    console.log(itm);
+    // console.log(itm);
     if (!this.dataBinding.option[k].value[i].active) {
       this.dataBinding.option[k].value[i].active = true
       this.dataBinding.option[k].value[i].qty = 1

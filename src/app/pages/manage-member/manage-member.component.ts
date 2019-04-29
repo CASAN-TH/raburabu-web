@@ -209,7 +209,7 @@ export class ManageMemberComponent implements OnInit {
 
           }
           let res: any = await this.teameServicec.approveMember(this.team_id, dataApprove);
-          console.log(res)
+          // console.log(res)
           if (res) {
             this.statusWaitApprove = []
             this.dataUserID = ''

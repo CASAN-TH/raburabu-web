@@ -53,7 +53,7 @@ export class FilterKeywordPipe implements PipeTransform {
               }
             });
             if (res4.length < 1) {
-              console.log('ไม่เจอไรเลยอะ');
+              // console.log('ไม่เจอไรเลยอะ');
               // let res5: any = [];
               // items.forEach(itm => {
               //   let resLname: any = itm.orders.filter(it => it.customer.lastname.indexOf(filter) !== -1);

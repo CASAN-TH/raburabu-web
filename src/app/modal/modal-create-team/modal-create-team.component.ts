@@ -34,7 +34,7 @@ export class ModalCreateTeamComponent implements OnInit {
         user_id: this.user_id
       }
       let res: any = await this.teameService.createTeam(creteTame);
-      console.log(res);
+      // console.log(res);
       // window.localStorage.setItem(environment.apiUrl + '@team', JSON.stringify(res));
       let resMe: any = await this.teameService.me()
       if (resMe) {

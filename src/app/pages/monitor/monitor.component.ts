@@ -117,10 +117,6 @@ export class MonitorComponent implements OnInit {
       }
     });
     this.ngxSpiner.hide();
-    console.log(this.waitwithdrawal);
-    console.log(this.waitpack);
-    console.log(this.waitshipping);
-    console.log(this.complete);
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {
@@ -209,8 +205,8 @@ export class MonitorComponent implements OnInit {
 
 
   }
-  selectbox(monitor,order,box) {
-    console.log(box);
+  selectbox(monitor, order, box) {
+    // console.log(box);
     let data = {
       order_id: order._id,
       monitor_id: monitor._id,
@@ -294,7 +290,7 @@ export class MonitorComponent implements OnInit {
 
   }
   printLabel(item) {
-    console.log(item)
+    // console.log(item)
     window.open(environment.apiUrl + '/api/monitor/reportlable/' + item._id)
   }
 
