@@ -6,6 +6,7 @@ import { SideBarService } from './side-bar.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
+import { TeameServiceService } from 'src/app/services/teams-service/teame-service.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -23,7 +24,7 @@ export class SideBarComponent implements OnInit {
     public sidenavService: SideBarService,
     private spinner: NgxSpinnerService,
     public dialog: MatDialog,
-
+    public teameService: TeameServiceService,
   ) {
     this.userAuthSrv.isLoggedIn.subscribe(value => {
       this.userAuth = this.userAuthSrv.user;
@@ -32,7 +33,12 @@ export class SideBarComponent implements OnInit {
     this.userAuth = this.userAuthSrv.user;
   }
 
-  ngOnInit() { }
+  async ngOnInit() {
+    let res: any = await this.teameService.me();
+    if (res) {
+      this.userAuth = res.data
+    }
+  }
 
   onManageMember() {
     this.router.navigate(["/manage-member"]);
