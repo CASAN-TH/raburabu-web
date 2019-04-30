@@ -19,6 +19,6 @@
     <button name="btnCancel" class="mr-4" mat-stroked-button color="accent" (click)="cancel()">ยกเลิก</button>
   </div>
   <div name="divBtnConfirm" class="col-6 text-left">
-    <button name="btnConfirm" class="ml-4 border-btn" mat-stroked-button color="accent" (click)="confirm()">ตกลง</button>
+    <button name="btnConfirm" class="ml-4 border-btn" mat-stroked-button color="accent" [disabled]="!remark" (click)="confirm()">ตกลง</button>
   </div>
 </div>
