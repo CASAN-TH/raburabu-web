@@ -10,7 +10,6 @@ export const environment = {
   // apiUrl: "http://18.136.120.17"
   // apiUrl: "https://raburabu-api.lamunphan.com"
   apiUrl: "http://52.77.235.7"
-  
 };
 
 /*
