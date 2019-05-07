@@ -19,10 +19,10 @@ export class LoginComponent implements OnInit {
   };
   images = [
     {
-      "url": "https://res.cloudinary.com/dyiuidzsc/image/upload/v1556098232/rabuProduct/22087.jpg"
+      "url": "https://res.cloudinary.com/dyiuidzsc/image/upload/v1557195850/rabuProduct/%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%9B%E0%B8%81_190507_0002.jpg"
     },
     {
-      "url": "https://res.cloudinary.com/dyiuidzsc/image/upload/v1556098232/rabuProduct/22088.jpg"
+      "url": "https://res.cloudinary.com/dyiuidzsc/image/upload/v1557195850/rabuProduct/%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%9B%E0%B8%81_190507_0001.jpg"
     }
   ]
   hide = true;
