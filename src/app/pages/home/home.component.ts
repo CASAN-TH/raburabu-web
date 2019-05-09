@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     this.ngxSpinner.show();
     let res: any = await this.teameService.me();
     window.localStorage.setItem(environment.apiUrl + '@user', JSON.stringify(res));
-    if (res && res.data) {
+    if (res && res.data && res.data.roles) {
       if (res.data.roles[0] === 'user') {
         if (res.data.ref1) {
           if (res.data.ref1 === '') {

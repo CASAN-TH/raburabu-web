@@ -44,5 +44,11 @@
         <span class="ml-3">ออกจากระบบ</span>
       </a>
     </mat-nav-list>
+    <mat-nav-list class="pt-0" *ngIf="userAuth && !userAuth.roles ">
+      <a mat-list-item (click)="onLogout();sidenavService.closeNav();">
+        <img src="./../../../assets/images/logout.png" class="img-list">
+        <span class="ml-3">ออกจากระบบ</span>
+      </a>
+    </mat-nav-list>
   </div>
 </div>

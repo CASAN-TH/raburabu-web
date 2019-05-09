@@ -28,18 +28,19 @@ export class SideBarComponent implements OnInit {
   ) {
     this.userAuthSrv.isLoggedIn.subscribe(value => {
       this.userAuth = this.userAuthSrv.user;
-      // console.log(this.userAuth);
     });
     this.userAuth = this.userAuthSrv.user;
   }
 
   async ngOnInit() {
     const token = window.localStorage.getItem(`token@${environment.appName}-${environment.environment}`);
-    if(token){
-          let res: any = await this.teameService.me();
-    if (res) {
-      this.userAuth = res.data
-    }
+    if (token) {
+      let res: any = await this.teameService.me();
+      console.log(res);
+      if (res) {
+        this.userAuth = res.data
+        console.log(this.userAuth);
+      }
     }
 
   }
@@ -51,7 +52,7 @@ export class SideBarComponent implements OnInit {
   onLogout() {
     this.userAuthSrv.logout();
     this.router.navigate(["/login"]);
-    window.localStorage.clear(); 
+    window.localStorage.clear();
   }
 
   onOrderList() {
