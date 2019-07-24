@@ -1,0 +1,33 @@
+<div class="content">
+  <div class="row pt-3 pr-3">
+    <div class="col-12 col-md-7">
+      <div class="dropzone" (drop)="drop($event)" (dragover)="allowDrop($event)">
+        <label for="file-input">
+          <p>
+            <mat-icon>backup</mat-icon>
+          </p>
+          <p>คุณสามารถลากและปล่อยไฟล์ Excel ในนี้เพื่ออัพโหลด</p>
+          <p>หรือ คลิ๊กเพื่อเลือกไฟล์ Excel จากไดเรกทอรีของท่าน</p>
+          <input name="detectFiles" id="file-input" type="file" (change)="detectFiles($event)" accept=".xls,.xlsx" />
+        </label>
+      </div>
+    </div>
+    <div class="col-12 col-md-5">
+      <div class="row dowload-panal">
+        <div class="col-8">
+          <h3>ดาวน์โหลดไฟล์ต้นแบบ</h3>
+          <p>
+            <small>
+              <ng-content></ng-content>
+            </small>
+          </p>
+          <p><small>สนับสนุนการใช้งานเฉพาะไฟล์ excel เท่านั้น </small></p>
+        </div>
+        <div class="col-4">
+          <button mat-raised-button color="accent">ดาวน์โหลด</button>
+        </div>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</div>
