@@ -8,8 +8,8 @@ export const environment = {
   appName: "raburabu-web",
   // apiUrl: "http://54.251.134.2"
   // apiUrl: "http://18.136.120.17"
-  // apiUrl: "https://raburabu-api.lamunphan.com"
-  apiUrl: "http://52.77.235.7"
+  apiUrl: "https://raburabu-api.lamunphan.com"
+  // apiUrl: "http://52.77.235.7"
 };
 
 /*
