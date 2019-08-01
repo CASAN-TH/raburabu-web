@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
 export class ImportOrdersComponent implements OnInit {
 
   fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-  data: Array<any>;
+  data: any;
 
   constructor(public ngxSpinner: NgxSpinnerService, private snackBar: MatSnackBar) { }
 
@@ -76,7 +76,11 @@ export class ImportOrdersComponent implements OnInit {
         const json = XLSX.utils.sheet_to_json(
           workbook.Sheets[workbook.SheetNames[0]]
         );
-        this.data = json;
+        // console.log(file);
+        this.data = {
+          filename : file.name,
+          data: json
+        };
         console.log(this.data);
         // this.uploadService.loadDataSuccess.emit(json);
         this.ngxSpinner.hide();
