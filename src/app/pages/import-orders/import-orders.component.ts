@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as XLSX from "xlsx";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import { OrderService } from 'src/app/services/order/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-import-orders',
@@ -13,7 +15,11 @@ export class ImportOrdersComponent implements OnInit {
   fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
   data: any;
 
-  constructor(public ngxSpinner: NgxSpinnerService, private snackBar: MatSnackBar) { }
+  constructor(public ngxSpinner: NgxSpinnerService,
+    private snackBar: MatSnackBar,
+    private orderService: OrderService,
+    public router: Router,
+  ) { }
 
   ngOnInit() {
   }
@@ -63,7 +69,7 @@ export class ImportOrdersComponent implements OnInit {
       oReq.open("GET", event.target.result, true);
       oReq.responseType = "arraybuffer";
 
-      oReq.onload = e => {
+      oReq.onload = async e => {
         const arraybuffer = oReq.response;
         /* convert data to binary string */
         const data = new Uint8Array(arraybuffer);
@@ -78,12 +84,29 @@ export class ImportOrdersComponent implements OnInit {
         );
         // console.log(file);
         this.data = {
-          filename : file.name,
+          filename: file.name,
           data: json
         };
-        console.log(this.data);
-        // this.uploadService.loadDataSuccess.emit(json);
-        this.ngxSpinner.hide();
+        this.data.data.forEach(item => {
+          const mapData = item;
+          // tslint:disable-next-line: forin
+          for (const prop in mapData) {
+            const fieldName = prop.replace(/(\r\n|\n|\r)/gm, '_').split('_(')[0].replace(' ', '').replace('.', '').replace('**','reward').toLowerCase();
+            mapData[fieldName] = mapData[prop];
+            delete mapData[prop];
+          }
+        });
+       console.log(this.data);
+        try {
+          const res: any = await this.orderService.importOrders(this.data);
+          if (res) {
+            this.ngxSpinner.hide();
+            this.router.navigate(['/order-list']);
+          }
+        } catch (error) {
+          console.log(error);
+          this.ngxSpinner.hide();
+        }
       };
       oReq.send();
     };

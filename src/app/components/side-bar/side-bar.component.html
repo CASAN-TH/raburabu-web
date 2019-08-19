@@ -16,6 +16,11 @@
         <img src="./../../../assets/images/man.png" class="img-list">
         <span class="ml-3">บัญชีผู้ใช้</span>
       </a>
+      <a mat-list-item (click)="onImport();sidenavService.closeNav();"
+        *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner'">
+        <img src="./../../../assets/images/shopping-bag.png" class="img-list">
+        <span class="ml-3">นำเข้าข้อมูลการขาย</span>
+      </a>
       <a mat-list-item (click)="onOrderList();sidenavService.closeNav();"
         *ngIf="userAuth.roles[0] === 'staff' || userAuth.roles[0] === 'owner'">
         <img src="./../../../assets/images/shopping-bag.png" class="img-list">

@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: "monitor-oldest", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
   { path: "search-monitor", component: SearchMonitorAllComponent, canActivate: [AuthGuardService] },
-  { path: "import-orders", component: ImportOrdersComponent}
+  { path: "import-orders", component: ImportOrdersComponent, canActivate: [AuthGuardService]}
 
 
 ];

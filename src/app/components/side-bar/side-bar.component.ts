@@ -59,6 +59,10 @@ export class SideBarComponent implements OnInit {
     this.router.navigate(["/order-list"]);
   }
 
+  onImport() {
+    this.router.navigate(["/import-orders"]);
+  }
+
   onMonitoring() {
     this.router.navigate(["/order-list"]);
   }

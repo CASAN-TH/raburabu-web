@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class OrderService {
   // private socket: SocketIOClient.Socket;
-  constructor(public http: HttpClient, ) { 
+  constructor(public http: HttpClient, ) {
     // this.socket = io('http://localhost:3000');
   }
 
@@ -43,6 +43,10 @@ export class OrderService {
   }
   sendOrderAll(id) {
     return this.http.put(environment.apiUrl + '/api/order/sendorder/' + id, null, { headers: this.authorizationHeader() }).toPromise();
+  }
+
+  importOrders(body){
+    return this.http.post(environment.apiUrl + '/api/order/import', body, { headers: this.authorizationHeader() }).toPromise();
   }
 
 }
