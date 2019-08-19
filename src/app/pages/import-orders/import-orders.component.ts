@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
 import { OrderService } from 'src/app/services/order/order.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-import-orders',
@@ -19,6 +20,7 @@ export class ImportOrdersComponent implements OnInit {
     private snackBar: MatSnackBar,
     private orderService: OrderService,
     public router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -91,12 +93,12 @@ export class ImportOrdersComponent implements OnInit {
           const mapData = item;
           // tslint:disable-next-line: forin
           for (const prop in mapData) {
-            const fieldName = prop.replace(/(\r\n|\n|\r)/gm, '_').split('_(')[0].replace(' ', '').replace('.', '').replace('**','reward').toLowerCase();
+            const fieldName = prop.replace(/(\r\n|\n|\r)/gm, '_').split('_(')[0].replace(' ', '').replace('.', '').replace('**', 'reward').toLowerCase();
             mapData[fieldName] = mapData[prop];
             delete mapData[prop];
           }
         });
-       console.log(this.data);
+        console.log(this.data);
         try {
           const res: any = await this.orderService.importOrders(this.data);
           if (res) {
@@ -112,4 +114,20 @@ export class ImportOrdersComponent implements OnInit {
     };
   }
 
+
+  download() {
+    // tslint:disable-next-line: max-line-length
+    this.http.get("https://res.cloudinary.com/domizgt2v/raw/upload/v1566254100/excel-template/ImportConsignmentNote_-V1_avclft.xlsx", { responseType: "arraybuffer" })
+      .subscribe(response => this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+  }
+
+  downLoadFile(data: any, type: string) {
+    const blob = new Blob([data], { type: type });
+    const url = window.URL.createObjectURL(blob);
+    const pwa = window.open(url);
+    // tslint:disable-next-line: triple-equals
+    if (!pwa || pwa.closed || typeof pwa.closed == "undefined") {
+      alert("Please disable your Pop-up blocker and try again.");
+    }
+  }
 }
