@@ -84,6 +84,7 @@ export class ModalAddressComponent implements OnInit {
   async getAddress() {
     if (this.address) {
       // console.log(this.address);
+
       this.data.tel = this.address.tel;
       this.data.firstname = this.address.firstname;
       this.data.lastname = this.address.lastname;
@@ -111,6 +112,11 @@ export class ModalAddressComponent implements OnInit {
         if (cust.tel === this.data.tel) {
           this.data.firstname = cust.firstname;
           this.data.lastname = cust.lastname;
+
+          console.log(cust.address[cust.address.length - 1]);
+
+          cust.address[cust.address.length - 1].houseno = (cust.address[cust.address.length - 1].houseno).split(" ")[0];
+
           this.data.address = cust.address[cust.address.length - 1];
         }
         if (a = this.customersData.length) {

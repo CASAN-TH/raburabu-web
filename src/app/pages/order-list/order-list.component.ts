@@ -103,6 +103,10 @@ export class OrderListComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
 
         if (result) {
+          // tslint:disable-next-line: max-line-length
+          console.log(gogo);
+          // tslint:disable-next-line: max-line-length
+          gogo.address.houseno = `${gogo.address.houseno} ต.${gogo.address.subdistrict} อ.${gogo.address.district} จ.${gogo.address.province}`;
           this.router.navigate(['/order', { title: JSON.stringify(gogo), si: false }]);
           // console.log(gogo);
         }

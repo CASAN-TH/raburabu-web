@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit {
   }
   namePayment: any = '';
   paymentType: Array<any> = [
-    'เก็บเงินปลายทาง'
+    'ปลายทาง'
     , 'โอนแล้ว'
 
   ];
