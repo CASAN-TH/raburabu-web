@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order/order.service';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
-import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-order-list',
