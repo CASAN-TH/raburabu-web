@@ -1,3 +1,16 @@
-<p>
-  admin-manage-product works!
-</p>
+<div class="row">
+  <div class="col-12 mt-4 mb-4">
+    <h4 class="mt-0">รายการสินค้า</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4 mb-3" *ngFor="let item of productData">
+    <mat-card (click)="openModalProduct(item._id)">
+      <img mat-card-image [src]="item.image">
+      <mat-card-content>
+        <p>{{item.name}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

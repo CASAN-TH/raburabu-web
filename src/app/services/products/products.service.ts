@@ -21,4 +21,8 @@ export class ProductsService {
   order() {
     return this.http.get(environment.apiUrl + '/api/products', { headers: this.authorizationHeader() }).toPromise();
   }
+
+  getProductById(id) {
+    return this.http.get(environment.apiUrl + '/api/products/' + id, { headers: this.authorizationHeader() }).toPromise();
+  }
 }

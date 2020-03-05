@@ -49,7 +49,7 @@ import { FilterKeywordPipe } from './pipes/filter-keyword.pipe';
 import { SearchMonitorAllComponent } from './pages/search-monitor-all/search-monitor-all.component';
 import { ImportOrdersComponent } from './pages/import-orders/import-orders.component';
 import { AdminManageProductComponent } from './pages/admin-manage-product/admin-manage-product.component';
-import { ModalProductComponent } from './modal/modal-product/modal-product.component';
+import { AdminProductDetailComponent } from './pages/admin-product-detail/admin-product-detail.component';
 
 
 const apiSrvCfg = environment;
@@ -86,7 +86,7 @@ const apiSrvCfg = environment;
     SearchMonitorAllComponent,
     ImportOrdersComponent,
     AdminManageProductComponent,
-    ModalProductComponent,
+    AdminProductDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +119,6 @@ const apiSrvCfg = environment;
     ModalRemarkComponent,
     ModalProfileComponent,
     ModalMaxBoxComponent,
-    ModalProductComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

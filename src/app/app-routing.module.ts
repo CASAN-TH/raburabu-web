@@ -18,6 +18,7 @@ import { StockpackComponent } from "./pages/stockpack/stockpack.component";
 import { SearchMonitorAllComponent } from "./pages/search-monitor-all/search-monitor-all.component";
 import { ImportOrdersComponent } from "./pages/import-orders/import-orders.component";
 import { AdminManageProductComponent } from "./pages/admin-manage-product/admin-manage-product.component";
+import { AdminProductDetailComponent } from "./pages/admin-product-detail/admin-product-detail.component";
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: "order", component: OrderComponent, canActivate: [AuthGuardService] },
   { path: "admin-manage-team", component: AdminManageTeamComponent, canActivate: [AuthGuardService] },
   { path: "admin-manage-product", component: AdminManageProductComponent, canActivate: [AuthGuardService]},
+  { path: "admin-product-detail", component: AdminProductDetailComponent, canActivate: [AuthGuardService]},
   { path: "order-report-detail", component: OrderReportDetailComponent, canActivate: [AuthGuardService] },
   { path: "monitor-oldest", component: MonitorComponent, canActivate: [AuthGuardService] },
   { path: "graph-all", component: GraphAllComponent, canActivate: [AuthGuardService] },
