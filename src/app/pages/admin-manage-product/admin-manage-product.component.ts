@@ -35,7 +35,12 @@ export class AdminManageProductComponent implements OnInit {
     }
   }
 
-  async openModalProduct(id) {
+  addProduct() {
+    this.ngXspinner.show();
+    this.router.navigate(["/admin-product-detail", { id: "new" }]);
+  }
+
+  openModalProduct(id) {
     this.ngXspinner.show();
     this.router.navigate(["/admin-product-detail", { id: id }]);
   }

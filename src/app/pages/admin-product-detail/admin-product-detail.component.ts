@@ -20,7 +20,7 @@ export class AdminProductDetailComponent implements OnInit {
 
   async ngOnInit() {
     let id = await this.route.snapshot.paramMap.get('id');
-    if (id) {
+    if (id !== "new") {
       try {
         let res: any = await this.productsService.getProductById(id);
         this.productData = res.data;
@@ -30,6 +30,9 @@ export class AdminProductDetailComponent implements OnInit {
         console.log(error)
         this.spinner.hide();
       }
+    } else {
+      console.log('this new product')
+      this.spinner.hide();
     }
   }
 
