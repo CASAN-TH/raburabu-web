@@ -48,6 +48,8 @@ import { StockpackComponent } from './pages/stockpack/stockpack.component';
 import { FilterKeywordPipe } from './pipes/filter-keyword.pipe';
 import { SearchMonitorAllComponent } from './pages/search-monitor-all/search-monitor-all.component';
 import { ImportOrdersComponent } from './pages/import-orders/import-orders.component';
+import { AdminManageProductComponent } from './pages/admin-manage-product/admin-manage-product.component';
+import { ModalProductComponent } from './modal/modal-product/modal-product.component';
 
 
 const apiSrvCfg = environment;
@@ -83,6 +85,8 @@ const apiSrvCfg = environment;
     FilterKeywordPipe,
     SearchMonitorAllComponent,
     ImportOrdersComponent,
+    AdminManageProductComponent,
+    ModalProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,7 +118,8 @@ const apiSrvCfg = environment;
     ModalAddBoxComponent,
     ModalRemarkComponent,
     ModalProfileComponent,
-    ModalMaxBoxComponent
+    ModalMaxBoxComponent,
+    ModalProductComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

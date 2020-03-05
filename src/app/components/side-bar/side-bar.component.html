@@ -44,6 +44,10 @@
         <img src="./../../../assets/images/logout.png" class="img-list">
         <span class="ml-3">จัดการทีม</span>
       </a>
+      <a mat-list-item (click)="onManageProduct();sidenavService.closeNav();" *ngIf="userAuth.roles[0] === 'admin'">
+        <img src="./../../../assets/images/shopping-bag.png" class="img-list">
+        <span class="ml-3">จัดการสินค้า</span>
+      </a>
       <a mat-list-item (click)="onLogout();sidenavService.closeNav();">
         <img src="./../../../assets/images/logout.png" class="img-list">
         <span class="ml-3">ออกจากระบบ</span>
