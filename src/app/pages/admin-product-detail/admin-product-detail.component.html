@@ -1,30 +1,33 @@
 <div class="row">
   <div class="col-8 mt-4 mb-4 d-flex">
-    <button mat-raised-button color="warn">ย้อนกลับ</button>
+    <button mat-raised-button color="warn" (click)="onBack()">ย้อนกลับ</button>
     <h4 class="mt-0 mb-0 ml-3 d-flex align-items-center">{{titleName}}</h4>
   </div>
-  <div class="col-4 mt-4 mb-4 text-right">
-    <button mat-raised-button color="primary">บันทึก</button>
+  <div class="col-4 mt-4 mb-4 text-right" *ngIf="productData">
+    <button mat-raised-button color="primary" (click)="onSave()"
+      [disabled]="productData.name === '' || productData.price === null || productData.image === ''">บันทึก</button>
   </div>
 </div>
 <!-- col-sm-6 col-md-4 col-lg-3 col-xl-3 -->
-<div class="row">
+<div class="row" *ngIf="productData">
   <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center">
-    <img class="img-size" src="./../../../assets/images/dragdrop.png">
+    <img *ngIf="productData.image === ''" class="img-size" src="./../../../assets/images/dragdrop.png">
+    <img *ngIf="productData.image !== ''" class="img-size" src="{{productData.image}}">
   </div>
   <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 pt-3">
     <mat-form-field class="full-input">
       <mat-label>ชื่อ</mat-label>
-      <input matInput>
+      <input matInput [(ngModel)]="productData.name">
     </mat-form-field>
     <br>
     <mat-form-field class="full-input">
       <mat-label>ราคา</mat-label>
-      <input matInput>
+      <input matInput type="number" [(ngModel)]="productData.price">
     </mat-form-field>
     <div>
       <mat-label class="mr-5">เป็นของรางวัล</mat-label>
-      <mat-slide-toggle></mat-slide-toggle>
+      <mat-slide-toggle [checked]="productData.reward === 'true' ? true : false" (change)="setValue($event)">
+      </mat-slide-toggle>
     </div>
   </div>
 </div>
@@ -36,16 +39,17 @@
         <mat-form-field class="full-input pl-2">
           <mat-label>ex. สี, ไซต์, ขนาด</mat-label>
           <span matPrefix>ประเภทสินค้า &nbsp;</span>
-          <input matInput>
+          <input matInput [(ngModel)]="option.name">
         </mat-form-field>
       </div>
     </div>
 
     <div class="row mt-3">
-      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center mb-3">
+      <div
+        class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 d-flex justify-content-center align-items-center mb-3 item-contain-size btn-add-border">
         <mat-icon class="icon-add" aria-hidden="false" aria-label="add product icon">add_circle_outline</mat-icon>
       </div>
-      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-3" *ngFor="let item of option.value">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-3 item-contain-size" *ngFor="let item of option.value">
         <mat-card>
           <img mat-card-image class="img-item-size" [src]="item.image">
           <mat-card-content>

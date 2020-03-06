@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-product-detail',
@@ -16,7 +17,8 @@ export class AdminProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private location: Location
   ) { }
 
   async ngOnInit() {
@@ -34,11 +36,37 @@ export class AdminProductDetailComponent implements OnInit {
       }
     } else {
       this.titleName = "เพิ่มสินค้า";
-      console.log('this new product')
+      this.productData = {
+        "name": "",
+        "price": null,
+        "image": "",
+        "reward": false,
+        "option": [
+          {
+            "name": "",
+            "value": []
+          }
+        ]
+      }
+      console.log(this.productData)
       this.spinner.hide();
     }
   }
 
-  
+  setValue(event) {
+    if (event.checked) {
+      this.productData.reward = true;
+    } else {
+      this.productData.reward = false;
+    }
+  }
+
+  onBack() {
+    this.location.back();
+  }
+
+  onSave() {
+    console.log(this.productData)
+  }
 
 }
