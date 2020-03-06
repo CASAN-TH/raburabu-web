@@ -53,6 +53,16 @@ export class AdminProductDetailComponent implements OnInit {
     }
   }
 
+  allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  drop(ev) {
+    ev.preventDefault();
+    const files = ev.dataTransfer.files;
+    // this.validateFile(files);
+  }
+
   setValue(event) {
     if (event.checked) {
       this.productData.reward = true;
