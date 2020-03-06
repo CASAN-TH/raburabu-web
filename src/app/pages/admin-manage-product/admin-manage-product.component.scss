@@ -1,15 +1,13 @@
-.contain-add-product {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 .icon-add-product {
     font-size: 50px;
     height: 100%;
     width: 100%;
     position: relative;
     bottom: 10px;
+}
+
+mat-card {
+    cursor: pointer;
 }
 
 .img-size {
