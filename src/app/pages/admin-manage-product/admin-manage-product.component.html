@@ -10,9 +10,9 @@
 </div>
 
 <div class="row">
-  <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 mb-3" *ngFor="let item of productData">
+  <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-3" *ngFor="let item of productData">
     <mat-card (click)="openModalProduct(item._id)">
-      <img mat-card-image [src]="item.image">
+      <img mat-card-image class="img-size" [src]="item.image">
       <mat-card-content>
         <p>{{item.name}}</p>
       </mat-card-content>

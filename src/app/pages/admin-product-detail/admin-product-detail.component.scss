@@ -1,0 +1,28 @@
+.img-size {
+    width: 100%;
+}
+
+.full-input {
+    width: 100%;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-add {
+    color: gray;
+    transform: scale(5);
+    cursor: pointer;
+}
+
+// mat-card {
+//     cursor: pointer;
+// }
+
+.img-item-size {
+    object-fit: cover;
+    height: 200px;
+}

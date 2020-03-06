@@ -43,13 +43,14 @@ import { ModalMaxBoxComponent } from './modal/modal-max-box/modal-max-box.compon
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { BlankComponent } from './pages/blank/blank.component';
 import { NumberOnlyDirective } from './number.directive';
-import { OwnDashboadComponent} from './pages/own-dashboad/own-dashboad.component';
+import { OwnDashboadComponent } from './pages/own-dashboad/own-dashboad.component';
 import { StockpackComponent } from './pages/stockpack/stockpack.component';
 import { FilterKeywordPipe } from './pipes/filter-keyword.pipe';
 import { SearchMonitorAllComponent } from './pages/search-monitor-all/search-monitor-all.component';
 import { ImportOrdersComponent } from './pages/import-orders/import-orders.component';
 import { AdminManageProductComponent } from './pages/admin-manage-product/admin-manage-product.component';
 import { AdminProductDetailComponent } from './pages/admin-product-detail/admin-product-detail.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 const apiSrvCfg = environment;
@@ -107,7 +108,8 @@ const apiSrvCfg = environment;
     MatPaginatorModule,
     ChartModule,
     AuthModule.forRoot(apiSrvCfg),
-    SlideshowModule
+    SlideshowModule,
+    MatSlideToggleModule
   ],
   entryComponents: [
     ModalCreateTeamComponent,

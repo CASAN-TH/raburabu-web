@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AdminProductDetailComponent implements OnInit {
 
+  titleName: any;
   productData: any;
 
   constructor(
@@ -21,16 +22,18 @@ export class AdminProductDetailComponent implements OnInit {
   async ngOnInit() {
     let id = await this.route.snapshot.paramMap.get('id');
     if (id !== "new") {
+      this.titleName = "แก้ไขสินค้า";
       try {
         let res: any = await this.productsService.getProductById(id);
         this.productData = res.data;
         console.log(this.productData);
         this.spinner.hide();
       } catch (error) {
-        console.log(error)
+        console.log(error);
         this.spinner.hide();
       }
     } else {
+      this.titleName = "เพิ่มสินค้า";
       console.log('this new product')
       this.spinner.hide();
     }
