@@ -64,6 +64,11 @@ export class AdminProductDetailComponent implements OnInit {
     ev.preventDefault();
   }
 
+  handleFileInput(files) {
+    // console.log(files)
+    this.preview(files);
+  }
+
   dropTitle(ev) {
     ev.preventDefault();
     const files = ev.dataTransfer.files;
