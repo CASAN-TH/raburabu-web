@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin-product-detail',
@@ -17,11 +18,14 @@ export class AdminProductDetailComponent implements OnInit {
   titleName: any;
   productData: any;
 
+  imageTitle: any;
+
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
     private spinner: NgxSpinnerService,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar
   ) { }
 
   async ngOnInit() {
@@ -60,34 +64,46 @@ export class AdminProductDetailComponent implements OnInit {
     ev.preventDefault();
   }
 
-  drop(ev) {
+  dropTitle(ev) {
     ev.preventDefault();
     const files = ev.dataTransfer.files;
-    console.log(files)
-    this.validateFile(files);
+    // console.log(files);
+    this.preview(files);
   }
 
-  async validateFile(files: Array<any>) {
+  preview(files: Array<any>) {
     this.spinner.show();
-    if (files.length === 1) {
-      if (files[0].type === this.filePng || files[0].type === this.fileJpeg) {
-        let res: any = await this.productsService.upload(files[0]);
-        console.log(res)
-        this.spinner.hide();
-      } else {
-        // error file type
-        this.spinner.hide();
-        // this.snackBar.open("invalid type of file (xls,xlsx)", "Error", {
-        //   duration: 2000,
-        // });
-      }
-    } else {
-      // error files length
+    if (files.length === 0) {
       this.spinner.hide();
-      // this.snackBar.open("Length of files is more than 1", "Error", {
-      //   duration: 2000,
-      // });
+      return;
     }
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.snackBar.open("โปรดเลือกรูปภาพในการอัพโหลด", "Error", {
+        duration: 2000,
+      });
+      this.spinner.hide();
+      return;
+    }
+
+    var mimeSize = files[0].size;
+    if (mimeSize > 1000000) {
+      this.snackBar.open("ขนาดรูปภาพไม่ควรเกิน 1MB", "Error", {
+        duration: 2000,
+      });
+      this.spinner.hide();
+      return;
+    }
+
+    var reader = new FileReader();
+    this.imageTitle = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.productData.image = reader.result;
+      this.spinner.hide();
+    }
+    console.log(this.imageTitle)
   }
 
   setValue(event) {
@@ -102,8 +118,39 @@ export class AdminProductDetailComponent implements OnInit {
     this.location.back();
   }
 
-  onSave() {
-    console.log(this.productData)
+  async onSave() {
+    this.spinner.show();
+    if (this.imageTitle) {
+      let resImage: any = await this.productsService.upload(this.imageTitle[0]);
+      console.log(resImage.data.url)
+      this.productData.image = resImage.data.url;
+    }
+
+    const body = {
+      "name": this.productData.name,
+      "image": this.productData.image,
+      "price": this.productData.price,
+      "option": this.productData.option,
+      "reward": this.productData.reward
+    }
+
+    // console.log(body);
+
+    if (this.productData._id) {
+      const id = this.productData._id;
+      const res: any = await this.productsService.saveProduct(id, body);
+      console.log(res)
+      if (res) {
+        this.location.back();
+      }
+    } else {
+      const res: any = await this.productsService.newProduct(body);
+      console.log(res)
+      if (res) {
+        this.location.back();
+      }
+    }
+
   }
 
 }
