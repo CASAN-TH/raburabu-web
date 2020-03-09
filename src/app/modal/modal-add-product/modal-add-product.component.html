@@ -1,0 +1,18 @@
+<div class="pl-2 pr-2">
+  <mat-form-field class="full-input">
+    <mat-label>ชื่อ</mat-label>
+    <input matInput>
+  </mat-form-field>
+</div>
+<div class="text-center">
+  <img class="img-size" src="./../../../assets/images/dragdrop.png">
+</div>
+
+<div mat-dialog-actions>
+  <div class="col-6 text-left">
+    <button mat-raised-button color="warn" mat-dialog-close>ยกเลิก</button>
+  </div>
+  <div class="col-6 text-right">
+    <button mat-raised-button color="primary" [mat-dialog-close]="data" disabled>เพิ่ม</button>
+  </div>
+</div>

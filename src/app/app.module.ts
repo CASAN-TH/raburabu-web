@@ -51,6 +51,7 @@ import { ImportOrdersComponent } from './pages/import-orders/import-orders.compo
 import { AdminManageProductComponent } from './pages/admin-manage-product/admin-manage-product.component';
 import { AdminProductDetailComponent } from './pages/admin-product-detail/admin-product-detail.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ModalAddProductComponent } from './modal/modal-add-product/modal-add-product.component';
 
 
 const apiSrvCfg = environment;
@@ -88,6 +89,7 @@ const apiSrvCfg = environment;
     ImportOrdersComponent,
     AdminManageProductComponent,
     AdminProductDetailComponent,
+    ModalAddProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +123,7 @@ const apiSrvCfg = environment;
     ModalRemarkComponent,
     ModalProfileComponent,
     ModalMaxBoxComponent,
+    ModalAddProductComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

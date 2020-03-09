@@ -4,6 +4,8 @@ import { ProductsService } from 'src/app/services/products/products.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalAddProductComponent } from 'src/app/modal/modal-add-product/modal-add-product.component';
 
 @Component({
   selector: 'app-admin-product-detail',
@@ -25,7 +27,8 @@ export class AdminProductDetailComponent implements OnInit {
     private productsService: ProductsService,
     private spinner: NgxSpinnerService,
     private location: Location,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   async ngOnInit() {
@@ -117,6 +120,18 @@ export class AdminProductDetailComponent implements OnInit {
     } else {
       this.productData.reward = false;
     }
+  }
+
+  openAddItem() {
+    const dialogRef = this.dialog.open(ModalAddProductComponent, {
+      width: '400px',
+      data: { name: "this.name", animal: "this.animal" },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
   onBack() {
