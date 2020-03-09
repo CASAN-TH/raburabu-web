@@ -11,6 +11,9 @@ import { Location } from '@angular/common';
 })
 export class AdminProductDetailComponent implements OnInit {
 
+  filePng = "image/png";
+  fileJpeg = "image/jpeg";
+
   titleName: any;
   productData: any;
 
@@ -60,7 +63,31 @@ export class AdminProductDetailComponent implements OnInit {
   drop(ev) {
     ev.preventDefault();
     const files = ev.dataTransfer.files;
-    // this.validateFile(files);
+    console.log(files)
+    this.validateFile(files);
+  }
+
+  async validateFile(files: Array<any>) {
+    this.spinner.show();
+    if (files.length === 1) {
+      if (files[0].type === this.filePng || files[0].type === this.fileJpeg) {
+        let res: any = await this.productsService.upload(files[0]);
+        console.log(res)
+        this.spinner.hide();
+      } else {
+        // error file type
+        this.spinner.hide();
+        // this.snackBar.open("invalid type of file (xls,xlsx)", "Error", {
+        //   duration: 2000,
+        // });
+      }
+    } else {
+      // error files length
+      this.spinner.hide();
+      // this.snackBar.open("Length of files is more than 1", "Error", {
+      //   duration: 2000,
+      // });
+    }
   }
 
   setValue(event) {

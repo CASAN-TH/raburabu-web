@@ -25,4 +25,11 @@ export class ProductsService {
   getProductById(id) {
     return this.http.get(environment.apiUrl + '/api/products/' + id, { headers: this.authorizationHeader() }).toPromise();
   }
+
+  upload(fileToUpload: File) {
+    const formData: FormData = new FormData();
+    formData.append('filename', fileToUpload);
+
+    return this.http.post(environment.apiUrl + '/api/productsimage', formData,{ headers: this.authorizationHeader() }).toPromise();
+  }
 }
