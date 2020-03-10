@@ -123,15 +123,20 @@ export class AdminProductDetailComponent implements OnInit {
   }
 
   openAddItem(data) {
-    if(!data){
+    if (!data) {
       data = {
+        "_id": null,
         "name": "",
         "image": ""
       }
     }
     const dialogRef = this.dialog.open(ModalAddProductComponent, {
       width: '400px',
-      data: data,
+      data: {
+        "_id": data._id,
+        "name": data.name,
+        "image": data.image
+      },
       disableClose: true
     });
 

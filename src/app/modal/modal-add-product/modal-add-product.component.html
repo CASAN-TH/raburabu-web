@@ -5,8 +5,11 @@
   </mat-form-field>
 </div>
 <div class="text-center">
-  <img *ngIf="data.image === ''" class="img-size" src="./../../../assets/images/dragdrop.png">
-  <img *ngIf="data.image !== ''" class="img-size" [src]="data.image">
+  <input hidden type="file" #uploader (change)="handleFileInput($event.target.files)" />
+  <img *ngIf="data.image === ''" class="img-size" src="./../../../assets/images/dragdrop.png" (drop)="dropItem($event)"
+    (dragover)="allowDrop($event)" (click)="uploader.click()">
+  <img *ngIf="data.image !== ''" class="img-size" [src]="data.image" (drop)="dropItem($event)"
+    (dragover)="allowDrop($event)" (click)="uploader.click()">
 </div>
 
 <div mat-dialog-actions>
